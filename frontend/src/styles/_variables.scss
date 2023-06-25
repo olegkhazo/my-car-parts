@@ -1,0 +1,113 @@
+// Override Bootstrap default variables
+// Color Variables
+
+// Bootstrap Color Overrides
+$white: #fff !default;
+$gray: #f8f9fc !default;
+$gray-100: #f3f5f8 !default;
+$gray-150: #eff5fd !default;
+$gray-200: #e0e6ed !default;
+$gray-300: #dddddd !default;
+$gray-350: #f8f8f8 !default;
+$gray-400: #dfdfea !default;
+$gray-450: #bfbfbf !default;
+$gray-500: #EFEFEF !default;
+$gray-550: #CCCCCC !default;
+$gray-600: #798699 !default;
+$gray-700: #777777 !default;
+$gray-800: #50556e !default;
+$gray-850: #616b7a !default;
+$gray-900: #4a4e64 !default;
+$gray-950: #333333 !default;
+$gray-1000: #24282E !default;
+$black: #000 !default;
+
+
+
+$blue: #609fe8 !default;
+$blue-50: #c5e9ff !default;
+$blue-100: #90afff !default;
+$blue-150: #ddebf93b !default;
+$blue-170: #ddebf980 !default;
+$blue-200: #9dcbff !default;
+$blue-250: #4881C2 !default;
+$blue-300: #469AD2 !default;
+$blue-400: #4F91DF !default;
+$blue-600: #3e5cb2 !default;
+$blue-650: #2630f0 !default;
+$blue-700: #052e5e !default;
+$blue-750: #042C5C !default;
+$blue-800: #174478 !default;
+$indigo: #6610f2 !default;
+$purple: #6f42c1 !default;
+$purple-100: #DDEBF8 !default;
+$purple-100: rgba(221, 235, 249, 0.23) !default;
+$cyan: #36b9cc !default;
+
+$pink: #e83e8c !default;
+$red: #e74a3b !default;
+$red-600: #B51010 !default;
+$orange: #fd7e14 !default;
+$orange-100: #FF9923 !default;
+$orange-700: #e3824b !default;
+
+
+$yellow: #f6c23e !default;
+$yellow-200: #ffebb3 !default;
+$yellow-300: #ffe897 !default;
+$yellow-500: #cc9600 !default;
+
+$green: #1cc88a !default;
+$green-100: #ccf3e8 !default;
+$green-400: #39ba9b !default;
+$green-450: #00C48C !default;
+$green-500: #009d70 !default;
+$green-600: #119053 !default;
+$teal: #20c9a6 !default;
+
+$dark-rose: #a696a8 !default;
+
+$layout-breakpoint-medium: 768px !default;
+
+// Set Contrast Threshold
+// $yiq-contrasted-threshold: 200 !default;
+$min-contrast-ratio: 3.5 !default;
+
+// Typography
+$body-color: $gray-600 !default;
+
+$font-weight-light: 300 !default;
+// $font-weight-base: 400;
+$headings-font-weight: 400 !default;
+
+// Shadows
+$box-shadow-sm: 0 0.125rem 0.25rem 0 rgba($gray-900, .2) !default;
+$box-shadow: 0 0.15rem 1.75rem 0 rgba($gray-900, .15) !default;
+// $box-shadow-lg: 0 1rem 3rem rgba($black, .175) !default;
+
+// Borders Radius
+$border-radius: 0.35rem !default;
+$border-color: darken($gray-200, 2%) !default;
+
+// Spacing Variables
+// Change below variable if the height of the navbar changes
+$topbar-base-height: 4.375rem !default;
+// Change below variable to change the width of the sidenav
+$sidebar-base-width: 14rem !default;
+// Change below variable to change the width of the sidenav when collapsed
+$sidebar-collapsed-width: 6.5rem !default;
+
+// Card
+$card-cap-bg: $gray-100 !default;
+$card-border-color: $border-color !default;
+
+// Adjust column spacing for symmetry
+$spacer: 1rem !default;
+$grid-gutter-width: $spacer * 1.5 !default;
+
+// Transitions
+$transition-collapse: height .15s ease !default;
+
+// Dropdowns
+$dropdown-font-size: 0.85rem !default;
+$dropdown-border-color: $border-color !default;
