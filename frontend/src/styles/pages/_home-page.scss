@@ -8,7 +8,7 @@
 } 
 
 hr {
-    border: 1px solid #CFCBC8;
+    border: 1px solid $gray-100;
     margin-top: 60px;
 
     @media (max-width: 1020px) {
@@ -59,7 +59,7 @@ hr {
         }
 
         .part-request-input {
-            background-color: #CFCBC8;
+            background-color: $gray-100;
             padding: 15px 15px 20px 15px;
             border-radius: 5px;
             margin-top: -20px;
@@ -267,7 +267,7 @@ hr {
                 tr {
                     td {
                        padding: 5px 0;
-                       border-bottom: 1px solid #CFCBC8;
+                       border-bottom: 1px solid $gray-100;
 
                        @media (max-width: 1020px) {
                             font-size: 13px;
@@ -296,7 +296,7 @@ hr {
             li {
                 list-style: none;
                 padding: 5px 0;
-                border-bottom: 1px solid #CFCBC8;
+                border-bottom: 1px solid $gray-100;
 
                 .single-request-wrapper {
                     display: flex;

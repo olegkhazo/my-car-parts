@@ -1,0 +1,49 @@
+.admin-panel-wrapper {
+    height: 100vh;
+    position: relative;
+    display: flex;
+    
+    .admin-side-menu {
+        width: 250px;
+        background-color: $gray-300; 
+        
+        .side-menu-header {
+            display: flex;
+            align-items: center;
+            flex-direction: column; 
+            cursor: pointer; 
+            padding-top: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid $gray-200;
+
+            .avatar-wrapper {
+                
+                img {                    
+                    width: 80px;
+                    height: auto;
+                    border-radius: 50%;
+                }
+            }
+
+            .user-info {
+                display: block;
+                font-size: 22px;
+                font-weight: 500;
+            }
+        }
+
+        .admin-navigation {
+
+            ul {
+                li {
+                    padding: 15px 55px;
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: $gray-200;
+                    }
+                }
+            }
+        }
+    }
+}
