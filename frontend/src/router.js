@@ -2,11 +2,11 @@
 import { createWebHistory, createRouter } from 'vue-router'
 
 import MyAccount from '@/pages/MyAccount'
-import PartRequestAdmin from '@/pages/PartRequestAdmin'
+import PartRequest from '@/pages/PartRequest'
 import MyAnswers from '@/pages/MyAnswers.vue'
 import FaqPage from '@/pages/FaqPage'
 import HomePage from '@/pages/HomePage'
-import SendRequestPage from '@/pages/SendRequestPage'
+import MyRequests from '@/pages/MyRequests'
 
 const publicAccessRoutes = [
   {
@@ -16,16 +16,16 @@ const publicAccessRoutes = [
     title: 'home-page'
   },
   {
-    path: '/part-request-admin',
-    component: PartRequestAdmin,
-    name: 'part-request-admin',
-    title: 'part-request-admin'
+    path: '/part-request/:userId?',
+    component: PartRequest,
+    name: 'part-request',
+    title: 'part-request'
   },
   {
     path: '/admin-panel',
     component: MyAccount,
     name: 'my-account',
-    title: 'my-account'
+    title: 'my-account',
   },
   {
     path: '/admin-panel/my-answers',
@@ -34,10 +34,10 @@ const publicAccessRoutes = [
     title: 'my-answers'
   },
   {
-    path: '/admin-panel/send-request',
-    component: SendRequestPage,
-    name: 'send-request',
-    title: 'send-request'
+    path: '/admin-panel/my-requests',
+    component: MyRequests,
+    name: 'my-requests',
+    title: 'my-requests'
   },
   {
     path: '/admin-panel/faq',
