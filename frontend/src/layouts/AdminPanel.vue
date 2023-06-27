@@ -3,7 +3,7 @@
     <div class="admin-side-menu">
       <div class="side-menu-header">
         <div class="avatar-wrapper">
-          <img src="@/assets/images/cat-oleg.jpg" alt="avatar" />
+          <img src="@/assets/images/cat.webp" alt="avatar" />
         </div>
         <span class="user-info"> Oleg Zh. </span>
       </div>
@@ -11,19 +11,31 @@
       <nav class="admin-navigation">
         <ul>
           <li>
-            <img src="" alt="" />
+            <img
+              src="@/assets/images/person_outline_black_24dp.svg"
+              alt="my-account"
+            />
             <span class="nav-item-title">My Account</span>
           </li>
           <li>
-            <img src="" alt="" />
+            <img
+              src="@/assets/images/question_answer_black_24dp.svg"
+              alt="my-answers"
+            />
             <span class="nav-item-title">My Answers</span>
           </li>
           <li>
-            <img src="" alt="" />
+            <img
+              src="@/assets/images/shopping_basket_black_24dp.svg"
+              alt="my-requests"
+            />
             <span class="nav-item-title">My Requests</span>
           </li>
           <li>
-            <img src="" alt="" />
+            <img
+              src="@/assets/images/add_comment_black_24dp.svg"
+              alt="send-request"
+            />
             <span class="nav-item-title">Send Request</span>
           </li>
         </ul>
@@ -31,7 +43,13 @@
     </div>
 
     <div class="admin-content-wrapper">
-      <slot></slot>
+      <div class="content">
+        <slot></slot>
+      </div>
+
+      <div class="admin-bottom-info">
+        <span>© 2023 — MyCarParts Inc.</span>
+      </div>
     </div>
   </div>
 </template>
