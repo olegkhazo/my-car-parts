@@ -1,11 +1,23 @@
 <template>
   <div class="admin-panel-wrapper">
-    <div class="admin-side-menu">
+    <div
+      class="admin-side-menu"
+      :class="{ 'collapsed-admin-side-menu': sideMenuView }"
+    >
+      <div class="collapse-btn-wrapper" @click="collapseSideMenu">
+        <img
+          src="@/assets/images/keyboard_arrow_left_black_36dp.svg"
+          alt="arrow"
+        />
+      </div>
       <div class="side-menu-header">
         <div class="avatar-wrapper">
           <img src="@/assets/images/cat.webp" alt="avatar" />
         </div>
-        <span class="user-info"> Oleg Zh. </span>
+        <div class="user-text-info">
+          <span class="user-info"> Oleg Zh. </span>
+          <span class="user-info"> 28.06.2023 </span>
+        </div>
       </div>
 
       <nav class="admin-navigation">
@@ -50,7 +62,7 @@
       </nav>
     </div>
 
-    <div class="admin-content-wrapper">
+    <div class="admin-content-wrapper" :class="{ 'full-width': sideMenuView }">
       <div class="content">
         <slot></slot>
       </div>
@@ -62,7 +74,16 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref } from "vue";
+
+const sideMenuView = ref(false);
+
+function collapseSideMenu() {
+  sideMenuView.value = sideMenuView.value ? false : true;
+  // console.log(sideMenuView.value);
+}
+</script>
 
 <style lang="sass" scoped>
 @import "@/styles/layouts/_admin-panel.scss"
