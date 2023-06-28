@@ -84,6 +84,7 @@ function collapseSideMenu() {
   sideMenuView.value = sideMenuView.value ? false : true;
 }
 
+// The mechanism for watching for screen sizing
 function displayWindowSize() {
   screenWidth.value = document.documentElement.clientWidth;
 }
