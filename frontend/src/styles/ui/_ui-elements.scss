@@ -1,0 +1,25 @@
+@mixin btn {
+    text-decoration: none;
+    padding: 10px 30px;
+    border-radius: 5px;
+    color: $black;
+
+}
+
+.blue-btn {
+    @include btn;
+    background-color: $blue;
+
+    &:hover {
+        color: $white;
+    }
+}
+
+.yellow-btn {
+    @include btn;
+    background-color: $yellow;
+
+    &:hover {
+        color: $gray-1000;
+    }
+}
