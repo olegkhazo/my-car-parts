@@ -1,11 +1,11 @@
 <template>
-  <AdminPanel>
+  <MainLayout>
     <div>FAQ</div>
-  </AdminPanel>
+  </MainLayout>
 </template>
 
 <script setup>
-import AdminPanel from "@/layouts/AdminPanel";
+import MainLayout from "@/layouts/MainLayout";
 </script>
 
 <style lang="sass" scoped></style>
