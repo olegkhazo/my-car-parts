@@ -23,3 +23,37 @@
         color: $gray-1000;
     }
 }
+
+
+table {
+    width: inherit;
+    border-collapse: collapse;
+
+    thead {
+        background-color: $gray-300;
+
+        tr {
+            th {
+                text-align: left;
+                padding: 10px 0;
+                color: $gray-800;
+                font-weight: 400;
+            }
+        }
+    }
+
+    tbody {
+        background-color: $gray-150;
+
+        tr {
+            td {
+               padding: 5px 0;
+               border-bottom: 1px solid $gray-100;
+
+               @media (max-width: 1020px) {
+                    font-size: 13px;
+                }
+            }
+        }
+    }
+}
