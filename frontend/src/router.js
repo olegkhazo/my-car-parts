@@ -1,12 +1,14 @@
 /* eslint-disable */
 import { createWebHistory, createRouter } from 'vue-router'
 
-import MyAccount from '@/pages/MyAccount'
-import PartRequest from '@/pages/PartRequest'
-import MyAnswers from '@/pages/MyAnswers.vue'
-import FaqPage from '@/pages/FaqPage'
 import HomePage from '@/pages/HomePage'
-import MyRequests from '@/pages/MyRequests'
+import FaqPage from '@/pages/FaqPage'
+import PartRequest from '@/pages/PartRequest'
+
+// Admin pages
+import MyAccount from '@/pages/adminPages/MyAccount'
+import MyAnswers from '@/pages/adminPages/MyAnswers.vue'
+import MyRequests from '@/pages/adminPages/MyRequests'
 
 const publicAccessRoutes = [
   {
@@ -20,6 +22,12 @@ const publicAccessRoutes = [
     component: PartRequest,
     name: 'part-request',
     title: 'part-request'
+  },
+  {
+    path: '/faq',
+    component: FaqPage,
+    name: 'faq',
+    title: 'faq'
   },
   {
     path: '/admin-panel',
@@ -38,12 +46,6 @@ const publicAccessRoutes = [
     component: MyRequests,
     name: 'my-requests',
     title: 'my-requests'
-  },
-  {
-    path: '/admin-panel/faq',
-    component: FaqPage,
-    name: 'faq',
-    title: 'faq'
   },
 ];
 
