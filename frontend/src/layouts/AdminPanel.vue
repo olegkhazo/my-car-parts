@@ -75,14 +75,28 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 
 const sideMenuView = ref(false);
+const screenWidth = ref(null);
 
 function collapseSideMenu() {
   sideMenuView.value = sideMenuView.value ? false : true;
-  // console.log(sideMenuView.value);
 }
+
+function displayWindowSize() {
+  screenWidth.value = document.documentElement.clientWidth;
+}
+
+window.addEventListener("resize", displayWindowSize);
+
+displayWindowSize();
+
+watch(screenWidth, (newVal, oldVal) => {
+  if (newVal < 720 && oldVal > 720) {
+    sideMenuView.value = true;
+  }
+});
 </script>
 
 <style lang="sass" scoped>
