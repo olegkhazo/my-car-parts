@@ -85,21 +85,17 @@ hr {
                     }
 
                     &::placeholder {
-                        color: #6B6B6B;
+                        color: $gray-700;
                         font-size: 16px;
                         font-weight: 300;
                     }
                 
                 }
 
-                a {
-                    text-decoration: none;
+                .yellow-btn {
                     padding: 10px 17px;
-                    color: #000000;
                     font-size: 15px;
-                    border-radius: 5px;
                     font-weight: 500;
-                    background-color: #FCD445;
 
                     @media (max-width: 500px) {
                         margin-top: 10px;
@@ -215,7 +211,7 @@ hr {
         font-weight: 400;
 
         span {
-            color: #000000;
+            color: $black;
 
             @media (max-width: 720px) {
                 font-weight: 500;
@@ -223,7 +219,7 @@ hr {
         }
 
         a {
-            color:#45C5FC;
+            color:$blue;
             text-decoration: none;
 
             @media (max-width: 375px) {
@@ -249,7 +245,7 @@ hr {
             border-collapse: collapse;
 
             thead {
-                background-color: #EEEEEE;
+                background-color: $gray-300;
 
                 tr {
                     th {
@@ -262,7 +258,7 @@ hr {
             }
 
             tbody {
-                background-color: #FAFAFA;
+                background-color: $gray-150;
 
                 tr {
                     td {
@@ -322,14 +318,8 @@ hr {
     .table-button-wrapper {
         margin-top: 40px;
 
-        a {
-            text-decoration: none;
-            padding: 10px 17px;
-            color: #000000;
-            font-size: 15px;
-            border-radius: 5px;
+        .yellow-btn {
             font-weight: 500;
-            background-color: #FCD445;
         }
     }
 
@@ -342,13 +332,13 @@ hr {
             margin-left: 20px;
 
             .red-seller-info {
-                color: #CE0000;
+                color: $red;
                 font-weight: 600;
             }
 
             a {
                 text-decoration: none;
-                color: #45C5FC;
+                color: $blue;
                 font-weight: 600;
             }
         }
@@ -356,7 +346,7 @@ hr {
 }
 
 .simple-project-decription-wrapper {
-    background-color: #E8F6FD;
+    background-color: $gray-250;
     margin-top: 65px;
     font-size: 18px;
     color: $gray-800;
@@ -371,7 +361,7 @@ hr {
 
     a {
         text-decoration: none;
-        color: #45C5FC;
+        color: $blue;
         font-weight: 600;
     }
 }
@@ -458,19 +448,13 @@ hr {
         }
     }
 
-    a {
-        text-decoration: none;
-        padding: 10px 17px;
-        color: #000000;
-        font-size: 15px;
-        border-radius: 5px;
+    .yellow-btn {
         font-weight: 500;
-        background-color: #FCD445;
     }
 }
 
 .user-reviews-wrapper {
-    background-color: #EEEEEE;
+    background-color: $gray-300;
     margin-top: 65px;
     color: $gray-800;
     padding: 50px 25px;
@@ -487,7 +471,7 @@ hr {
     .reviews-block-header {
         font-weight: 500;
         font-size: 40px;
-        color: #000000;
+        color: $black;
 
         @media (max-width: 500px) {
             font-size: 35px;
@@ -520,7 +504,7 @@ hr {
             flex-direction: column;
             align-items: center;
             text-align: center;
-            background-color: #FFFFFF;
+            background-color: $white;
 
             @media (max-width: 1020px) {
                 margin-bottom: 30px;;
@@ -534,7 +518,7 @@ hr {
 
             .review-header {
                 margin: 20px 0;
-                color: #000000;
+                color: $black;
                 font-weight: 500;
             }
 

@@ -1,5 +1,5 @@
 .footer {
-    background-color: #FCFCFC;
+    background-color: $white;
 
     .content-wrapper {
         width: 1010px;
@@ -46,7 +46,7 @@
                 @media (max-width: 740px) {
                     width: 100%;
                     padding-bottom: 20px;
-                    border-bottom: 1px solid #CFCBC8;
+                    border-bottom: 1px solid $gray-100;
                 }
 
                 .footer-logo {
@@ -58,11 +58,11 @@
                 .sellers-entrance {
                     font-size: 18px;
                     font-weight: 500;
-                    color: #6F6F6F;
+                    color: $gray-800;
                     margin-bottom: 10px;
 
                     a {
-                        color: #45C5FC;
+                        color: $blue;
                         margin-left: 5px;
 
                         &:hover {
@@ -72,7 +72,7 @@
                 }
 
                 .footer-project-description {
-                    color: #6F6F6F;
+                    color: $gray-800;
                     font-size: 14px;
                 }
 
@@ -88,7 +88,7 @@
 
                 @media (max-width: 390px) {
                     width: 100%;
-                    border-bottom: 1px solid #CFCBC8;
+                    border-bottom: 1px solid $gray-100;
                     padding-bottom: 20px;
                 }
 
@@ -100,8 +100,8 @@
 
         .bottom-footer-part {
             padding: 20px 0;
-            border-top: 1px solid #CFCBC8;           
-            border-bottom: 1px solid #CFCBC8;
+            border-top: 1px solid $gray-100;           
+            border-bottom: 1px solid $gray-100;
             display: flex;
             flex-direction: column;
 

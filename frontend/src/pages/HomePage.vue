@@ -13,7 +13,9 @@
               class="part-naming"
               placeholder="Type which part you need"
             />
-            <router-link :to="{ path: '/' }">Start Searching</router-link>
+            <router-link :to="{ path: '/' }" class="yellow-btn"
+              >Start Searching</router-link
+            >
           </div>
           <div class="example">
             <span
@@ -150,7 +152,9 @@
           </ul>
         </div>
         <div class="table-button-wrapper">
-          <router-link :to="{ path: '/' }">Send your request</router-link>
+          <router-link :to="{ path: '/' }" class="yellow-btn"
+            >Send your request</router-link
+          >
         </div>
 
         <div class="info-for-sellers">
@@ -199,7 +203,9 @@
             sellers will see your request and offer profitable options.
           </span>
           <span>
-            <router-link :to="{ path: '/' }">Send your request</router-link>
+            <router-link :to="{ path: '/' }" class="yellow-btn"
+              >Send your request</router-link
+            >
           </span>
         </div>
       </div>
@@ -211,7 +217,9 @@
             sellers will see your request and offer profitable options.
           </span>
           <span>
-            <router-link :to="{ path: '/' }">Send your request</router-link>
+            <router-link :to="{ path: '/' }" class="yellow-btn"
+              >Send your request</router-link
+            >
           </span>
         </div>
         <img src="@/assets/images/sallesman.png" alt="sallesman" />
