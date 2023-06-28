@@ -88,14 +88,14 @@
     }
 
     .full-width {
-        width: calc(100% - 90px);
+        width: calc(100% - 55px);
     }
 
     .collapsed-admin-side-menu {
-        width: 90px;
+        width: 55px;
 
         .collapse-btn-wrapper {
-           left: 55px;
+           left: 10px;
 
             img {
                 transform: rotate(180deg);
