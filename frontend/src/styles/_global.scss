@@ -8,22 +8,30 @@ html {
     body {
         height: 100%;
         margin: 0;
-    }
-    
-    a {
-        color: $gray-1000;
-    }
 
-    ul {
-        margin-block-start: 0;
-        margin-block-end: 0;
-        padding-inline-start: 0;
+        .content-wrapper {
+            width: 1010px;
+            margin: 0 auto;
         
-        li {
-            list-style: none;
+            @media (max-width: 1020px) {
+                width: 95%;
+            }
+        } 
+        
+        a {
+            color: $gray-1000;
+        }
+        
+        ul {
+            margin-block-start: 0;
+            margin-block-end: 0;
+            padding-inline-start: 0;
+            
+            li {
+                list-style: none;
+            }
         }
     }
-    
 }
 
 

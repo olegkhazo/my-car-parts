@@ -1,12 +1,3 @@
-.content-wrapper {
-    width: 1010px;
-    margin: 0 auto;
-
-    @media (max-width: 1020px) {
-        width: 95%;
-    }
-} 
-
 hr {
     border: 1px solid $gray-100;
     margin-top: 60px;

@@ -6,9 +6,9 @@ import FaqPage from '@/pages/FaqPage'
 import PartRequest from '@/pages/PartRequest'
 
 // Admin pages
-import MyAccount from '@/pages/adminPages/MyAccount'
-import MyAnswers from '@/pages/adminPages/MyAnswers.vue'
-import MyRequests from '@/pages/adminPages/MyRequests'
+import MyAccount from '@/pages/admin-pages/MyAccount'
+import MyAnswers from '@/pages/admin-pages/MyAnswers.vue'
+import MyRequests from '@/pages/admin-pages/MyRequests'
 
 const publicAccessRoutes = [
   {
