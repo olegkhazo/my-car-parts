@@ -9,7 +9,6 @@
     "lint:prod": "NODE_ENV=production vue-cli-service lint --no-fix"
   },
   "dependencies": {
-    "@formkit/vue": "^0.17.3",
     "@typescript-eslint/eslint-plugin": "^5.57.1",
     "@typescript-eslint/parser": "^5.57.1",
     "@volar-plugins/prettier": "^2.0.0",

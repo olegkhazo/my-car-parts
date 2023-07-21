@@ -1,40 +1,39 @@
 <template>
   <MainLayout>
     <div class="content-wrapper">
-      <h3>Part request</h3>
+      <div class="request-form-page-wrapper">
+        <div class="form-wrapper">
+          <span class="form-description">Find car parts in USA</span>
+          <form class="part-request-form" action="">
+            <div class="form-steps">
+              <span class="step active-step">1</span>
+              <img src="@/assets/images/step-arrow.svg" alt="arrow" />
+              <span class="step">2</span>
+              <img src="@/assets/images/step-arrow.svg" alt="arrow" />
+              <span class="step">3</span>
+            </div>
 
-      <FormKit type="group">
-        <FormKit
-          type="text"
-          label="Street address"
-          name="street"
-          placeholder="Your street"
-          validation="required"
-        />
-        <FormKit
-          type="text"
-          label="City"
-          placeholder="Your city"
-          name="city"
-          validation="required"
-        />
-        <div class="double">
-          <FormKit
-            type="select"
-            label="State"
-            name="state"
-            placeholder="Your state"
-            validation="required"
-          />
-          <FormKit
-            type="text"
-            name="zip"
-            label="Zip"
-            placeholder="Your zip"
-            validation="required|number"
-          />
+            <div class="form-fields-section">
+              <label for="part-name">Part name</label>
+              <input id="part-name" type="text" />
+
+              <label for="part-name">Part name</label>
+              <input id="part-name" type="text" />
+
+              <div class="radio-toolbar">
+                <input
+                  id="radio-any"
+                  type="radio"
+                  name="radio-any"
+                  value="any-type"
+                />
+              </div>
+            </div>
+          </form>
         </div>
-      </FormKit>
+
+        <div class="request-right-info-wrapper"></div>
+      </div>
     </div>
   </MainLayout>
 </template>

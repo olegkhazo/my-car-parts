@@ -16,7 +16,7 @@
         .side-menu-header {
             display: flex;
             padding: 40px 65px 20px 30px;
-            border-bottom: 1px solid $gray-200;
+            border-bottom: 1px solid $gray-100;
             align-items: center;
 
             .avatar-wrapper {                
@@ -57,7 +57,7 @@
                         align-items: center;
     
                         &:hover {
-                            background-color: $gray-200;
+                            background-color: $gray-100;
                         }
     
                         .nav-item-title {
