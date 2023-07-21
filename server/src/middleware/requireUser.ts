@@ -1,20 +1,13 @@
-import { NextFunction, Request, Response } from 'express';
-import AppError from '../utils/appError';
+import { Request, Response, NextFunction } from "express";
 
-export const requireUser = (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  try {
-    const user = res.locals.user;
-    if (!user) {
-      return next(new AppError(`Invalid token or session has expired`, 401));
-    }
+const requireUser = (req: Request, res: Response, next: NextFunction) => {
+  const user = res.locals.user;
 
-    next();
-  } catch (err: any) {
-    next(err);
+  if (!user) {
+    return res.sendStatus(403);
   }
+
+  return next();
 };
 
+export default requireUser;

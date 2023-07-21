@@ -1,6 +1,14 @@
 export default {
-    port: 8000,
-    accessTokenExpiresIn: 15,
-  origin: 'http://localhost:3000',
-  };
-  
+  port: 3000,
+  dbUri: "mongodb://localhost:27017/my-car-parts",
+  logLevel: "info",
+  accessTokenPrivateKey: "",
+  refreshTokenPrivateKey: "",
+  smtp: {
+    user: "icqskc5mxzf3bwct@ethereal.email",
+    pass: "mVSU79SbF3WmvGqy4V",
+    host: "smtp.ethereal.email",
+    port: 587,
+    secure: false,
+  },
+};
