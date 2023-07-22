@@ -3,7 +3,8 @@
     padding: 10px 30px;
     border-radius: 5px;
     color: $black;
-
+    border: none;
+    cursor: pointer;
 }
 
 .blue-btn {
@@ -12,6 +13,17 @@
 
     &:hover {
         color: $white;
+    }
+}
+
+.gray-btn {
+    @include btn;
+    background-color: $gray-800;
+    color: $white;
+    font-weight: 600;
+
+    &:hover {
+        background-color: $gray-1000;
     }
 }
 
