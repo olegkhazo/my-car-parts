@@ -1,0 +1,82 @@
+.request-form-page-wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding: 55px 0;
+
+    .form-description {
+        color: $gray-800;
+        font-size: 25px;
+        position: absolute;
+        top: 80px;
+    }
+
+    .form-wrapper {
+        width: 57%;
+
+        .part-request-form {
+            padding: 20px 60px;
+            border: 2px solid $gray-100;
+            border-radius: 15px;
+            position: relative;
+        }
+    }
+
+    .request-right-info-wrapper {
+        width: 36%;
+        border-radius: 15px;
+        background-color: $blue-250;
+        padding: 20px 25px;
+        color: $gray-1000;
+
+        .right-blue-block-title {
+            font-size: 30px;
+            font-weight: 500;
+        }
+
+        span {
+            display: block;
+        }
+
+        .bold-span {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .blue-arrow-wrapper {
+           display: flex;
+           justify-content: center;
+           margin-bottom: 15px;
+        }
+
+        .top-arrow {
+            margin-top: 15px;
+        }
+
+        .priveleges {
+            .priveleges-point {
+                margin-bottom: 12px;
+                display: flex;
+                align-items: flex-start;
+                justify-content: space-between;
+
+                .priveleges-text {
+                    width: 90%;
+                }
+            }
+        }
+
+        .result-you-get {
+            li {
+                margin-left: 20px;
+                list-style-type: disc;
+            }
+        }
+
+        .thumbs-up-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+    }
+}
+

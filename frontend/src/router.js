@@ -3,7 +3,7 @@ import { createWebHistory, createRouter } from 'vue-router'
 
 import HomePage from '@/pages/HomePage'
 import FaqPage from '@/pages/FaqPage'
-import PartRequest from '@/pages/PartRequest'
+import PartRequest from '@/pages/part-request/PartRequest'
 
 // Admin pages
 import MyAccount from '@/pages/admin-pages/MyAccount'
