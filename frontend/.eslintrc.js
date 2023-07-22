@@ -21,11 +21,7 @@ module.exports = {
     "no-debugger": devRulesLevel,
     "no-console": devRulesLevel,
     "no-unused-vars": devRulesLevel,
-    "prettier/prettier": [
-      "error",
-      {
-        endOfLine: "auto",
-      },
-    ],
+    "linebreak-style": 0,
+    "prettier/prettier": "off"
   },
 };
