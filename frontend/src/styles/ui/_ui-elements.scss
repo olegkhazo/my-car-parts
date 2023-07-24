@@ -27,6 +27,18 @@
     }
 }
 
+.light-gray-btn {
+    @include btn;
+    background-color: $gray-300;
+    color: $gray-1000;
+    border: 1px solid $gray-100;
+    font-weight: 600;
+
+    &:hover {
+        background-color: $gray-100;
+    }
+}
+
 .yellow-btn {
     @include btn;
     background-color: $yellow;

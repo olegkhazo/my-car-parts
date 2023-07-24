@@ -14,6 +14,13 @@
             <ThirdPartRequestForm v-if="formStep === 3" />
 
             <button
+              v-if="formStep > 1"
+              class="light-gray-btn"
+              @click.prevent="switchFormStep(-1)"
+            >
+              Back
+            </button>
+            <button
               class="gray-btn"
               @click.prevent="switchFormStep(1)"
             >
