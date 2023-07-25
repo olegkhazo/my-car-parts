@@ -20,6 +20,24 @@
             position: relative;
 
             // Add styling for form steps here?
+            .form-steps {
+                display: flex;
+                justify-content: space-between;
+            
+            
+                .step {
+                    padding: 10px 19px;
+                    font-size: 20px;
+                    color: $gray-100;
+                    background-color: $gray-300;
+                    border-radius: 50%;
+                }
+                
+                .active-step {
+                    background-color: $yellow;
+                    color: $black;
+                }
+            }
             
             button {
                 margin-top: 10px;

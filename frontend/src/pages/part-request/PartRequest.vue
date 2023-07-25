@@ -9,7 +9,32 @@
             class="part-request-form"
             action=""
           >
-            <!-- Add form steps here ? -->
+            <div class="form-steps">
+              <span
+                class="step"
+                :class="{ 'active-step': formStep === 1 }"
+                >1</span
+              >
+              <img
+                src="@/assets/images/step-arrow.svg"
+                alt="arrow"
+              />
+              <span
+                class="step"
+                :class="{ 'active-step': formStep === 2 }"
+                >2</span
+              >
+              <img
+                src="@/assets/images/step-arrow.svg"
+                alt="arrow"
+              />
+              <span
+                class="step"
+                :class="{ 'active-step': formStep === 3 }"
+                >3</span
+              >
+            </div>
+
             <FirstPartRequestForm v-if="formStep === 1" />
             <SecondPartRequestForm v-if="formStep === 2" />
             <ThirdPartRequestForm v-if="formStep === 3" />

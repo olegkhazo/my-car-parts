@@ -1,19 +1,5 @@
 <template>
   <div>
-    <div class="form-steps">
-      <span class="step">1</span>
-      <img
-        src="@/assets/images/step-arrow.svg"
-        alt="arrow"
-      />
-      <span class="step active-step">2</span>
-      <img
-        src="@/assets/images/step-arrow.svg"
-        alt="arrow"
-      />
-      <span class="step">3</span>
-    </div>
-
     <div class="form-fields-section">
       <label
         class="label-text"

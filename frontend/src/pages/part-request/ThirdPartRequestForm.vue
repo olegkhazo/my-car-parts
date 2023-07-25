@@ -1,19 +1,5 @@
 <template>
   <div>
-    <div class="form-steps">
-      <span class="step">1</span>
-      <img
-        src="@/assets/images/step-arrow.svg"
-        alt="arrow"
-      />
-      <span class="step">2</span>
-      <img
-        src="@/assets/images/step-arrow.svg"
-        alt="arrow"
-      />
-      <span class="step active-step">3</span>
-    </div>
-
     <div class="form-fields-section">
       <span class="type-of-communication-header-text">Choose how you want to receive responses from sellers:</span>
 
@@ -83,11 +69,8 @@
       <textarea
         id="comment"
         name="comment"
-        rows="5"
-        cols="33"
-      >
-        Your comment...
-      </textarea>
+        rows="2"
+      ></textarea>
     </div>
   </div>
 </template>
