@@ -9,15 +9,57 @@
             class="part-request-form"
             action=""
           >
-            <FirstPartRequestForm v-if="formStep === 1" />
-            <SecondPartRequestForm v-if="formStep === 2" />
-            <ThirdPartRequestForm v-if="formStep === 3" />
+            <div class="form-steps">
+              <span
+                class="step"
+                :class="{ 'active-step': formStep === 1 }"
+                >1</span
+              >
+              <img
+                src="@/assets/images/step-arrow.svg"
+                alt="arrow"
+              />
+              <span
+                class="step"
+                :class="{ 'active-step': formStep === 2 }"
+                >2</span
+              >
+              <img
+                src="@/assets/images/step-arrow.svg"
+                alt="arrow"
+              />
+              <span
+                class="step"
+                :class="{ 'active-step': formStep === 3 }"
+                >3</span
+              >
+            </div>
+
+            <FirstFormForPartRequest v-if="formStep === 1" />
+            <SecondFormForPartRequest v-if="formStep === 2" />
+            <ThirdFormForPartRequest v-if="formStep === 3" />
 
             <button
+              v-if="formStep > 1"
+              class="light-gray-btn"
+              @click.prevent="switchFormStep(-1)"
+            >
+              Back
+            </button>
+            <button
+              v-if="formStep < 3"
               class="gray-btn"
               @click.prevent="switchFormStep(1)"
             >
               Continue
+            </button>
+
+            <button
+              v-if="formStep === 3"
+              class="gray-btn"
+              @click.prevent="switchFormStep(1)"
+            >
+              Send request
             </button>
           </form>
         </div>
@@ -95,9 +137,9 @@
 <script setup>
 import { ref } from "vue";
 import MainLayout from "@/layouts/MainLayout";
-import FirstPartRequestForm from "./FirstPartRequestForm";
-import SecondPartRequestForm from "./SecondPartRequestForm";
-import ThirdPartRequestForm from "./ThirdPartRequestForm";
+import FirstFormForPartRequest from "./FirstFormForPartRequest";
+import SecondFormForPartRequest from "./SecondFormForPartRequest";
+import ThirdFormForPartRequest from "./ThirdFormForPartRequest";
 
 const formStep = ref(1);
 

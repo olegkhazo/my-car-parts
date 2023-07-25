@@ -1,19 +1,5 @@
 <template>
   <div>
-    <div class="form-steps">
-      <span class="step active-step">1</span>
-      <img
-        src="@/assets/images/step-arrow.svg"
-        alt="arrow"
-      />
-      <span class="step">2</span>
-      <img
-        src="@/assets/images/step-arrow.svg"
-        alt="arrow"
-      />
-      <span class="step">3</span>
-    </div>
-
     <div class="form-fields-section">
       <label
         class="label-text"
@@ -111,5 +97,5 @@
 <script setup></script>
 
 <style lang="sass" scoped>
-@import "@/styles/pages/part-request/_first-part-request-form.scss"
+@import "@/styles/pages/part-request/_first-form-for-part-request.scss"
 </style>
