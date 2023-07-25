@@ -35,9 +35,9 @@
               >
             </div>
 
-            <FirstPartRequestForm v-if="formStep === 1" />
-            <SecondPartRequestForm v-if="formStep === 2" />
-            <ThirdPartRequestForm v-if="formStep === 3" />
+            <FirstFormForPartRequest v-if="formStep === 1" />
+            <SecondFormForPartRequest v-if="formStep === 2" />
+            <ThirdFormForPartRequest v-if="formStep === 3" />
 
             <button
               v-if="formStep > 1"
@@ -137,9 +137,9 @@
 <script setup>
 import { ref } from "vue";
 import MainLayout from "@/layouts/MainLayout";
-import FirstPartRequestForm from "./FirstPartRequestForm";
-import SecondPartRequestForm from "./SecondPartRequestForm";
-import ThirdPartRequestForm from "./ThirdPartRequestForm";
+import FirstFormForPartRequest from "./FirstFormForPartRequest";
+import SecondFormForPartRequest from "./SecondFormForPartRequest";
+import ThirdFormForPartRequest from "./ThirdFormForPartRequest";
 
 const formStep = ref(1);
 

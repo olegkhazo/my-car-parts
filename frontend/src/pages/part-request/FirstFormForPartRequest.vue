@@ -97,5 +97,5 @@
 <script setup></script>
 
 <style lang="sass" scoped>
-@import "@/styles/pages/part-request/_first-part-request-form.scss"
+@import "@/styles/pages/part-request/_first-form-for-part-request.scss"
 </style>
