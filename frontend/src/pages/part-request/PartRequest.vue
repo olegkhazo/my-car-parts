@@ -9,6 +9,7 @@
             class="part-request-form"
             action=""
           >
+            <!-- Add form steps here ? -->
             <FirstPartRequestForm v-if="formStep === 1" />
             <SecondPartRequestForm v-if="formStep === 2" />
             <ThirdPartRequestForm v-if="formStep === 3" />
@@ -21,10 +22,19 @@
               Back
             </button>
             <button
+              v-if="formStep < 3"
               class="gray-btn"
               @click.prevent="switchFormStep(1)"
             >
               Continue
+            </button>
+
+            <button
+              v-if="formStep === 3"
+              class="gray-btn"
+              @click.prevent="switchFormStep(1)"
+            >
+              Send request
             </button>
           </form>
         </div>
