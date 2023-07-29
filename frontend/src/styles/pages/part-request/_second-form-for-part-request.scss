@@ -1,21 +1,30 @@
 .form-fields-section {
     padding-top: 30px;                
-}
+    
+    .fuel-data-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
 
-.fuel-data-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    select {
-        width: 50%;
+        select {
+            width: 50%;
+        }
+        
+        input {
+            width: 15%;
+        }
+        
+        .label-text {
+            margin-bottom: 12px;
+        }
+        
     }
-
-    input {
-        width: 15%;
+    
+    button {
+        margin-top: 10px;
     }
-
-    .label-text {
-        margin-bottom: 12px;
+    
+    .light-gray-btn {
+        margin-right: 15px;
     }
 }

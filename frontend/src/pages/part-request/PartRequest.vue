@@ -35,32 +35,18 @@
               >
             </div>
 
-            <FirstFormForPartRequest v-if="formStep === 1" />
-            <SecondFormForPartRequest v-if="formStep === 2" />
-            <ThirdFormForPartRequest v-if="formStep === 3" />
-
-            <button
-              v-if="formStep > 1"
-              class="light-gray-btn"
-              @click.prevent="switchFormStep(-1)"
-            >
-              Back
-            </button>
-            <button
-              v-if="formStep < 3"
-              class="gray-btn"
-              @click.prevent="switchFormStep(1)"
-            >
-              Continue
-            </button>
-
-            <button
+            <FirstFormForPartRequest
+              @switch-form-to-another-step="formStepsSwitcher"
+              v-if="formStep === 1"
+            />
+            <SecondFormForPartRequest
+              @switch-form-to-another-step="formStepsSwitcher"
+              v-if="formStep === 2"
+            />
+            <ThirdFormForPartRequest
+              @switch-form-to-another-step="formStepsSwitcher"
               v-if="formStep === 3"
-              class="gray-btn"
-              @click.prevent="switchFormStep(1)"
-            >
-              Send request
-            </button>
+            />
           </form>
         </div>
 
@@ -143,8 +129,8 @@ import ThirdFormForPartRequest from "./ThirdFormForPartRequest";
 
 const formStep = ref(1);
 
-function switchFormStep(step) {
-  formStep.value += step;
+function formStepsSwitcher(step) {
+  formStep.value = step;
 }
 </script>
 

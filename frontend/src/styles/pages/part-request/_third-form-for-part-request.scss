@@ -1,8 +1,19 @@
-.type-of-communication-header-text {
-    display: block;
-    margin-top: 30px;
-}
+.form-fields-section {
 
-hr {
-    margin: 20px 0;
-}
+    .type-of-communication-header-text {
+        display: block;
+        margin-top: 30px;
+    }
+    
+    hr {
+        margin: 20px 0;
+    }
+
+    button {
+        margin-top: 10px;
+    }
+    
+    .light-gray-btn {
+        margin-right: 15px;
+    }
+}    
