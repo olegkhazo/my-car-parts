@@ -7,6 +7,7 @@
     >
     <input
       id="part-name"
+      v-model="dataFromFirstForm.partName"
       type="text"
     />
 
@@ -75,11 +76,12 @@
 
     <label
       class="label-text"
-      for="part-number"
-      >Part number</label
+      for="part-code"
+      >Part code</label
     >
     <input
-      id="part-number"
+      id="part-code"
+      v-model="dataFromFirstForm.partCode"
       type="text"
     />
 
@@ -92,7 +94,7 @@
 
     <button
       class="gray-btn"
-      @click="switchFormToAnotherStep"
+      @click.prevent="checkTheFormFields"
     >
       Continue
     </button>
@@ -100,6 +102,33 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
+import { useVuelidate } from "@vuelidate/core";
+import { required } from "@vuelidate/validators";
+
+const dataFromFirstForm = ref({
+  partName: "",
+  partCode: "",
+});
+
+const rules = {
+  partName: { required },
+  partCode: { required },
+};
+
+const v$ = useVuelidate(rules, dataFromFirstForm.value);
+
+async function checkTheFormFields() {
+  const result = await v$.value.$validate();
+
+  console.log(dataFromFirstForm.value);
+  if (result) {
+    switchFormToAnotherStep();
+  } else {
+    console.log("Check partName and PartCode field, must not be empty");
+  }
+}
+
 const emit = defineEmits(["switchFormToAnotherStep"]);
 const switchFormToAnotherStep = () => emit("switchFormToAnotherStep", 2);
 </script>
