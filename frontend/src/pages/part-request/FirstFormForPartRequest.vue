@@ -5,6 +5,11 @@
       for="part-name"
       >Part name</label
     >
+    <span
+      v-for="error in v$.partName.$errors"
+      :key="error.$uid"
+      >{{ error.$property }} - {{ error.$message }}</span
+    >
     <input
       id="part-name"
       v-model="dataFromFirstForm.partName"
@@ -79,18 +84,23 @@
       for="part-code"
       >Part code</label
     >
+    <span
+      v-for="error in v$.partCode.$errors"
+      :key="error.$uid"
+      >{{ error.$property }} - {{ error.$message }}</span
+    >
     <input
       id="part-code"
       v-model="dataFromFirstForm.partCode"
       type="text"
     />
 
-    <div class="group-green-button">
+    <!-- <div class="group-green-button">
       <span class="label-text">More data</span>
       <span class="green-tab">photo</span>
       <span class="green-tab">description</span>
       <span class="green-tab">price</span>
-    </div>
+    </div> -->
 
     <button
       class="gray-btn"
@@ -121,10 +131,11 @@ const v$ = useVuelidate(rules, dataFromFirstForm.value);
 async function checkTheFormFields() {
   const result = await v$.value.$validate();
 
-  console.log(dataFromFirstForm.value);
   if (result) {
     switchFormToAnotherStep();
   } else {
+    console.log(v$);
+
     console.log("Check partName and PartCode field, must not be empty");
   }
 }
