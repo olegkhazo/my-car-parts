@@ -31,6 +31,10 @@ html {
                 list-style: none;
             }
         }
+
+        .input-error-notification {
+            color: $red; 
+        }
     }
 }
 

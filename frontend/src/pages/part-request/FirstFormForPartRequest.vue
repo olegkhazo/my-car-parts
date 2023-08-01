@@ -8,7 +8,8 @@
     <span
       v-for="error in v$.partName.$errors"
       :key="error.$uid"
-      >{{ error.$property }} - {{ error.$message }}</span
+      class="input-error-notification"
+      >{{ error.$message }}</span
     >
     <input
       id="part-name"
@@ -87,7 +88,8 @@
     <span
       v-for="error in v$.partCode.$errors"
       :key="error.$uid"
-      >{{ error.$property }} - {{ error.$message }}</span
+      class="input-error-notification"
+      >{{ error.$message }}</span
     >
     <input
       id="part-code"
@@ -112,19 +114,21 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { useVuelidate } from "@vuelidate/core";
-import { required } from "@vuelidate/validators";
+import { required, minLength } from "@vuelidate/validators";
 
 const dataFromFirstForm = ref({
   partName: "",
   partCode: "",
 });
 
-const rules = {
-  partName: { required },
-  partCode: { required },
-};
+const rules = computed(() => {
+  return {
+    partName: { required, minLength: minLength(3) },
+    partCode: { required, minLength: minLength(3) },
+  };
+});
 
 const v$ = useVuelidate(rules, dataFromFirstForm.value);
 
