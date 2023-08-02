@@ -3,7 +3,7 @@
     <label
       class="label-text"
       for="part-name"
-      >Part name</label
+      >Part name *</label
     >
     <span
       v-for="error in v$.partName.$errors"
@@ -27,14 +27,10 @@
       id="part-group"
       name="part-group"
     >
-      <option value="test1">Test 1</option>
-      <option
-        value="test2"
-        selected
-      >
-        Test 2
-      </option>
-      <option value="test3">Test 3</option>
+      <option value="choose">- choose -</option>
+      <option value="engine">Engine</option>
+      <option value="transmission">Transmission</option>
+      <option value="body">Body</option>
     </select>
 
     <span class="label-text">Type of part</span>
@@ -43,7 +39,7 @@
         id="radio-any-type"
         type="radio"
         name="type-of-part"
-        value="apple"
+        value="any-type"
         checked
       />
       <label
@@ -80,16 +76,53 @@
       </label>
     </div>
 
+    <span class="label-text">Spare part condition</span>
+    <div class="radio-toolbar spare-part-condition">
+      <input
+        id="radio-any-condition"
+        type="radio"
+        name="type-of-condition"
+        value="any-condition"
+        checked
+      />
+      <label
+        class="label-text"
+        for="radio-any-condition"
+      >
+        Any
+      </label>
+
+      <input
+        id="radio-new-condition"
+        type="radio"
+        name="type-of-condition"
+        value="new"
+      />
+      <label
+        class="label-text"
+        for="radio-new-condition"
+      >
+        New
+      </label>
+
+      <input
+        id="radio-used"
+        type="radio"
+        name="type-of-condition"
+        value="used"
+      />
+      <label
+        class="label-text"
+        for="radio-used"
+      >
+        Used
+      </label>
+    </div>
+
     <label
       class="label-text"
       for="part-code"
       >Part code</label
-    >
-    <span
-      v-for="error in v$.partCode.$errors"
-      :key="error.$uid"
-      class="input-error-notification"
-      >{{ error.$message }}</span
     >
     <input
       id="part-code"
@@ -120,13 +153,11 @@ import { required, minLength } from "@vuelidate/validators";
 
 const dataFromFirstForm = ref({
   partName: "",
-  partCode: "",
 });
 
 const rules = computed(() => {
   return {
     partName: { required, minLength: minLength(3) },
-    partCode: { required, minLength: minLength(3) },
   };
 });
 
@@ -137,10 +168,6 @@ async function checkTheFormFields() {
 
   if (result) {
     switchFormToAnotherStep();
-  } else {
-    console.log(v$);
-
-    console.log("Check partName and PartCode field, must not be empty");
   }
 }
 
