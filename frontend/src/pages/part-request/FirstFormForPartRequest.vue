@@ -6,14 +6,14 @@
       >Part name *</label
     >
     <span
-      v-for="error in v$.partName.$errors"
+      v-for="error in v$.part_name.$errors"
       :key="error.$uid"
       class="input-error-notification"
       >{{ error.$message }}</span
     >
     <input
       id="part-name"
-      v-model="dataFromFirstForm.partName"
+      v-model="formData.part_name"
       type="text"
     />
 
@@ -25,9 +25,9 @@
     </label>
     <select
       id="part-group"
+      v-model="formData.part_group"
       name="part-group"
     >
-      <option value="choose">- choose -</option>
       <option value="engine">Engine</option>
       <option value="transmission">Transmission</option>
       <option value="body">Body</option>
@@ -37,6 +37,7 @@
     <div class="radio-toolbar">
       <input
         id="radio-any-type"
+        v-model="formData.type_of_part"
         type="radio"
         name="type-of-part"
         value="any-type"
@@ -51,6 +52,7 @@
 
       <input
         id="radio-original"
+        v-model="formData.type_of_part"
         type="radio"
         name="type-of-part"
         value="original"
@@ -64,6 +66,7 @@
 
       <input
         id="radio-analog"
+        v-model="formData.type_of_part"
         type="radio"
         name="type-of-part"
         value="analog"
@@ -80,6 +83,7 @@
     <div class="radio-toolbar spare-part-condition">
       <input
         id="radio-any-condition"
+        v-model="formData.part_condition"
         type="radio"
         name="type-of-condition"
         value="any-condition"
@@ -94,6 +98,7 @@
 
       <input
         id="radio-new-condition"
+        v-model="formData.part_condition"
         type="radio"
         name="type-of-condition"
         value="new"
@@ -107,6 +112,7 @@
 
       <input
         id="radio-used"
+        v-model="formData.part_condition"
         type="radio"
         name="type-of-condition"
         value="used"
@@ -126,10 +132,11 @@
     >
     <input
       id="part-code"
-      v-model="dataFromFirstForm.partCode"
+      v-model="formData.part_code"
       type="text"
     />
 
+    <!-- Extra data - need to be added later, after MVP launching -->
     <!-- <div class="group-green-button">
       <span class="label-text">More data</span>
       <span class="green-tab">photo</span>
@@ -147,26 +154,42 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
+import { storeToRefs } from "pinia";
 import { useVuelidate } from "@vuelidate/core";
 import { required, minLength } from "@vuelidate/validators";
+import { usePartRequestFormStore } from "@/stores";
 
-const dataFromFirstForm = ref({
-  partName: "",
+const { partRequestFormData } = storeToRefs(usePartRequestFormStore());
+
+const formData = ref({
+  part_name: "",
+  part_group: "",
+  type_of_part: "",
+  part_condition: "",
+  part_code: "",
+});
+
+onMounted(() => {
+  if (Object.keys(partRequestFormData.value).length) {
+    Object.assign(formData.value, partRequestFormData.value);
+  }
 });
 
 const rules = computed(() => {
   return {
-    partName: { required, minLength: minLength(3) },
+    part_name: { required, minLength: minLength(3) },
   };
 });
 
-const v$ = useVuelidate(rules, dataFromFirstForm.value);
+const v$ = useVuelidate(rules, formData.value);
 
 async function checkTheFormFields() {
   const result = await v$.value.$validate();
 
   if (result) {
+    Object.assign(partRequestFormData.value, formData.value);
+
     switchFormToAnotherStep();
   }
 }

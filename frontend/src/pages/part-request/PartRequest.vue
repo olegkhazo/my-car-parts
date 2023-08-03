@@ -36,16 +36,16 @@
             </div>
 
             <FirstFormForPartRequest
-              @switch-form-to-another-step="formStepsSwitcher"
               v-if="formStep === 1"
+              @switch-form-to-another-step="formStepsSwitcher"
             />
             <SecondFormForPartRequest
-              @switch-form-to-another-step="formStepsSwitcher"
               v-if="formStep === 2"
+              @switch-form-to-another-step="formStepsSwitcher"
             />
             <ThirdFormForPartRequest
-              @switch-form-to-another-step="formStepsSwitcher"
               v-if="formStep === 3"
+              @switch-form-to-another-step="formStepsSwitcher"
             />
           </form>
         </div>

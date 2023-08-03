@@ -19,6 +19,7 @@
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
     "git-describe": "^4.1.1",
+    "pinia": "^2.0.13",
     "postcss": "^8.4.21",
     "prettier": "^2.8.7",
     "sass": "^1.60.0",
