@@ -41,7 +41,6 @@
         type="radio"
         name="type-of-part"
         value="any-type"
-        checked
       />
       <label
         class="label-text"
@@ -87,7 +86,6 @@
         type="radio"
         name="type-of-condition"
         value="any-condition"
-        checked
       />
       <label
         class="label-text"
@@ -160,19 +158,19 @@ import { useVuelidate } from "@vuelidate/core";
 import { required, minLength } from "@vuelidate/validators";
 import { usePartRequestFormStore } from "@/stores";
 
-const { partRequestFormData } = storeToRefs(usePartRequestFormStore());
+const { dataFromFirstFormStep } = storeToRefs(usePartRequestFormStore());
 
 const formData = ref({
   part_name: "",
   part_group: "",
-  type_of_part: "",
-  part_condition: "",
+  type_of_part: "any-type",
+  part_condition: "any-condition",
   part_code: "",
 });
 
 onMounted(() => {
-  if (Object.keys(partRequestFormData.value).length) {
-    Object.assign(formData.value, partRequestFormData.value);
+  if (Object.keys(dataFromFirstFormStep.value).length) {
+    Object.assign(formData.value, dataFromFirstFormStep.value);
   }
 });
 
@@ -188,7 +186,7 @@ async function checkTheFormFields() {
   const result = await v$.value.$validate();
 
   if (result) {
-    Object.assign(partRequestFormData.value, formData.value);
+    Object.assign(dataFromFirstFormStep.value, formData.value);
 
     switchFormToAnotherStep();
   }

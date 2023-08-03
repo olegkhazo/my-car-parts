@@ -6,14 +6,21 @@
 
     <label
       class="label-text"
-      for="e-mail"
+      for="email"
     >
-      E-mail
+      E-mail *
     </label>
+    <span
+      v-for="error in v$.email.$errors"
+      :key="error.$uid"
+      class="input-error-notification"
+      >{{ error.$message }}</span
+    >
     <input
-      id="e-mail"
+      id="email"
+      v-model="formData.email"
       type="email"
-      name="e-mail"
+      name="email"
       placeholder="E-mail"
     />
 
@@ -25,6 +32,7 @@
     </label>
     <input
       id="phone"
+      v-model="formData.phone"
       type="tel"
       name="phone"
       placeholder="Phone"
@@ -37,10 +45,17 @@
       class="label-text"
       for="name"
     >
-      Your name
+      Your name *
     </label>
+    <span
+      v-for="error in v$.name.$errors"
+      :key="error.$uid"
+      class="input-error-notification"
+      >{{ error.$message }}</span
+    >
     <input
       id="name"
+      v-model="formData.name"
       type="text"
       name="name"
       placeholder="name"
@@ -50,10 +65,17 @@
       class="label-text"
       for="city"
     >
-      City
+      City *
     </label>
+    <span
+      v-for="error in v$.city.$errors"
+      :key="error.$uid"
+      class="input-error-notification"
+      >{{ error.$message }}</span
+    >
     <input
       id="city"
+      v-model="formData.city"
       type="text"
       name="city"
       placeholder="city"
@@ -67,20 +89,21 @@
     </label>
     <textarea
       id="comment"
+      v-model="formData.comment"
       name="comment"
       rows="2"
     ></textarea>
 
     <button
       class="light-gray-btn"
-      @click.prevent="switchFormToAnotherStep"
+      @click.prevent="checkTheFormFields"
     >
       Back
     </button>
 
     <button
       class="gray-btn"
-      @click.prevent="sendData()"
+      @click.prevent="checkTheFormFields(true)"
     >
       Send request
     </button>
@@ -88,12 +111,49 @@
 </template>
 
 <script setup>
+import { ref, computed, onMounted } from "vue";
+import { storeToRefs } from "pinia";
+import { useVuelidate } from "@vuelidate/core";
+import { required, minLength, email } from "@vuelidate/validators";
+import { usePartRequestFormStore } from "@/stores";
+
+const { dataFromThirdFormStep } = storeToRefs(usePartRequestFormStore());
+
+const formData = ref({
+  email: "",
+  phone: "",
+  name: "",
+  city: "",
+  comment: "",
+});
+
+onMounted(() => {
+  if (Object.keys(dataFromThirdFormStep.value).length) {
+    Object.assign(formData.value, dataFromThirdFormStep.value);
+  }
+});
+
+const rules = computed(() => {
+  return {
+    email: { required, minLength: minLength(5), email },
+    name: { required, minLength: minLength(2) },
+    city: { required, minLength: minLength(2) },
+  };
+});
+
+const v$ = useVuelidate(rules, formData.value);
+
+async function checkTheFormFields(sendRequest = false) {
+  const result = await v$.value.$validate();
+
+  if (result) {
+    Object.assign(dataFromThirdFormStep.value, formData.value);
+
+    sendRequest === true ? console.log("Send request") : switchFormToAnotherStep();
+  }
+}
 const emit = defineEmits(["switchFormToAnotherStep"]);
 const switchFormToAnotherStep = () => emit("switchFormToAnotherStep", 2);
-
-function sendData() {
-  console.log("send form results");
-}
 </script>
 
 <style lang="sass" scoped>

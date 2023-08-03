@@ -1,5 +1,10 @@
 .form-fields-section {
-    padding-top: 30px;                
+    padding-top: 30px;     
+    
+    .fuel-validator-errors-wrapper {
+        display: flex;
+        justify-content: space-between;
+    }
     
     .fuel-data-wrapper {
         display: flex;

@@ -2,8 +2,9 @@ import { defineStore } from "pinia";
 import { shallowRef } from "vue";
 
 export const usePartRequestFormStore = defineStore("part-request-form", () => {
-    const partRequestFormData = shallowRef({});
+    const dataFromFirstFormStep = shallowRef({});
+    const dataFromSecondFormStep = shallowRef({});
+    const dataFromThirdFormStep = shallowRef({});
 
-
-    return { partRequestFormData };
+    return { dataFromFirstFormStep, dataFromSecondFormStep, dataFromThirdFormStep }; 
   });
