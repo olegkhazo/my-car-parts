@@ -96,14 +96,14 @@
 
     <button
       class="light-gray-btn"
-      @click.prevent="checkTheFormFields"
+      @click.prevent="checkTheFormFields(false, 2)"
     >
       Back
     </button>
 
     <button
       class="gray-btn"
-      @click.prevent="checkTheFormFields(true)"
+      @click.prevent="checkTheFormFields(true, 4)"
     >
       Send request
     </button>
@@ -143,17 +143,22 @@ const rules = computed(() => {
 
 const v$ = useVuelidate(rules, formData.value);
 
-async function checkTheFormFields(sendRequest = false) {
+async function checkTheFormFields(sendRequest = false, step = "") {
   const result = await v$.value.$validate();
 
   if (result) {
     Object.assign(dataFromThirdFormStep.value, formData.value);
 
-    sendRequest === true ? console.log("Send request") : switchFormToAnotherStep();
+    if (sendRequest === true) {
+      console.log("Send request");
+      switchFormToAnotherStep(step);
+    } else {
+      switchFormToAnotherStep(step);
+    }
   }
 }
 const emit = defineEmits(["switchFormToAnotherStep"]);
-const switchFormToAnotherStep = () => emit("switchFormToAnotherStep", 2);
+const switchFormToAnotherStep = (step) => emit("switchFormToAnotherStep", step);
 </script>
 
 <style lang="sass" scoped>
