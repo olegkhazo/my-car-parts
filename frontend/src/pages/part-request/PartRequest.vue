@@ -9,7 +9,10 @@
             class="part-request-form"
             action=""
           >
-            <div class="form-steps">
+            <div
+              v-if="formStep < 4"
+              class="form-steps"
+            >
               <span
                 class="step"
                 :class="{ 'active-step': formStep === 1 }"
@@ -35,16 +38,30 @@
               >
             </div>
 
+            <div
+              v-else-if="formStep === 4"
+              class="succesful-notification"
+            >
+              <img
+                src="@/assets/images/checkmark.png"
+                alt="green-checkmark"
+              />
+            </div>
+
             <FirstFormForPartRequest
               v-if="formStep === 1"
               @switch-form-to-another-step="formStepsSwitcher"
             />
             <SecondFormForPartRequest
-              v-if="formStep === 2"
+              v-else-if="formStep === 2"
               @switch-form-to-another-step="formStepsSwitcher"
             />
             <ThirdFormForPartRequest
-              v-if="formStep === 3"
+              v-else-if="formStep === 3"
+              @switch-form-to-another-step="formStepsSwitcher"
+            />
+            <SuccessSendingNotification
+              v-else-if="formStep === 4"
               @switch-form-to-another-step="formStepsSwitcher"
             />
           </form>
@@ -126,6 +143,7 @@ import MainLayout from "@/layouts/MainLayout";
 import FirstFormForPartRequest from "./FirstFormForPartRequest";
 import SecondFormForPartRequest from "./SecondFormForPartRequest";
 import ThirdFormForPartRequest from "./ThirdFormForPartRequest";
+import SuccessSendingNotification from "./SuccessSendingNotification";
 
 const formStep = ref(1);
 
