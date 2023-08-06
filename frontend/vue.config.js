@@ -31,7 +31,7 @@ module.exports = {
   devServer: {
     proxy: {
       "/api*": {
-        // Forward frontend dev server request for /api to django dev server
+        // Forward frontend dev server request for /api to node dev server
         target: "http://localhost:3000/",
       },
       // "/admin-*": {
