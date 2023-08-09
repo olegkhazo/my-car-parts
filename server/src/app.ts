@@ -3,14 +3,16 @@ import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import apiRoutes from './routes/api';
 import { errorHandler } from './middlewares/errorMiddleware';
+import cors from 'cors';
 
 const app = express();
 
+app.use(cors());
 // Middleware
 app.use(bodyParser.json());
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/my-car-parts')
+mongoose.connect('mongodb://127.0.0.1:27017/my-car-parts')
   .then(() => {
     console.log('Connected to MongoDB');
   })

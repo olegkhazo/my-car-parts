@@ -3,6 +3,6 @@ import { createPart } from '../controllers/partController';
 
 const router = express.Router();
 
-router.post('/create-part', createPart);
+router.post('/create-part-request', createPart);
 
 export default router;

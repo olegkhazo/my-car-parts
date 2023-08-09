@@ -150,7 +150,6 @@ async function checkTheFormFields(sendRequest = false, step = "") {
     Object.assign(dataFromThirdFormStep.value, formData.value);
 
     if (sendRequest === true) {
-      console.log("Send request");
       switchFormToAnotherStep(step);
     } else {
       switchFormToAnotherStep(step);
