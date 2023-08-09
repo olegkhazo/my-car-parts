@@ -1,23 +1,33 @@
-require("dotenv").config();
-import express from "express";
-import config from "config";
-import connectToDb from "./utils/connectToDb";
-import log from "./utils/logger";
-import router from "./routes";
-import deserializeUser from "./middleware/deserializeUser";
+import express from 'express';
+import mongoose from 'mongoose';
+import bodyParser from 'body-parser';
+import apiRoutes from './routes/api';
+import { errorHandler } from './middlewares/errorMiddleware';
+import cors from 'cors';
 
 const app = express();
 
-app.use(express.json());
+app.use(cors());
+// Middleware
+app.use(bodyParser.json());
 
-app.use(deserializeUser);
+// Connect to MongoDB
+mongoose.connect('mongodb://127.0.0.1:27017/my-car-parts')
+  .then(() => {
+    console.log('Connected to MongoDB');
+  })
+  .catch(error => {
+    console.error('Error connecting to MongoDB:', error);
+  });
 
-app.use(router);
+// Routes
+app.use('/api', apiRoutes);
 
-const port = config.get("port");
+// Error middleware
+app.use(errorHandler);
 
-app.listen(port, () => {
-  log.info(`App started at http://localhost:${port}`);
-
-  connectToDb();
+// Start the server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });

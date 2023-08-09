@@ -1,0 +1,59 @@
+import { prop, getModelForClass } from '@typegoose/typegoose';
+
+class Part {
+  @prop()
+  part_name: string;
+
+  @prop()
+  part_group: string;
+
+  @prop()
+  type_of_part: string;
+
+  @prop()
+  part_condition: string;
+
+  @prop()
+  part_code: string;
+
+  @prop()
+  car_type: string;
+
+  @prop()
+  car_brand: string;
+
+  @prop()
+  car_model: string;
+
+  @prop()
+  car_year: string;
+
+  @prop()
+  fuel_type: string;
+
+  @prop()
+  engine_volume: string;
+
+  @prop()
+  car_body: string;
+
+  @prop()
+  vin_code: string;
+
+  @prop()
+  email: string;
+
+  @prop()
+  phone: string;
+
+  @prop()
+  name: string;
+
+  @prop()
+  city: string;
+
+  @prop()
+  comment: string;
+}
+
+export const PartModel = getModelForClass(Part);
