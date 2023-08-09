@@ -11,16 +11,13 @@ input, select, textarea {
     width: 100%;
     padding: 10px;
     box-sizing: border-box;
-    font-size: 16px;
-    margin-bottom: 15px;
-   
+    font-size: 16px;   
 }
 
 .radio-toolbar {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    margin-bottom: 15px;
 
     input[type="radio"] {
         opacity: 0;

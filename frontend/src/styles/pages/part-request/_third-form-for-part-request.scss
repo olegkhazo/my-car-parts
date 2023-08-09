@@ -1,5 +1,13 @@
 .form-fields-section {
 
+    input, select, textarea {
+        margin-bottom: 15px;       
+    }
+
+    .radio-toolbar {
+        margin-bottom: 15px;
+    }
+    
     .type-of-communication-header-text {
         display: block;
         margin-top: 30px;
