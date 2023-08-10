@@ -1,118 +1,144 @@
 <template>
   <MainLayout>
     <div class="content-wrapper">
-      <h2>All User Requests</h2>
-      <div class="last-requests-table-wrapper">
-        <div class="table-pre-header"></div>
-        <div class="table-wrapper">
-          <table>
-            <thead>
-              <tr>
-                <th></th>
-                <th>Car part</th>
-                <th>Area/Region</th>
-                <th>Sent</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <img
-                    src="@/assets/images/green-wheel.svg"
-                    alt=""
-                  />
-                </td>
-                <td>Rear silencer for 2008 Volkswagen Multivan 3.2 petrol</td>
-                <td>Orlando</td>
-                <td>2 minutes ago</td>
-              </tr>
-              <tr>
-                <td>
-                  <img
-                    src="@/assets/images/green-wheel.svg"
-                    alt=""
-                  />
-                </td>
-                <td>Rear silencer for 2008 Volkswagen Multivan 3.2 petrol</td>
-                <td>Orlando</td>
-                <td>2 minutes ago</td>
-              </tr>
-              <tr>
-                <td>
-                  <img
-                    src="@/assets/images/green-wheel.svg"
-                    alt=""
-                  />
-                </td>
-                <td>Rear silencer for 2008 Volkswagen Multivan 3.2 petrol</td>
-                <td>Orlando</td>
-                <td>2 minutes ago</td>
-              </tr>
-              <tr>
-                <td>
-                  <img
-                    src="@/assets/images/green-wheel.svg"
-                    alt=""
-                  />
-                </td>
-                <td>Rear silencer for 2008 Volkswagen Multivan 3.2 petrol</td>
-                <td>Orlando</td>
-                <td>2 minutes ago</td>
-              </tr>
-            </tbody>
-          </table>
+      <div class="all-requests-wrapper">
+        <h2>All spare part requests</h2>
+        <div class="filters">
+          <span class="filters-title">Sort requests with filters</span>
+          <select
+            id="brand"
+            name="brand"
+          >
+            <option value="audi">Audi</option>
+            <option value="bmw">BMW</option>
+            <option value="skoda">Skoda</option>
+          </select>
+
+          <select
+            id="model"
+            name="model"
+          >
+            <option value="a1">A1</option>
+            <option value="a3">A3</option>
+            <option value="a4">A4</option>
+            <option value="a5">A5</option>
+            <option value="a6">A6</option>
+            <option value="a7">A7</option>
+            <option value="a8">A8</option>
+          </select>
         </div>
-        <div class="last-requests-sm-screen-wrapper">
-          <ul>
-            <li>
-              <div class="single-request-wrapper">
-                <img
-                  src="@/assets/images/green-wheel.svg"
-                  alt=""
-                />
-                <div class="request-description">
-                  <p>Rear silencer for 2008 Volkswagen Multivan 3.2 petrol</p>
-                  <span>Orlando - 2 minutes ago</span>
+        <div class="all-requests-table-wrapper">
+          <div class="table-pre-header"></div>
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Spare part description</th>
+                  <th>Area/Region</th>
+                  <th>Sent</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <img
+                      src="@/assets/images/green-wheel.svg"
+                      alt=""
+                    />
+                  </td>
+                  <td>Rear silencer for 2008 Volkswagen Multivan 3.2 petrol</td>
+                  <td>Orlando</td>
+                  <td>2 minutes ago</td>
+                </tr>
+                <tr>
+                  <td>
+                    <img
+                      src="@/assets/images/green-wheel.svg"
+                      alt=""
+                    />
+                  </td>
+                  <td>Rear silencer for 2008 Volkswagen Multivan 3.2 petrol</td>
+                  <td>Orlando</td>
+                  <td>2 minutes ago</td>
+                </tr>
+                <tr>
+                  <td>
+                    <img
+                      src="@/assets/images/green-wheel.svg"
+                      alt=""
+                    />
+                  </td>
+                  <td>Rear silencer for 2008 Volkswagen Multivan 3.2 petrol</td>
+                  <td>Orlando</td>
+                  <td>2 minutes ago</td>
+                </tr>
+                <tr>
+                  <td>
+                    <img
+                      src="@/assets/images/green-wheel.svg"
+                      alt=""
+                    />
+                  </td>
+                  <td>Rear silencer for 2008 Volkswagen Multivan 3.2 petrol</td>
+                  <td>Orlando</td>
+                  <td>2 minutes ago</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="all-requests-sm-screen-wrapper">
+            <ul>
+              <li>
+                <div class="single-request-wrapper">
+                  <img
+                    src="@/assets/images/green-wheel.svg"
+                    alt=""
+                  />
+                  <div class="request-description">
+                    <p>Rear silencer for 2008 Volkswagen Multivan 3.2 petrol</p>
+                    <span>Orlando - 2 minutes ago</span>
+                  </div>
                 </div>
-              </div>
-            </li>
-            <li>
-              <div class="single-request-wrapper">
-                <img
-                  src="@/assets/images/green-wheel.svg"
-                  alt=""
-                />
-                <div class="request-description">
-                  <p>Rear silencer for 2008 Volkswagen Multivan 3.2 petrol</p>
-                  <span>Orlando - 2 minutes ago</span>
+              </li>
+              <li>
+                <div class="single-request-wrapper">
+                  <img
+                    src="@/assets/images/green-wheel.svg"
+                    alt=""
+                  />
+                  <div class="request-description">
+                    <p>Rear silencer for 2008 Volkswagen Multivan 3.2 petrol</p>
+                    <span>Orlando - 2 minutes ago</span>
+                  </div>
                 </div>
-              </div>
-            </li>
-            <li>
-              <div class="single-request-wrapper">
-                <img
-                  src="@/assets/images/green-wheel.svg"
-                  alt=""
-                />
-                <div class="request-description">
-                  <p>Rear silencer for 2008 Volkswagen Multivan 3.2 petrol</p>
-                  <span>Orlando - 2 minutes ago</span>
+              </li>
+              <li>
+                <div class="single-request-wrapper">
+                  <img
+                    src="@/assets/images/green-wheel.svg"
+                    alt=""
+                  />
+                  <div class="request-description">
+                    <p>Rear silencer for 2008 Volkswagen Multivan 3.2 petrol</p>
+                    <span>Orlando - 2 minutes ago</span>
+                  </div>
                 </div>
-              </div>
-            </li>
-            <li>
-              <div class="single-request-wrapper">
-                <img
-                  src="@/assets/images/green-wheel.svg"
-                  alt=""
-                />
-                <div class="request-description">
-                  <p>Rear silencer for 2008 Volkswagen Multivan 3.2 petrol</p>
-                  <span>Orlando - 2 minutes ago</span>
+              </li>
+              <li>
+                <div class="single-request-wrapper">
+                  <img
+                    src="@/assets/images/green-wheel.svg"
+                    alt=""
+                  />
+                  <div class="request-description">
+                    <p>Rear silencer for 2008 Volkswagen Multivan 3.2 petrol</p>
+                    <span>Orlando - 2 minutes ago</span>
+                  </div>
                 </div>
-              </div>
-            </li>
-          </ul>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
