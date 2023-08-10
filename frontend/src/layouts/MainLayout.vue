@@ -1,8 +1,8 @@
 <template>
   <MainLayoutHeader />
-  <div>
-    <slot></slot>
-  </div>
+
+  <slot></slot>
+
   <MainLayoutFooter />
 </template>
 

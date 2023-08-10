@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { PartModel } from '../models/part';
+import { PartModel } from '../models/part.models';
 
 export const createPart = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -7,6 +7,15 @@ export const createPart = async (req: Request, res: Response, next: NextFunction
     console.log(newPart);
     await newPart.save();
     res.status(201).json(newPart);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getAllParts = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const parts = await PartModel.find();
+    res.status(200).json(parts);
   } catch (error) {
     next(error);
   }

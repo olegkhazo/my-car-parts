@@ -1,6 +1,8 @@
 import { prop, getModelForClass } from '@typegoose/typegoose';
 
 class Part {
+  // { required: true } - will need to add for fields is required
+  // Also necessary to know what means part_name!: string; and public comment?: string;
   @prop()
   part_name: string;
 

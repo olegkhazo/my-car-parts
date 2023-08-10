@@ -146,7 +146,26 @@
 </template>
 
 <script setup>
+import { ref, onMounted } from "vue";
 import MainLayout from "@/layouts/MainLayout.vue";
+
+const sparePartsRequestsData = ref([]);
+
+const fetchParts = async () => {
+  try {
+    const response = await fetch("http://localhost:3000/api/all-spare-part-requests-data");
+    const data = await response.json();
+    sparePartsRequestsData.value = data;
+
+    console.log(sparePartsRequestsData.value);
+  } catch (error) {
+    console.error("Error fetching parts:", error);
+  }
+};
+
+onMounted(() => {
+  fetchParts();
+});
 </script>
 
 <style lang="sass" scoped>
