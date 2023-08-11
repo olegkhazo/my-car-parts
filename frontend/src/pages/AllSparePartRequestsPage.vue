@@ -39,7 +39,10 @@
                   <th>Sent</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody
+                v-for="request in sparePartsRequestsData"
+                :key="request._id"
+              >
                 <tr>
                   <td>
                     <img
@@ -47,97 +50,15 @@
                       alt=""
                     />
                   </td>
-                  <td>Rear silencer for 2008 Volkswagen Multivan 3.2 petrol</td>
-                  <td>Orlando</td>
-                  <td>2 minutes ago</td>
-                </tr>
-                <tr>
                   <td>
-                    <img
-                      src="@/assets/images/green-wheel.svg"
-                      alt=""
-                    />
+                    {{ request.part_name }} for {{ request.car_brand }} {{ request.car_model }}
+                    {{ request.engine_volume }} {{ request.fuel_type }}
                   </td>
-                  <td>Rear silencer for 2008 Volkswagen Multivan 3.2 petrol</td>
-                  <td>Orlando</td>
-                  <td>2 minutes ago</td>
-                </tr>
-                <tr>
-                  <td>
-                    <img
-                      src="@/assets/images/green-wheel.svg"
-                      alt=""
-                    />
-                  </td>
-                  <td>Rear silencer for 2008 Volkswagen Multivan 3.2 petrol</td>
-                  <td>Orlando</td>
-                  <td>2 minutes ago</td>
-                </tr>
-                <tr>
-                  <td>
-                    <img
-                      src="@/assets/images/green-wheel.svg"
-                      alt=""
-                    />
-                  </td>
-                  <td>Rear silencer for 2008 Volkswagen Multivan 3.2 petrol</td>
-                  <td>Orlando</td>
-                  <td>2 minutes ago</td>
+                  <td>{{ request.city }}</td>
+                  <td>12.08.2023</td>
                 </tr>
               </tbody>
             </table>
-          </div>
-          <div class="all-requests-sm-screen-wrapper">
-            <ul>
-              <li>
-                <div class="single-request-wrapper">
-                  <img
-                    src="@/assets/images/green-wheel.svg"
-                    alt=""
-                  />
-                  <div class="request-description">
-                    <p>Rear silencer for 2008 Volkswagen Multivan 3.2 petrol</p>
-                    <span>Orlando - 2 minutes ago</span>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div class="single-request-wrapper">
-                  <img
-                    src="@/assets/images/green-wheel.svg"
-                    alt=""
-                  />
-                  <div class="request-description">
-                    <p>Rear silencer for 2008 Volkswagen Multivan 3.2 petrol</p>
-                    <span>Orlando - 2 minutes ago</span>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div class="single-request-wrapper">
-                  <img
-                    src="@/assets/images/green-wheel.svg"
-                    alt=""
-                  />
-                  <div class="request-description">
-                    <p>Rear silencer for 2008 Volkswagen Multivan 3.2 petrol</p>
-                    <span>Orlando - 2 minutes ago</span>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div class="single-request-wrapper">
-                  <img
-                    src="@/assets/images/green-wheel.svg"
-                    alt=""
-                  />
-                  <div class="request-description">
-                    <p>Rear silencer for 2008 Volkswagen Multivan 3.2 petrol</p>
-                    <span>Orlando - 2 minutes ago</span>
-                  </div>
-                </div>
-              </li>
-            </ul>
           </div>
         </div>
       </div>
@@ -157,7 +78,7 @@ const fetchParts = async () => {
     const data = await response.json();
     sparePartsRequestsData.value = data;
 
-    console.log(sparePartsRequestsData.value);
+    // console.log(sparePartsRequestsData.value);
   } catch (error) {
     console.error("Error fetching parts:", error);
   }
