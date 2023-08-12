@@ -55,7 +55,7 @@
                     {{ request.engine_volume }} {{ request.fuel_type }}
                   </td>
                   <td>{{ request.city }}</td>
-                  <td>12.08.2023</td>
+                  <td>{{ getTimeAgo(request.created_date) }}</td>
                 </tr>
               </tbody>
             </table>
@@ -69,6 +69,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import MainLayout from "@/layouts/MainLayout.vue";
+import { getTimeAgo } from "@/utils";
 
 const sparePartsRequestsData = ref([]);
 

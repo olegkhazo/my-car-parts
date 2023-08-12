@@ -56,6 +56,9 @@ class Part {
 
   @prop()
   comment: string;
+
+  @prop({ default: Date.now })
+  created_date: Date;
 }
 
 export const PartModel = getModelForClass(Part);
