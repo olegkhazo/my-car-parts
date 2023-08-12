@@ -28,7 +28,6 @@
           </select>
         </div>
         <div class="all-requests-table-wrapper">
-          <div class="table-pre-header"></div>
           <div class="table-wrapper">
             <table>
               <thead>
@@ -37,13 +36,18 @@
                   <th>Spare part description</th>
                   <th>Area/Region</th>
                   <th>Sent</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody
                 v-for="request in sparePartsRequestsData"
+                id="tbody"
                 :key="request._id"
               >
-                <tr>
+                <tr
+                  class="single-request-row"
+                  @click="showBlockWithAllRelatedContent"
+                >
                   <td>
                     <img
                       src="@/assets/images/green-wheel.svg"
@@ -56,6 +60,78 @@
                   </td>
                   <td>{{ request.city }}</td>
                   <td>{{ getTimeAgo(request.created_date) }}</td>
+                  <td>
+                    <a class="sm-green-btn">Info</a>
+                  </td>
+                </tr>
+                <tr class="all-content-for-single-request hidden">
+                  <td colspan="5">
+                    <div class="all-content-wrapper">
+                      <div class="all-content">
+                        <span
+                          >Spare part: <span class="bold"> {{ request.part_name }}</span></span
+                        >
+                        <span
+                          >Group: <span class="bold"> {{ request.part_group }}</span></span
+                        >
+                        <span
+                          >Type of part: <span class="bold"> {{ request.type_of_part }}</span></span
+                        >
+                        <span
+                          >Condition:<span class="bold"> {{ request.part_condition }}</span></span
+                        >
+                        <span
+                          >Part code:<span class="bold"> {{ request.part_code }}</span></span
+                        >
+                        <span
+                          >Car type: <span class="bold"> {{ request.car_type }}</span></span
+                        >
+                        <span
+                          >Car brand:<span class="bold"> {{ request.car_brand }}</span></span
+                        >
+                        <span
+                          >Car model: <span class="bold"> {{ request.car_model }}</span></span
+                        >
+                        <span
+                          >Car year:<span class="bold"> {{ request.car_year }}</span></span
+                        >
+                        <span
+                          >Fuel type: <span class="bold"> {{ request.fuel_type }}</span></span
+                        >
+                        <span
+                          >Engine volume: <span class="bold"> {{ request.engine_volume }}</span></span
+                        >
+                        <span
+                          >Car body: <span class="bold"> {{ request.car_body }}</span></span
+                        >
+                        <span
+                          >VIN code: <span class="bold"> {{ request.vin_code }}</span></span
+                        >
+                        <span
+                          >User comment: <span class="bold"> {{ request.comment }}</span></span
+                        >
+                        <span
+                          >State/City: <span class="bold"> {{ request.city }}</span></span
+                        >
+                        <span
+                          >Email <span class="bold"> {{ request.email }}</span></span
+                        >
+                        <span
+                          >Phone: <span class="bold"> {{ request.phone }}</span></span
+                        >
+                        <span
+                          >Name <span class="bold"> {{ request.name }}</span></span
+                        >
+
+                        <span class="suggest-button xl-green-btn">Suggest your variant</span>
+                        <span
+                          class="close-content-btn blue-btn"
+                          @click="hideOpenedContentByButtonClick"
+                          >Hide content</span
+                        >
+                      </div>
+                    </div>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -78,8 +154,6 @@ const fetchParts = async () => {
     const response = await fetch("http://localhost:3000/api/all-spare-part-requests-data");
     const data = await response.json();
     sparePartsRequestsData.value = data;
-
-    // console.log(sparePartsRequestsData.value);
   } catch (error) {
     console.error("Error fetching parts:", error);
   }
@@ -88,6 +162,25 @@ const fetchParts = async () => {
 onMounted(() => {
   fetchParts();
 });
+
+function showBlockWithAllRelatedContent(event) {
+  const allContentRow = event.target.closest(".single-request-row").nextElementSibling;
+
+  allContentRow.classList.contains("hidden")
+    ? allContentRow.classList.remove("hidden")
+    : allContentRow.classList.add("hidden");
+}
+
+function hideOpenedContentByButtonClick(event) {
+  const button = event.target;
+  const contentRow = button.closest(".all-content-for-single-request");
+  contentRow.classList.add("hidden");
+
+  document.getElementById("tbody").scrollIntoView({
+    block: "start",
+    behavior: "smooth",
+  });
+}
 </script>
 
 <style lang="sass" scoped>

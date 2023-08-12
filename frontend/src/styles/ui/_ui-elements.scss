@@ -1,4 +1,4 @@
-@mixin btn {
+@mixin middle-btn {
     text-decoration: none;
     padding: 10px 30px;
     border-radius: 5px;
@@ -7,8 +7,14 @@
     cursor: pointer;
 }
 
+@mixin small-btn {
+    @include middle-btn;
+    padding: 5px 15px;
+    font-weight: 500;
+}
+
 .blue-btn {
-    @include btn;
+    @include middle-btn;
     background-color: $blue;
 
     &:hover {
@@ -17,7 +23,7 @@
 }
 
 .gray-btn {
-    @include btn;
+    @include middle-btn;
     background-color: $gray-800;
     color: $white;
     font-weight: 600;
@@ -28,7 +34,7 @@
 }
 
 .light-gray-btn {
-    @include btn;
+    @include middle-btn;
     background-color: $gray-300;
     color: $gray-1000;
     border: 1px solid $gray-100;
@@ -40,8 +46,28 @@
 }
 
 .yellow-btn {
-    @include btn;
+    @include middle-btn;
     background-color: $yellow;
+
+    &:hover {
+        color: $gray-1000;
+    }
+}
+
+.xl-green-btn {
+    @include middle-btn;
+    background-color: $green;
+    color: $white;
+
+    &:hover {
+        color: $gray-1000;
+    }
+}
+
+.sm-green-btn {
+    @include small-btn;
+    background-color: $green;
+    color: $white;
 
     &:hover {
         color: $gray-1000;
