@@ -9,6 +9,7 @@ import PartRequest from '@/pages/part-request/PartRequest'
 import MyAccount from '@/pages/admin-pages/MyAccount'
 import MyAnswers from '@/pages/admin-pages/MyAnswers.vue'
 import MyRequests from '@/pages/admin-pages/MyRequests'
+import AllSparePartRequestsPage from '@/pages/AllSparePartRequestsPage'
 
 const publicAccessRoutes = [
   {
@@ -22,6 +23,12 @@ const publicAccessRoutes = [
     component: PartRequest,
     name: 'part-request',
     title: 'part-request'
+  },
+  {
+    path: '/all-spare-part-requests',
+    component: AllSparePartRequestsPage,
+    name: 'all-spare-part-requests',
+    title: 'all-spare-part-requests'
   },
   {
     path: '/faq',

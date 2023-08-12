@@ -61,6 +61,7 @@
       placeholder="name"
     />
 
+    <!-- Neccessary to change to state -->
     <label
       class="label-text"
       for="city"

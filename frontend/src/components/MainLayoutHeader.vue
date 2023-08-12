@@ -2,7 +2,7 @@
   <div class="header">
     <div class="content-wrapper">
       <div class="header-logo">
-        <span>MyCarParts</span>
+        <router-link :to="{ name: 'home-page' }">MyCarParts</router-link>
       </div>
       <img
         v-if="mobileMenuIcon === 'menu'"
@@ -19,20 +19,31 @@
         class="menu-icon"
         @click="mobileMenuSwitcher"
       />
-      <div class="nav" :class="{ showMobileMenu: mobileMenuVisibilaty }">
+      <div
+        class="nav"
+        :class="{ showMobileMenu: mobileMenuVisibilaty }"
+      >
         <ul>
           <li>
-            <span>Find part</span>
+            <router-link :to="{ name: 'all-spare-part-requests' }">Suggest your parts</router-link>
           </li>
           <li>
-            <span>How It Work</span>
+            <router-link :to="{ name: 'part-request' }">Find spare part</router-link>
           </li>
           <li>
-            <span>Company Registration</span>
+            <router-link :to="{ name: 'home-page' }">How It Work</router-link>
           </li>
           <li>
-            <a href="#" class="blue-btn">Sign In</a>
+            <router-link :to="{ name: 'home-page' }">Company Registration</router-link>
           </li>
+          <!-- Will be uncomment later, when registration will be done  -->
+          <!-- <li>
+            <a
+              href="#"
+              class="blue-btn"
+              >Sign In</a
+            >
+          </li> -->
         </ul>
       </div>
     </div>
@@ -50,8 +61,7 @@ function mobileMenuSwitcher() {
 }
 
 watch(mobileMenuVisibilaty, () => {
-  mobileMenuIcon.value =
-    mobileMenuVisibilaty.value === false ? "menu" : "close";
+  mobileMenuIcon.value = mobileMenuVisibilaty.value === false ? "menu" : "close";
 });
 </script>
 

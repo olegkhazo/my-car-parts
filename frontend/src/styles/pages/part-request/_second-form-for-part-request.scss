@@ -1,6 +1,14 @@
 .form-fields-section {
     padding-top: 30px;     
     
+    input, select, textarea {
+        margin-bottom: 15px;       
+    }
+
+    .radio-toolbar {
+        margin-bottom: 15px;
+    }
+    
     .fuel-validator-errors-wrapper {
         display: flex;
         justify-content: space-between;

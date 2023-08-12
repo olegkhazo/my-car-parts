@@ -16,14 +16,8 @@
       v-model="formData.car_type"
       name="type-group"
     >
-      <option value="test1">Test 1</option>
-      <option
-        value="test2"
-        selected
-      >
-        Test 2
-      </option>
-      <option value="test3">Test 3</option>
+      <option value="car">Car</option>
+      <option value="motorcycle">Motorcycle</option>
     </select>
 
     <label
@@ -43,14 +37,14 @@
       v-model="formData.car_brand"
       name="car-brand-group"
     >
-      <option value="test1">Test 1</option>
+      <option value="audi">Audi</option>
       <option
-        value="test2"
+        value="bmw"
         selected
       >
-        Test 2
+        BMW
       </option>
-      <option value="test3">Test 3</option>
+      <option value="skoda">Skoda</option>
     </select>
 
     <label
@@ -70,14 +64,14 @@
       v-model="formData.car_model"
       name="car-model-group"
     >
-      <option value="test1">Test 1</option>
+      <option value="a2">a2</option>
       <option
-        value="test2"
+        value="a3"
         selected
       >
-        Test 2
+        a3
       </option>
-      <option value="test3">Test 3</option>
+      <option value="a4">a4</option>
     </select>
 
     <label
@@ -97,14 +91,14 @@
       v-model="formData.car_year"
       name="car-year-group"
     >
-      <option value="1990">1990</option>
+      <option value="2023">2023</option>
       <option
-        value="1992"
+        value="2022"
         selected
       >
-        1992
+        2022
       </option>
-      <option value="1993">1993</option>
+      <option value="2021">2021</option>
     </select>
 
     <div class="fuel-validator-errors-wrapper">
@@ -134,14 +128,14 @@
         v-model="formData.fuel_type"
         name="car-fuel-type"
       >
-        <option value="test1">Test 1</option>
+        <option value="petrol">Petrol</option>
         <option
-          value="test2"
+          value="disel"
           selected
         >
-          Test 2
+          disel
         </option>
-        <option value="test3">Test 3</option>
+        <option value="electric">Electric</option>
       </select>
 
       <input
@@ -173,14 +167,15 @@
       v-model="formData.car_body"
       name="car-body-type"
     >
-      <option value="test1">Test 1</option>
+      <option value="sedan">Sedan</option>
       <option
-        value="test2"
+        value="coupe"
         selected
       >
-        Test 2
+        coupe
       </option>
-      <option value="test3">Test 3</option>
+      <option value="universal">Universal</option>
+      <option value="pickup">Pickup</option>
     </select>
 
     <label

@@ -40,12 +40,16 @@
 
                 li {
                     list-style: none;
-                    font-weight: 500;
+                    
+                    a {
+                        font-weight: 500;
 
-                    &:hover {
-                        cursor: pointer;
-                        color: $gray-800;
+                        &:hover {
+                            cursor: pointer;
+                            color: $gray-800;
+                        }
                     }
+
                 }
             }
         }
