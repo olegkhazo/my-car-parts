@@ -131,7 +131,11 @@
                           Name: <span class="bold">{{ request.name }}</span>
                         </span>
 
-                        <span class="suggest-button xl-green-btn">Suggest your variant</span>
+                        <router-link
+                          :to="{ name: 'offer-page', params: { requestId: request._id } }"
+                          class="suggest-button xl-green-btn"
+                          >Suggest your variant</router-link
+                        >
                         <span
                           class="close-content-btn blue-btn"
                           @click="hideOpenedContentByButtonClick"
