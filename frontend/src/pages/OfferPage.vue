@@ -2,13 +2,36 @@
   <MainLayout>
     <div class="content-wrapper offer-page-wrapper">
       <h2>Offer Page</h2>
+      <span>{{ singlePartRequestData }}</span>
     </div>
   </MainLayout>
 </template>
 
 <script setup>
+import { onMounted, ref } from "vue";
 import MainLayout from "@/layouts/MainLayout.vue";
+import { useRoute } from "vue-router";
 
+const route = useRoute();
+
+const requestId = route.params.requestId;
+const singlePartRequestData = ref(null);
+
+onMounted(() => {
+  fetchSingleRequest();
+});
+
+async function fetchSingleRequest() {
+  try {
+    const response = await fetch(`http://localhost:3000/api/single-spare-part-request-data/${requestId}`);
+    const data = await response.json();
+    singlePartRequestData.value = data;
+
+    console.log(singlePartRequestData.value);
+  } catch (error) {
+    console.error("Error fetching parts:", error);
+  }
+}
 // Write the code which will get one entry from the database by id
 // from the route parametr: requestId
 // Then neccessary to create API for getting one entry from DB and use here
