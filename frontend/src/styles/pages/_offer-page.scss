@@ -1,9 +1,88 @@
-.offer-page-wrapper {
-    min-height: 80vh;
 
-    h2 {
-        font-size: 50px;
-        font-weight: 300;
-        text-align: center;
+h2 {
+    font-size: 50px;
+    font-weight: 300;
+    text-align: center;
+}
+
+.offer-page-wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding: 55px 0;
+    
+    .form-wrapper {
+        width: 57%;
+
+        .offer-form {
+            padding: 20px 60px;
+            border: 2px solid $gray-100;
+            border-radius: 15px;
+            position: relative;
+
+            .form-fields-section {
+                padding-top: 30px;      
+            
+                input, select, textarea {
+                    margin-bottom: 15px;       
+                }
+            
+                .radio-toolbar {
+                    margin-bottom: 15px;
+                }
+            }
+
+            .succesful-notification {
+                display: flex;
+                justify-content: center;
+            }
+            
+            button {
+                margin-top: 10px;
+            }
+
+            .light-gray-btn {
+                margin-right: 15px;
+            }
+        }
+    }
+
+    .offer-right-info-wrapper {
+        width: 36%;
+        border-radius: 15px;
+        background-color: $blue-250;
+        padding: 20px 25px;
+        color: $gray-1000;
+        height: fit-content;
+    
+        .right-blue-block-title {
+            font-size: 30px;
+            font-weight: 500;
+        }
+
+        .all-content-wrapper {
+
+            .all-content {                           
+                span {
+                    display: block;
+                    margin-top: 3px;
+
+                    .bold {
+                        display: inline;
+                        font-size: 16px;
+                        font-weight: 600;
+                    }
+                }     
+                
+                .suggest-button, .close-content-btn {
+                    display: inline-block;
+                    margin: 20px 0;
+                }
+
+                .close-content-btn {
+                    margin-left: 10px;
+                }
+            }
+        }
     }
 }
+
