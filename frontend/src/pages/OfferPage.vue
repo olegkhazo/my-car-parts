@@ -235,6 +235,11 @@
               </span>
             </div>
           </div>
+          <router-link
+            :to="{ name: 'all-spare-part-requests' }"
+            class="back-button xl-green-btn"
+            >Back to all requests</router-link
+          >
         </div>
       </div>
     </div>
