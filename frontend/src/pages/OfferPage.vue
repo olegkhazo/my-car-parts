@@ -259,6 +259,7 @@ const requestId = route.params.requestId;
 const singlePartRequestData = ref(null);
 
 const formData = ref({
+  related_request_id: requestId,
   full_name: "",
   company_name: "",
   type_of_part: "original",
@@ -272,7 +273,6 @@ const rules = computed(() => {
   return {
     full_name: { required, minLength: minLength(2) },
     company_name: { required },
-    type_of_part: { required },
     type_of_part: { required },
     part_condition: { required },
     city_area: { required, minLength: minLength(2) },
@@ -303,25 +303,24 @@ async function createNewOffer() {
   const result = await v$.value.$validate();
 
   if (result) {
-    console.log(formData.value);
+    try {
+      const response = await fetch("http://localhost:3000/api/create-offer", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData.value),
+      });
+      if (response.ok) {
+        console.log("Offer created successfully");
+      } else {
+        console.error("Failed to create offer");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
   }
 }
-// Write the code which will get one entry from the database by id
-// from the route parametr: requestId
-// Then neccessary to create API for getting one entry from DB and use here
-// it is possible to use prop either, but... I should to think about it.
-
-// Then it necessaty to show main info about request and simple form bellow
-// I think this form shoul contain, name of user, company name (optional),
-// price of spare part, use it or new, original or analog, city/area, email, phone
-// All fields on one page, with validation.
-
-// Then, after button clicked, we will create new entry to table which will call "suggestions"
-// or somehow. THis entry will be contain field "related_request" which will containe "requestId"
-// from router parametr.
-
-// Also will neccessary to create API in backend for adding single entrie in to DB calling "suggestions"
-// or somehow.
 </script>
 
 <style lang="scss" scoped>
