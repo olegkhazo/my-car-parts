@@ -4,12 +4,13 @@ import { createWebHistory, createRouter } from 'vue-router'
 import HomePage from '@/pages/HomePage'
 import FaqPage from '@/pages/FaqPage'
 import PartRequest from '@/pages/part-request/PartRequest'
+import AllSparePartRequestsPage from '@/pages/AllSparePartRequestsPage'
+import OfferPage from '@/pages/OfferPage'
 
 // Admin pages
 import MyAccount from '@/pages/admin-pages/MyAccount'
 import MyAnswers from '@/pages/admin-pages/MyAnswers.vue'
 import MyRequests from '@/pages/admin-pages/MyRequests'
-import AllSparePartRequestsPage from '@/pages/AllSparePartRequestsPage'
 
 const publicAccessRoutes = [
   {
@@ -29,6 +30,12 @@ const publicAccessRoutes = [
     component: AllSparePartRequestsPage,
     name: 'all-spare-part-requests',
     title: 'all-spare-part-requests'
+  },
+  {
+    path: '/offer-page/:requestId?',
+    component: OfferPage,
+    name: 'offer-page',
+    title: 'offer-page'
   },
   {
     path: '/faq',

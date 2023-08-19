@@ -26,6 +26,14 @@
             <option value="a7">A7</option>
             <option value="a8">A8</option>
           </select>
+
+          <select
+            id="public_date"
+            name="public_date"
+          >
+            <option value="oldest">Oldest</option>
+            <option value="newest">Newest</option>
+          </select>
         </div>
         <div class="all-requests-table-wrapper">
           <div class="table-wrapper">
@@ -68,62 +76,66 @@
                   <td colspan="5">
                     <div class="all-content-wrapper">
                       <div class="all-content">
-                        <span
-                          >Spare part: <span class="bold"> {{ request.part_name }}</span></span
-                        >
-                        <span
-                          >Group: <span class="bold"> {{ request.part_group }}</span></span
-                        >
-                        <span
-                          >Type of part: <span class="bold"> {{ request.type_of_part }}</span></span
-                        >
-                        <span
-                          >Condition:<span class="bold"> {{ request.part_condition }}</span></span
-                        >
-                        <span
-                          >Part code:<span class="bold"> {{ request.part_code }}</span></span
-                        >
-                        <span
-                          >Car type: <span class="bold"> {{ request.car_type }}</span></span
-                        >
-                        <span
-                          >Car brand:<span class="bold"> {{ request.car_brand }}</span></span
-                        >
-                        <span
-                          >Car model: <span class="bold"> {{ request.car_model }}</span></span
-                        >
-                        <span
-                          >Car year:<span class="bold"> {{ request.car_year }}</span></span
-                        >
-                        <span
-                          >Fuel type: <span class="bold"> {{ request.fuel_type }}</span></span
-                        >
-                        <span
-                          >Engine volume: <span class="bold"> {{ request.engine_volume }}</span></span
-                        >
-                        <span
-                          >Car body: <span class="bold"> {{ request.car_body }}</span></span
-                        >
-                        <span
-                          >VIN code: <span class="bold"> {{ request.vin_code }}</span></span
-                        >
-                        <span
-                          >User comment: <span class="bold"> {{ request.comment }}</span></span
-                        >
-                        <span
-                          >State/City: <span class="bold"> {{ request.city }}</span></span
-                        >
-                        <span
-                          >Email <span class="bold"> {{ request.email }}</span></span
-                        >
-                        <span
-                          >Phone: <span class="bold"> {{ request.phone }}</span></span
-                        >
-                        <span
-                          >Name <span class="bold"> {{ request.name }}</span></span
-                        >
+                        <span v-if="request.part_name">
+                          Spare part: <span class="bold">{{ request.part_name }}</span>
+                        </span>
+                        <span v-if="request.part_group">
+                          Group: <span class="bold">{{ request.part_group }}</span>
+                        </span>
+                        <span v-if="request.type_of_part">
+                          Type of part: <span class="bold">{{ request.type_of_part }}</span>
+                        </span>
+                        <span v-if="request.part_condition">
+                          Condition: <span class="bold">{{ request.part_condition }}</span>
+                        </span>
+                        <span v-if="request.part_code">
+                          Part code: <span class="bold">{{ request.part_code }}</span>
+                        </span>
+                        <span v-if="request.car_type">
+                          Car type: <span class="bold">{{ request.car_type }}</span>
+                        </span>
+                        <span v-if="request.car_brand">
+                          Car brand: <span class="bold">{{ request.car_brand }}</span>
+                        </span>
+                        <span v-if="request.car_model">
+                          Car model: <span class="bold">{{ request.car_model }}</span>
+                        </span>
+                        <span v-if="request.car_year">
+                          Car year: <span class="bold">{{ request.car_year }}</span>
+                        </span>
+                        <span v-if="request.fuel_type">
+                          Fuel type: <span class="bold">{{ request.fuel_type }}</span>
+                        </span>
+                        <span v-if="request.engine_volume">
+                          Engine volume: <span class="bold">{{ request.engine_volume }}</span>
+                        </span>
+                        <span v-if="request.car_body">
+                          Car body: <span class="bold">{{ request.car_body }}</span>
+                        </span>
+                        <span v-if="request.vin_code">
+                          VIN code: <span class="bold">{{ request.vin_code }}</span>
+                        </span>
+                        <span v-if="request.comment">
+                          User comment: <span class="bold">{{ request.comment }}</span>
+                        </span>
+                        <span v-if="request.city">
+                          State/City: <span class="bold">{{ request.city }}</span>
+                        </span>
+                        <span v-if="request.email">
+                          Email: <span class="bold">{{ request.email }}</span>
+                        </span>
+                        <span v-if="request.phone">
+                          Phone: <span class="bold">{{ request.phone }}</span>
+                        </span>
+                        <span v-if="request.name">
+                          Name: <span class="bold">{{ request.name }}</span>
+                        </span>
 
-                        <span class="suggest-button xl-green-btn">Suggest your variant</span>
+                        <router-link
+                          :to="{ name: 'offer-page', params: { requestId: request._id } }"
+                          class="suggest-button xl-green-btn"
+                          >Suggest your variant</router-link
+                        >
                         <span
                           class="close-content-btn blue-btn"
                           @click="hideOpenedContentByButtonClick"

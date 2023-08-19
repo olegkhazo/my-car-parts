@@ -20,3 +20,14 @@ export const getAllParts = async (req: Request, res: Response, next: NextFunctio
     next(error);
   }
 };
+
+export const getSinglePart = async (req: Request, res: Response, next: NextFunction) => {
+  const requestId = req.params.id;
+
+  try {
+    const part = await PartModel.findById(requestId);
+    res.status(200).json(part);
+  } catch (error) {
+    next(error);
+  }
+}

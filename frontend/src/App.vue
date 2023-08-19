@@ -10,7 +10,7 @@ useHead({
     {
       rel: "icon",
       type: "image/png",
-      href: require("@/assets/images/car-repair.png"),
+      href: require("@/assets/images/sports-car.png"),
     },
   ],
 });

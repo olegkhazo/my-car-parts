@@ -309,6 +309,6 @@
 import MainLayout from "@/layouts/MainLayout.vue";
 </script>
 
-<style lang="sass" scoped>
-@import "@/styles/pages/home-page.scss"
+<style lang="scss" scoped>
+@import "@/styles/pages/_home-page.scss";
 </style>

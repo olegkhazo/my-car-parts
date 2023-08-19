@@ -1,0 +1,94 @@
+
+h2 {
+    font-size: 50px;
+    font-weight: 300;
+    text-align: center;
+}
+
+.offer-page-wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 105px;
+    
+    .form-wrapper {
+        width: 57%;
+
+        .offer-form {
+            padding: 30px 60px;
+            border: 2px solid $gray-100;
+            border-radius: 15px;
+            position: relative;
+
+            .offer-form-fields-section {
+                padding-top: 30px;      
+            
+                input, select, textarea {
+                    margin-bottom: 15px;       
+                }
+            
+                .radio-toolbar {
+                    margin-bottom: 15px;
+                    justify-content: flex-start;
+
+                    .label-text {
+                        margin-right: 10px;
+                    }
+                }
+            }
+
+            .succesful-notification {
+                display: flex;
+                justify-content: center;
+            }
+            
+            button {
+                margin-top: 10px;
+            }
+
+            .light-gray-btn {
+                margin-right: 15px;
+            }
+        }
+    }
+
+    .offer-right-info-wrapper {
+        width: 36%;
+        border-radius: 15px;
+        background-color: $blue-250;
+        padding: 20px 25px;
+        color: $gray-1000;
+        height: fit-content;
+    
+        .right-blue-block-title {
+            font-size: 28px;
+            font-weight: 500;
+        }
+
+        .all-content-wrapper {
+
+            .all-content { 
+                margin-top: 25px;
+                                          
+                span {
+                    display: block;
+                    margin-top: 3px;
+                    font-size: 15px;
+
+                    .bold {
+                        display: inline;
+                        font-size: 18px;
+                        font-weight: 600;
+                    }
+                }     
+                
+                
+            }
+        }
+
+        .back-button {
+            display: inline-block;
+            margin: 40px 0;
+        }
+    }
+}
+
