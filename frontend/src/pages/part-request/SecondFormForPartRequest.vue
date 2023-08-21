@@ -49,20 +49,20 @@
 
     <label
       class="label-text"
-      for="car-model"
+      for="car-make"
     >
-      Car Model *
+      Car Make *
     </label>
     <span
-      v-for="error in v$.car_model.$errors"
+      v-for="error in v$.car_make.$errors"
       :key="error.$uid"
       class="input-error-notification"
       >{{ error.$message }}</span
     >
     <select
-      id="car-model"
-      v-model="formData.car_model"
-      name="car-model-group"
+      id="car-make"
+      v-model="formData.car_make"
+      name="car-make-group"
     >
       <option value="a2">a2</option>
       <option
@@ -218,7 +218,7 @@ const { dataFromSecondFormStep } = storeToRefs(usePartRequestFormStore());
 const formData = ref({
   car_type: "",
   car_brand: "",
-  car_model: "",
+  car_make: "",
   car_year: "",
   fuel_type: "",
   engine_volume: "",
@@ -236,7 +236,7 @@ const rules = computed(() => {
   return {
     car_type: { required },
     car_brand: { required },
-    car_model: { required },
+    car_make: { required },
     car_year: { required },
     fuel_type: { required },
     engine_volume: { required },

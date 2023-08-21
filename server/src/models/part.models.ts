@@ -25,7 +25,7 @@ class Part {
   car_brand: string;
 
   @prop()
-  car_model: string;
+  car_make: string;
 
   @prop()
   car_year: string;

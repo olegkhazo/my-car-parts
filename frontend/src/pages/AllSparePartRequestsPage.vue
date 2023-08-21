@@ -15,8 +15,8 @@
           </select>
 
           <select
-            id="model"
-            name="model"
+            id="make"
+            name="make"
           >
             <option value="a1">A1</option>
             <option value="a3">A3</option>
@@ -63,7 +63,7 @@
                     />
                   </td>
                   <td>
-                    {{ request.part_name }} for {{ request.car_brand }} {{ request.car_model }}
+                    {{ request.part_name }} for {{ request.car_brand }} {{ request.car_make }}
                     {{ request.engine_volume }} {{ request.fuel_type }}
                   </td>
                   <td>{{ request.city }}</td>
@@ -97,8 +97,8 @@
                         <span v-if="request.car_brand">
                           Car brand: <span class="bold">{{ request.car_brand }}</span>
                         </span>
-                        <span v-if="request.car_model">
-                          Car model: <span class="bold">{{ request.car_model }}</span>
+                        <span v-if="request.car_make">
+                          Car make: <span class="bold">{{ request.car_make }}</span>
                         </span>
                         <span v-if="request.car_year">
                           Car year: <span class="bold">{{ request.car_year }}</span>
