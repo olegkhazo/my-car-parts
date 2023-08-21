@@ -197,11 +197,11 @@
               <span v-if="singlePartRequestData.car_type">
                 Car type: <span class="bold">{{ singlePartRequestData.car_type }}</span>
               </span>
-              <span v-if="singlePartRequestData.car_brand">
-                Car brand: <span class="bold">{{ singlePartRequestData.car_brand }}</span>
-              </span>
               <span v-if="singlePartRequestData.car_make">
                 Car make: <span class="bold">{{ singlePartRequestData.car_make }}</span>
+              </span>
+              <span v-if="singlePartRequestData.car_model">
+                Car model: <span class="bold">{{ singlePartRequestData.car_model }}</span>
               </span>
               <span v-if="singlePartRequestData.car_year">
                 Car year: <span class="bold">{{ singlePartRequestData.car_year }}</span>

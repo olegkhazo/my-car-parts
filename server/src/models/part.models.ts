@@ -22,10 +22,10 @@ class Part {
   car_type: string;
 
   @prop()
-  car_brand: string;
+  car_make: string;
 
   @prop()
-  car_make: string;
+  car_model: string;
 
   @prop()
   car_year: string;

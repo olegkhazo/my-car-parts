@@ -6,8 +6,8 @@
         <div class="filters">
           <span class="filters-title">Sort requests with filters</span>
           <select
-            id="brand"
-            name="brand"
+            id="make"
+            name="make"
           >
             <option value="audi">Audi</option>
             <option value="bmw">BMW</option>
@@ -15,8 +15,8 @@
           </select>
 
           <select
-            id="make"
-            name="make"
+            id="model"
+            name="model"
           >
             <option value="a1">A1</option>
             <option value="a3">A3</option>
@@ -63,7 +63,7 @@
                     />
                   </td>
                   <td>
-                    {{ request.part_name }} for {{ request.car_brand }} {{ request.car_make }}
+                    {{ request.part_name }} for {{ request.car_make }} {{ request.car_model }}
                     {{ request.engine_volume }} {{ request.fuel_type }}
                   </td>
                   <td>{{ request.city }}</td>
@@ -94,11 +94,11 @@
                         <span v-if="request.car_type">
                           Car type: <span class="bold">{{ request.car_type }}</span>
                         </span>
-                        <span v-if="request.car_brand">
-                          Car brand: <span class="bold">{{ request.car_brand }}</span>
-                        </span>
                         <span v-if="request.car_make">
                           Car make: <span class="bold">{{ request.car_make }}</span>
+                        </span>
+                        <span v-if="request.car_model">
+                          Car model: <span class="bold">{{ request.car_model }}</span>
                         </span>
                         <span v-if="request.car_year">
                           Car year: <span class="bold">{{ request.car_year }}</span>
