@@ -7,8 +7,10 @@
           <span class="filters-title">Sort requests with filters</span>
           <select
             id="make"
+            v-model="filterParametrs.car_make"
             name="make"
           >
+            <option value="Select Make">Select Make</option>
             <option value="audi">Audi</option>
             <option value="bmw">BMW</option>
             <option value="skoda">Skoda</option>
@@ -16,8 +18,11 @@
 
           <select
             id="model"
+            v-model="filterParametrs.car_model"
             name="model"
+            :disabled="filterParametrs.car_make === 'Select Make'"
           >
+            <option value="Select Model">Select Model</option>
             <option value="a1">A1</option>
             <option value="a3">A3</option>
             <option value="a4">A4</option>
@@ -28,11 +33,27 @@
           </select>
 
           <select
-            id="public_date"
-            name="public_date"
+            id="car-year"
+            v-model="filterParametrs.car_year"
+            name="car-year"
+            :disabled="filterParametrs.car_model === 'Select Model'"
           >
-            <option value="oldest">Oldest</option>
-            <option value="newest">Newest</option>
+            <option value="Year">Year</option>
+            <option value="2019">2019</option>
+            <option value="2019">2019</option>
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+            <option value="2022">2023</option>
+            <option value="2024">2024</option>
+          </select>
+
+          <select
+            id="date-of-public"
+            v-model="filterParametrs.date_of_public"
+            name="date-of-public"
+          >
+            <option value="Newest">Newest</option>
+            <option value="Oldest">Oldest</option>
           </select>
         </div>
         <div class="all-requests-table-wrapper">
@@ -155,11 +176,19 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watch } from "vue";
 import MainLayout from "@/layouts/MainLayout.vue";
 import { getTimeAgo } from "@/utils";
 
 const sparePartsRequestsData = ref([]);
+const filterParametrs = ref({
+  car_make: "Select Make",
+  car_model: "Select Model",
+  car_year: "Year",
+  date_of_public: "Newest",
+});
+
+const filteredRequests = ref([]);
 
 const fetchParts = async () => {
   try {
@@ -193,6 +222,18 @@ function hideOpenedContentByButtonClick(event) {
     behavior: "smooth",
   });
 }
+
+watch(filterParametrs.value, (newVal) => {
+  if (newVal.car_make !== "Select Make") {
+    // console.log(sparePartsRequestsData.value);
+    console.log(newVal.car_make);
+
+    filteredRequests.value = Object.values(sparePartsRequestsData.value).filter(
+      (item) => item.car_make === newVal.car_make
+    );
+    console.log(filteredRequests.value);
+  }
+});
 </script>
 
 <style lang="sass" scoped>
