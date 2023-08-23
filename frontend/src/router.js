@@ -9,7 +9,7 @@ import OfferPage from '@/pages/OfferPage'
 
 // Admin pages
 import MyAccount from '@/pages/admin-pages/MyAccount'
-import MyAnswers from '@/pages/admin-pages/MyAnswers.vue'
+import MyAnswers from '@/pages/admin-pages/MyAnswers'
 import MyRequests from '@/pages/admin-pages/MyRequests'
 
 const publicAccessRoutes = [

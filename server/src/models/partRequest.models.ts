@@ -1,6 +1,6 @@
 import { prop, getModelForClass } from '@typegoose/typegoose';
 
-class Part {
+class PartRequest {
   // { required: true } - will need to add for fields is required
   // Also necessary to know what means part_name!: string; and public comment?: string;
   @prop()
@@ -22,7 +22,7 @@ class Part {
   car_type: string;
 
   @prop()
-  car_brand: string;
+  car_make: string;
 
   @prop()
   car_model: string;
@@ -61,4 +61,4 @@ class Part {
   created_date: Date;
 }
 
-export const PartModel = getModelForClass(Part);
+export const PartRequestModel = getModelForClass(PartRequest);
