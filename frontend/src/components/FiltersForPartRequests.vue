@@ -60,9 +60,6 @@ const filterByMake = ref("Select Make");
 const filterByModel = ref("Select Model");
 const filterByYear = ref("Year");
 
-console.log(`Original collection ----- ${originalSparePartRequestsData.value}`);
-console.log(`Filtered collection ----- ${filteredPartRequestsData.value}`);
-
 // Watcher for filterByMake
 watch(filterByMake, (newVal) => {
   if (newVal !== "Select Make") {
