@@ -1,5 +1,11 @@
 <template>
   <div class="request-sending-result">
+    <div class="succesful-notification">
+      <img
+        src="@/assets/images/checkmark.png"
+        alt="green-checkmark"
+      />
+    </div>
     <h3>Congratulations, your request sending was successful!</h3>
     <div class="success-buttons-wrapper">
       <router-link

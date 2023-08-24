@@ -38,16 +38,6 @@
               >
             </div>
 
-            <div
-              v-else-if="formStep === 4"
-              class="succesful-notification"
-            >
-              <img
-                src="@/assets/images/checkmark.png"
-                alt="green-checkmark"
-              />
-            </div>
-
             <FirstFormForPartRequest
               v-if="formStep === 1"
               @switch-form-to-another-step="formStepsSwitcher"
