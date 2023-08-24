@@ -4,44 +4,19 @@
       <h2>Offer Page</h2>
       <div class="offer-page-wrapper">
         <div class="form-wrapper">
-          <form
-            class="offer-form"
-            action=""
-          >
-            <div class="offer-form-fields-section">
-              <label
-                class="label-text"
-                for="full-name"
-                >You full name *</label
-              >
-              <span
-                v-for="error in v$.full_name.$errors"
-                :key="error.$uid"
-                class="input-error-notification"
-                >{{ error.$message }}</span
-              >
-              <input
-                id="full-name"
-                v-model="formData.full_name"
-                type="text"
-              />
+          <form class="offer-form" action="">
+            <div v-if="!successfulOferSending" class="offer-form-fields-section">
+              <label class="label-text" for="full-name">You full name *</label>
+              <span v-for="error in v$.full_name.$errors" :key="error.$uid" class="input-error-notification">
+                {{ error.$message }}
+              </span>
+              <input id="full-name" v-model="formData.full_name" type="text" />
 
-              <label
-                class="label-text"
-                for="company_name"
-                >Company name *</label
-              >
-              <span
-                v-for="error in v$.company_name.$errors"
-                :key="error.$uid"
-                class="input-error-notification"
-                >{{ error.$message }}</span
-              >
-              <input
-                id="company_name"
-                v-model="formData.company_name"
-                type="text"
-              />
+              <label class="label-text" for="company_name">Company name *</label>
+              <span v-for="error in v$.company_name.$errors" :key="error.$uid" class="input-error-notification">
+                {{ error.$message }}
+              </span>
+              <input id="company_name" v-model="formData.company_name" type="text" />
 
               <span class="label-text">Type of part</span>
               <div class="radio-toolbar">
@@ -52,12 +27,7 @@
                   name="type-of-part"
                   value="original"
                 />
-                <label
-                  class="label-text"
-                  for="radio-original"
-                >
-                  Original
-                </label>
+                <label class="label-text" for="radio-original"> Original </label>
 
                 <input
                   id="radio-analog"
@@ -66,12 +36,7 @@
                   name="type-of-part"
                   value="analog"
                 />
-                <label
-                  class="label-text"
-                  for="radio-analog"
-                >
-                  Analog
-                </label>
+                <label class="label-text" for="radio-analog"> Analog </label>
               </div>
 
               <span class="label-text">Spare part condition</span>
@@ -83,12 +48,7 @@
                   name="type-of-condition"
                   value="new"
                 />
-                <label
-                  class="label-text"
-                  for="radio-new-condition"
-                >
-                  New
-                </label>
+                <label class="label-text" for="radio-new-condition"> New </label>
 
                 <input
                   id="radio-used"
@@ -97,87 +57,47 @@
                   name="type-of-condition"
                   value="used"
                 />
-                <label
-                  class="label-text"
-                  for="radio-used"
-                >
-                  Used
-                </label>
+                <label class="label-text" for="radio-used"> Used </label>
               </div>
 
-              <label
-                class="label-text"
-                for="city_area"
-                >City/Area *</label
-              >
-              <span
-                v-for="error in v$.city_area.$errors"
-                :key="error.$uid"
-                class="input-error-notification"
-                >{{ error.$message }}</span
-              >
-              <input
-                id="city_area"
-                v-model="formData.city_area"
-                type="text"
-              />
+              <label class="label-text" for="city_area">City/Area *</label>
+              <span v-for="error in v$.city_area.$errors" :key="error.$uid" class="input-error-notification">{{
+                error.$message
+              }}</span>
+              <input id="city_area" v-model="formData.city_area" type="text" />
 
-              <label
-                class="label-text"
-                for="email"
-              >
-                E-mail *
-              </label>
-              <span
-                v-for="error in v$.email.$errors"
-                :key="error.$uid"
-                class="input-error-notification"
-                >{{ error.$message }}</span
-              >
-              <input
-                id="email"
-                v-model="formData.email"
-                type="email"
-                name="email"
-                placeholder="E-mail"
-              />
+              <label class="label-text" for="email"> E-mail * </label>
+              <span v-for="error in v$.email.$errors" :key="error.$uid" class="input-error-notification">{{
+                error.$message
+              }}</span>
+              <input id="email" v-model="formData.email" type="email" name="email" placeholder="E-mail" />
 
-              <label
-                class="label-text"
-                for="phone"
-              >
-                Phone
-              </label>
-              <span
-                v-for="error in v$.phone.$errors"
-                :key="error.$uid"
-                class="input-error-notification"
-                >{{ error.$message }}</span
-              >
-              <input
-                id="phone"
-                v-model="formData.phone"
-                type="tel"
-                name="phone"
-                placeholder="Phone"
-              />
+              <label class="label-text" for="phone"> Phone </label>
+              <span v-for="error in v$.phone.$errors" :key="error.$uid" class="input-error-notification">{{
+                error.$message
+              }}</span>
+              <input id="phone" v-model="formData.phone" type="tel" name="phone" placeholder="Phone" />
 
-              <button
-                class="gray-btn"
-                @click.prevent="createNewOffer"
-              >
-                Continue
-              </button>
+              <button class="gray-btn" @click.prevent="createNewOffer">Continue</button>
+            </div>
+            <div v-else class="offer-sending-result">
+              <div class="succesful-notification">
+                <img src="@/assets/images/checkmark.png" alt="green-checkmark" />
+              </div>
+              <h3>Congratulations, your offer sending was successful!</h3>
+              <div class="success-offer-buttons-wrapper">
+                <router-link class="light-gray-btn" to="/">Home page</router-link>
+                <router-link :to="{ name: 'all-spare-part-requests' }" class="back-button xl-green-btn">
+                  Back to all requests
+                </router-link>
+              </div>
             </div>
           </form>
         </div>
 
         <div class="offer-right-info-wrapper">
           <span class="right-blue-block-title">Spare part request content:</span>
-          <div
-            v-if="singlePartRequestData"
-            class="all-content-wrapper"
-          >
+          <div v-if="singlePartRequestData" class="all-content-wrapper">
             <div class="all-content">
               <span v-if="singlePartRequestData.part_name">
                 Spare part: <span class="bold">{{ singlePartRequestData.part_name }}</span>
@@ -235,9 +155,8 @@
               </span>
             </div>
           </div>
-          <router-link
-            :to="{ name: 'all-spare-part-requests' }"
-            class="back-button xl-green-btn"
+
+          <router-link :to="{ name: 'all-spare-part-requests' }" class="back-button xl-green-btn"
             >Back to all requests</router-link
           >
         </div>
@@ -257,6 +176,7 @@ const route = useRoute();
 
 const requestId = route.params.requestId;
 const singlePartRequestData = ref(null);
+const successfulOferSending = ref(false);
 
 const formData = ref({
   related_request_id: requestId,
@@ -312,7 +232,7 @@ async function createNewOffer() {
         body: JSON.stringify(formData.value),
       });
       if (response.ok) {
-        console.log("Offer created successfully");
+        successfulOferSending.value = true;
       } else {
         console.error("Failed to create offer");
       }

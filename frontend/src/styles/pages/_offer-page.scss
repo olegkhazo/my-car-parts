@@ -49,6 +49,26 @@ h2 {
                 margin-right: 15px;
             }
         }
+
+        .offer-sending-result {
+
+            .succesful-notification {
+                display: flex;
+                justify-content: center;
+            }
+            
+            h3 {
+                font-size: 30px;
+                font-weight: bold;
+                text-align: center;
+            }
+        
+            .success-offer-buttons-wrapper {
+                display: flex;
+                justify-content: space-around;
+            }
+        }
+
     }
 
     .offer-right-info-wrapper {

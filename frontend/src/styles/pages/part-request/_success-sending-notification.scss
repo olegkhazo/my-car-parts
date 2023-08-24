@@ -1,4 +1,10 @@
 .request-sending-result {
+    
+    .succesful-notification {
+        display: flex;
+        justify-content: center;
+    }
+
     h3 {
         font-size: 30px;
         font-weight: bold;
