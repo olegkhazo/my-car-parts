@@ -2,48 +2,22 @@
   <div class="filters-wrapper">
     <div class="filters">
       <span class="filters-title">Sort requests with filters</span>
-      <select
-        id="make"
-        v-model="filterByMake"
-        name="make"
-      >
+
+      <select id="make" v-model="filterByMake" name="make">
         <option value="Select Make">Select Make</option>
-        <option value="audi">Audi</option>
-        <option value="bmw">BMW</option>
-        <option value="skoda">Skoda</option>
+        <option v-for="make in makesCollection" :key="make">{{ make }}</option>
       </select>
 
-      <select
-        id="model"
-        v-model="filterByModel"
-        name="model"
-        :disabled="filterByMake === 'Select Make'"
-      >
-        <option value="Select Model">Select Model</option>
-        <option value="a1">A1</option>
-        <option value="a2">A2</option>
-        <option value="a3">A3</option>
-        <option value="a4">A4</option>
-        <option value="a5">A5</option>
-        <option value="a6">A6</option>
-        <option value="a7">A7</option>
-        <option value="a8">A8</option>
-      </select>
-
-      <select
-        id="car-year"
-        v-model="filterByYear"
-        name="car-year"
-        :disabled="filterByModel === 'Select Model'"
-      >
+      <select id="car-year" v-model="filterByYear" name="car-year" :disabled="filterByMake === 'Select Make'">
         <option value="Year">Year</option>
-        <option value="2018">2018</option>
-        <option value="2019">2019</option>
-        <option value="2020">2020</option>
-        <option value="2021">2021</option>
-        <option value="2022">2022</option>
-        <option value="2023">2023</option>
-        <option value="2024">2024</option>
+        <option v-for="year in yearOptions" :key="year">{{ year }}</option>
+      </select>
+
+      <select id="model" v-model="filterByModel" name="model" :disabled="filterByYear === 'Year'">
+        <option value="Select Model">Select Model</option>
+        <option v-for="models in modelsCollection.Results" :key="models" value="models.Model_Name">
+          {{ models.Model_Name }}
+        </option>
       </select>
     </div>
   </div>
@@ -53,12 +27,16 @@
 import { ref, watch } from "vue";
 import { storeToRefs } from "pinia";
 import { useAllPartRequestsDataStore } from "@/stores";
+import { makesCollection, yearOptions } from "@/utils/collections";
+import { GET_MODELS_BY_MAKE_AND_YEAR } from "@/utils/constants";
 
 const { originalSparePartRequestsData, filteredPartRequestsData } = storeToRefs(useAllPartRequestsDataStore());
 
 const filterByMake = ref("Select Make");
-const filterByModel = ref("Select Model");
 const filterByYear = ref("Year");
+const filterByModel = ref("Select Model");
+
+const modelsCollection = ref({});
 
 // Watcher for filterByMake
 watch(filterByMake, (newVal) => {
@@ -74,15 +52,16 @@ watch(filterByMake, (newVal) => {
   }
 });
 
-// Watcher for filterByModel
-watch(filterByModel, (newVal) => {
+// Watcher for filterByYear
+watch(filterByYear, (newVal) => {
   if (filterByMake.value !== "Select Make") {
-    if (newVal !== "Select Model") {
-      filterByYear.value = "Year"; // Reset filterByYear when changing model
+    if (newVal !== "Year") {
+      filterByModel.value = "Select Model"; // Reset filterByModel when changing year
 
       filteredPartRequestsData.value = originalSparePartRequestsData.value.filter(
-        (item) => item.car_make === filterByMake.value && item.car_model === newVal
+        (item) => item.car_make === filterByMake.value && item.car_year === newVal
       );
+      getModelsFromVpicApi();
     } else {
       filteredPartRequestsData.value = originalSparePartRequestsData.value.filter(
         (item) => item.car_make === filterByMake.value
@@ -91,17 +70,30 @@ watch(filterByModel, (newVal) => {
   }
 });
 
-// Watcher for filterByYear
-watch(filterByYear, (newVal) => {
-  if (filterByMake.value !== "Select Make" && filterByModel.value !== "Select Model") {
+// Watcher for filterByModel
+watch(filterByModel, (newVal) => {
+  if (filterByMake.value !== "Select Make" && filterByYear.value !== "Year") {
     filteredPartRequestsData.value = originalSparePartRequestsData.value.filter(
       (item) =>
         item.car_make === filterByMake.value &&
-        item.car_model === filterByModel.value &&
-        (newVal === "Year" || item.car_year === newVal)
+        item.car_year === filterByYear.value &&
+        (newVal === "Select Model" || item.car_model === newVal)
     );
   }
 });
+
+async function getModelsFromVpicApi() {
+  try {
+    const response = await fetch(
+      `${GET_MODELS_BY_MAKE_AND_YEAR}/${filterByMake.value}/modelyear/${filterByYear.value}?format=json`
+    );
+
+    modelsCollection.value = await response.json();
+    console.log(modelsCollection.value);
+  } catch (error) {
+    console.log(error);
+  }
+}
 </script>
 
 <style lang="scss" scoped>
