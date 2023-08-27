@@ -7,6 +7,8 @@ export const createOffer = async (req: Request, res: Response, next: NextFunctio
         console.log(newOffer);
         await newOffer.save();
         res.status(201).json(newOffer);
+
+        // Here will be the logic for sending email
     } catch (error) {
         next(error);
     }
