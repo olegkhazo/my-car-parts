@@ -212,8 +212,6 @@ async function fetchSingleRequest() {
     const response = await fetch(`http://localhost:3000/api/single-spare-part-request-data/${requestId}`);
     const data = await response.json();
     singlePartRequestData.value = data;
-
-    console.log(singlePartRequestData.value);
   } catch (error) {
     console.error("Error fetching parts:", error);
   }

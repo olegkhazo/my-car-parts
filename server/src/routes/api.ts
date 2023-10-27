@@ -1,5 +1,5 @@
 import express from 'express';
-import { createPart, getAllParts, getSinglePart } from '../controllers/partController';
+import { createPart, getAllParts, getSinglePart } from '../controllers/partRequestController';
 import { createOffer } from '../controllers/offerController';
 
 const router = express.Router();
