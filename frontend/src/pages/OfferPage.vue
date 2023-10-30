@@ -221,6 +221,9 @@ async function createNewOffer() {
   const result = await v$.value.$validate();
 
   if (result) {
+    formData.value.byer_email = singlePartRequestData.value.email;
+    formData.value.part_name = singlePartRequestData.value.part_name;
+
     try {
       const response = await fetch("http://localhost:3000/api/create-offer", {
         method: "POST",

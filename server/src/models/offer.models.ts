@@ -2,6 +2,12 @@ import { prop, getModelForClass } from "@typegoose/typegoose";
 
 class Offer {
     @prop()
+    part_name: string;
+
+    @prop()
+    byer_email: string;
+   
+    @prop()
     related_request_id: string;
 
     @prop()

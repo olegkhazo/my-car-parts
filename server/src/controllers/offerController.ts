@@ -9,8 +9,15 @@ export const createOffer = async (req: Request, res: Response, next: NextFunctio
         await newOffer.save();
         res.status(201).json(newOffer);
 
-        // Send an email using the sendEmail function
-        await sendEmail('olegkhazo@gmail.com', 'New Offer Created', 'An offer has been created.');
+        // Send an email to byer
+        await sendEmail(`${req.body.byer_email}`, `New offer on 'MyCarParts' for ${req.body.part_name}`, 
+        `From: ${req.body.full_name} (${req.body.company_name}),
+        Related to: ${req.body.part_name}
+        Type of part: ${req.body.type_of_part}
+        Part condition: ${req.body.part_condition}
+        City: ${req.body.city_area}
+        Email: ${req.body.email}
+        Phone: ${req.body.phone}`);
     } catch (error) {
         next(error);
     }
