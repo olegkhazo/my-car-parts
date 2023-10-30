@@ -1,30 +1,28 @@
 import nodemailer from 'nodemailer';
-// const nodemailer = require("nodemailer");
 
 const transporter = nodemailer.createTransport({
-    service: 'Gmail',
-    auth: {
-        user: 'uiscarparts@gmail.com',
-        pass: 'Zhur19881986',
-    },
-
-    
-
+  host: 'smtp-relay.brevo.com',
+  port: 587, 
+  secure: false, // true for 465, false for other ports
+  auth: {
+    user: 'o.zhuravko@gmail.com',
+    pass: 't0BU98nVANjWaZIh',
+  },
 });
 
 export const sendEmail = async (recipient: string, subject: string, body: string) => {
-    const mailOptions = {
-        from: 'uiscarparts@gmail.com',
-        to: recipient,
-        subject,
-        text: body,
-    };
+  const mailOptions = {
+    from: 'o.zhuravko@gmail.com',
+    to: recipient,
+    subject,
+    text: body,
+  };
 
-    try {
-        await transporter.sendMail(mailOptions);
-        console.log('Email sent successfully');
-    } catch (error) {
-        console.error('Error sending email:', error);
-        throw error;
-    }
+  try {
+    await transporter.sendMail(mailOptions);
+    console.log('Email sent successfully');
+  } catch (error) {
+    console.error('Error sending email:', error);
+    throw error;
+  }
 };
