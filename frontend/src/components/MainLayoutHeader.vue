@@ -19,10 +19,7 @@
         class="menu-icon"
         @click="mobileMenuSwitcher"
       />
-      <div
-        class="nav"
-        :class="{ showMobileMenu: mobileMenuVisibilaty }"
-      >
+      <div class="nav" :class="{ showMobileMenu: mobileMenuVisibilaty }">
         <ul>
           <li>
             <router-link :to="{ name: 'all-spare-part-requests' }">Suggest your parts</router-link>
