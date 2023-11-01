@@ -5,6 +5,10 @@
         font-size: 50px;
         font-weight: 300;
         text-align: center;
+
+        @media (max-width: 834px) {
+            font-size: 35px;
+        }
     }
 
     .filters {
@@ -33,14 +37,29 @@
 
         .table-wrapper {
             width: 100%;
-            padding-top: 11px;
-
-            @media (max-width: 720px) {
-                display: none;
-            }     
+            padding-top: 11px;   
             
             .single-request-row {
                 cursor: pointer;
+
+                .block-for-mobile-screen {
+                    display: none;
+
+                    @media (max-width: 720px) {
+                        display: block;
+                        color: $gray-700;
+                    }
+                }
+            }
+            
+            .form-date-column, .form-area-column {
+                @media (max-width: 720px) {
+                    display: none;
+                }
+            }
+
+            .form-info-button-column {              
+                text-align: right;                
             }
 
             .all-content-for-single-request {
@@ -51,25 +70,74 @@
 
                     .all-content-wrapper {
 
-                        .all-content {                           
-                            span {
-                                display: block;
-                                margin-top: 3px;
+                        .all-content {  
+                            .single-request-details {
+                                display: flex;
+                                border: 2px solid $gray-300;
+                                border-radius: 5px;
+                                padding: 5px;
 
-                                .bold {
-                                    display: inline;
-                                    font-size: 16px;
-                                    font-weight: 600;
+                                .single-request-details-right {
+                                    margin-left: 65px;
+
+                                    @media (max-width: 485px) {
+                                        margin-left: 20px;
+                                    }
+
+                                    @media (max-width: 370px) {
+                                        margin-left: 10px;
+                                    }
                                 }
-                            }     
-                            
-                            .suggest-button, .close-content-btn {
-                                display: inline-block;
-                                margin: 20px 0;
-                            }
 
-                            .close-content-btn {
-                                margin-left: 10px;
+                                span {
+                                    display: block;
+                                    margin-top: 3px;
+    
+                                    .bold {
+                                        display: inline;
+                                        font-size: 16px;
+                                        font-weight: 600;
+
+                                        @media (max-width: 485px) {
+                                            font-size: 14px;
+                                            font-weight: 500;
+                                        }
+                                    }
+                                }     
+
+                            }                         
+                            
+                            .spare-part-requests-btn-wrapper {
+                                display: flex;
+
+                                @media (max-width: 360px) {
+                                    flex-direction: column;
+                                }
+
+                                
+                                .suggest-button, .close-content-btn {
+                                    display: inline-block;
+                                    margin: 20px 0;
+                                    
+                                    @media (max-width: 360px) {
+                                        margin: 0;
+                                    }
+                                }
+                                
+                                .suggest-button {                          
+                                    @media (max-width: 360px) {
+                                        margin: 15px 0 10px 0;
+                                    }
+                                }
+
+                                .close-content-btn {
+                                    margin-left: 10px;
+
+                                    @media (max-width: 360px) {
+                                        margin: 0 0 15px 0;
+                                    }
+                                }
+
                             }
                         }
                     }
