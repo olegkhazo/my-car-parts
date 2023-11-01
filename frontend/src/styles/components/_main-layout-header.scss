@@ -54,7 +54,8 @@
             }
         }
 
-        .showMobileMenu {
+        .show-mobile-menu {
+            z-index: 10;
             display: block;
             position: absolute;
             background-color: $white;
