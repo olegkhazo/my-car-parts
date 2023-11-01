@@ -3,21 +3,41 @@ h2 {
     font-size: 50px;
     font-weight: 300;
     text-align: center;
+
+    @media (max-width: 834px) {
+        font-size: 35px;
+    }
+
+    @media (max-width: 382px) {
+        font-size: 28px;
+    }
 }
 
 .offer-page-wrapper {
     display: flex;
     justify-content: space-between;
     margin-bottom: 105px;
+
+    @media (max-width: 834px) {
+        flex-direction: column;
+    }
     
     .form-wrapper {
         width: 57%;
+
+        @media (max-width: 834px) {
+            width: 100%;
+        }
 
         .offer-form {
             padding: 30px 60px;
             border: 2px solid $gray-100;
             border-radius: 15px;
             position: relative;
+
+            @media (max-width: 995px) {
+                padding: 20px 25px;
+            }
 
             .offer-form-fields-section {
                 padding-top: 30px;      
@@ -47,6 +67,10 @@ h2 {
 
             .light-gray-btn {
                 margin-right: 15px;
+
+                @media (max-width: 427px) {
+                    margin-right: 0;
+                }
             }
         }
 
@@ -61,33 +85,89 @@ h2 {
                 font-size: 30px;
                 font-weight: bold;
                 text-align: center;
+
+                @media (max-width: 834px) {
+                    font-size: 22px;
+                }
             }
         
             .success-offer-buttons-wrapper {
                 display: flex;
                 justify-content: space-around;
+
+                @media (max-width: 427px) {
+                    flex-direction: column;
+        
+                    .light-gray-btn {
+                        margin-bottom: 10px;
+                    }
+                }
             }
         }
 
     }
 
     .offer-right-info-wrapper {
-        width: 36%;
+        width: 40%;
         border-radius: 15px;
         background-color: $blue-250;
         padding: 20px 25px;
         color: $gray-1000;
         height: fit-content;
     
+        @media (max-width: 900px) {
+            padding: 20px 15px;
+        }
+
+        @media (max-width: 834px) {
+            width: 100%;
+            margin-top: 30px;
+            padding: 40px 45px;
+        }
+
+        @media (max-width: 425px) {
+            padding: 25px 30px;
+        }
+
+        @media (max-width: 425px) {
+            padding: 25px 20px;
+        }
+
+        .successfull-notyfication {
+            display: block;
+            color: $green;
+            font-weight: 600;
+        }
+
         .right-blue-block-title {
-            font-size: 28px;
+            font-size: 30px;
             font-weight: 500;
+
+            @media (max-width: 950px) {
+                font-size: 24px;
+            }
+
+            @media (max-width: 834px) {
+                font-size: 30px;
+            }
+
+            @media (max-width: 390px) {
+                font-size: 24px;
+            }
+
+            @media (max-width: 325px) {
+                font-size: 22px;
+            }
         }
 
         .all-content-wrapper {
 
             .all-content { 
                 margin-top: 25px;
+
+                @media (max-width: 834px) {
+                    margin-top: 10px;
+                }
                                           
                 span {
                     display: block;
@@ -98,6 +178,10 @@ h2 {
                         display: inline;
                         font-size: 18px;
                         font-weight: 600;
+
+                        @media (max-width: 382px) {
+                            font-size: 14px;
+                        }
                     }
                 }     
                 
@@ -107,7 +191,7 @@ h2 {
 
         .back-button {
             display: inline-block;
-            margin: 40px 0;
+            margin-top: 22px;
         }
     }
 }

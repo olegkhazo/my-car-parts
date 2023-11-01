@@ -3,6 +3,10 @@
     justify-content: space-between;
     padding: 55px 0;
 
+    @media (max-width: 834px) {
+        flex-direction: column;
+    }
+
     .form-description {
         color: $gray-800;
         font-size: 25px;
@@ -13,16 +17,23 @@
     .form-wrapper {
         width: 57%;
 
+        @media (max-width: 834px) {
+            width: 100%;
+        }    
+
         .part-request-form {
             padding: 20px 60px;
             border: 2px solid $gray-100;
             border-radius: 15px;
             position: relative;
 
+            @media (max-width: 995px) {
+                padding: 20px 25px;
+            }
+
             .form-steps {
                 display: flex;
                 justify-content: space-between;
-            
             
                 .step {
                     padding: 10px 19px;
@@ -30,6 +41,29 @@
                     color: $gray-100;
                     background-color: $gray-300;
                     border-radius: 50%;
+
+                    @media (max-width: 402px) {
+                        padding: 10px 16px;
+                        font-size: 13px;
+                    }
+                }
+
+                img {
+                    @media (max-width: 855px) {
+                        width: 80px;
+                    }
+
+                    @media (max-width: 834px) {
+                        width: auto;
+                    }
+
+                    @media (max-width: 490px) {
+                        width: 80px;
+                    }
+
+                    @media (max-width: 402px) {
+                        width: 40px;
+                    }
                 }
                 
                 .active-step {
@@ -49,16 +83,51 @@
     }
 
     .request-right-info-wrapper {
-        width: 36%;
+        width: 40%;
         border-radius: 15px;
         background-color: $blue-250;
         padding: 20px 25px;
         color: $gray-1000;
         height: fit-content;
+        
+
+        @media (max-width: 900px) {
+            padding: 20px 15px;
+        }
+
+        @media (max-width: 834px) {
+            width: 100%;
+            margin-top: 30px;
+            padding: 40px 45px;
+        }
+
+        @media (max-width: 425px) {
+            padding: 25px 30px;
+        }
+
+        @media (max-width: 425px) {
+            padding: 25px 20px;
+        }
 
         .right-blue-block-title {
             font-size: 30px;
             font-weight: 500;
+
+            @media (max-width: 950px) {
+                font-size: 24px;
+            }
+
+            @media (max-width: 834px) {
+                font-size: 30px;
+            }
+
+            @media (max-width: 390px) {
+                font-size: 24px;
+            }
+
+            @media (max-width: 325px) {
+                font-size: 22px;
+            }
         }
 
         span {

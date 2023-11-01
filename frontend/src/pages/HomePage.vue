@@ -8,16 +8,8 @@
         </h3>
         <div class="part-request-input">
           <div class="input-btn">
-            <input
-              type="text"
-              class="part-naming"
-              placeholder="Type which part you need"
-            />
-            <router-link
-              :to="{ name: 'part-request' }"
-              class="yellow-btn"
-              >Start Searching</router-link
-            >
+            <input type="text" class="part-naming" placeholder="Type which part you need" />
+            <router-link :to="{ name: 'part-request' }" class="yellow-btn">Start Searching</router-link>
           </div>
           <div class="example">
             <span>For example: <span class="example-bold">Left headlight</span></span>
@@ -25,10 +17,7 @@
         </div>
       </div>
       <div class="img-wrapper">
-        <img
-          src="@/assets/images/strange-car.png"
-          alt="car"
-        />
+        <img src="@/assets/images/strange-car.png" alt="car" />
       </div>
     </div>
 
@@ -76,10 +65,7 @@
             <tbody>
               <tr>
                 <td>
-                  <img
-                    src="@/assets/images/green-wheel.svg"
-                    alt=""
-                  />
+                  <img src="@/assets/images/green-wheel.svg" alt="" />
                 </td>
                 <td>Rear silencer for 2008 Volkswagen Multivan 3.2 petrol</td>
                 <td>Orlando</td>
@@ -87,10 +73,7 @@
               </tr>
               <tr>
                 <td>
-                  <img
-                    src="@/assets/images/green-wheel.svg"
-                    alt=""
-                  />
+                  <img src="@/assets/images/green-wheel.svg" alt="" />
                 </td>
                 <td>Rear silencer for 2008 Volkswagen Multivan 3.2 petrol</td>
                 <td>Orlando</td>
@@ -98,10 +81,7 @@
               </tr>
               <tr>
                 <td>
-                  <img
-                    src="@/assets/images/green-wheel.svg"
-                    alt=""
-                  />
+                  <img src="@/assets/images/green-wheel.svg" alt="" />
                 </td>
                 <td>Rear silencer for 2008 Volkswagen Multivan 3.2 petrol</td>
                 <td>Orlando</td>
@@ -109,10 +89,7 @@
               </tr>
               <tr>
                 <td>
-                  <img
-                    src="@/assets/images/green-wheel.svg"
-                    alt=""
-                  />
+                  <img src="@/assets/images/green-wheel.svg" alt="" />
                 </td>
                 <td>Rear silencer for 2008 Volkswagen Multivan 3.2 petrol</td>
                 <td>Orlando</td>
@@ -125,10 +102,7 @@
           <ul>
             <li>
               <div class="single-request-wrapper">
-                <img
-                  src="@/assets/images/green-wheel.svg"
-                  alt=""
-                />
+                <img src="@/assets/images/green-wheel.svg" alt="" />
                 <div class="request-description">
                   <p>Rear silencer for 2008 Volkswagen Multivan 3.2 petrol</p>
                   <span>Orlando - 2 minutes ago</span>
@@ -137,10 +111,7 @@
             </li>
             <li>
               <div class="single-request-wrapper">
-                <img
-                  src="@/assets/images/green-wheel.svg"
-                  alt=""
-                />
+                <img src="@/assets/images/green-wheel.svg" alt="" />
                 <div class="request-description">
                   <p>Rear silencer for 2008 Volkswagen Multivan 3.2 petrol</p>
                   <span>Orlando - 2 minutes ago</span>
@@ -149,10 +120,7 @@
             </li>
             <li>
               <div class="single-request-wrapper">
-                <img
-                  src="@/assets/images/green-wheel.svg"
-                  alt=""
-                />
+                <img src="@/assets/images/green-wheel.svg" alt="" />
                 <div class="request-description">
                   <p>Rear silencer for 2008 Volkswagen Multivan 3.2 petrol</p>
                   <span>Orlando - 2 minutes ago</span>
@@ -161,10 +129,7 @@
             </li>
             <li>
               <div class="single-request-wrapper">
-                <img
-                  src="@/assets/images/green-wheel.svg"
-                  alt=""
-                />
+                <img src="@/assets/images/green-wheel.svg" alt="" />
                 <div class="request-description">
                   <p>Rear silencer for 2008 Volkswagen Multivan 3.2 petrol</p>
                   <span>Orlando - 2 minutes ago</span>
@@ -174,18 +139,11 @@
           </ul>
         </div>
         <div class="table-button-wrapper">
-          <router-link
-            :to="{ name: 'part-request' }"
-            class="yellow-btn"
-            >Send your request</router-link
-          >
+          <router-link :to="{ name: 'part-request' }" class="yellow-btn">Send your request</router-link>
         </div>
 
         <div class="info-for-sellers">
-          <img
-            src="@/assets/images/price.svg"
-            alt="price"
-          />
+          <img src="@/assets/images/price.svg" alt="price" />
           <div class="info-for-sellers-right">
             <span class="red-seller-info">Do you sell auto parts?</span>
             <br />
@@ -215,10 +173,7 @@
 
     <div class="content-wrapper call-to-action-wrapper">
       <div class="buyer-call-to-action">
-        <img
-          src="@/assets/images/buyer.png"
-          alt="buyer"
-        />
+        <img src="@/assets/images/buyer.png" alt="buyer" />
         <div class="buyer-text">
           <span class="action-card-header">Looking for a part?</span>
           <span class="action-card-body"
@@ -226,11 +181,7 @@
             profitable options.
           </span>
           <span>
-            <router-link
-              :to="{ name: 'part-request' }"
-              class="yellow-btn"
-              >Send your request</router-link
-            >
+            <router-link :to="{ name: 'part-request' }" class="yellow-btn">Send your request</router-link>
           </span>
         </div>
       </div>
@@ -242,17 +193,10 @@
             profitable options.
           </span>
           <span>
-            <router-link
-              :to="{ name: 'part-request' }"
-              class="yellow-btn"
-              >Send your request</router-link
-            >
+            <router-link :to="{ name: 'part-request' }" class="yellow-btn">Send your request</router-link>
           </span>
         </div>
-        <img
-          src="@/assets/images/sallesman.png"
-          alt="sallesman"
-        />
+        <img src="@/assets/images/sallesman.png" alt="sallesman" />
       </div>
     </div>
 
@@ -261,40 +205,28 @@
       <span class="user-reviews-description">Here, those who need spare parts find those who have them!</span>
       <div class="reviews-main-wrapper">
         <div class="single-review">
-          <img
-            src="@/assets/images/review_avatar.png"
-            alt="review avatar"
-          />
+          <img src="@/assets/images/review_avatar.png" alt="review avatar" />
           <span class="review-header">Sultan Ibrahimovich</span>
           <span class="review-content">
             Some short description of expereince by servece. Some short description of expereince by servece.
           </span>
         </div>
         <div class="single-review">
-          <img
-            src="@/assets/images/review_avatar.png"
-            alt="review avatar"
-          />
+          <img src="@/assets/images/review_avatar.png" alt="review avatar" />
           <span class="review-header">Sultan Ibrahimovich</span>
           <span class="review-content">
             Some short description of expereince by servece. Some short description of expereince by servece.
           </span>
         </div>
         <div class="single-review">
-          <img
-            src="@/assets/images/review_avatar.png"
-            alt="review avatar"
-          />
+          <img src="@/assets/images/review_avatar.png" alt="review avatar" />
           <span class="review-header">Sultan Ibrahimovich</span>
           <span class="review-content">
             Some short description of expereince by servece. Some short description of expereince by servece.
           </span>
         </div>
         <div class="single-review">
-          <img
-            src="@/assets/images/review_avatar.png"
-            alt="review avatar"
-          />
+          <img src="@/assets/images/review_avatar.png" alt="review avatar" />
           <span class="review-header">Sultan Ibrahimovich</span>
           <span class="review-content">
             Some short description of expereince by servece. Some short description of expereince by servece.

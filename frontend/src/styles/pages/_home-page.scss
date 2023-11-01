@@ -113,6 +113,10 @@ hr {
         width: 50%;
         padding: 35px;
 
+        @media (max-width: 1080px) {
+            width: 45%;
+         }
+
         @media (max-width: 1020px) {
            padding: 0;
            width: 100%;
@@ -229,9 +233,7 @@ hr {
 
         @media (max-width: 720px) {
             display: none;
-        }
-
-       
+        }     
 
     }
 
@@ -316,7 +318,7 @@ hr {
     @media (max-width: 1020px) {
         font-size: 16px;
         padding: 40px 15px;
-
+        text-align: center;
     }
 
     a {
@@ -329,20 +331,20 @@ hr {
 
 .call-to-action-wrapper {
     margin-top: 80px;
+
+    img {
+        width: 50%;
+
+        @media (max-width: 1020px) {
+            width: 100%;
+        }
+    }
     
     .buyer-call-to-action {
         display: flex;
 
         @media (max-width: 1020px) {
             flex-direction: column;
-        }
-
-        img {
-            width: 50%;
-
-            @media (max-width: 1020px) {
-                width: 100%;
-            }
         }
 
         .buyer-text {
@@ -352,7 +354,9 @@ hr {
             padding: 0 20px 0 60px;
 
             @media (max-width: 1020px) {
-                padding: 0 20px 0 0;
+                padding: 0;
+                align-items: center;
+                text-align: center;
             }
         }
     }
@@ -365,14 +369,6 @@ hr {
             flex-direction: column-reverse;
         }
 
-        img {
-            width: 50%;
-
-            @media (max-width: 1020px) {
-                width: 100%;
-            }
-        }
-
         .sallesman-text {
             display: flex;
             flex-direction: column;
@@ -380,7 +376,9 @@ hr {
             padding: 0 85px 0 0;
 
             @media (max-width: 1020px) {
-                padding: 0 20px 0 0;
+                padding: 0;
+                align-items: center;
+                text-align: center;
             }
         }
     }

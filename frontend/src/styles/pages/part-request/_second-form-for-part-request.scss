@@ -21,10 +21,26 @@
 
         select {
             width: 50%;
+
+            @media (max-width: 460px) {
+                width: 35%;
+            }
+
+            @media (max-width: 340px) {
+                width: 30%;
+            }
+
+            @media (max-width: 312px) {
+                width: 20%;
+            }
         }
         
         input {
             width: 15%;
+
+            @media (max-width: 312px) {
+                width: 20%;
+            }
         }
         
         .label-text {
