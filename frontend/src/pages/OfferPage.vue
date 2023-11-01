@@ -96,6 +96,9 @@
         </div>
 
         <div class="offer-right-info-wrapper">
+          <span v-if="successfulOferSending" class="successfull-notyfication"
+            >You sent your suggestion successfully!</span
+          >
           <span class="right-blue-block-title">Spare part request content:</span>
           <div v-if="singlePartRequestData" class="all-content-wrapper">
             <div class="all-content">
