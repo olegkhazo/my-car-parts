@@ -165,7 +165,8 @@
 import { onMounted, ref, computed } from "vue";
 import MainLayout from "@/layouts/MainLayout.vue";
 import { useRoute } from "vue-router";
-import { FORM_VALIDATION_PATTERNS } from "@/utils/constants";
+// import { FORM_VALIDATION_PATTERNS } from "@/utils/constants";
+import { validateFormField } from "@/utils/index";
 
 const route = useRoute();
 const formButtonClicked = ref(false);
@@ -191,10 +192,8 @@ onMounted(() => {
   fetchSingleRequest();
 });
 
-// Validators
 const isEmailValid = computed(() => {
-  const email = formData.value.email;
-  return email !== "" && FORM_VALIDATION_PATTERNS.EMAIL_PATTERN.test(email);
+  return validateFormField(formData.value.email, "EMAIL_PATTERN");
 });
 
 async function fetchSingleRequest() {
@@ -208,6 +207,8 @@ async function fetchSingleRequest() {
 }
 
 async function createNewOffer() {
+  // console.log(isEmailValid.value);
+
   formButtonClicked.value = true;
 
   formData.value.byer_email = singlePartRequestData.value.email;
