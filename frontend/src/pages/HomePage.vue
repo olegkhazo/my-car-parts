@@ -8,8 +8,12 @@
         </h3>
         <div class="part-request-input">
           <div class="input-btn">
-            <input type="text" class="part-naming" placeholder="Type which part you need" />
-            <router-link :to="{ name: 'part-request' }" class="yellow-btn">Start Searching</router-link>
+            <input v-model="sparePartName" type="text" class="part-naming" placeholder="Type which part you need" />
+            <router-link
+              :to="{ name: 'part-request', params: { spare_part_request: sparePartName } }"
+              class="yellow-btn"
+              >Start Searching</router-link
+            >
           </div>
           <div class="example">
             <span>For example: <span class="example-bold">Left headlight</span></span>
@@ -238,7 +242,10 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
 import MainLayout from "@/layouts/MainLayout.vue";
+
+const sparePartName = ref(null);
 </script>
 
 <style lang="scss" scoped>
