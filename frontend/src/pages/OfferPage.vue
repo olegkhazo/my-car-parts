@@ -4,18 +4,14 @@
       <h2>Offer Page</h2>
       <div class="offer-page-wrapper">
         <div class="form-wrapper">
-          <form class="offer-form" action="">
+          <form class="offer-form">
             <div v-if="!successfulOferSending" class="offer-form-fields-section">
               <label class="label-text" for="full-name">You full name *</label>
-              <span v-for="error in v$.full_name.$errors" :key="error.$uid" class="input-error-notification">
-                {{ error.$message }}
-              </span>
+              <span class="input-error-notification"> </span>
               <input id="full-name" v-model="formData.full_name" type="text" />
 
               <label class="label-text" for="company_name">Company name *</label>
-              <span v-for="error in v$.company_name.$errors" :key="error.$uid" class="input-error-notification">
-                {{ error.$message }}
-              </span>
+              <span class="input-error-notification"> </span>
               <input id="company_name" v-model="formData.company_name" type="text" />
 
               <span class="label-text">Type of part</span>
@@ -61,21 +57,18 @@
               </div>
 
               <label class="label-text" for="city_area">City/Area *</label>
-              <span v-for="error in v$.city_area.$errors" :key="error.$uid" class="input-error-notification">{{
-                error.$message
-              }}</span>
+              <span class="input-error-notification"></span>
               <input id="city_area" v-model="formData.city_area" type="text" />
 
               <label class="label-text" for="email"> E-mail * </label>
-              <span v-for="error in v$.email.$errors" :key="error.$uid" class="input-error-notification">{{
-                error.$message
-              }}</span>
+              <span v-if="!isEmailValid && formButtonClicked" class="input-error-notification">
+                Please enter a valid email address.
+              </span>
+
               <input id="email" v-model="formData.email" type="email" name="email" placeholder="E-mail" />
 
               <label class="label-text" for="phone"> Phone </label>
-              <span v-for="error in v$.phone.$errors" :key="error.$uid" class="input-error-notification">{{
-                error.$message
-              }}</span>
+              <span class="input-error-notification"></span>
               <input id="phone" v-model="formData.phone" type="tel" name="phone" placeholder="Phone" />
 
               <button class="gray-btn" @click.prevent="createNewOffer">Continue</button>
@@ -172,10 +165,10 @@
 import { onMounted, ref, computed } from "vue";
 import MainLayout from "@/layouts/MainLayout.vue";
 import { useRoute } from "vue-router";
-import { useVuelidate } from "@vuelidate/core";
-import { required, minLength, email } from "@vuelidate/validators";
+import { FORM_VALIDATION_PATTERNS } from "@/utils/constants";
 
 const route = useRoute();
+const formButtonClicked = ref(false);
 
 const requestId = route.params.requestId;
 const singlePartRequestData = ref(null);
@@ -183,6 +176,8 @@ const successfulOferSending = ref(false);
 
 const formData = ref({
   related_request_id: requestId,
+  part_name: "",
+  byer_email: "",
   full_name: "",
   company_name: "",
   type_of_part: "original",
@@ -192,22 +187,14 @@ const formData = ref({
   phone: "",
 });
 
-const rules = computed(() => {
-  return {
-    full_name: { required, minLength: minLength(2) },
-    company_name: { required },
-    type_of_part: { required },
-    part_condition: { required },
-    city_area: { required, minLength: minLength(2) },
-    email: { required, minLength: minLength(5), email },
-    phone: { required, minLength: minLength(7) },
-  };
-});
-
-const v$ = useVuelidate(rules, formData.value);
-
 onMounted(() => {
   fetchSingleRequest();
+});
+
+// Validators
+const isEmailValid = computed(() => {
+  const email = formData.value.email;
+  return email !== "" && FORM_VALIDATION_PATTERNS.EMAIL_PATTERN.test(email);
 });
 
 async function fetchSingleRequest() {
@@ -221,12 +208,12 @@ async function fetchSingleRequest() {
 }
 
 async function createNewOffer() {
-  const result = await v$.value.$validate();
+  formButtonClicked.value = true;
 
-  if (result) {
-    formData.value.byer_email = singlePartRequestData.value.email;
-    formData.value.part_name = singlePartRequestData.value.part_name;
+  formData.value.byer_email = singlePartRequestData.value.email;
+  formData.value.part_name = singlePartRequestData.value.part_name;
 
+  if (isEmailValid.value) {
     try {
       const response = await fetch("http://localhost:3000/api/create-offer", {
         method: "POST",
