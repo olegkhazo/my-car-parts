@@ -20,7 +20,7 @@ const publicAccessRoutes = [
     title: 'home-page'
   },
   {
-    path: '/part-request/:userId?',
+    path: '/part-request/:spare_part_request?',
     component: PartRequest,
     name: 'part-request',
     title: 'part-request'
