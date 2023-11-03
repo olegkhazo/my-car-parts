@@ -26,6 +26,7 @@
     "sass": "^1.60.0",
     "sass-loader": "^13.2.2",
     "typescript": "^5.0.3",
+    "usa-states": "^0.0.6",
     "vue": "^3.2.13",
     "vue-router": "^4.1.6",
     "webpack": "^5.78.0"

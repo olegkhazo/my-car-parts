@@ -23,6 +23,9 @@ class Offer {
     part_condition: string;
 
     @prop()
+    state: string;
+
+    @prop()
     city_area: string;
 
     @prop()

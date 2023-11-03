@@ -6,7 +6,9 @@ export const FORM_ERRORS_TEXT = {
   };
   
   export const FORM_VALIDATION_PATTERNS = {
+    COMMON_NOT_EMPTY_PATTERN: /^[a-zA-Z0-9-]{2,20}$/,
     PASSWORD_PATTERN: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[ !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]).{11,}$/,
     EMAIL_PATTERN: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+    PHONE_PATTERN: /^(?:\+1)?(?:\(\d{3}\)|\d{3})[-.\s]?\d{3}[-.\s]?\d{4}$/
   };
   

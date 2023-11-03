@@ -6,12 +6,16 @@
         <div class="form-wrapper">
           <form class="offer-form">
             <div v-if="!successfulOferSending" class="offer-form-fields-section">
-              <label class="label-text" for="full-name">You full name *</label>
-              <span class="input-error-notification"> </span>
+              <label class="label-text" for="full-name">Your name *</label>
+              <span v-if="!isNameValid && formButtonClicked" class="input-error-notification"
+                >Please enter a valid name.</span
+              >
               <input id="full-name" v-model="formData.full_name" type="text" />
 
               <label class="label-text" for="company_name">Company name *</label>
-              <span class="input-error-notification"> </span>
+              <span v-if="!isCompanyNameValid && formButtonClicked" class="input-error-notification"
+                >Please enter a valid company name.</span
+              >
               <input id="company_name" v-model="formData.company_name" type="text" />
 
               <span class="label-text">Type of part</span>
@@ -56,19 +60,30 @@
                 <label class="label-text" for="radio-used"> Used </label>
               </div>
 
+              <label class="label-text" for="state">State *</label>
+              <span v-if="!isStateValid && formButtonClicked" class="input-error-notification"
+                >Select the state where spare part is located</span
+              >
+              <select id="state" v-model="formData.state" name="make">
+                <option v-for="state in states" :key="state">{{ state }}</option>
+              </select>
+
               <label class="label-text" for="city_area">City/Area *</label>
-              <span class="input-error-notification"></span>
+              <span v-if="!isCityValid && formButtonClicked" class="input-error-notification"
+                >Please enter a valid city</span
+              >
               <input id="city_area" v-model="formData.city_area" type="text" />
 
               <label class="label-text" for="email"> E-mail * </label>
               <span v-if="!isEmailValid && formButtonClicked" class="input-error-notification">
                 Please enter a valid email address.
               </span>
-
               <input id="email" v-model="formData.email" type="email" name="email" placeholder="E-mail" />
 
               <label class="label-text" for="phone"> Phone </label>
-              <span class="input-error-notification"></span>
+              <span v-if="!isPhoneValid && formButtonClicked" class="input-error-notification"
+                >Please enter a valid phone number.</span
+              >
               <input id="phone" v-model="formData.phone" type="tel" name="phone" placeholder="Phone" />
 
               <button class="gray-btn" @click.prevent="createNewOffer">Continue</button>
@@ -140,12 +155,6 @@
               <span v-if="singlePartRequestData.city">
                 State/City: <span class="bold">{{ singlePartRequestData.city }}</span>
               </span>
-              <span v-if="singlePartRequestData.email">
-                Email: <span class="bold">{{ singlePartRequestData.email }}</span>
-              </span>
-              <span v-if="singlePartRequestData.phone">
-                Phone: <span class="bold">{{ singlePartRequestData.phone }}</span>
-              </span>
               <span v-if="singlePartRequestData.name">
                 Name: <span class="bold">{{ singlePartRequestData.name }}</span>
               </span>
@@ -165,7 +174,7 @@
 import { onMounted, ref, computed } from "vue";
 import MainLayout from "@/layouts/MainLayout.vue";
 import { useRoute } from "vue-router";
-// import { FORM_VALIDATION_PATTERNS } from "@/utils/constants";
+import { usaStates } from "@/utils/usaStates";
 import { validateFormField } from "@/utils/index";
 
 const route = useRoute();
@@ -174,6 +183,7 @@ const formButtonClicked = ref(false);
 const requestId = route.params.requestId;
 const singlePartRequestData = ref(null);
 const successfulOferSending = ref(false);
+const states = ref([]);
 
 const formData = ref({
   related_request_id: requestId,
@@ -183,6 +193,7 @@ const formData = ref({
   company_name: "",
   type_of_part: "original",
   part_condition: "new",
+  state: "",
   city_area: "",
   email: "",
   phone: "",
@@ -190,10 +201,10 @@ const formData = ref({
 
 onMounted(() => {
   fetchSingleRequest();
-});
 
-const isEmailValid = computed(() => {
-  return validateFormField(formData.value.email, "EMAIL_PATTERN");
+  for (let stateData of Object.values(usaStates)) {
+    states.value.push(stateData.name);
+  }
 });
 
 async function fetchSingleRequest() {
@@ -206,15 +217,37 @@ async function fetchSingleRequest() {
   }
 }
 
-async function createNewOffer() {
-  // console.log(isEmailValid.value);
+// Validation
+const isEmailValid = computed(() => {
+  return validateFormField(formData.value.email, "EMAIL_PATTERN");
+});
 
+const isNameValid = computed(() => {
+  return validateFormField(formData.value.full_name, "COMMON_NOT_EMPTY_PATTERN");
+});
+
+const isCompanyNameValid = computed(() => {
+  return validateFormField(formData.value.company_name, "COMMON_NOT_EMPTY_PATTERN");
+});
+
+const isStateValid = computed(() => {
+  return validateFormField(formData.value.state, "COMMON_NOT_EMPTY_PATTERN");
+});
+
+const isCityValid = computed(() => {
+  return validateFormField(formData.value.city_area, "COMMON_NOT_EMPTY_PATTERN");
+});
+
+const isPhoneValid = computed(() => {
+  return validateFormField(formData.value.phone, "PHONE_PATTERN");
+});
+async function createNewOffer() {
   formButtonClicked.value = true;
 
   formData.value.byer_email = singlePartRequestData.value.email;
   formData.value.part_name = singlePartRequestData.value.part_name;
 
-  if (isEmailValid.value) {
+  if (isEmailValid.value && isNameValid.value) {
     try {
       const response = await fetch("http://localhost:3000/api/create-offer", {
         method: "POST",
