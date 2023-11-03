@@ -247,7 +247,14 @@ async function createNewOffer() {
   formData.value.byer_email = singlePartRequestData.value.email;
   formData.value.part_name = singlePartRequestData.value.part_name;
 
-  if (isEmailValid.value && isNameValid.value) {
+  if (
+    isEmailValid.value &&
+    isNameValid.value &&
+    isCompanyNameValid.value &&
+    isStateValid.value &&
+    isCityValid.value &&
+    isPhoneValid.value
+  ) {
     try {
       const response = await fetch("http://localhost:3000/api/create-offer", {
         method: "POST",

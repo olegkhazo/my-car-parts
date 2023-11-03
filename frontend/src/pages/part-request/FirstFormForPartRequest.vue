@@ -1,16 +1,14 @@
 <template>
   <div class="form-fields-section">
-    <label class="label-text" for="part-name">Part name *</label>
-    <span v-for="error in v$.part_name.$errors" :key="error.$uid" class="input-error-notification">{{
-      error.$message
-    }}</span>
+    <label class="label-text" for="part-name">Spare part name *</label>
+    <span v-if="!isPartNameValid && formButtonClicked" class="input-error-notification"
+      >Please enter a valid spare part name.</span
+    >
     <input id="part-name" v-model="formData.part_name" type="text" />
 
-    <label class="label-text" for="part-group"> Part group </label>
+    <label class="label-text" for="part-group">Spare part group</label>
     <select id="part-group" v-model="formData.part_group" name="part-group">
-      <option value="engine">Engine</option>
-      <option value="transmission">Transmission</option>
-      <option value="body">Body</option>
+      <option v-for="group in SPARE_PART_GROUPS" :key="group">{{ group }}</option>
     </select>
 
     <span class="label-text">Type of part</span>
@@ -52,14 +50,6 @@
     <label class="label-text" for="part-code">Part code</label>
     <input id="part-code" v-model="formData.part_code" type="text" />
 
-    <!-- Extra data - need to be added later, after MVP launching -->
-    <!-- <div class="group-green-button">
-      <span class="label-text">More data</span>
-      <span class="green-tab">photo</span>
-      <span class="green-tab">description</span>
-      <span class="green-tab">price</span>
-    </div> -->
-
     <button class="gray-btn" @click.prevent="checkTheFormFields">Continue</button>
   </div>
 </template>
@@ -67,12 +57,13 @@
 <script setup>
 import { ref, computed, onMounted } from "vue";
 import { storeToRefs } from "pinia";
-import { useVuelidate } from "@vuelidate/core";
-import { required, minLength } from "@vuelidate/validators";
 import { usePartRequestFormStore } from "@/stores";
 import { useRoute } from "vue-router";
+import { validateFormField } from "@/utils/index";
+import { SPARE_PART_GROUPS } from "@/utils/constants";
 
 const route = useRoute();
+const formButtonClicked = ref(false);
 
 const { dataFromFirstFormStep } = storeToRefs(usePartRequestFormStore());
 
@@ -92,18 +83,14 @@ onMounted(() => {
   if (route.params.spare_part_request) formData.value.part_name = route.params.spare_part_request;
 });
 
-const rules = computed(() => {
-  return {
-    part_name: { required, minLength: minLength(3) },
-  };
+// Validation
+const isPartNameValid = computed(() => {
+  return validateFormField(formData.value.part_name, "COMMON_NOT_EMPTY_PATTERN");
 });
 
-const v$ = useVuelidate(rules, formData.value);
-
 async function checkTheFormFields() {
-  const result = await v$.value.$validate();
-
-  if (result) {
+  formButtonClicked.value = true;
+  if (isPartNameValid.value) {
     Object.assign(dataFromFirstFormStep.value, formData.value);
 
     switchFormToAnotherStep();
