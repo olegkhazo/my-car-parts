@@ -89,7 +89,6 @@ async function getModelsFromVpicApi() {
     );
 
     modelsCollection.value = await response.json();
-    console.log(modelsCollection.value);
   } catch (error) {
     console.log(error);
   }

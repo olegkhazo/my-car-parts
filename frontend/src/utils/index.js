@@ -1,4 +1,5 @@
 import moment from 'moment';
+import { FORM_VALIDATION_PATTERNS } from "@/utils/constants";
 
 export function getTimeAgo(timestamp) {
   const currentTime = moment();
@@ -22,3 +23,10 @@ export function getTimeAgo(timestamp) {
   }
 }
 
+// Form fields validator function. Used inside computed property
+export function validateFormField(fieldData, validator) {
+  const data = fieldData;
+  const regExp = FORM_VALIDATION_PATTERNS[validator]; 
+
+  return data !== "" && regExp.test(data); 
+}
