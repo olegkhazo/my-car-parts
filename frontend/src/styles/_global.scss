@@ -39,6 +39,10 @@ html {
             }
         }
 
+        select {
+            cursor: pointer;
+        }
+
         .input-error-notification {
             color: $red; 
         }

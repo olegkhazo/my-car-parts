@@ -8,7 +8,7 @@
 
     <label class="label-text" for="part-group">Spare part group</label>
     <select id="part-group" v-model="formData.part_group" name="part-group">
-      <option v-for="group in SPARE_PART_GROUPS" :key="group">{{ group }}</option>
+      <option v-for="group in sparePartGroups" :key="group">{{ group }}</option>
     </select>
 
     <span class="label-text">Type of part</span>
@@ -60,7 +60,7 @@ import { storeToRefs } from "pinia";
 import { usePartRequestFormStore } from "@/stores";
 import { useRoute } from "vue-router";
 import { validateFormField } from "@/utils/index";
-import { SPARE_PART_GROUPS } from "@/utils/constants";
+import { sparePartGroups } from "@/utils/collections";
 
 const route = useRoute();
 const formButtonClicked = ref(false);
