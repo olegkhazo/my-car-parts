@@ -64,11 +64,11 @@
                             <span v-if="request.car_model">
                               Car model: <span class="bold">{{ request.car_model }}</span>
                             </span>
+                          </div>
+                          <div class="single-request-details-right">
                             <span v-if="request.car_year">
                               Car year: <span class="bold">{{ request.car_year }}</span>
                             </span>
-                          </div>
-                          <div class="single-request-details-right">
                             <span v-if="request.fuel_type">
                               Fuel type: <span class="bold">{{ request.fuel_type }}</span>
                             </span>
@@ -86,12 +86,6 @@
                             </span>
                             <span v-if="request.city">
                               State/City: <span class="bold">{{ request.city }}</span>
-                            </span>
-                            <span v-if="request.email">
-                              Email: <span class="bold">{{ request.email }}</span>
-                            </span>
-                            <span v-if="request.phone">
-                              Phone: <span class="bold">{{ request.phone }}</span>
                             </span>
                             <span v-if="request.name">
                               Name: <span class="bold">{{ request.name }}</span>
