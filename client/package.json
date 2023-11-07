@@ -1,5 +1,8 @@
 {
-  "name": "nuxt-app",
+  "name": "mynextparts",
+  "version": "0.0.1",
+  "description": "Car parts searcher",
+  "author": "Oleg Zhuravko",
   "private": true,
   "type": "module",
   "scripts": {
@@ -7,11 +10,16 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "sass": "^1.60.0",
+    "sass-loader": "^13.2.2"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
+    "@nuxt/image": "^1.0.0",
+    "@nuxtjs/style-resources": "^2.0.0",
     "nuxt": "^3.8.1",
+    "sass": "^1.69.5",
     "vue": "^3.3.8",
     "vue-router": "^4.2.5"
   }

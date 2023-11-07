@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="30px" height="30px" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>Icon/Social Media/YouTube</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="36" height="36"></rect>
+        <path d="M18,33 C9.72864,33 3,26.2704 3,18 C3,9.72864 9.72864,3 18,3 C26.2704,3 33,9.72864 33,18 C33,26.2704 26.2704,33 18,33 Z M25.6763226,13.873829 C25.4804516,13.1362161 24.9032903,12.5553774 24.1705161,12.3582484 C22.8422903,11.9999903 17.516129,11.9999903 17.516129,11.9999903 C17.516129,11.9999903 12.1899677,11.9999903 10.8617419,12.3582484 C10.128871,12.5553774 9.55180645,13.1362161 9.35593548,13.873829 C9,15.2106677 9,17.9999903 9,17.9999903 C9,17.9999903 9,20.7892161 9.35593548,22.1261516 C9.55180645,22.8637645 10.128871,23.4446032 10.8617419,23.641829 C12.1899677,23.9999903 17.516129,23.9999903 17.516129,23.9999903 C17.516129,23.9999903 22.8422903,23.9999903 24.1705161,23.641829 C24.9032903,23.4446032 25.4804516,22.8637645 25.6763226,22.1261516 C26.0322581,20.7892161 26.0322581,17.9999903 26.0322581,17.9999903 C26.0322581,17.9999903 26.0322581,15.2106677 25.6763226,13.873829 Z M15.7741935,20.5324742 L15.7741935,15.4675065 L20.2258065,18.0000871 L15.7741935,20.5324742 Z" id="path-3"></path>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Headers-&amp;-Footers/Footer/Mobile" transform="translate(-87.000000, -276.000000)">
+            <g id="Icon/Social-Media/YouTube" transform="translate(84.000000, 273.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <g id="Bounds" opacity="0"></g>
+                <mask id="mask-4" fill="white">
+                    <use xlink:href="#path-3"></use>
+                </mask>
+                <use id="Icon" fill="#0B8ED5" fill-rule="nonzero" xlink:href="#path-3"></use>
+            </g>
+        </g>
+    </g>
+</svg>
