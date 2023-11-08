@@ -3,5 +3,7 @@
     <TheNavigation />
 
     <NuxtPage />
+
+    <TheFooter />
   </div>
 </template>
