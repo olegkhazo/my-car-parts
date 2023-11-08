@@ -31,7 +31,7 @@
                   <td class="form-area-column">{{ request.city }}</td>
                   <td class="form-date-column">{{ getTimeAgo(request.created_date) }}</td>
                   <td class="form-info-button-column">
-                    <a class="sm-green-btn">Info</a>
+                    <span class="sm-green-btn">Info</span>
                   </td>
                 </tr>
                 <tr class="all-content-for-single-request hidden">

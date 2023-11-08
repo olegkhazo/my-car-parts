@@ -26,8 +26,8 @@ export default defineNuxtConfig({
   },
 
   css: [
-    '@/assets/styles/main.scss',
+    "@/assets/styles/main.scss",
   ],
-  modules: ["@nuxt/image", '@nuxtjs/style-resources']
+  modules: ["@pinia/nuxt", "@nuxt/image", "@nuxtjs/style-resources"]
 })
 
