@@ -14,14 +14,17 @@
               class="part-naming"
               placeholder="Type which part you need"
             />
-            <router-link
+            <NuxtLink to="/part-request" class="yellow-btn"
+              >Start Searching</NuxtLink
+            >
+            <!-- <router-link
               :to="{
                 name: 'part-request',
                 params: { spare_part_request: sparePartName },
               }"
               class="yellow-btn"
               >Start Searching</router-link
-            >
+            > -->
           </div>
           <div class="example">
             <span
@@ -69,9 +72,7 @@
       <div class="last-requests-table-wrapper">
         <div class="table-pre-header">
           <span>New requests for auto parts</span>
-          <router-link :to="{ name: 'part-request' }"
-            >+send request</router-link
-          >
+          <NuxtLink to="/part-request">+send request</NuxtLink>
         </div>
         <div class="table-wrapper">
           <table>
@@ -86,7 +87,9 @@
             <tbody>
               <tr>
                 <td>
-                  <NuxtImg src="/images/green-wheel.svg" alt="" />
+                  <div class="green-wheel-img-wrapper">
+                    <NuxtImg src="/images/green-wheel.svg" alt="" />
+                  </div>
                 </td>
                 <td>Rear silencer for 2008 Volkswagen Multivan 3.2 petrol</td>
                 <td>Orlando</td>
@@ -94,7 +97,9 @@
               </tr>
               <tr>
                 <td>
-                  <NuxtImg src="/images/green-wheel.svg" alt="" />
+                  <div class="green-wheel-img-wrapper">
+                    <NuxtImg src="/images/green-wheel.svg" alt="" />
+                  </div>
                 </td>
                 <td>Rear silencer for 2008 Volkswagen Multivan 3.2 petrol</td>
                 <td>Orlando</td>
@@ -102,7 +107,9 @@
               </tr>
               <tr>
                 <td>
-                  <NuxtImg src="/images/green-wheel.svg" alt="" />
+                  <div class="green-wheel-img-wrapper">
+                    <NuxtImg src="/images/green-wheel.svg" alt="" />
+                  </div>
                 </td>
                 <td>Rear silencer for 2008 Volkswagen Multivan 3.2 petrol</td>
                 <td>Orlando</td>
@@ -110,7 +117,9 @@
               </tr>
               <tr>
                 <td>
-                  <NuxtImg src="/images/green-wheel.svg" alt="" />
+                  <div class="green-wheel-img-wrapper">
+                    <NuxtImg src="/images/green-wheel.svg" alt="" />
+                  </div>
                 </td>
                 <td>Rear silencer for 2008 Volkswagen Multivan 3.2 petrol</td>
                 <td>Orlando</td>
@@ -160,19 +169,23 @@
           </ul>
         </div>
         <div class="table-button-wrapper">
-          <router-link :to="{ name: 'part-request' }" class="yellow-btn"
-            >Send your request</router-link
+          <NuxtLink to="/part-request" class="yellow-btn"
+            >Send your request</NuxtLink
           >
         </div>
 
         <div class="info-for-sellers">
-          <NuxtImg src="/images/price.svg" alt="price" />
+          <NuxtImg
+            src="/images/price.svg"
+            alt="price"
+            class="price-label-img"
+          />
           <div class="info-for-sellers-right">
             <span class="red-seller-info">Do you sell auto parts?</span>
             <br />
             <span
-              ><a href="#">Sign up</a> and find hundreads of new buers
-              daily!</span
+              ><NuxtLink to="/all-spare-part-requests">Suggest</NuxtLink> your
+              one or more variants of hundreds buyers!</span
             >
           </div>
         </div>
@@ -181,16 +194,17 @@
 
     <div class="content-wrapper simple-project-decription-wrapper">
       <p>
-        <b>MyCarParts</b> is a service for finding auto parts, with which you
+        <b>MyNextParts</b> is a service for finding auto parts, with which you
         can easily, quickly and cheaply buy auto parts in Ukraine - both new and
         used in online stores and at car yards.
       </p>
       <p>
-        By <a href="#">sending a request</a> for auto parts through our website,
-        you no longer need to think about where you can order and buy spare
-        parts online, waste time on phone calls or trips to car markets, auto
-        parts stores or auto disassembly. After sending the request, the sellers
-        will contact you and offer their prices and terms of sale.
+        By <NuxtLink to="/part-request">sending a request</NuxtLink> for auto
+        parts through our website, you no longer need to think about where you
+        can order and buy spare parts online, waste time on phone calls or trips
+        to car markets, auto parts stores or auto disassembly. After sending the
+        request, the sellers will contact you and offer their prices and terms
+        of sale.
       </p>
       <p>
         We work with online auto parts and disassembly stores from all over
@@ -211,8 +225,8 @@
             sellers will see your request and offer profitable options.
           </span>
           <span>
-            <router-link :to="{ name: 'part-request' }" class="yellow-btn"
-              >Send your request</router-link
+            <NuxtLink to="/part-request" class="yellow-btn"
+              >Send your request</NuxtLink
             >
           </span>
         </div>
@@ -225,8 +239,8 @@
             sellers will see your request and offer profitable options.
           </span>
           <span>
-            <router-link :to="{ name: 'part-request' }" class="yellow-btn"
-              >Send your request</router-link
+            <NuxtLink to="/part-request" class="yellow-btn"
+              >Send your request</NuxtLink
             >
           </span>
         </div>
@@ -398,7 +412,10 @@ hr {
 
   .img-wrapper {
     width: 50%;
-    padding: 35px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
 
     @media (max-width: 1080px) {
       width: 45%;
@@ -407,10 +424,25 @@ hr {
     @media (max-width: 1020px) {
       padding: 0;
       width: 100%;
-      text-align: center;
+      align-items: center;
+      justify-content: center;
     }
 
     img {
+      width: 90%;
+
+      @media (max-width: 1020px) {
+        width: 50%;
+      }
+
+      @media (max-width: 796px) {
+        width: 65%;
+      }
+
+      @media (max-width: 580px) {
+        width: 80%;
+      }
+
       @media (max-width: 500px) {
         width: 90%;
       }
@@ -421,6 +453,7 @@ hr {
 .how-it-works-wrapper {
   display: flex;
   flex-direction: column;
+  margin-top: 50px;
 
   .how-it-works-header {
     text-align: center;
@@ -576,6 +609,10 @@ hr {
     display: flex;
     margin-top: 50px;
 
+    .price-label-img {
+      width: 45px;
+    }
+
     .info-for-sellers-right {
       margin-left: 20px;
 
@@ -628,6 +665,10 @@ hr {
   .buyer-call-to-action {
     display: flex;
 
+    img {
+      width: 100%;
+    }
+
     @media (max-width: 1020px) {
       flex-direction: column;
     }
@@ -648,6 +689,10 @@ hr {
 
   .sellesman-call-to-action {
     display: flex;
+
+    img {
+      width: 100%;
+    }
 
     @media (max-width: 1020px) {
       margin-top: 40px;

@@ -209,7 +209,7 @@ onMounted(() => {
 
 async function fetchSingleRequest() {
   try {
-    const response = await fetch(`http://localhost:3000/api/single-spare-part-request-data/${requestId}`);
+    const response = await fetch(`http://localhost:3030/api/single-spare-part-request-data/${requestId}`);
     const data = await response.json();
     singlePartRequestData.value = data;
   } catch (error) {
@@ -256,7 +256,7 @@ async function createNewOffer() {
     isPhoneValid.value
   ) {
     try {
-      const response = await fetch("http://localhost:3000/api/create-offer", {
+      const response = await fetch("http://localhost:3030/api/create-offer", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

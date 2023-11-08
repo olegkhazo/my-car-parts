@@ -30,7 +30,7 @@ onMounted(() => {
   async function addPartRequestRecordToTheTable() {
     console.log(JSON.stringify(finalRequestData.value));
     try {
-      const response = await fetch("http://localhost:3000/api/create-part-request", {
+      const response = await fetch("http://localhost:3030/api/create-part-request", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

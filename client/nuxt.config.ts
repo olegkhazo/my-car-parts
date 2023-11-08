@@ -26,7 +26,7 @@ export default defineNuxtConfig({
   },
 
   css: [
-    '@/assets/styles/_global.scss',
+    '@/assets/styles/main.scss',
   ],
   modules: ["@nuxt/image", '@nuxtjs/style-resources']
 })

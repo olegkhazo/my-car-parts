@@ -129,7 +129,7 @@ const { originalSparePartRequestsData, filteredPartRequestsData } = storeToRefs(
 
 const fetchParts = async () => {
   try {
-    const response = await fetch("http://localhost:3000/api/all-spare-part-requests-data");
+    const response = await fetch("http://localhost:3030/api/all-spare-part-requests-data");
     const data = await response.json();
     originalSparePartRequestsData.value = data;
     filteredPartRequestsData.value = originalSparePartRequestsData.value;
