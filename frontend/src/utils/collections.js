@@ -1,14 +1,14 @@
 export const makesCollection = [
-    "Acura", "Alfa-romeo", "Am-general", "Aston-martin", "Audi", "Bentley",
-    "BMW", "Bugatti", "Buick", "Cadillac", "Chevrolet", "Chrysler", "Daewoo",
-    "Dodge", "Eagle", "Ferrari", "Fiat", "Fisker", "Ford", "Genesis", "Geo",
-    "GMC", "Honda", "Hummer", "Hyundai", "Infiniti", "Isuzu", "Jaguar", "Jeep",
-    "Karma", "Kia", "Lamborghini", "Land-rover", "Lexus", "Lincoln", "Lotus",
-    "Lucid", "Maserati", "Maybach", "Mazda", "Mclaren", "Mercedes-Benz",
-    "Mercury", "Mini", "Mitsubishi", "Nissan", "Oldsmobile", "Panoz", "Plymouth",
-    "Polestar", "Pontiac", "Porsche", "Ram", "Rivian", "Rolls-Royce", "Saab",
-    "Saturn", "Scion", "Smart", "Spyker", "Subaru", "Suzuki", "Tesla", "Toyota",
-    "Volkswagen", "Volvo"
+  "acura", "alfa-romeo", "am-general", "aston-martin", "audi", "bentley",
+  "bmw", "bugatti", "buick", "cadillac", "chevrolet", "chrysler", "daewoo",
+  "dodge", "eagle", "ferrari", "fiat", "fisker", "ford", "genesis", "geo",
+  "gmc", "honda", "hummer", "hyundai", "infiniti", "isuzu", "jaguar", "jeep",
+  "karma", "kia", "lamborghini", "land-rover", "lexus", "lincoln", "lotus",
+  "lucid", "maserati", "maybach", "mazda", "mclaren", "mercedes-benz",
+  "mercury", "mini", "mitsubishi", "nissan", "oldsmobile", "panoz", "plymouth",
+  "polestar", "pontiac", "porsche", "ram", "rivian", "rolls-royce", "saab",
+  "saturn", "scion", "smart", "spyker", "subaru", "suzuki", "tesla", "toyota",
+  "volkswagen", "volvo"
 ];
       
 export const yearOptions = Array.from({ length: new Date().getFullYear() - 1990 }, (_, index) =>

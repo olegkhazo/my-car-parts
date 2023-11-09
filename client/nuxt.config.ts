@@ -19,8 +19,6 @@ export default defineNuxtConfig({
       ],
       "link": [],
       "style": [],
-      "script": [],
-      "noscript": [],
     },
 
   },

@@ -15,7 +15,11 @@
                 <th class="form-info-button-column"></th>
               </tr>
             </thead>
-            <tbody v-for="request in allRequests" id="tbody" :key="request._id">
+            <tbody
+              v-for="request in filteredPartRequestsData"
+              id="tbody"
+              :key="request._id"
+            >
               <tr
                 class="single-request-row"
                 @click="showBlockWithAllRelatedContent"
@@ -153,37 +157,26 @@
 </template>
 
 <script setup>
-// import { onMounted } from "vue";
 import { getTimeAgo } from "@/utils";
-// import { storeToRefs } from "pinia";
-// import { useAllPartRequestsDataStore } from "@/stores";
+import { useAllPartRequestsDataStore } from "@/stores";
 
-// const { originalSparePartRequestsData, filteredPartRequestsData } = storeToRefs(
-//   useAllPartRequestsDataStore()
-// );
-
-// const fetchParts = async () => {
-//   try {
-//     const response = await fetch(
-//       "http://localhost:3030/api/all-spare-part-requests-data"
-//     );
-//     const data = await response.json();
-//     originalSparePartRequestsData.value = data;
-//     filteredPartRequestsData.value = originalSparePartRequestsData.value;
-//   } catch (error) {
-//     console.error("Error fetching parts:", error);
-//   }
-// };
+const { originalSparePartRequestsData, filteredPartRequestsData } = storeToRefs(
+  useAllPartRequestsDataStore()
+);
 
 const { data: allRequests, error } = await useFetch(
   `http://localhost:3030/api/all-spare-part-requests-data`
 );
 
-console.log(allRequests.value);
-
-// onMounted(() => {
-//   fetchParts();
-// });
+onMounted(() => {
+  if (allRequests.value) {
+    originalSparePartRequestsData.value = allRequests.value;
+    filteredPartRequestsData.value = originalSparePartRequestsData.value;
+  } else if (error.value) {
+    // should to think how better to show errors
+    console.log("something wrong:" + error.value);
+  }
+});
 
 function showBlockWithAllRelatedContent(event) {
   const allContentRow = event.target.closest(
