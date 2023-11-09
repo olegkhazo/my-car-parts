@@ -1,4 +1,3 @@
-// eslint-disable-next-line
-const UsaStates = require("usa-states").UsaStates;
+import { UsaStates } from "usa-states";
 
 export const usaStates = new UsaStates().states;

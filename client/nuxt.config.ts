@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import { defineNuxtConfig } from 'nuxt/config';
-const pkg = require('./package.json');
+import pkg from './package.json';
 
 export default defineNuxtConfig({
   devtools: { enabled: true },

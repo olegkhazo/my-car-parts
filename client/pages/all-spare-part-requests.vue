@@ -126,18 +126,17 @@
 
                       <div class="spare-part-requests-btn-wrapper">
                         <NuxtLink
-                          to="/offer-page"
+                          :to="'/offer-page/' + request._id"
                           class="suggest-button xl-green-btn"
                           >Suggest your variant</NuxtLink
                         >
-                        <!-- <router-link
-                          :to="{
-                            name: 'offer-page',
-                            params: { requestId: request._id },
-                          }"
+                        <!-- <button
                           class="suggest-button xl-green-btn"
-                          >Suggest your variant</router-link
-                        > -->
+                          @click="$router.push(`/offer-page/${request._id}`)"
+                        >
+                          Suggest your variant
+                        </button> -->
+
                         <span
                           class="close-content-btn blue-btn"
                           @click="hideOpenedContentByButtonClick"
