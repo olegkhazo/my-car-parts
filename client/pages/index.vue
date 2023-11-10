@@ -14,15 +14,10 @@
               class="part-naming"
               placeholder="Type which part you need"
             />
-            <NuxtLink to="/part-request" class="yellow-btn"
-              >Start Searching</NuxtLink
-            >
+            <NuxtLink to="/part-request" class="yellow-btn">Start Searching</NuxtLink>
           </div>
           <div class="example">
-            <span
-              >For example:
-              <span class="example-bold">Left headlight</span></span
-            >
+            <span>For example: <span class="example-bold">Left headlight</span></span>
           </div>
         </div>
       </div>
@@ -37,23 +32,19 @@
         <div class="how-it-works-step">
           <span class="step-header">Submit a form</span>
           <span class="step-body">
-            Submit a short request form with a list of required auto parts and
-            information about your car.
+            Submit a short request form with a list of required auto parts and information about your car.
           </span>
         </div>
         <div class="how-it-works-step">
           <span class="step-header">Receive answers</span>
           <span class="step-body"
-            >After sending the request, you will almost immediately receive
-            answers with quotations from the sellers of spare parts and auto
-            shops that are registered in <b>MyCarParts</b>
+            >After sending the request, you will almost immediately receive answers with quotations from the sellers of
+            spare parts and auto shops that are registered in <b>MyCarParts</b>
           </span>
         </div>
         <div class="how-it-works-step">
           <span class="step-header">Choose the best</span>
-          <span class="step-body">
-            Choose from the received offers the most profitable!
-          </span>
+          <span class="step-body"> Choose from the received offers the most profitable! </span>
         </div>
       </div>
     </div>
@@ -161,23 +152,17 @@
           </ul>
         </div>
         <div class="table-button-wrapper">
-          <NuxtLink to="/part-request" class="yellow-btn"
-            >Send your request</NuxtLink
-          >
+          <NuxtLink to="/part-request" class="yellow-btn">Send your request</NuxtLink>
         </div>
 
         <div class="info-for-sellers">
-          <NuxtImg
-            src="/images/price.svg"
-            alt="price"
-            class="price-label-img"
-          />
+          <NuxtImg src="/images/price.svg" alt="price" class="price-label-img" />
           <div class="info-for-sellers-right">
             <span class="red-seller-info">Do you sell auto parts?</span>
             <br />
             <span
-              ><NuxtLink to="/all-spare-part-requests">Suggest</NuxtLink> your
-              one or more variants of hundreds buyers!</span
+              ><NuxtLink to="/all-spare-part-requests">Suggest</NuxtLink> your one or more variants of hundreds
+              buyers!</span
             >
           </div>
         </div>
@@ -186,24 +171,19 @@
 
     <div class="content-wrapper simple-project-decription-wrapper">
       <p>
-        <b>MyNextParts</b> is a service for finding auto parts, with which you
-        can easily, quickly and cheaply buy auto parts in Ukraine - both new and
-        used in online stores and at car yards.
+        <b>MyNextParts</b> is a service for finding auto parts, with which you can easily, quickly and cheaply buy auto
+        parts in Ukraine - both new and used in online stores and at car yards.
       </p>
       <p>
-        By <NuxtLink to="/part-request">sending a request</NuxtLink> for auto
-        parts through our website, you no longer need to think about where you
-        can order and buy spare parts online, waste time on phone calls or trips
-        to car markets, auto parts stores or auto disassembly. After sending the
-        request, the sellers will contact you and offer their prices and terms
-        of sale.
+        By <NuxtLink to="/part-request">sending a request</NuxtLink> for auto parts through our website, you no longer
+        need to think about where you can order and buy spare parts online, waste time on phone calls or trips to car
+        markets, auto parts stores or auto disassembly. After sending the request, the sellers will contact you and
+        offer their prices and terms of sale.
       </p>
       <p>
-        We work with online auto parts and disassembly stores from all over
-        Ukraine, from which you can buy any spare parts for foreign cars and
-        domestic cars, in stock and on order. This gives you the opportunity to
-        choose the seller with the lowest price. With our website you save time
-        and money!
+        We work with online auto parts and disassembly stores from all over Ukraine, from which you can buy any spare
+        parts for foreign cars and domestic cars, in stock and on order. This gives you the opportunity to choose the
+        seller with the lowest price. With our website you save time and money!
       </p>
     </div>
 
@@ -213,13 +193,11 @@
         <div class="buyer-text">
           <span class="action-card-header">Looking for a part?</span>
           <span class="action-card-body"
-            >Just send a simple request for the part you need, hundreds of
-            sellers will see your request and offer profitable options.
+            >Just send a simple request for the part you need, hundreds of sellers will see your request and offer
+            profitable options.
           </span>
           <span>
-            <NuxtLink to="/part-request" class="yellow-btn"
-              >Send your request</NuxtLink
-            >
+            <NuxtLink to="/part-request" class="yellow-btn">Send your request</NuxtLink>
           </span>
         </div>
       </div>
@@ -227,13 +205,11 @@
         <div class="sallesman-text">
           <span class="action-card-header">Looking for a part?</span>
           <span class="action-card-body"
-            >Just send a simple request for the part you need, hundreds of
-            sellers will see your request and offer profitable options.
+            >Just send a simple request for the part you need, hundreds of sellers will see your request and offer
+            profitable options.
           </span>
           <span>
-            <NuxtLink to="/part-request" class="yellow-btn"
-              >Send your request</NuxtLink
-            >
+            <NuxtLink to="/part-request" class="yellow-btn">Send your request</NuxtLink>
           </span>
         </div>
         <NuxtImg src="/images/sallesman.png" alt="sallesman" />
@@ -242,40 +218,34 @@
 
     <div class="content-wrapper user-reviews-wrapper">
       <span class="reviews-block-header">We unite!</span>
-      <span class="user-reviews-description"
-        >Here, those who need spare parts find those who have them!</span
-      >
+      <span class="user-reviews-description">Here, those who need spare parts find those who have them!</span>
       <div class="reviews-main-wrapper">
         <div class="single-review">
           <NuxtImg src="/images/review_avatar.png" alt="review avatar" />
           <span class="review-header">Sultan Ibrahimovich</span>
           <span class="review-content">
-            Some short description of expereince by servece. Some short
-            description of expereince by servece.
+            Some short description of expereince by servece. Some short description of expereince by servece.
           </span>
         </div>
         <div class="single-review">
           <NuxtImg src="/images/review_avatar.png" alt="review avatar" />
           <span class="review-header">Sultan Ibrahimovich</span>
           <span class="review-content">
-            Some short description of expereince by servece. Some short
-            description of expereince by servece.
+            Some short description of expereince by servece. Some short description of expereince by servece.
           </span>
         </div>
         <div class="single-review">
           <NuxtImg src="/images/review_avatar.png" alt="review avatar" />
           <span class="review-header">Sultan Ibrahimovich</span>
           <span class="review-content">
-            Some short description of expereince by servece. Some short
-            description of expereince by servece.
+            Some short description of expereince by servece. Some short description of expereince by servece.
           </span>
         </div>
         <div class="single-review">
           <NuxtImg src="/images/review_avatar.png" alt="review avatar" />
           <span class="review-header">Sultan Ibrahimovich</span>
           <span class="review-content">
-            Some short description of expereince by servece. Some short
-            description of expereince by servece.
+            Some short description of expereince by servece. Some short description of expereince by servece.
           </span>
         </div>
       </div>

@@ -1,5 +1,5 @@
-import type { imgProps } from '@nuxt/image/dist/runtime/components/nuxt-img';
-import type { imgProps } from '@nuxt/image/dist/runtime/components/nuxt-img';
+import type { imgProps } from '@nuxt/image/dist/runtime/components/nuxt-img'; import type { imgProps } from
+'@nuxt/image/dist/runtime/components/nuxt-img';
 <template>
   <div class="request-sending-result">
     <div class="succesful-notification">
@@ -8,11 +8,7 @@ import type { imgProps } from '@nuxt/image/dist/runtime/components/nuxt-img';
     <h3>{{ props.data.header }}</h3>
     <div class="success-buttons-wrapper">
       <NuxtLink class="light-gray-btn" to="/">Home page</NuxtLink>
-      <button
-        v-if="props.data.typeOfRequest === 'part-request'"
-        class="gray-btn"
-        @click="switchFormToAnotherStep(1)"
-      >
+      <button v-if="props.data.typeOfRequest === 'part-request'" class="gray-btn" @click="switchFormToAnotherStep(1)">
         Create new request
       </button>
       <NuxtLink

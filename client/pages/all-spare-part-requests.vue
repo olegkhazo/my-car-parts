@@ -15,23 +15,15 @@
                 <th class="form-info-button-column"></th>
               </tr>
             </thead>
-            <tbody
-              v-for="request in filteredPartRequestsData"
-              id="tbody"
-              :key="request._id"
-            >
-              <tr
-                class="single-request-row"
-                @click="showBlockWithAllRelatedContent"
-              >
+            <tbody v-for="request in filteredPartRequestsData" id="tbody" :key="request._id">
+              <tr class="single-request-row" @click="showBlockWithAllRelatedContent">
                 <td>
                   <div class="green-wheel-img-wrapper">
                     <NuxtImg src="/images/green-wheel.svg" alt="green-wheel" />
                   </div>
                 </td>
                 <td>
-                  {{ request.part_name }} for {{ request.car_make }}
-                  {{ request.car_model }} {{ request.engine_volume }}
+                  {{ request.part_name }} for {{ request.car_make }} {{ request.car_model }} {{ request.engine_volume }}
                   {{ request.fuel_type }}
                   <div class="block-for-mobile-screen">
                     {{ request.city }} -
@@ -66,9 +58,7 @@
                           </span>
                           <span v-if="request.part_condition">
                             Condition:
-                            <span class="bold">{{
-                              request.part_condition
-                            }}</span>
+                            <span class="bold">{{ request.part_condition }}</span>
                           </span>
                           <span v-if="request.part_code">
                             Part code:
@@ -98,9 +88,7 @@
                           </span>
                           <span v-if="request.engine_volume">
                             Engine volume:
-                            <span class="bold">{{
-                              request.engine_volume
-                            }}</span>
+                            <span class="bold">{{ request.engine_volume }}</span>
                           </span>
                           <span v-if="request.car_body">
                             Car body:
@@ -125,21 +113,10 @@
                       </div>
 
                       <div class="spare-part-requests-btn-wrapper">
-                        <NuxtLink
-                          :to="'/offer-page/' + request._id"
-                          class="suggest-button xl-green-btn"
+                        <NuxtLink :to="'/offer-page/' + request._id" class="suggest-button xl-green-btn"
                           >Suggest your variant</NuxtLink
                         >
-                        <!-- <button
-                          class="suggest-button xl-green-btn"
-                          @click="$router.push(`/offer-page/${request._id}`)"
-                        >
-                          Suggest your variant
-                        </button> -->
-
-                        <span
-                          class="close-content-btn blue-btn"
-                          @click="hideOpenedContentByButtonClick"
+                        <span class="close-content-btn blue-btn" @click="hideOpenedContentByButtonClick"
                           >Hide content</span
                         >
                       </div>
@@ -159,13 +136,9 @@
 import { getTimeAgo } from "@/utils";
 import { useAllPartRequestsDataStore } from "@/stores";
 
-const { originalSparePartRequestsData, filteredPartRequestsData } = storeToRefs(
-  useAllPartRequestsDataStore()
-);
+const { originalSparePartRequestsData, filteredPartRequestsData } = storeToRefs(useAllPartRequestsDataStore());
 
-const { data: allRequests, error } = await useFetch(
-  `http://localhost:3030/api/all-spare-part-requests-data`
-);
+const { data: allRequests, error } = await useFetch(`http://localhost:3030/api/all-spare-part-requests-data`);
 
 onMounted(() => {
   if (allRequests.value) {
@@ -178,9 +151,7 @@ onMounted(() => {
 });
 
 function showBlockWithAllRelatedContent(event) {
-  const allContentRow = event.target.closest(
-    ".single-request-row"
-  ).nextElementSibling;
+  const allContentRow = event.target.closest(".single-request-row").nextElementSibling;
 
   allContentRow.classList.contains("hidden")
     ? allContentRow.classList.remove("hidden")

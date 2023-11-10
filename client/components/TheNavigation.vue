@@ -10,19 +10,11 @@
         class="menu-icon"
         @click="mobileMenuSwitcher"
       />
-      <NuxtImg
-        v-else
-        name="close"
-        src="/images/close_black_36dp.svg"
-        class="menu-icon"
-        @click="mobileMenuSwitcher"
-      />
+      <NuxtImg v-else name="close" src="/images/close_black_36dp.svg" class="menu-icon" @click="mobileMenuSwitcher" />
       <div class="nav" :class="{ 'show-mobile-menu': mobileMenuVisibilaty }">
         <ul>
           <li>
-            <NuxtLink to="/all-spare-part-requests"
-              >Suggest your parts</NuxtLink
-            >
+            <NuxtLink to="/all-spare-part-requests">Suggest your parts</NuxtLink>
           </li>
           <li>
             <NuxtLink to="/part-request">Find spare part</NuxtLink>
@@ -30,11 +22,6 @@
           <li>
             <NuxtLink to="/">How It Work</NuxtLink>
           </li>
-
-          <!-- Will be uncomment later, when registration will be done  -->
-          <!-- <li>
-            <NuxtLink to="/registration" class="blue-btn">Sign In</NuxtLink>
-          </li> -->
         </ul>
       </div>
     </div>
@@ -52,8 +39,7 @@ function mobileMenuSwitcher() {
 }
 
 watch(mobileMenuVisibilaty, () => {
-  mobileMenuIcon.value =
-    mobileMenuVisibilaty.value === false ? "menu" : "close";
+  mobileMenuIcon.value = mobileMenuVisibilaty.value === false ? "menu" : "close";
 });
 </script>
 

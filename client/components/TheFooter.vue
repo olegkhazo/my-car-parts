@@ -5,8 +5,7 @@
         <ul class="logo-container">
           <li class="footer-logo">MyNextParts</li>
           <li class="footer-project-description">
-            <b>MyNextParts</b> is not responsible for the quality of parts and
-            services provided by third parties.
+            <b>MyNextParts</b> is not responsible for the quality of parts and services provided by third parties.
           </li>
         </ul>
         <ul class="footer-navs-column">
@@ -30,15 +29,13 @@
       </div>
       <div class="bottom-footer-part">
         <span class="bototom-footer-header"
-          ><b>MyNextParts</b> is the most convenient way to get your car
-          repaired.</span
+          ><b>MyNextParts</b> is the most convenient way to get your car repaired.</span
         >
         <br />
         <span>
-          Our mobile mechanics come to you and complete your car repair at your
-          home or office. We make the process easy from start to finish by
-          offering upfront pricing, online booking, after-hours support, and a
-          full warranty. See Warranty
+          Our mobile mechanics come to you and complete your car repair at your home or office. We make the process easy
+          from start to finish by offering upfront pricing, online booking, after-hours support, and a full warranty.
+          See Warranty
         </span>
         <ul>
           <li>

@@ -8,28 +8,14 @@
         <option v-for="make in makesCollection" :key="make">{{ make }}</option>
       </select>
 
-      <select
-        id="car-year"
-        v-model="filterByYear"
-        name="car-year"
-        :disabled="filterByMake === 'Select Make'"
-      >
+      <select id="car-year" v-model="filterByYear" name="car-year" :disabled="filterByMake === 'Select Make'">
         <option value="Year">Year</option>
         <option v-for="year in yearOptions" :key="year">{{ year }}</option>
       </select>
 
-      <select
-        id="model"
-        v-model="filterByModel"
-        name="model"
-        :disabled="filterByYear === 'Year'"
-      >
+      <select id="model" v-model="filterByModel" name="model" :disabled="filterByYear === 'Year'">
         <option value="Select Model">Select Model</option>
-        <option
-          v-for="models in modelsCollection.Results"
-          :key="models"
-          value="models.Model_Name"
-        >
+        <option v-for="models in modelsCollection.Results" :key="models" value="models.Model_Name">
           {{ models.Model_Name }}
         </option>
       </select>
@@ -42,9 +28,7 @@ import { useAllPartRequestsDataStore } from "@/stores";
 import { makesCollection, yearOptions } from "@/utils/collections";
 import { GET_MODELS_BY_MAKE_AND_YEAR } from "@/utils/constants";
 
-const { originalSparePartRequestsData, filteredPartRequestsData } = storeToRefs(
-  useAllPartRequestsDataStore()
-);
+const { originalSparePartRequestsData, filteredPartRequestsData } = storeToRefs(useAllPartRequestsDataStore());
 
 const filterByMake = ref("Select Make");
 const filterByYear = ref("Year");
@@ -58,9 +42,7 @@ watch(filterByMake, (newVal) => {
     filterByModel.value = "Select Model";
     filterByYear.value = "Year";
 
-    filteredPartRequestsData.value = originalSparePartRequestsData.value.filter(
-      (item) => item.car_make === newVal
-    );
+    filteredPartRequestsData.value = originalSparePartRequestsData.value.filter((item) => item.car_make === newVal);
   } else {
     filterByModel.value = "Select Model";
     filterByYear.value = "Year";
@@ -74,17 +56,14 @@ watch(filterByYear, (newVal) => {
     if (newVal !== "Year") {
       filterByModel.value = "Select Model";
 
-      filteredPartRequestsData.value =
-        originalSparePartRequestsData.value.filter(
-          (item) =>
-            item.car_make === filterByMake.value && item.car_year === newVal
-        );
+      filteredPartRequestsData.value = originalSparePartRequestsData.value.filter(
+        (item) => item.car_make === filterByMake.value && item.car_year === newVal
+      );
       getModelsFromVpicApi();
     } else {
-      filteredPartRequestsData.value =
-        originalSparePartRequestsData.value.filter(
-          (item) => item.car_make === filterByMake.value
-        );
+      filteredPartRequestsData.value = originalSparePartRequestsData.value.filter(
+        (item) => item.car_make === filterByMake.value
+      );
     }
   }
 });

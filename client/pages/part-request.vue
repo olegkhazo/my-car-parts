@@ -6,31 +6,16 @@
 
         <form class="part-request-form" action="">
           <div v-if="formStep < 4" class="form-steps">
-            <span class="step" :class="{ 'active-step': formStep === 1 }"
-              >1</span
-            >
+            <span class="step" :class="{ 'active-step': formStep === 1 }">1</span>
             <NuxtImg src="/images/step-arrow.svg" alt="arrow" />
-            <span class="step" :class="{ 'active-step': formStep === 2 }"
-              >2</span
-            >
+            <span class="step" :class="{ 'active-step': formStep === 2 }">2</span>
             <NuxtImg src="/images/step-arrow.svg" alt="arrow" />
-            <span class="step" :class="{ 'active-step': formStep === 3 }"
-              >3</span
-            >
+            <span class="step" :class="{ 'active-step': formStep === 3 }">3</span>
           </div>
 
-          <TheFirstFormStep
-            v-if="formStep === 1"
-            @switch-form-to-another-step="formStepsSwitcher"
-          />
-          <TheSecondFormStep
-            v-else-if="formStep === 2"
-            @switch-form-to-another-step="formStepsSwitcher"
-          />
-          <TheThirdFormStep
-            v-else-if="formStep === 3"
-            @switch-form-to-another-step="formStepsSwitcher"
-          />
+          <TheFirstFormStep v-if="formStep === 1" @switch-form-to-another-step="formStepsSwitcher" />
+          <TheSecondFormStep v-else-if="formStep === 2" @switch-form-to-another-step="formStepsSwitcher" />
+          <TheThirdFormStep v-else-if="formStep === 3" @switch-form-to-another-step="formStepsSwitcher" />
           <TheSuccessRequestForPart
             v-else-if="formStep === 4"
             @switch-form-to-another-step="formStepsSwitcher"
@@ -52,8 +37,7 @@
             <span class="priveleges-text">
               <span class="bold-span">Fill out the request form</span>
               <span class="thin-span"
-                >for new or used parts, indicating the list of parts and
-                information about your car</span
+                >for new or used parts, indicating the list of parts and information about your car</span
               >
             </span>
           </div>
@@ -61,18 +45,14 @@
             <NuxtImg src="/images/green-wheel.svg" alt="" />
             <span class="priveleges-text">
               <span class="bold-span">Get an answer</span>
-              <span class="thin-span"
-                >within a few minutes from sellers from all over USA</span
-              >
+              <span class="thin-span">within a few minutes from sellers from all over USA</span>
             </span>
           </div>
           <div class="priveleges-point">
             <NuxtImg src="/images/green-wheel.svg" alt="" />
             <span class="priveleges-text">
               <span class="bold-span">Choose a seller</span>
-              <span class="thin-span"
-                >with the best price and delivery terms</span
-              >
+              <span class="thin-span">with the best price and delivery terms</span>
             </span>
           </div>
         </div>
@@ -109,8 +89,7 @@ const successWindowData = {
   typeOfRequest: "part-request",
 };
 
-const { dataFromFirstFormStep, dataFromSecondFormStep, dataFromThirdFormStep } =
-  storeToRefs(usePartRequestFormStore());
+const { dataFromFirstFormStep, dataFromSecondFormStep, dataFromThirdFormStep } = storeToRefs(usePartRequestFormStore());
 
 const formStep = ref(1);
 const finalRequestData = ref({});
@@ -120,13 +99,10 @@ function formStepsSwitcher(step) {
 }
 
 async function addPartRequestRecordToTheDB() {
-  const { data: newRequestCreating, error } = await useFetch(
-    "http://localhost:3030/api/create-part-request",
-    {
-      method: "post",
-      body: JSON.stringify(finalRequestData.value),
-    }
-  );
+  const { data: newRequestCreating, error } = await useFetch("http://localhost:3030/api/create-part-request", {
+    method: "post",
+    body: JSON.stringify(finalRequestData.value),
+  });
 
   if (newRequestCreating.value) {
     console.log("Part request created successfully");
