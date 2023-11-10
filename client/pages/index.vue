@@ -9,7 +9,7 @@
         <div class="part-request-input">
           <div class="input-btn">
             <input
-              v-model="sparePartName"
+              v-model="dataFromFirstFormStep.part_name"
               type="text"
               class="part-naming"
               placeholder="Type which part you need"
@@ -17,14 +17,6 @@
             <NuxtLink to="/part-request" class="yellow-btn"
               >Start Searching</NuxtLink
             >
-            <!-- <router-link
-              :to="{
-                name: 'part-request',
-                params: { spare_part_request: sparePartName },
-              }"
-              class="yellow-btn"
-              >Start Searching</router-link
-            > -->
           </div>
           <div class="example">
             <span
@@ -292,9 +284,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-
-const sparePartName = ref(null);
+const { dataFromFirstFormStep } = storeToRefs(usePartRequestFormStore());
 </script>
 
 <style lang="scss" scoped>
