@@ -130,21 +130,7 @@
                 Continue
               </button>
             </div>
-            <div v-else class="offer-sending-result">
-              <div class="succesful-notification">
-                <NuxtImg src="/images/checkmark.png" alt="green-checkmark" />
-              </div>
-              <h3>Congratulations, your offer sending was successful!</h3>
-              <div class="success-offer-buttons-wrapper">
-                <NuxtLink class="light-gray-btn" to="/">Home page</NuxtLink>
-                <NuxtLink
-                  to="/all-spare-part-requests"
-                  class="back-button xl-green-btn"
-                >
-                  Back to all requests
-                </NuxtLink>
-              </div>
-            </div>
+            <TheSuccessRequestForPart v-else :data="successWindowData" />
           </form>
         </div>
 
@@ -243,9 +229,16 @@
 <script setup>
 import { usaStates } from "@/utils/usaStates";
 import { validateFormField } from "@/utils/index";
+import TheSuccessRequestForPart from "@/components/notification-components/TheSuccessRequestForPart";
 
 const { id } = useRoute().params;
 const formButtonClicked = ref(false);
+
+const successWindowData = {
+  header:
+    "Your suggestion was sent successfully! If your variant fits the client, he will connect with you by your contacts.",
+  typeOfRequest: "offer",
+};
 
 const singlePartRequestData = ref(null);
 const successfulOferSending = ref(false);

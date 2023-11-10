@@ -34,6 +34,7 @@
           <TheSuccessRequestForPart
             v-else-if="formStep === 4"
             @switch-form-to-another-step="formStepsSwitcher"
+            :data="successWindowData"
           />
         </form>
       </div>
@@ -101,6 +102,12 @@ import TheThirdFormStep from "@/components/part-request-forms/TheThirdFormStep";
 import TheSuccessRequestForPart from "@/components/notification-components/TheSuccessRequestForPart";
 
 import { usePartRequestFormStore } from "@/stores";
+
+const successWindowData = {
+  header:
+    "Your request was sent successfully! Hundreds of sellers will see your request soon and will suggest the best variants.",
+  typeOfRequest: "part-request",
+};
 
 const { dataFromFirstFormStep, dataFromSecondFormStep, dataFromThirdFormStep } =
   storeToRefs(usePartRequestFormStore());
@@ -177,6 +184,10 @@ watch(formStep, (newStep) => {
       .form-steps {
         display: flex;
         justify-content: space-between;
+
+        img {
+          width: 110px;
+        }
 
         .step {
           padding: 10px 19px;
