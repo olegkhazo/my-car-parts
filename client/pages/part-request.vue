@@ -76,6 +76,14 @@
 </template>
 
 <script setup>
+useHead({
+  meta: [{ name: "Car Parts - home page", content: "My amazing site." }],
+  bodyAttrs: {
+    class: "test",
+  },
+  script: [{ innerHTML: "console.log('Hello world')" }],
+});
+
 import TheFirstFormStep from "@/components/part-request-forms/TheFirstFormStep";
 import TheSecondFormStep from "@/components/part-request-forms/TheSecondFormStep";
 import TheThirdFormStep from "@/components/part-request-forms/TheThirdFormStep";

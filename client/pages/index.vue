@@ -254,6 +254,14 @@
 </template>
 
 <script setup>
+useHead({
+  title: "My Car Parts App",
+  meta: [{ name: "Car Parts - home page", content: "My amazing site." }],
+  bodyAttrs: {
+    class: "test",
+  },
+  script: [{ innerHTML: "console.log('Hello world')" }],
+});
 const { dataFromFirstFormStep } = storeToRefs(usePartRequestFormStore());
 </script>
 
