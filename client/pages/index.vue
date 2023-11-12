@@ -260,7 +260,6 @@ useHead({
   bodyAttrs: {
     class: "test",
   },
-  script: [{ innerHTML: "console.log('Hello world')" }],
 });
 const { dataFromFirstFormStep } = storeToRefs(usePartRequestFormStore());
 </script>

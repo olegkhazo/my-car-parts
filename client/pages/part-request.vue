@@ -77,11 +77,11 @@
 
 <script setup>
 useHead({
-  meta: [{ name: "Car Parts - home page", content: "My amazing site." }],
+  title: "Page for submitting an offer of spare parts for a car",
+  meta: [{ name: "Form for sending an offer for spare parts for a car", content: "cars spare parts" }],
   bodyAttrs: {
     class: "test",
   },
-  script: [{ innerHTML: "console.log('Hello world')" }],
 });
 
 import TheFirstFormStep from "@/components/part-request-forms/TheFirstFormStep";
