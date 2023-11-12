@@ -255,11 +255,11 @@
 
 <script setup>
 useHead({
-  title: "My Car Parts App",
+  title: "MyCarParts App - Easy search for car parts",
   meta: [
     {
-      name: "Car Parts - home page",
-      content: "My amazing site.",
+      name: "description",
+      content: "Home page of a service for searching and selling car parts, both new and used",
     },
   ],
 });

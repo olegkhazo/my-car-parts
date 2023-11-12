@@ -176,11 +176,11 @@
 
 <script setup>
 useHead({
-  title: "Page with forms for cars spare part request",
+  title: "Creating an offer for car parts",
   meta: [
     {
-      name: "Forms for cars spare part request",
-      content: "cars spare parts",
+      name: "description",
+      content: "Page for sending an offer of a car spare part to a user request",
     },
   ],
 });
