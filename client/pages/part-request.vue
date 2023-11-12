@@ -78,10 +78,12 @@
 <script setup>
 useHead({
   title: "Page for submitting an offer of spare parts for a car",
-  meta: [{ name: "Form for sending an offer for spare parts for a car", content: "cars spare parts" }],
-  bodyAttrs: {
-    class: "test",
-  },
+  meta: [
+    {
+      name: "Form for sending an offer for spare parts for a car",
+      content: "cars spare parts",
+    },
+  ],
 });
 
 import TheFirstFormStep from "@/components/part-request-forms/TheFirstFormStep";

@@ -135,10 +135,12 @@
 <script setup>
 useHead({
   title: "Page with forms for cars spare part request",
-  meta: [{ name: "Forms for cars spare part request", content: "cars spare parts" }],
-  bodyAttrs: {
-    class: "test",
-  },
+  meta: [
+    {
+      name: "Forms for cars spare part request",
+      content: "cars spare parts",
+    },
+  ],
 });
 import { getTimeAgo } from "@/utils";
 import { useAllPartRequestsDataStore } from "@/stores";
