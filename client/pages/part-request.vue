@@ -76,6 +76,17 @@
 </template>
 
 <script setup>
+useHead({
+  title: "Page with a form for requesting a car spare part",
+  meta: [
+    {
+      name: "description",
+      content: `An easy way to find car parts, just fill out the form, send a 
+          request and hundreds of auto parts sellers will offer the parts they have`,
+    },
+  ],
+});
+
 import TheFirstFormStep from "@/components/part-request-forms/TheFirstFormStep";
 import TheSecondFormStep from "@/components/part-request-forms/TheSecondFormStep";
 import TheThirdFormStep from "@/components/part-request-forms/TheThirdFormStep";

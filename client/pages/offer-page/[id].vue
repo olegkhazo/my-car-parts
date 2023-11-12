@@ -5,31 +5,18 @@
       <div class="offer-page-wrapper">
         <div class="form-wrapper">
           <form class="offer-form">
-            <div
-              v-if="!successfulOferSending"
-              class="offer-form-fields-section"
-            >
+            <div v-if="!successfulOferSending" class="offer-form-fields-section">
               <label class="label-text" for="full-name">Your name *</label>
-              <span
-                v-if="!isNameValid && formButtonClicked"
-                class="input-error-notification"
+              <span v-if="!isNameValid && formButtonClicked" class="input-error-notification"
                 >Please enter a valid name.</span
               >
               <input id="full-name" v-model="formData.full_name" type="text" />
 
-              <label class="label-text" for="company_name"
-                >Company name *</label
-              >
-              <span
-                v-if="!isCompanyNameValid && formButtonClicked"
-                class="input-error-notification"
+              <label class="label-text" for="company_name">Company name *</label>
+              <span v-if="!isCompanyNameValid && formButtonClicked" class="input-error-notification"
                 >Please enter a valid company name.</span
               >
-              <input
-                id="company_name"
-                v-model="formData.company_name"
-                type="text"
-              />
+              <input id="company_name" v-model="formData.company_name" type="text" />
 
               <span class="label-text">Type of part</span>
               <div class="radio-toolbar">
@@ -40,9 +27,7 @@
                   name="type-of-part"
                   value="original"
                 />
-                <label class="label-text" for="radio-original">
-                  Original
-                </label>
+                <label class="label-text" for="radio-original"> Original </label>
 
                 <input
                   id="radio-analog"
@@ -63,9 +48,7 @@
                   name="type-of-condition"
                   value="new"
                 />
-                <label class="label-text" for="radio-new-condition">
-                  New
-                </label>
+                <label class="label-text" for="radio-new-condition"> New </label>
 
                 <input
                   id="radio-used"
@@ -78,9 +61,7 @@
               </div>
 
               <label class="label-text" for="state">State *</label>
-              <span
-                v-if="!isStateValid && formButtonClicked"
-                class="input-error-notification"
+              <span v-if="!isStateValid && formButtonClicked" class="input-error-notification"
                 >Select the state where spare part is located</span
               >
               <select id="state" v-model="formData.state" name="make">
@@ -90,45 +71,24 @@
               </select>
 
               <label class="label-text" for="city_area">City/Area *</label>
-              <span
-                v-if="!isCityValid && formButtonClicked"
-                class="input-error-notification"
+              <span v-if="!isCityValid && formButtonClicked" class="input-error-notification"
                 >Please enter a valid city</span
               >
               <input id="city_area" v-model="formData.city_area" type="text" />
 
               <label class="label-text" for="email"> E-mail * </label>
-              <span
-                v-if="!isEmailValid && formButtonClicked"
-                class="input-error-notification"
-              >
+              <span v-if="!isEmailValid && formButtonClicked" class="input-error-notification">
                 Please enter a valid email address.
               </span>
-              <input
-                id="email"
-                v-model="formData.email"
-                type="email"
-                name="email"
-                placeholder="E-mail"
-              />
+              <input id="email" v-model="formData.email" type="email" name="email" placeholder="E-mail" />
 
               <label class="label-text" for="phone"> Phone </label>
-              <span
-                v-if="!isPhoneValid && formButtonClicked"
-                class="input-error-notification"
+              <span v-if="!isPhoneValid && formButtonClicked" class="input-error-notification"
                 >Please enter a valid phone number.</span
               >
-              <input
-                id="phone"
-                v-model="formData.phone"
-                type="tel"
-                name="phone"
-                placeholder="Phone"
-              />
+              <input id="phone" v-model="formData.phone" type="tel" name="phone" placeholder="Phone" />
 
-              <button class="gray-btn" @click.prevent="createNewOffer">
-                Continue
-              </button>
+              <button class="gray-btn" @click.prevent="createNewOffer">Continue</button>
             </div>
             <TheSuccessRequestForPart v-else :data="successWindowData" />
           </form>
@@ -138,9 +98,7 @@
           <span v-if="successfulOferSending" class="successfull-notyfication"
             >You sent your suggestion successfully!</span
           >
-          <span class="right-blue-block-title"
-            >Spare part request content:</span
-          >
+          <span class="right-blue-block-title">Spare part request content:</span>
           <div v-if="singlePartRequestData" class="all-content-wrapper">
             <div class="all-content">
               <span v-if="singlePartRequestData.part_name">
@@ -153,15 +111,11 @@
               </span>
               <span v-if="singlePartRequestData.type_of_part">
                 Type of part:
-                <span class="bold">{{
-                  singlePartRequestData.type_of_part
-                }}</span>
+                <span class="bold">{{ singlePartRequestData.type_of_part }}</span>
               </span>
               <span v-if="singlePartRequestData.part_condition">
                 Condition:
-                <span class="bold">{{
-                  singlePartRequestData.part_condition
-                }}</span>
+                <span class="bold">{{ singlePartRequestData.part_condition }}</span>
               </span>
               <span v-if="singlePartRequestData.part_code">
                 Part code:
@@ -189,9 +143,7 @@
               </span>
               <span v-if="singlePartRequestData.engine_volume">
                 Engine volume:
-                <span class="bold">{{
-                  singlePartRequestData.engine_volume
-                }}</span>
+                <span class="bold">{{ singlePartRequestData.engine_volume }}</span>
               </span>
               <span v-if="singlePartRequestData.car_body">
                 Car body:
@@ -215,11 +167,7 @@
             </div>
           </div>
 
-          <NuxtLink
-            to="/all-spare-part-requests"
-            class="back-button xl-green-btn"
-            >Back to all requests</NuxtLink
-          >
+          <NuxtLink to="/all-spare-part-requests" class="back-button xl-green-btn">Back to all requests</NuxtLink>
         </div>
       </div>
     </div>
@@ -227,6 +175,15 @@
 </template>
 
 <script setup>
+useHead({
+  title: "Creating an offer for car parts",
+  meta: [
+    {
+      name: "description",
+      content: "Page for sending an offer of a car spare part to a user request",
+    },
+  ],
+});
 import { usaStates } from "@/utils/usaStates";
 import { validateFormField } from "@/utils/index";
 import TheSuccessRequestForPart from "@/components/notification-components/TheSuccessRequestForPart";
@@ -258,9 +215,7 @@ const formData = ref({
   phone: "",
 });
 
-const { data: singleRequest, error } = await useFetch(
-  `http://localhost:3030/api/single-spare-part-request-data/${id}`
-);
+const { data: singleRequest, error } = await useFetch(`http://localhost:3030/api/single-spare-part-request-data/${id}`);
 
 onMounted(() => {
   if (singleRequest.value) {
@@ -281,17 +236,11 @@ const isEmailValid = computed(() => {
 });
 
 const isNameValid = computed(() => {
-  return validateFormField(
-    formData.value.full_name,
-    "COMMON_NOT_EMPTY_PATTERN"
-  );
+  return validateFormField(formData.value.full_name, "COMMON_NOT_EMPTY_PATTERN");
 });
 
 const isCompanyNameValid = computed(() => {
-  return validateFormField(
-    formData.value.company_name,
-    "COMMON_NOT_EMPTY_PATTERN"
-  );
+  return validateFormField(formData.value.company_name, "COMMON_NOT_EMPTY_PATTERN");
 });
 
 const isStateValid = computed(() => {
@@ -299,10 +248,7 @@ const isStateValid = computed(() => {
 });
 
 const isCityValid = computed(() => {
-  return validateFormField(
-    formData.value.city_area,
-    "COMMON_NOT_EMPTY_PATTERN"
-  );
+  return validateFormField(formData.value.city_area, "COMMON_NOT_EMPTY_PATTERN");
 });
 
 const isPhoneValid = computed(() => {
@@ -323,13 +269,10 @@ async function createNewOffer() {
     isCityValid.value &&
     isPhoneValid.value
   ) {
-    const { data: newRequestCreating, error } = await useFetch(
-      "http://localhost:3030/api/create-offer",
-      {
-        method: "post",
-        body: JSON.stringify(formData.value),
-      }
-    );
+    const { data: newRequestCreating, error } = await useFetch("http://localhost:3030/api/create-offer", {
+      method: "post",
+      body: JSON.stringify(formData.value),
+    });
 
     if (newRequestCreating.value) {
       successfulOferSending.value = true;

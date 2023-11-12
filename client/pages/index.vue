@@ -254,6 +254,15 @@
 </template>
 
 <script setup>
+useHead({
+  title: "MyCarParts App - Easy search for car parts",
+  meta: [
+    {
+      name: "description",
+      content: "Home page of a service for searching and selling car parts, both new and used",
+    },
+  ],
+});
 const { dataFromFirstFormStep } = storeToRefs(usePartRequestFormStore());
 </script>
 

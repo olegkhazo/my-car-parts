@@ -133,6 +133,15 @@
 </template>
 
 <script setup>
+useHead({
+  title: "Table of user requests for car parts",
+  meta: [
+    {
+      name: "description",
+      content: "A detailed table of all user requests for car parts with detailed descriptions and information.",
+    },
+  ],
+});
 import { getTimeAgo } from "@/utils";
 import { useAllPartRequestsDataStore } from "@/stores";
 
