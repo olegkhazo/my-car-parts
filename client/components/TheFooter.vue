@@ -9,22 +9,46 @@
           </li>
         </ul>
         <ul class="footer-navs-column">
-          <li>About Us</li>
-          <li>Blog</li>
-          <li>FAQ</li>
-          <li>Contact us</li>
+          <li>
+            <NuxtLink to="about-us">About Us</NuxtLink>
+          </li>
+          <li>
+            <NuxtLink to="blog">Blog</NuxtLink>
+          </li>
+          <li>
+            <NuxtLink to="faq">FAQ</NuxtLink>
+          </li>
+          <li>
+            <NuxtLink to="contact-us">Contact us</NuxtLink>
+          </li>
         </ul>
         <ul class="footer-navs-column">
-          <li>How it works</li>
-          <li>Send request</li>
-          <li>Suggest parts</li>
-          <li>Careers</li>
+          <li>
+            <NuxtLink to="how-it-works">How it works</NuxtLink>
+          </li>
+          <li>
+            <NuxtLink to="part-request"> Send request </NuxtLink>
+          </li>
+          <li>
+            <NuxtLink to="all-spare-part-requests"> Suggest parts </NuxtLink>
+          </li>
+          <li>
+            <NuxtLink to="careers">Careers</NuxtLink>
+          </li>
         </ul>
         <ul class="footer-navs-column">
-          <li>Terms</li>
-          <li>Privacy</li>
-          <li>Sitemap</li>
-          <li>Do not sale my info (CA)</li>
+          <li>
+            <NuxtLink to="terms">Terms</NuxtLink>
+          </li>
+          <li>
+            <NuxtLink to="privacy">Privacy</NuxtLink>
+          </li>
+          <li>
+            <NuxtLink to="sitemap">Sitemap</NuxtLink>
+          </li>
+          <li>
+            <NuxtLink to="not-sale-info-page">Do not sale my info (CA)</NuxtLink>
+          </li>
         </ul>
       </div>
       <div class="bottom-footer-part">

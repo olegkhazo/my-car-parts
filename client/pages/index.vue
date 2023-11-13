@@ -27,7 +27,7 @@
     </div>
 
     <div class="content-wrapper how-it-works-wrapper">
-      <span class="how-it-works-header">So how it work?</span>
+      <span class="how-it-works-header">DO YOU WANT TO FIND AND BUY SPARE PARTS QUICKLY?</span>
       <div class="how-it-works">
         <div class="how-it-works-step">
           <span class="step-header">Submit a form</span>
