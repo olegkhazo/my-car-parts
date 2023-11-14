@@ -153,7 +153,7 @@
           </ul>
         </div>
         <div class="table-button-wrapper">
-          <NuxtLink to="/part-request" class="yellow-btn">Send your request</NuxtLink>
+          <NuxtLink to="/part-request" class="yellow-btn">Send Your Request</NuxtLink>
         </div>
 
         <div class="info-for-sellers">
@@ -198,7 +198,7 @@
             sellers who will provide you with lucrative options.
           </span>
           <span>
-            <NuxtLink to="/part-request" class="yellow-btn">Send your request</NuxtLink>
+            <NuxtLink to="/part-request" class="yellow-btn">Send Request</NuxtLink>
           </span>
         </div>
       </div>
@@ -210,7 +210,7 @@
             you have!
           </span>
           <span>
-            <NuxtLink to="/part-request" class="yellow-btn">Send your request</NuxtLink>
+            <NuxtLink to="/part-request" class="yellow-btn">Send An Offer</NuxtLink>
           </span>
         </div>
         <NuxtImg src="/images/sallesman.png" alt="sallesman" />
