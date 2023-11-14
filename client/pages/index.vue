@@ -159,7 +159,7 @@
         <div class="info-for-sellers">
           <NuxtImg src="/images/price.svg" alt="price" class="price-label-img" />
           <div class="info-for-sellers-right">
-            <span class="red-seller-info"> Do you sellauto parts?</span>
+            <span class="red-seller-info"> Do you sell auto parts?</span>
             <br />
             <span
               ><NuxtLink to="/all-spare-part-requests">Suggest</NuxtLink> your one or more variants of hundreds

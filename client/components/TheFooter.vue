@@ -24,7 +24,7 @@
         </ul>
         <ul class="footer-navs-column">
           <li>
-            <NuxtLink to="how-it-works">How it works</NuxtLink>
+            <NuxtLink to="how-it-work">How it work</NuxtLink>
           </li>
           <li>
             <NuxtLink to="part-request"> Send request </NuxtLink>
