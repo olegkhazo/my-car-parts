@@ -1,17 +1,17 @@
 <template>
   <div class="form-fields-section">
-    <label class="label-text" for="part-name">Spare part name *</label>
+    <label class="label-text" for="part-name">Part *</label>
     <span v-if="!isPartNameValid && formButtonClicked" class="input-error-notification"
       >Please enter a valid spare part name.</span
     >
     <input id="part-name" v-model="formData.part_name" type="text" />
 
-    <label class="label-text" for="part-group">Spare part group</label>
+    <label class="label-text" for="part-group">Part group</label>
     <select id="part-group" v-model="formData.part_group" name="part-group">
       <option v-for="group in sparePartGroups" :key="group">{{ group }}</option>
     </select>
 
-    <span class="label-text">Type of part</span>
+    <span class="label-text">Type</span>
     <div class="radio-toolbar">
       <input id="radio-any-type" v-model="formData.type_of_part" type="radio" name="type-of-part" value="any-type" />
       <label class="label-text" for="radio-any-type"> Any type </label>
@@ -23,7 +23,7 @@
       <label class="label-text" for="radio-analog"> Analog </label>
     </div>
 
-    <span class="label-text">Spare part condition</span>
+    <span class="label-text">Condition</span>
     <div class="radio-toolbar spare-part-condition">
       <input
         id="radio-any-condition"

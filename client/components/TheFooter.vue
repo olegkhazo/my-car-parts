@@ -5,7 +5,7 @@
         <ul class="logo-container">
           <li class="footer-logo">MyNextParts</li>
           <li class="footer-project-description">
-            <b>MyNextParts</b> is not responsible for the quality of parts and services provided by third parties.
+            <b>MyNextParts</b> is not responsible for the quality of third-party parts and services.
           </li>
         </ul>
         <ul class="footer-navs-column">
@@ -53,13 +53,10 @@
       </div>
       <div class="bottom-footer-part">
         <span class="bototom-footer-header"
-          ><b>MyNextParts</b> is the most convenient way to get your car repaired.</span
+          ><b>MyNextParts</b> offers the utmost convenience in acquiring your next car parts.</span
         >
-        <br />
         <span>
-          Our mobile mechanics come to you and complete your car repair at your home or office. We make the process easy
-          from start to finish by offering upfront pricing, online booking, after-hours support, and a full warranty.
-          See Warranty
+          Simply submit a request by filling out a straightforward form, and hundreds of sellers will see your needs!
         </span>
         <ul>
           <li>
@@ -139,7 +136,7 @@
         .footer-logo {
           font-size: 22px;
           font-weight: 600;
-          margin: 10px 0;
+          margin: 10px 0 0 0;
         }
 
         .sellers-entrance {
@@ -160,7 +157,8 @@
 
         .footer-project-description {
           color: $gray-800;
-          font-size: 14px;
+          font-weight: 300;
+          font-size: 12px;
         }
       }
 
@@ -190,6 +188,7 @@
       border-bottom: 1px solid $gray-100;
       display: flex;
       flex-direction: column;
+      width: 100%;
 
       @media (max-width: 390px) {
         border-top: none;

@@ -223,30 +223,39 @@
       <div class="reviews-main-wrapper">
         <div class="single-review">
           <NuxtImg src="/images/review_avatar.png" alt="review avatar" />
-          <span class="review-header">Sultan Ibrahimovich</span>
+          <span class="review-header">Arash Singh</span>
+          <span class="review-car-model">Dodge Challenger</span>
           <span class="review-content">
-            Some short description of expereince by servece. Some short description of expereince by servece.
+            "I needed a belt and rollers for my Dodge Challenger, and a friend recommended the MyNextParts service. The
+            simplicity of the search was crucial for me—I filled out a form and started receiving offers from sellers
+            via email."
           </span>
         </div>
         <div class="single-review">
-          <NuxtImg src="/images/review_avatar.png" alt="review avatar" />
-          <span class="review-header">Sultan Ibrahimovich</span>
+          <NuxtImg src="/images/li_meili.png" alt="review avatar" />
+          <span class="review-header">Li Meili</span>
+          <span class="review-car-model">Mazda CX-5</span>
           <span class="review-content">
-            Some short description of expereince by servece. Some short description of expereince by servece.
+            "MyNextParts was incredibly helpful. Quick search, big savings compared to my last spare part purchase.
+            Highly recommend!"
           </span>
         </div>
         <div class="single-review">
-          <NuxtImg src="/images/review_avatar.png" alt="review avatar" />
-          <span class="review-header">Sultan Ibrahimovich</span>
+          <NuxtImg src="/images/lukas_m.png" alt="review avatar" />
+          <span class="review-header">Lukas M.</span>
+          <span class="review-car-model">Toyota Camry</span>
           <span class="review-content">
-            Some short description of expereince by servece. Some short description of expereince by servece.
+            "Amazing service, so simple to use and hassle-free! I got a WOF and service done super fast, and I found
+            parts for my Toyota Camry at the best price. Highly recommend!"
           </span>
         </div>
         <div class="single-review">
-          <NuxtImg src="/images/review_avatar.png" alt="review avatar" />
-          <span class="review-header">Sultan Ibrahimovich</span>
+          <NuxtImg src="/images/lenny_j.png" alt="review avatar" />
+          <span class="review-header">Lenny Johnson</span>
+          <span class="review-car-model">Dodge Ram 2500</span>
           <span class="review-content">
-            Some short description of expereince by servece. Some short description of expereince by servece.
+            "Found all the chassis parts for my Dodge in just half a day. I simply filled out the form and it took me
+            only 5 minutes. It's the best service I've ever used! I didn't have to disrupt my routine at all."
           </span>
         </div>
       </div>
@@ -308,6 +317,11 @@ hr {
 
       @media (max-width: 500px) {
         font-size: 35px;
+        line-height: 2.5rem;
+      }
+
+      @media (max-width: 400px) {
+        font-size: 30px;
         line-height: 2.5rem;
       }
 
@@ -425,13 +439,25 @@ hr {
   flex-direction: column;
   margin-top: 50px;
 
+  @media (max-width: 768px) {
+    margin-top: 10px;
+  }
+
   .how-it-works-header {
     text-align: center;
     font-weight: 400;
     font-size: 32px;
 
+    @media (max-width: 700px) {
+      font-size: 28px;
+    }
+
     @media (max-width: 500px) {
-      font-size: 35px;
+      font-size: 24px;
+    }
+
+    @media (max-width: 400px) {
+      font-size: 22px;
     }
   }
 
@@ -740,7 +766,8 @@ hr {
     }
 
     @media (max-width: 350px) {
-      font-size: 30px;
+      font-size: 25px;
+      text-align: center;
     }
   }
 
@@ -779,9 +806,16 @@ hr {
       }
 
       .review-header {
-        margin: 20px 0;
+        margin: 15px 0 0 0;
         color: $black;
         font-weight: 500;
+      }
+
+      .review-car-model {
+        font-size: 12px;
+        color: $black;
+        font-style: italic;
+        margin-bottom: 10px;
       }
 
       .review-content {

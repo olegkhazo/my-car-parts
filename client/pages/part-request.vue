@@ -35,17 +35,17 @@
           <div class="priveleges-point">
             <NuxtImg src="/images/green-wheel.svg" alt="" />
             <span class="priveleges-text">
-              <span class="bold-span">Fill out the request form</span>
-              <span class="thin-span"
-                >for new or used parts, indicating the list of parts and information about your car</span
+              <span class="bold-span">Complete the request form</span>
+              <span class="thin-span">
+                for new or used parts, specifying the part list and providing information about your car.</span
               >
             </span>
           </div>
           <div class="priveleges-point">
             <NuxtImg src="/images/green-wheel.svg" alt="" />
             <span class="priveleges-text">
-              <span class="bold-span">Get an answer</span>
-              <span class="thin-span">within a few minutes from sellers from all over USA</span>
+              <span class="bold-span">Receive responses</span>
+              <span class="thin-span">within minutes from sellers across the USA.</span>
             </span>
           </div>
           <div class="priveleges-point">
@@ -62,7 +62,7 @@
 
         <ul class="result-you-get">
           <span class="bold-span">As a result, you get: </span>
-          <li>Spare parts at the lowest price in USA</li>
+          <li>Spare parts at a profitable price in the USA</li>
           <li>Saving search time</li>
           <li>Quick buy guarantee</li>
         </ul>
