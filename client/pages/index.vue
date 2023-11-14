@@ -265,7 +265,7 @@
 
 <script setup>
 useHead({
-  title: "MyCarParts App - Easy search for car parts",
+  title: "MyCarParts - Easy search for car parts",
   meta: [
     {
       name: "description",

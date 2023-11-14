@@ -10,7 +10,7 @@
 
 <script setup>
 useHead({
-  title: "MyCarParts App - Contact Us",
+  title: "MyCarParts - Contact Us",
   meta: [
     {
       name: "description",
