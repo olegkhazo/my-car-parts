@@ -2,7 +2,7 @@
   <div class="content-wrapper">
     <h1>About Us</h1>
 
-    <div class="simple-project-decription-wrapper">
+    <div>
       <p>
         <b>MyNextParts</b> is a service committed to assisting you in effortlessly, promptly, and affordably finding
         auto parts in the USA. Whether you're in need of new or used parts, we link you with online stores and car
@@ -23,26 +23,37 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+useHead({
+  title: "MyCarParts App - About Us",
+  meta: [
+    {
+      name: "description",
+      content:
+        "A detailed description of the MyNextParts service, what kind of service it is, how it works, a description of the benefits of using the service",
+    },
+  ],
+});
+</script>
 
 <style lang="scss" scoped>
 @import "@/assets/styles/_variables.scss";
 
-h1 {
-  font-size: 50px;
-  font-weight: 300;
-  text-align: center;
+.content-wrapper {
+  h1 {
+    font-size: 50px;
+    font-weight: 300;
+    text-align: center;
 
-  @media (max-width: 834px) {
-    font-size: 35px;
+    @media (max-width: 834px) {
+      font-size: 35px;
+    }
+
+    @media (max-width: 382px) {
+      font-size: 28px;
+    }
   }
 
-  @media (max-width: 382px) {
-    font-size: 28px;
-  }
-}
-
-.simple-project-decription-wrapper {
   font-size: 16px;
 
   a {
