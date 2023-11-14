@@ -1,7 +1,7 @@
 <template>
   <div class="content-wrapper">
     <div class="all-requests-wrapper">
-      <h2>All car part requests</h2>
+      <h1>All car part requests</h1>
       <TheFilterByCarTypes />
       <div class="all-requests-table-wrapper">
         <div class="table-wrapper">
@@ -189,7 +189,7 @@ function hideOpenedContentByButtonClick(event) {
     margin: 20px auto 150px auto;
   }
 
-  h2 {
+  h1 {
     font-size: 50px;
     font-weight: 300;
     text-align: center;
