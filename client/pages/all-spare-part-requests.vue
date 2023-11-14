@@ -1,7 +1,7 @@
 <template>
   <div class="content-wrapper">
     <div class="all-requests-wrapper">
-      <h2>All spare part requests</h2>
+      <h2>All car part requests</h2>
       <TheFilterByCarTypes />
       <div class="all-requests-table-wrapper">
         <div class="table-wrapper">
@@ -9,7 +9,7 @@
             <thead>
               <tr>
                 <th></th>
-                <th>Spare part</th>
+                <th>Car part</th>
                 <th class="form-area-column">Area/Region</th>
                 <th class="form-date-column">Sent</th>
                 <th class="form-info-button-column"></th>

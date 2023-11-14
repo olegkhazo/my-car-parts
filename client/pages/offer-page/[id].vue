@@ -39,7 +39,7 @@
                 <label class="label-text" for="radio-analog"> Analog </label>
               </div>
 
-              <span class="label-text">Spare part condition</span>
+              <span class="label-text">Part condition</span>
               <div class="radio-toolbar spare-part-condition">
                 <input
                   id="radio-new-condition"
@@ -98,11 +98,11 @@
           <span v-if="successfulOferSending" class="successfull-notyfication"
             >You sent your suggestion successfully!</span
           >
-          <span class="right-blue-block-title">Spare part request content:</span>
+          <span class="right-blue-block-title">Car part request content:</span>
           <div v-if="singlePartRequestData" class="all-content-wrapper">
             <div class="all-content">
               <span v-if="singlePartRequestData.part_name">
-                Spare part:
+                Part:
                 <span class="bold">{{ singlePartRequestData.part_name }}</span>
               </span>
               <span v-if="singlePartRequestData.part_group">

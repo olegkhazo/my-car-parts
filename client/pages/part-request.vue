@@ -62,7 +62,7 @@
 
         <ul class="result-you-get">
           <span class="bold-span">As a result, you get: </span>
-          <li>Spare parts at a profitable price in the USA</li>
+          <li>Car parts at a profitable price in the USA</li>
           <li>Saving search time</li>
           <li>Quick buy guarantee</li>
         </ul>

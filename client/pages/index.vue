@@ -63,7 +63,7 @@
             <thead>
               <tr>
                 <th></th>
-                <th>Spare part description</th>
+                <th>Car part description</th>
                 <th>Area/Region</th>
                 <th>Sent</th>
               </tr>
