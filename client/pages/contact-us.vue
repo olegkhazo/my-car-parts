@@ -10,12 +10,12 @@
 
 <script setup>
 useHead({
-  title: "MyCarParts - Contact Us",
+  title: "MyNextParts - Contact Us",
   meta: [
     {
       name: "description",
       content:
-        "Contact page of MyCarParts App where users can find all allowed ways how to contact with the service team",
+        "Contact page of MyNextParts App where users can find all allowed ways how to contact with the service team",
     },
   ],
 });

@@ -63,11 +63,21 @@
       </p>
     </div>
     <br />
-    <NuxtLink class="light-gray-btn" to="/">Home page</NuxtLink>
+    <NuxtLink class="light-gray-btn" to="/">Home Page</NuxtLink>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+useHead({
+  title: "MyNextParts - Terms",
+  meta: [
+    {
+      name: "description",
+      content: "Terms of using MyNextParts service",
+    },
+  ],
+});
+</script>
 
 <style lang="scss" scoped>
 .content-wrapper {

@@ -40,7 +40,7 @@
           <span class="step-header">Receive answers</span>
           <span class="step-body"
             >After sending the request, you will almost immediately receive answers with quotations from the sellers of
-            spare parts and auto shops that are registered in <b>MyCarParts</b>.
+            spare parts and auto shops that are registered in <b>MyNextParts</b>.
           </span>
         </div>
         <div class="how-it-works-step">
@@ -265,7 +265,7 @@
 
 <script setup>
 useHead({
-  title: "MyCarParts - Easy search for car parts",
+  title: "MyNextParts - Easy search for car parts",
   meta: [
     {
       name: "description",

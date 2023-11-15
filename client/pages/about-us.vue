@@ -25,7 +25,7 @@
 
 <script setup>
 useHead({
-  title: "MyCarParts - About Us",
+  title: "MyNextParts - About Us",
   meta: [
     {
       name: "description",

@@ -10,7 +10,7 @@ export const createOffer = async (req: Request, res: Response, next: NextFunctio
         res.status(201).json(newOffer);
 
         // Send an email to byer
-        await sendEmail(`${req.body.byer_email}`, `New offer on 'MyCarParts' for ${req.body.part_name}`, 
+        await sendEmail(`${req.body.byer_email}`, `New offer on 'MyNextParts' for ${req.body.part_name}`, 
         `From: ${req.body.full_name} (${req.body.company_name}),
         Related to: ${req.body.part_name}
         Type of part: ${req.body.type_of_part}

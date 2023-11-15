@@ -10,44 +10,44 @@
         </ul>
         <ul class="footer-navs-column">
           <li>
-            <NuxtLink to="about-us">About Us</NuxtLink>
+            <NuxtLink to="/about-us">About Us</NuxtLink>
           </li>
           <li>
-            <NuxtLink to="blog">Blog</NuxtLink>
+            <NuxtLink to="/blog">Blog</NuxtLink>
           </li>
           <li>
-            <NuxtLink to="faq">FAQ</NuxtLink>
+            <NuxtLink to="/faq">FAQ</NuxtLink>
           </li>
           <li>
-            <NuxtLink to="contact-us">Contact us</NuxtLink>
-          </li>
-        </ul>
-        <ul class="footer-navs-column">
-          <li>
-            <NuxtLink to="how-it-work">How it work</NuxtLink>
-          </li>
-          <li>
-            <NuxtLink to="part-request"> Send request </NuxtLink>
-          </li>
-          <li>
-            <NuxtLink to="all-spare-part-requests"> Suggest parts </NuxtLink>
-          </li>
-          <li>
-            <NuxtLink to="careers">Careers</NuxtLink>
+            <NuxtLink to="/contact-us">Contact us</NuxtLink>
           </li>
         </ul>
         <ul class="footer-navs-column">
           <li>
-            <NuxtLink to="terms">Terms</NuxtLink>
+            <NuxtLink to="/how-it-work">How it work</NuxtLink>
           </li>
           <li>
-            <NuxtLink to="privacy">Privacy</NuxtLink>
+            <NuxtLink to="/part-request"> Send request </NuxtLink>
           </li>
           <li>
-            <NuxtLink to="sitemap">Sitemap</NuxtLink>
+            <NuxtLink to="/all-spare-part-requests"> Suggest parts </NuxtLink>
           </li>
           <li>
-            <NuxtLink to="not-sale-info-page">Do not sale my info (CA)</NuxtLink>
+            <NuxtLink to="/careers">Careers</NuxtLink>
+          </li>
+        </ul>
+        <ul class="footer-navs-column">
+          <li>
+            <NuxtLink to="/terms">Terms</NuxtLink>
+          </li>
+          <li>
+            <NuxtLink to="/privacy-policy">Privacy</NuxtLink>
+          </li>
+          <li>
+            <NuxtLink to="/sitemap">Sitemap</NuxtLink>
+          </li>
+          <li>
+            <NuxtLink to="/do-not-sale-info">Do not sale my info (CA)</NuxtLink>
           </li>
         </ul>
       </div>

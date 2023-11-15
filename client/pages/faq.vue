@@ -63,7 +63,7 @@
 
 <script setup>
 useHead({
-  title: "MyCarParts - FAQ",
+  title: "MyNextParts - FAQ",
   meta: [
     {
       name: "description",

@@ -53,7 +53,7 @@
 
 <script setup>
 useHead({
-  title: "MyCarParts - How It Work",
+  title: "MyNextParts - How It Work",
   meta: [
     {
       name: "description",
