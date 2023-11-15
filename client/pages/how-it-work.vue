@@ -11,7 +11,7 @@
           about your car, the list of required auto parts, and your contact information
         </span>
       </div>
-      <!-- <NuxtImg src="/images/blue-arrow.svg" alt="arrow" /> -->
+
       <div class="how-it-work-step">
         <div>
           <span class="step-number">2</span>
@@ -21,7 +21,7 @@
           registered in our system.</span
         >
       </div>
-      <!-- <NuxtImg src="/images/blue-arrow.svg" alt="arrow" /> -->
+
       <div class="how-it-work-step">
         <div>
           <span class="step-number">3</span>
@@ -32,6 +32,11 @@
         >
       </div>
     </div>
+    <span class="important">Important:</span>
+    <span class="additional-explanation">
+      Sending a request for auto parts through <b>MyNextParts</b> does not yet constitute placing an order. It simply
+      provides you with the opportunity to quickly find a seller offering the best offer.</span
+    >
     <div class="btn-wrapper">
       <NuxtLink to="/part-request" class="yellow-btn">Send Request</NuxtLink>
     </div>
@@ -111,7 +116,7 @@ useHead({
       .step-number {
         background-color: $yellow;
         color: $black;
-        padding: 10px 19px;
+        padding: 10px 18px;
         font-size: 20px;
         border-radius: 50%;
 
@@ -167,6 +172,15 @@ useHead({
       color: $blue;
       font-weight: 600;
     }
+  }
+
+  .important {
+    color: $red;
+    font-size: 16px;
+    font-weight: 500;
+  }
+  .additional-explanation {
+    font-size: 14px;
   }
 }
 </style>

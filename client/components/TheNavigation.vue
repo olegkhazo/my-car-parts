@@ -14,7 +14,7 @@
       <div class="nav" :class="{ 'show-mobile-menu': mobileMenuVisibilaty }">
         <ul>
           <li>
-            <NuxtLink to="/part-request">Find spare part</NuxtLink>
+            <NuxtLink to="/part-request">Find parts</NuxtLink>
           </li>
           <li>
             <NuxtLink to="/all-spare-part-requests">Suggest your parts</NuxtLink>
