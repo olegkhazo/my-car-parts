@@ -14,13 +14,13 @@
       <div class="nav" :class="{ 'show-mobile-menu': mobileMenuVisibilaty }">
         <ul>
           <li>
+            <NuxtLink to="/part-request">Find parts</NuxtLink>
+          </li>
+          <li>
             <NuxtLink to="/all-spare-part-requests">Suggest your parts</NuxtLink>
           </li>
           <li>
-            <NuxtLink to="/part-request">Find spare part</NuxtLink>
-          </li>
-          <li>
-            <NuxtLink to="/">How It Work</NuxtLink>
+            <NuxtLink to="how-it-work">How it work</NuxtLink>
           </li>
         </ul>
       </div>

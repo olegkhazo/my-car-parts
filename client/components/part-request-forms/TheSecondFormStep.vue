@@ -1,100 +1,52 @@
 <template>
   <div class="form-fields-section">
     <label class="label-text" for="car-type">Type *</label>
-    <span
-      v-if="!isCarTypeValid && formButtonClicked"
-      class="input-error-notification"
-      >Please enter a valid type</span
-    >
+    <span v-if="!isCarTypeValid && formButtonClicked" class="input-error-notification">Please enter a valid type</span>
     <select id="car-type" v-model="formData.car_type" name="type-group">
-      <option value="car" selected>Cars</option>
-      <option value="motocycle">Motorcycles</option>
+      <option value="car" selected>Car</option>
     </select>
 
-    <label class="label-text" for="car-make"> Car Make * </label>
-    <span
-      v-if="!isCarMakeValid && formButtonClicked"
-      class="input-error-notification"
-      >Please choose car make</span
-    >
+    <label class="label-text" for="car-make"> Make * </label>
+    <span v-if="!isCarMakeValid && formButtonClicked" class="input-error-notification">Please choose car make</span>
     <select id="car-make" v-model="filterByMake" name="car-make-group">
       <option value="Select Make">Select Make</option>
       <option v-for="make in makesCollection" :key="make">{{ make }}</option>
     </select>
 
     <label class="label-text" for="car-year"> Year * </label>
-    <span
-      v-if="!isCarYearValid && formButtonClicked"
-      class="input-error-notification"
-      >Please choose car year</span
-    >
-    <select
-      id="car-year"
-      v-model="filterByYear"
-      name="car-year-group"
-      :disabled="filterByMake === 'Select Make'"
-    >
+    <span v-if="!isCarYearValid && formButtonClicked" class="input-error-notification">Please choose car year</span>
+    <select id="car-year" v-model="filterByYear" name="car-year-group" :disabled="filterByMake === 'Select Make'">
       <option value="Year">Year</option>
       <option v-for="year in yearOptions" :key="year">{{ year }}</option>
     </select>
 
-    <label class="label-text" for="car-model"> Car Model * </label>
-    <span
-      v-if="!isCarModelValid && formButtonClicked"
-      class="input-error-notification"
-      >Please choose car model</span
-    >
-    <select
-      id="car-model"
-      v-model="filterByModel"
-      name="car-model-group"
-      :disabled="filterByYear === 'Year'"
-    >
+    <label class="label-text" for="car-model"> Model * </label>
+    <span v-if="!isCarModelValid && formButtonClicked" class="input-error-notification">Please choose car model</span>
+    <select id="car-model" v-model="filterByModel" name="car-model-group" :disabled="filterByYear === 'Year'">
       <option value="Select Model">Select Model</option>
-      <option
-        v-for="models in modelsCollection.Results"
-        :key="models"
-        value="models.Model_Name"
-      >
+      <option v-for="models in modelsCollection.Results" :key="models" value="models.Model_Name">
         {{ models.Model_Name }}
       </option>
     </select>
 
     <div class="fuel-validator-errors-wrapper">
-      <span
-        v-if="!isFuelTypeValid && formButtonClicked"
-        class="input-error-notification"
-        >Choose fuel type</span
-      >
-      <span
-        v-if="!isEngineVolumeValid && formButtonClicked"
-        class="input-error-notification"
-        >Enter engine value</span
-      >
+      <span v-if="!isFuelTypeValid && formButtonClicked" class="input-error-notification">Choose fuel type</span>
+      <span v-if="!isEngineVolumeValid && formButtonClicked" class="input-error-notification">Enter engine value</span>
     </div>
     <div class="fuel-data-wrapper">
       <label class="label-text" for="car-fuel-type"> Fuel Type * </label>
 
-      <select
-        id="car-fuel-type"
-        v-model="formData.fuel_type"
-        name="car-fuel-type"
-      >
+      <select id="car-fuel-type" v-model="formData.fuel_type" name="car-fuel-type">
         <option v-for="fuel in carsFuelTypes" :key="fuel" value="fuel">
           {{ fuel }}
         </option>
       </select>
 
-      <input
-        id="litres"
-        v-model="formData.engine_volume"
-        type="text"
-        placeholder="2.5"
-      />
-      <label class="label-text" for="litres">Litres *</label>
+      <input id="litres" v-model="formData.engine_volume" type="text" placeholder="2.5" />
+      <label class="label-text" for="litres">Volume *</label>
     </div>
 
-    <label class="label-text" for="car-body-type"> Car Body </label>
+    <label class="label-text" for="car-body-type"> Body Type </label>
     <select id="car-body-type" v-model="formData.car_body" name="car-body-type">
       <option v-for="body in carBodyTypes" :key="body" value="body">
         {{ body }}
@@ -102,31 +54,17 @@
     </select>
 
     <label class="label-text" for="car-vin"> VIN </label>
-    <input
-      id="car-vin"
-      v-model="formData.vin_code"
-      name="car-vin"
-      placeholder="VIN"
-    />
+    <input id="car-vin" v-model="formData.vin_code" name="car-vin" placeholder="VIN" />
 
-    <button class="light-gray-btn" @click.prevent="checkTheFormFields(1)">
-      Back
-    </button>
-    <button class="gray-btn" @click.prevent="checkTheFormFields(3)">
-      Continue
-    </button>
+    <button class="light-gray-btn" @click.prevent="checkTheFormFields(1)">Back</button>
+    <button class="gray-btn" @click.prevent="checkTheFormFields(3)">Continue</button>
   </div>
 </template>
 
 <script setup>
 import { usePartRequestFormStore } from "@/stores";
 import { validateFormField } from "@/utils/index";
-import {
-  makesCollection,
-  yearOptions,
-  carsFuelTypes,
-  carBodyTypes,
-} from "@/utils/collections";
+import { makesCollection, yearOptions, carsFuelTypes, carBodyTypes } from "@/utils/collections";
 import { GET_MODELS_BY_MAKE_AND_YEAR } from "@/utils/constants";
 
 const { dataFromSecondFormStep } = storeToRefs(usePartRequestFormStore());
@@ -138,7 +76,7 @@ const filterByModel = ref("Select Model");
 const modelsCollection = ref({});
 
 const formData = ref({
-  car_type: "",
+  car_type: "car",
   car_make: "",
   car_year: "",
   car_model: "",
@@ -172,17 +110,11 @@ const isCarModelValid = computed(() => {
 });
 
 const isFuelTypeValid = computed(() => {
-  return validateFormField(
-    formData.value.fuel_type,
-    "COMMON_NOT_EMPTY_PATTERN"
-  );
+  return validateFormField(formData.value.fuel_type, "COMMON_NOT_EMPTY_PATTERN");
 });
 
 const isEngineVolumeValid = computed(() => {
-  return validateFormField(
-    formData.value.engine_volume,
-    "ENGINE_VOLUME_PATTERN"
-  );
+  return validateFormField(formData.value.engine_volume, "ENGINE_VOLUME_PATTERN");
 });
 // End validation block
 

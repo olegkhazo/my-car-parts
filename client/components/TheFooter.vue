@@ -5,37 +5,58 @@
         <ul class="logo-container">
           <li class="footer-logo">MyNextParts</li>
           <li class="footer-project-description">
-            <b>MyNextParts</b> is not responsible for the quality of parts and services provided by third parties.
+            <b>MyNextParts</b> is not responsible for the quality of third-party parts and services.
           </li>
         </ul>
         <ul class="footer-navs-column">
-          <li>About Us</li>
-          <li>Blog</li>
-          <li>FAQ</li>
-          <li>Contact us</li>
+          <li>
+            <NuxtLink to="/about-us">About Us</NuxtLink>
+          </li>
+          <li>
+            <NuxtLink to="/blog">Blog</NuxtLink>
+          </li>
+          <li>
+            <NuxtLink to="/faq">FAQ</NuxtLink>
+          </li>
+          <li>
+            <NuxtLink to="/contact-us">Contact us</NuxtLink>
+          </li>
         </ul>
         <ul class="footer-navs-column">
-          <li>How it works</li>
-          <li>Send request</li>
-          <li>Suggest parts</li>
-          <li>Careers</li>
+          <li>
+            <NuxtLink to="/how-it-work">How it work</NuxtLink>
+          </li>
+          <li>
+            <NuxtLink to="/part-request"> Send request </NuxtLink>
+          </li>
+          <li>
+            <NuxtLink to="/all-spare-part-requests"> Suggest parts </NuxtLink>
+          </li>
+          <li>
+            <NuxtLink to="/careers">Careers</NuxtLink>
+          </li>
         </ul>
         <ul class="footer-navs-column">
-          <li>Terms</li>
-          <li>Privacy</li>
-          <li>Sitemap</li>
-          <li>Do not sale my info (CA)</li>
+          <li>
+            <NuxtLink to="/terms">Terms</NuxtLink>
+          </li>
+          <li>
+            <NuxtLink to="/privacy-policy">Privacy</NuxtLink>
+          </li>
+          <li>
+            <NuxtLink to="/sitemap">Sitemap</NuxtLink>
+          </li>
+          <li>
+            <NuxtLink to="/do-not-sale-info">Do not sale my info (CA)</NuxtLink>
+          </li>
         </ul>
       </div>
       <div class="bottom-footer-part">
         <span class="bototom-footer-header"
-          ><b>MyNextParts</b> is the most convenient way to get your car repaired.</span
+          ><b>MyNextParts</b> offers the utmost convenience in acquiring your next car parts.</span
         >
-        <br />
         <span>
-          Our mobile mechanics come to you and complete your car repair at your home or office. We make the process easy
-          from start to finish by offering upfront pricing, online booking, after-hours support, and a full warranty.
-          See Warranty
+          Simply submit a request by filling out a straightforward form, and hundreds of sellers will see your needs!
         </span>
         <ul>
           <li>
@@ -56,7 +77,7 @@
         </ul>
       </div>
       <div class="footer-rights">
-        <span> © 2007-2023 "MyNextParts" All rights reserved. </span>
+        <span> © 2022-2023 "MyNextParts" All rights reserved. </span>
       </div>
     </div>
   </div>
@@ -115,7 +136,7 @@
         .footer-logo {
           font-size: 22px;
           font-weight: 600;
-          margin: 10px 0;
+          margin: 10px 0 0 0;
         }
 
         .sellers-entrance {
@@ -136,7 +157,8 @@
 
         .footer-project-description {
           color: $gray-800;
-          font-size: 14px;
+          font-weight: 300;
+          font-size: 12px;
         }
       }
 
@@ -166,6 +188,7 @@
       border-bottom: 1px solid $gray-100;
       display: flex;
       flex-direction: column;
+      width: 100%;
 
       @media (max-width: 390px) {
         border-top: none;

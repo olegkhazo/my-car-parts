@@ -3,8 +3,8 @@
     <div class="content-wrapper request-form-wrapper">
       <div class="request-form">
         <h3>
-          Simple way <br />
-          <span>to find your new car part</span>
+          Search for any auto parts<br />
+          <span>in the USA</span>
         </h3>
         <div class="part-request-input">
           <div class="input-btn">
@@ -12,7 +12,7 @@
               v-model="dataFromFirstFormStep.part_name"
               type="text"
               class="part-naming"
-              placeholder="Type which part you need"
+              placeholder="Enter the name of the auto part"
             />
             <NuxtLink to="/part-request" class="yellow-btn">Start Searching</NuxtLink>
           </div>
@@ -27,19 +27,20 @@
     </div>
 
     <div class="content-wrapper how-it-works-wrapper">
-      <span class="how-it-works-header">So how it work?</span>
+      <span class="how-it-works-header">DO YOU WANT TO FIND AND BUY SPARE PARTS QUICKLY?</span>
       <div class="how-it-works">
         <div class="how-it-works-step">
           <span class="step-header">Submit a form</span>
           <span class="step-body">
-            Submit a short request form with a list of required auto parts and information about your car.
+            <NuxtLink to="part-request" class="text-link">Submit</NuxtLink> a short request form, indicating the
+            required auto part and information about your car.
           </span>
         </div>
         <div class="how-it-works-step">
           <span class="step-header">Receive answers</span>
           <span class="step-body"
             >After sending the request, you will almost immediately receive answers with quotations from the sellers of
-            spare parts and auto shops that are registered in <b>MyCarParts</b>
+            spare parts and auto shops that are registered in <b>MyNextParts</b>.
           </span>
         </div>
         <div class="how-it-works-step">
@@ -62,7 +63,7 @@
             <thead>
               <tr>
                 <th></th>
-                <th>Spare part description</th>
+                <th>Car part description</th>
                 <th>Area/Region</th>
                 <th>Sent</th>
               </tr>
@@ -152,13 +153,13 @@
           </ul>
         </div>
         <div class="table-button-wrapper">
-          <NuxtLink to="/part-request" class="yellow-btn">Send your request</NuxtLink>
+          <NuxtLink to="/part-request" class="yellow-btn">Send Your Request</NuxtLink>
         </div>
 
         <div class="info-for-sellers">
           <NuxtImg src="/images/price.svg" alt="price" class="price-label-img" />
           <div class="info-for-sellers-right">
-            <span class="red-seller-info">Do you sell auto parts?</span>
+            <span class="red-seller-info"> Do you sell auto parts?</span>
             <br />
             <span
               ><NuxtLink to="/all-spare-part-requests">Suggest</NuxtLink> your one or more variants of hundreds
@@ -171,19 +172,19 @@
 
     <div class="content-wrapper simple-project-decription-wrapper">
       <p>
-        <b>MyNextParts</b> is a service for finding auto parts, with which you can easily, quickly and cheaply buy auto
-        parts in Ukraine - both new and used in online stores and at car yards.
+        <b>MyNextParts</b> is a service dedicated to helping you find auto parts effortlessly, swiftly, and affordably
+        in the USA. Whether you're in search of new or used parts, we connect you with online stores and car yards.
       </p>
       <p>
-        By <NuxtLink to="/part-request">sending a request</NuxtLink> for auto parts through our website, you no longer
-        need to think about where you can order and buy spare parts online, waste time on phone calls or trips to car
-        markets, auto parts stores or auto disassembly. After sending the request, the sellers will contact you and
-        offer their prices and terms of sale.
+        By <NuxtLink to="/part-request">submiting a request</NuxtLink> for auto parts through our website, you no longer
+        need to worry about where to order spare parts online, spend time on phone calls, or make trips to car markets,
+        auto parts stores, or auto dismantlers. Once your request is sent, sellers will reach out to you, providing
+        their prices and terms of sale.
       </p>
       <p>
-        We work with online auto parts and disassembly stores from all over Ukraine, from which you can buy any spare
-        parts for foreign cars and domestic cars, in stock and on order. This gives you the opportunity to choose the
-        seller with the lowest price. With our website you save time and money!
+        We collaborate with online auto parts retailers and dismantling stores across the USA, offering you access to a
+        wide range of spare parts in stock and available for order. This allows you to choose a seller with the most
+        competitive prices. With our service, you not only save time but also cut down on costs!
       </p>
     </div>
 
@@ -191,25 +192,25 @@
       <div class="buyer-call-to-action">
         <NuxtImg src="/images/buyer.png" alt="buyer" />
         <div class="buyer-text">
-          <span class="action-card-header">Looking for a part?</span>
+          <span class="action-card-header">In search of specific parts? </span>
           <span class="action-card-body"
-            >Just send a simple request for the part you need, hundreds of sellers will see your request and offer
-            profitable options.
+            >Simply submit a request for the spare parts you need, and your inquiry will be visible to hundreds of
+            sellers who will provide you with lucrative options.
           </span>
           <span>
-            <NuxtLink to="/part-request" class="yellow-btn">Send your request</NuxtLink>
+            <NuxtLink to="/part-request" class="yellow-btn">Send Request</NuxtLink>
           </span>
         </div>
       </div>
       <div class="sellesman-call-to-action">
         <div class="sallesman-text">
-          <span class="action-card-header">Looking for a part?</span>
+          <span class="action-card-header">Do you have parts to sell?</span>
           <span class="action-card-body"
-            >Just send a simple request for the part you need, hundreds of sellers will see your request and offer
-            profitable options.
+            >Review all buyer requests and propose your offerings. Many people are actively searching for the products
+            you have!
           </span>
           <span>
-            <NuxtLink to="/part-request" class="yellow-btn">Send your request</NuxtLink>
+            <NuxtLink to="/part-request" class="yellow-btn">Send An Offer</NuxtLink>
           </span>
         </div>
         <NuxtImg src="/images/sallesman.png" alt="sallesman" />
@@ -217,35 +218,44 @@
     </div>
 
     <div class="content-wrapper user-reviews-wrapper">
-      <span class="reviews-block-header">We unite!</span>
-      <span class="user-reviews-description">Here, those who need spare parts find those who have them!</span>
+      <span class="reviews-block-header">We bring together!</span>
+      <span class="user-reviews-description">Connecting those in need with those who have spare parts.</span>
       <div class="reviews-main-wrapper">
         <div class="single-review">
           <NuxtImg src="/images/review_avatar.png" alt="review avatar" />
-          <span class="review-header">Sultan Ibrahimovich</span>
+          <span class="review-header">Arash Singh</span>
+          <span class="review-car-model">Dodge Challenger</span>
           <span class="review-content">
-            Some short description of expereince by servece. Some short description of expereince by servece.
+            "I needed a belt and rollers for my Dodge Challenger, and a friend recommended the MyNextParts service. The
+            simplicity of the search was crucial for me—I filled out a form and started receiving offers from sellers
+            via email."
           </span>
         </div>
         <div class="single-review">
-          <NuxtImg src="/images/review_avatar.png" alt="review avatar" />
-          <span class="review-header">Sultan Ibrahimovich</span>
+          <NuxtImg src="/images/li_meili.png" alt="review avatar" />
+          <span class="review-header">Li Meili</span>
+          <span class="review-car-model">Mazda CX-5</span>
           <span class="review-content">
-            Some short description of expereince by servece. Some short description of expereince by servece.
+            "MyNextParts was incredibly helpful. Quick search, big savings compared to my last spare part purchase.
+            Highly recommend!"
           </span>
         </div>
         <div class="single-review">
-          <NuxtImg src="/images/review_avatar.png" alt="review avatar" />
-          <span class="review-header">Sultan Ibrahimovich</span>
+          <NuxtImg src="/images/lukas_m.png" alt="review avatar" />
+          <span class="review-header">Lukas M.</span>
+          <span class="review-car-model">Toyota Camry</span>
           <span class="review-content">
-            Some short description of expereince by servece. Some short description of expereince by servece.
+            "Amazing service, so simple to use and hassle-free! I got a WOF and service done super fast, and I found
+            parts for my Toyota Camry at the best price. Highly recommend!"
           </span>
         </div>
         <div class="single-review">
-          <NuxtImg src="/images/review_avatar.png" alt="review avatar" />
-          <span class="review-header">Sultan Ibrahimovich</span>
+          <NuxtImg src="/images/lenny_j.png" alt="review avatar" />
+          <span class="review-header">Lenny Johnson</span>
+          <span class="review-car-model">Dodge Ram 2500</span>
           <span class="review-content">
-            Some short description of expereince by servece. Some short description of expereince by servece.
+            "Found all the chassis parts for my Dodge in just half a day. I simply filled out the form and it took me
+            only 5 minutes. It's the best service I've ever used! I didn't have to disrupt my routine at all."
           </span>
         </div>
       </div>
@@ -255,7 +265,7 @@
 
 <script setup>
 useHead({
-  title: "MyCarParts App - Easy search for car parts",
+  title: "MyNextParts - Easy search for car parts",
   meta: [
     {
       name: "description",
@@ -302,11 +312,16 @@ hr {
 
     h3 {
       font-weight: 300;
-      font-size: 50px;
+      font-size: 42px;
       line-height: 1;
 
       @media (max-width: 500px) {
         font-size: 35px;
+        line-height: 2.5rem;
+      }
+
+      @media (max-width: 400px) {
+        font-size: 30px;
         line-height: 2.5rem;
       }
 
@@ -347,8 +362,8 @@ hr {
           }
 
           &::placeholder {
-            color: $gray-700;
-            font-size: 16px;
+            color: $gray-800;
+            font-size: 15px;
             font-weight: 300;
           }
         }
@@ -424,13 +439,25 @@ hr {
   flex-direction: column;
   margin-top: 50px;
 
+  @media (max-width: 768px) {
+    margin-top: 10px;
+  }
+
   .how-it-works-header {
     text-align: center;
-    font-weight: 500;
-    font-size: 40px;
+    font-weight: 400;
+    font-size: 32px;
+
+    @media (max-width: 700px) {
+      font-size: 28px;
+    }
 
     @media (max-width: 500px) {
-      font-size: 35px;
+      font-size: 24px;
+    }
+
+    @media (max-width: 400px) {
+      font-size: 22px;
     }
   }
 
@@ -475,6 +502,10 @@ hr {
 
       @media (max-width: 500px) {
         font-size: 16px;
+      }
+
+      .text-link {
+        text-decoration: underline;
       }
     }
   }
@@ -735,7 +766,8 @@ hr {
     }
 
     @media (max-width: 350px) {
-      font-size: 30px;
+      font-size: 25px;
+      text-align: center;
     }
   }
 
@@ -774,9 +806,16 @@ hr {
       }
 
       .review-header {
-        margin: 20px 0;
+        margin: 15px 0 0 0;
         color: $black;
         font-weight: 500;
+      }
+
+      .review-car-model {
+        font-size: 12px;
+        color: $black;
+        font-style: italic;
+        margin-bottom: 10px;
       }
 
       .review-content {
