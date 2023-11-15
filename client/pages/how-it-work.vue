@@ -176,11 +176,18 @@ useHead({
 
   .important {
     color: $red;
-    font-size: 16px;
     font-weight: 500;
+
+    @media (max-width: 768px) {
+      font-size: 14px;
+    }
   }
   .additional-explanation {
     font-size: 14px;
+
+    @media (max-width: 768px) {
+      font-size: 12px;
+    }
   }
 }
 </style>
