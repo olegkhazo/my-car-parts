@@ -1,6 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import { defineNuxtConfig } from 'nuxt/config';
-import pkg from './package.json';
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
@@ -8,6 +7,12 @@ export default defineNuxtConfig({
   css: [
     "@/assets/styles/main.scss",
   ],
-  modules: ["@pinia/nuxt", "@nuxt/image", "@nuxtjs/style-resources"]
+  modules: [
+    "@pinia/nuxt", 
+    "@nuxt/image", 
+    "@nuxtjs/style-resources", 
+    "nuxt-simple-robots",  
+    "nuxt-simple-sitemap"],
+  
 })
 

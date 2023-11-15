@@ -44,9 +44,6 @@
             <NuxtLink to="/privacy-policy">Privacy</NuxtLink>
           </li>
           <li>
-            <NuxtLink to="/sitemap">Sitemap</NuxtLink>
-          </li>
-          <li>
             <NuxtLink to="/do-not-sale-info">Do not sale my info (CA)</NuxtLink>
           </li>
         </ul>
