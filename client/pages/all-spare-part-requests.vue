@@ -19,7 +19,7 @@
               <tr class="single-request-row" @click="showBlockWithAllRelatedContent">
                 <td>
                   <div class="green-wheel-img-wrapper">
-                    <NuxtImg src="images/green-wheel.svg" title="green-wheel" />
+                    <NuxtImg src="/images/green-wheel.svg" title="green-wheel" />
                   </div>
                 </td>
                 <td>

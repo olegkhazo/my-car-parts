@@ -7,9 +7,9 @@
         <form class="part-request-form" action="">
           <div v-if="formStep < 4" class="form-steps">
             <span class="step" :class="{ 'active-step': formStep === 1 }">1</span>
-            <NuxtImg src="images/step-arrow.svg" title="arrow" />
+            <NuxtImg src="/images/step-arrow.svg" title="arrow" />
             <span class="step" :class="{ 'active-step': formStep === 2 }">2</span>
-            <NuxtImg src="images/step-arrow.svg" title="arrow" />
+            <NuxtImg src="/images/step-arrow.svg" title="arrow" />
             <span class="step" :class="{ 'active-step': formStep === 3 }">3</span>
           </div>
 
@@ -28,12 +28,12 @@
         <span class="right-blue-block-title">Find yor next car part,</span>
         <span class="bold-span">Spend only couple minutes!</span>
         <div class="blue-arrow-wrapper top-arrow">
-          <NuxtImg src="images/blue-arrow.svg" title="arrow" />
+          <NuxtImg src="/images/blue-arrow.svg" title="arrow" />
         </div>
 
         <div class="priveleges">
           <div class="priveleges-point">
-            <NuxtImg src="images/green-wheel.svg" title="" />
+            <NuxtImg src="/images/green-wheel.svg" title="" />
             <span class="priveleges-text">
               <span class="bold-span">Complete the request form</span>
               <span class="thin-span">
@@ -42,14 +42,14 @@
             </span>
           </div>
           <div class="priveleges-point">
-            <NuxtImg src="images/green-wheel.svg" title="" />
+            <NuxtImg src="/images/green-wheel.svg" title="" />
             <span class="priveleges-text">
               <span class="bold-span">Receive responses</span>
               <span class="thin-span">within minutes from sellers across the USA.</span>
             </span>
           </div>
           <div class="priveleges-point">
-            <NuxtImg src="images/green-wheel.svg" title="" />
+            <NuxtImg src="/images/green-wheel.svg" title="" />
             <span class="priveleges-text">
               <span class="bold-span">Choose a seller</span>
               <span class="thin-span">with the best price and delivery terms</span>
@@ -57,7 +57,7 @@
           </div>
         </div>
         <div class="blue-arrow-wrapper">
-          <NuxtImg src="images/blue-arrow.svg" title="arrow" />
+          <NuxtImg src="/images/blue-arrow.svg" title="arrow" />
         </div>
 
         <ul class="result-you-get">
@@ -68,7 +68,7 @@
         </ul>
 
         <div class="thumbs-up-wrapper">
-          <NuxtImg src="images/thumbs-up.svg" title="thumbs-up" />
+          <NuxtImg src="/images/thumbs-up.svg" title="thumbs-up" />
         </div>
       </div>
     </div>

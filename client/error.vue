@@ -12,7 +12,7 @@
       </div>
     </div>
     <div class="error-img-wrapper">
-      <NuxtImg src="images/sad-dog.jpg" title="sad-dog" />
+      <NuxtImg src="/images/sad-dog.jpg" title="sad-dog" />
     </div>
   </div>
   <TheFooter />

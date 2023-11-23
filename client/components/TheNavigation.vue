@@ -6,11 +6,11 @@
       </div>
       <NuxtImg
         v-if="mobileMenuIcon === 'menu'"
-        src="images/menu_black_36dp.svg"
+        src="/images/menu_black_36dp.svg"
         class="menu-icon"
         @click="mobileMenuSwitcher"
       />
-      <NuxtImg v-else name="close" src="images/close_black_36dp.svg" class="menu-icon" @click="mobileMenuSwitcher" />
+      <NuxtImg v-else name="close" src="/images/close_black_36dp.svg" class="menu-icon" @click="mobileMenuSwitcher" />
       <div class="nav" :class="{ 'show-mobile-menu': mobileMenuVisibilaty }">
         <ul>
           <li>
