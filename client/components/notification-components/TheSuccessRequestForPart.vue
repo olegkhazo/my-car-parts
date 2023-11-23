@@ -3,7 +3,7 @@ import type { imgProps } from '@nuxt/image/dist/runtime/components/nuxt-img'; im
 <template>
   <div class="request-sending-result">
     <div class="succesful-notification">
-      <NuxtImg src="/images/checkmark.png" alt="green-checkmark" />
+      <NuxtImg src="/images/checkmark.png" title="green-checkmark" />
     </div>
     <h3>{{ props.data.header }}</h3>
     <div class="success-buttons-wrapper">

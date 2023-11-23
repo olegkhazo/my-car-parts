@@ -57,19 +57,19 @@
         </span>
         <ul>
           <li>
-            <NuxtImg src="/images/social/facebook.svg" alt="facebook" />
+            <NuxtImg src="/images/social/facebook.svg" title="facebook" />
           </li>
           <li>
-            <NuxtImg src="/images/social/linkedin.svg" alt="linkedin" />
+            <NuxtImg src="/images/social/linkedin.svg" title="linkedin" />
           </li>
           <li>
-            <NuxtImg src="/images/social/x.svg" alt="x" />
+            <NuxtImg src="/images/social/x.svg" title="x" />
           </li>
           <li>
-            <NuxtImg src="/images/social/instagram.svg" alt="instagram" />
+            <NuxtImg src="/images/social/instagram.svg" title="instagram" />
           </li>
           <li>
-            <NuxtImg src="/images/social/youtube.svg" alt="youtube" />
+            <NuxtImg src="/images/social/youtube.svg" title="youtube" />
           </li>
         </ul>
       </div>

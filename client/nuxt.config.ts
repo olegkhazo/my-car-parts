@@ -12,7 +12,10 @@ export default defineNuxtConfig({
     "@nuxt/image", 
     "@nuxtjs/style-resources", 
     "nuxt-simple-robots",  
-    "nuxt-simple-sitemap"],
-  
+    "nuxt-simple-sitemap"
+  ],
+  image: {
+    provider: 'ipx'
+  }
 })
 

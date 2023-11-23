@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
-    "@nuxt/image": "^1.0.0",
+    "@nuxt/image": "^1.1.0",
     "@nuxtjs/style-resources": "^2.0.0",
     "eslint": "^8.37.0",
     "nuxt": "^3.8.1",
