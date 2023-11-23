@@ -22,7 +22,7 @@
         </div>
       </div>
       <div class="img-wrapper">
-        <NuxtImg src="/images/strange-car.png" title="car" />
+        <NuxtImg src="images/strange-car.png" title="car" />
       </div>
     </div>
 
@@ -72,7 +72,7 @@
               <tr>
                 <td>
                   <div class="green-wheel-img-wrapper">
-                    <NuxtImg src="/images/green-wheel.svg" title="" />
+                    <NuxtImg src="images/green-wheel.svg" title="" />
                   </div>
                 </td>
                 <td>Rear silencer for 2008 Volkswagen Multivan 3.2 petrol</td>
@@ -82,7 +82,7 @@
               <tr>
                 <td>
                   <div class="green-wheel-img-wrapper">
-                    <NuxtImg src="/images/green-wheel.svg" title="" />
+                    <NuxtImg src="images/green-wheel.svg" title="" />
                   </div>
                 </td>
                 <td>Rear silencer for 2008 Volkswagen Multivan 3.2 petrol</td>
@@ -92,7 +92,7 @@
               <tr>
                 <td>
                   <div class="green-wheel-img-wrapper">
-                    <NuxtImg src="/images/green-wheel.svg" title="" />
+                    <NuxtImg src="images/green-wheel.svg" title="" />
                   </div>
                 </td>
                 <td>Rear silencer for 2008 Volkswagen Multivan 3.2 petrol</td>
@@ -102,7 +102,7 @@
               <tr>
                 <td>
                   <div class="green-wheel-img-wrapper">
-                    <NuxtImg src="/images/green-wheel.svg" title="" />
+                    <NuxtImg src="images/green-wheel.svg" title="" />
                   </div>
                 </td>
                 <td>Rear silencer for 2008 Volkswagen Multivan 3.2 petrol</td>
@@ -116,7 +116,7 @@
           <ul>
             <li>
               <div class="single-request-wrapper">
-                <NuxtImg src="/images/green-wheel.svg" title="" />
+                <NuxtImg src="images/green-wheel.svg" title="" />
                 <div class="request-description">
                   <p>Rear silencer for 2008 Volkswagen Multivan 3.2 petrol</p>
                   <span>Orlando - 2 minutes ago</span>
@@ -125,7 +125,7 @@
             </li>
             <li>
               <div class="single-request-wrapper">
-                <NuxtImg src="/images/green-wheel.svg" title="" />
+                <NuxtImg src="images/green-wheel.svg" title="" />
                 <div class="request-description">
                   <p>Rear silencer for 2008 Volkswagen Multivan 3.2 petrol</p>
                   <span>Orlando - 2 minutes ago</span>
@@ -134,7 +134,7 @@
             </li>
             <li>
               <div class="single-request-wrapper">
-                <NuxtImg src="/images/green-wheel.svg" title="" />
+                <NuxtImg src="images/green-wheel.svg" title="" />
                 <div class="request-description">
                   <p>Rear silencer for 2008 Volkswagen Multivan 3.2 petrol</p>
                   <span>Orlando - 2 minutes ago</span>
@@ -143,7 +143,7 @@
             </li>
             <li>
               <div class="single-request-wrapper">
-                <NuxtImg src="/images/green-wheel.svg" title="" />
+                <NuxtImg src="images/green-wheel.svg" title="" />
                 <div class="request-description">
                   <p>Rear silencer for 2008 Volkswagen Multivan 3.2 petrol</p>
                   <span>Orlando - 2 minutes ago</span>
@@ -157,7 +157,7 @@
         </div>
 
         <div class="info-for-sellers">
-          <NuxtImg src="/images/price.svg" title="price" class="price-label-img" />
+          <NuxtImg src="images/price.svg" title="price" class="price-label-img" />
           <div class="info-for-sellers-right">
             <span class="red-seller-info"> Do you sell auto parts?</span>
             <br />
@@ -190,7 +190,7 @@
 
     <div class="content-wrapper call-to-action-wrapper">
       <div class="buyer-call-to-action">
-        <NuxtImg src="/images/buyer.png" title="buyer" />
+        <NuxtImg src="images/buyer.png" title="buyer" />
         <div class="buyer-text">
           <span class="action-card-header">In search of specific parts? </span>
           <span class="action-card-body"
@@ -213,7 +213,7 @@
             <NuxtLink to="/part-request" class="yellow-btn">Send An Offer</NuxtLink>
           </span>
         </div>
-        <NuxtImg src="/images/sallesman.png" title="sallesman" />
+        <NuxtImg src="images/sallesman.png" title="sallesman" />
       </div>
     </div>
 
@@ -222,7 +222,7 @@
       <span class="user-reviews-description">Connecting those in need with those who have spare parts.</span>
       <div class="reviews-main-wrapper">
         <div class="single-review">
-          <NuxtImg src="/images/review_avatar.png" title="review avatar" />
+          <NuxtImg src="images/review_avatar.png" title="review avatar" />
           <span class="review-header">Arash Singh</span>
           <span class="review-car-model">Dodge Challenger</span>
           <span class="review-content">
@@ -232,7 +232,7 @@
           </span>
         </div>
         <div class="single-review">
-          <NuxtImg src="/images/li_meili.png" title="review avatar" />
+          <NuxtImg src="images/li_meili.png" title="review avatar" />
           <span class="review-header">Li Meili</span>
           <span class="review-car-model">Mazda CX-5</span>
           <span class="review-content">
@@ -241,7 +241,7 @@
           </span>
         </div>
         <div class="single-review">
-          <NuxtImg src="/images/lukas_m.png" title="review avatar" />
+          <NuxtImg src="images/lukas_m.png" title="review avatar" />
           <span class="review-header">Lukas M.</span>
           <span class="review-car-model">Toyota Camry</span>
           <span class="review-content">
@@ -250,7 +250,7 @@
           </span>
         </div>
         <div class="single-review">
-          <NuxtImg src="/images/lenny_j.png" title="review avatar" />
+          <NuxtImg src="images/lenny_j.png" title="review avatar" />
           <span class="review-header">Lenny Johnson</span>
           <span class="review-car-model">Dodge Ram 2500</span>
           <span class="review-content">
