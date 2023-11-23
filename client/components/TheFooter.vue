@@ -12,9 +12,9 @@
           <li>
             <NuxtLink to="/about-us">About Us</NuxtLink>
           </li>
-          <li>
+          <!-- <li>
             <NuxtLink to="/blog">Blog</NuxtLink>
-          </li>
+          </li> -->
           <li>
             <NuxtLink to="/faq">FAQ</NuxtLink>
           </li>

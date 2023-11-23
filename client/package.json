@@ -13,15 +13,17 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
-    "@nuxt/devtools": "latest",
     "@nuxt/image": "^1.1.0",
     "@nuxtjs/style-resources": "^2.0.0",
     "eslint": "^8.37.0",
     "nuxt": "^3.8.1",
     "nuxt-simple-robots": "^3.1.9",
-    "nuxt-simple-sitemap": "^4.1.2"
+    "nuxt-simple-sitemap": "^4.1.2",
+    "sharp": "^0.32.6",
+    "webpack": "^5.89.0"
   },
   "dependencies": {
+    "@nuxt/devtools": "1.0.2",
     "@pinia/nuxt": "^0.5.1",
     "@typescript-eslint/eslint-plugin": "^5.57.1",
     "@typescript-eslint/parser": "^5.57.1",
@@ -30,10 +32,13 @@
     "eslint-plugin-prettier": "^4.2.1",
     "git-describe": "^4.1.1",
     "moment": "^2.29.4",
+    "postcss": "^8.1.0",
     "prettier": "^2.8.7",
     "sass": "^1.69.5",
     "sass-loader": "^13.2.2",
+    "typescript": "^5.4.0-dev.20231123",
     "usa-states": "^0.0.6",
+    "vite": "^5.0.2",
     "vue": "^3.3.8",
     "vue-router": "^4.2.5"
   },
@@ -44,6 +49,6 @@
     "not ie 11"
   ],
   "resolutions": {
-    "autoprefixer": "10.4.5"
+    "autoprefixer": "10.4.16"
   }
 }
