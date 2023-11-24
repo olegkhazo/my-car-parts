@@ -14,6 +14,9 @@ export default defineNuxtConfig({
     "nuxt-simple-robots",  
     "nuxt-simple-sitemap"
   ],
+  site: {
+    url: 'https://mynextparts.com',
+  },
   image: {
     provider: 'ipx'
   }

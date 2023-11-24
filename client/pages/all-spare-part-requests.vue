@@ -143,11 +143,13 @@ useHead({
   ],
 });
 import { getTimeAgo } from "@/utils";
+import { API_URL } from "@/utils/constants";
+
 import { useAllPartRequestsDataStore } from "@/stores";
 
 const { originalSparePartRequestsData, filteredPartRequestsData } = storeToRefs(useAllPartRequestsDataStore());
 
-const { data: allRequests, error } = await useFetch(`http://localhost:3030/api/all-spare-part-requests-data`);
+const { data: allRequests, error } = await useFetch(API_URL + "all-spare-part-requests-data");
 
 onMounted(() => {
   if (allRequests.value) {

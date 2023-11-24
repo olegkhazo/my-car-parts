@@ -184,6 +184,8 @@ useHead({
     },
   ],
 });
+
+import { API_URL } from "@/utils/constants";
 import { usaStates } from "@/utils/usaStates";
 import { validateFormField } from "@/utils/index";
 import TheSuccessRequestForPart from "@/components/notification-components/TheSuccessRequestForPart";
@@ -215,7 +217,7 @@ const formData = ref({
   phone: "",
 });
 
-const { data: singleRequest, error } = await useFetch(`http://localhost:3030/api/single-spare-part-request-data/${id}`);
+const { data: singleRequest, error } = await useFetch(API_URL + "single-spare-part-request-data/${id}");
 
 onMounted(() => {
   if (singleRequest.value) {
@@ -269,7 +271,7 @@ async function createNewOffer() {
     isCityValid.value &&
     isPhoneValid.value
   ) {
-    const { data: newRequestCreating, error } = await useFetch("http://localhost:3030/api/create-offer", {
+    const { data: newRequestCreating, error } = await useFetch(API_URL + "create-offer", {
       method: "post",
       body: JSON.stringify(formData.value),
     });

@@ -87,6 +87,7 @@ useHead({
   ],
 });
 
+import { API_URL } from "@/utils/constants";
 import TheFirstFormStep from "@/components/part-request-forms/TheFirstFormStep";
 import TheSecondFormStep from "@/components/part-request-forms/TheSecondFormStep";
 import TheThirdFormStep from "@/components/part-request-forms/TheThirdFormStep";
@@ -110,7 +111,7 @@ function formStepsSwitcher(step) {
 }
 
 async function addPartRequestRecordToTheDB() {
-  const { data: newRequestCreating, error } = await useFetch("http://localhost:3030/api/create-part-request", {
+  const { data: newRequestCreating, error } = await useFetch(API_URL + "create-part-request", {
     method: "post",
     body: JSON.stringify(finalRequestData.value),
   });
