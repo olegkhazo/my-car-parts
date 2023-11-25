@@ -17,8 +17,6 @@ export default defineNuxtConfig({
   site: {
     url: 'https://mynextparts.com',
   },
-  image: {
-    provider: 'ipx'
-  }
+ 
 })
 

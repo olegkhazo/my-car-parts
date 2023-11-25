@@ -217,7 +217,7 @@ const formData = ref({
   phone: "",
 });
 
-const { data: singleRequest, error } = await useFetch(API_URL + "single-spare-part-request-data/${id}");
+const { data: singleRequest, error } = await useFetch(API_URL + `single-spare-part-request-data/${id}`);
 
 onMounted(() => {
   if (singleRequest.value) {

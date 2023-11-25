@@ -22,7 +22,7 @@
         </div>
       </div>
       <div class="img-wrapper">
-        <NuxtImg src="/images/strange-car.jpg" title="car" />
+        <NuxtImg src="https://i.ibb.co/YdDCgxP/strange-car.png" title="car" />
       </div>
     </div>
 
@@ -190,7 +190,7 @@
 
     <div class="content-wrapper call-to-action-wrapper">
       <div class="buyer-call-to-action">
-        <NuxtImg src="/images/buyer.jpg" title="buyer" />
+        <NuxtImg src="https://i.ibb.co/HxbHzB7/buyer.png" title="buyer" />
         <div class="buyer-text">
           <span class="action-card-header">In search of specific parts? </span>
           <span class="action-card-body"
@@ -213,7 +213,7 @@
             <NuxtLink to="/part-request" class="yellow-btn">Send An Offer</NuxtLink>
           </span>
         </div>
-        <NuxtImg src="/images/sallesman.jpg" title="sallesman" />
+        <NuxtImg src="https://i.ibb.co/1fBnyKb/sallesman.png" title="sallesman" />
       </div>
     </div>
 
@@ -222,7 +222,7 @@
       <span class="user-reviews-description">Connecting those in need with those who have spare parts.</span>
       <div class="reviews-main-wrapper">
         <div class="single-review">
-          <NuxtImg src="/images/review_avatar.jpg" title="review avatar" />
+          <NuxtImg src="https://i.ibb.co/zX6pBV4/review-avatar.png" title="review avatar" />
           <span class="review-header">Arash Singh</span>
           <span class="review-car-model">Dodge Challenger</span>
           <span class="review-content">
@@ -232,7 +232,7 @@
           </span>
         </div>
         <div class="single-review">
-          <NuxtImg src="/images/li_meili.jpg" title="review avatar" />
+          <NuxtImg src="https://i.ibb.co/3vSjmDK/li-meili.png" title="review avatar" />
           <span class="review-header">Li Meili</span>
           <span class="review-car-model">Mazda CX-5</span>
           <span class="review-content">
@@ -241,7 +241,7 @@
           </span>
         </div>
         <div class="single-review">
-          <NuxtImg src="/images/lukas_m.jpg" title="review avatar" />
+          <NuxtImg src="https://i.ibb.co/2KqZTDg/lukas-m.png" title="review avatar" />
           <span class="review-header">Lukas M.</span>
           <span class="review-car-model">Toyota Camry</span>
           <span class="review-content">
@@ -250,7 +250,7 @@
           </span>
         </div>
         <div class="single-review">
-          <NuxtImg src="/images/lenny_j.jpg" title="review avatar" />
+          <NuxtImg src="https://i.ibb.co/4JNz7k0/lenny-j.png" title="review avatar" />
           <span class="review-header">Lenny Johnson</span>
           <span class="review-car-model">Dodge Ram 2500</span>
           <span class="review-content">
