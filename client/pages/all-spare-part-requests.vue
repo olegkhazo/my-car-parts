@@ -151,15 +151,13 @@ const { originalSparePartRequestsData, filteredPartRequestsData } = storeToRefs(
 
 const { data: allRequests, error } = await useFetch(API_URL + "all-spare-part-requests-data");
 
-onMounted(() => {
-  if (allRequests.value) {
-    originalSparePartRequestsData.value = allRequests.value;
-    filteredPartRequestsData.value = originalSparePartRequestsData.value;
-  } else if (error.value) {
-    // should to think how better to show errors
-    console.log("something wrong:" + error.value);
-  }
-});
+if (allRequests.value) {
+  originalSparePartRequestsData.value = allRequests.value;
+  filteredPartRequestsData.value = originalSparePartRequestsData.value;
+} else if (error.value) {
+  // should to think how better to show errors
+  console.log("something wrong:" + error.value);
+}
 
 function showBlockWithAllRelatedContent(event) {
   const allContentRow = event.target.closest(".single-request-row").nextElementSibling;
