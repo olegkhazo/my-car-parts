@@ -210,7 +210,7 @@
             you have!
           </span>
           <span>
-            <NuxtLink to="/part-request" class="yellow-btn">Send An Offer</NuxtLink>
+            <NuxtLink to="/all-spare-part-requests" class="yellow-btn">Send An Offer</NuxtLink>
           </span>
         </div>
         <NuxtImg src="https://i.ibb.co/1fBnyKb/sallesman.png" title="sallesman" />
