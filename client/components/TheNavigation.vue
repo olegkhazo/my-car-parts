@@ -5,13 +5,23 @@
         <NuxtLink to="/">MyNextParts</NuxtLink>
       </div>
       <NuxtImg
-        v-if="mobileMenuIcon === 'menu'"
+        v-if="screenWidth < 1080 && mobileMenuVisibility"
         src="/images/menu_black_36dp.svg"
         class="menu-icon"
-        @click="mobileMenuSwitcher"
+        @click="showHideMobileMenu"
       />
-      <NuxtImg v-else name="close" src="/images/close_black_36dp.svg" class="menu-icon" @click="mobileMenuSwitcher" />
-      <div class="nav" :class="{ 'show-mobile-menu': mobileMenuVisibilaty }">
+      <NuxtImg
+        v-else-if="screenWidth < 1080 && !mobileMenuVisibility"
+        name="close"
+        src="/images/close_black_36dp.svg"
+        class="menu-icon"
+        @click="showHideMobileMenu"
+      />
+      <div
+        class="nav"
+        :class="{ 'show-mobile-menu': !mobileMenuVisibility && screenWidth < 1080 }"
+        v-click-outside="test"
+      >
         <ul>
           <li>
             <NuxtLink to="/part-request">Find parts</NuxtLink>
@@ -29,18 +39,25 @@
 </template>
 
 <script setup>
-import { ref, watch } from "vue";
+const screenWidth = ref(null);
+const mobileMenuVisibility = ref(true);
 
-const mobileMenuVisibilaty = ref(false);
-const mobileMenuIcon = ref("menu");
-
-function mobileMenuSwitcher() {
-  mobileMenuVisibilaty.value = mobileMenuVisibilaty.value === false;
+function displayWindowSize() {
+  screenWidth.value = document.documentElement.clientWidth;
 }
 
-watch(mobileMenuVisibilaty, () => {
-  mobileMenuIcon.value = mobileMenuVisibilaty.value === false ? "menu" : "close";
-});
+window.addEventListener("resize", displayWindowSize);
+
+displayWindowSize();
+console.log(screenWidth.value);
+
+function showHideMobileMenu() {
+  mobileMenuVisibility.value = mobileMenuVisibility.value === false;
+}
+
+function test() {
+  console.log("dfdsfdsfsd");
+}
 </script>
 
 <style lang="scss" scoped>
@@ -64,12 +81,12 @@ watch(mobileMenuVisibilaty, () => {
 
     .menu-icon {
       width: 38px;
-      display: none;
+      // display: none;
       cursor: pointer;
 
-      @media (max-width: 1080px) {
-        display: block;
-      }
+      // @media (max-width: 1080px) {
+      //   display: block;
+      // }
     }
 
     .nav {
@@ -121,6 +138,10 @@ watch(mobileMenuVisibilaty, () => {
           padding: 10px 0;
         }
       }
+    }
+
+    .hide {
+      display: none;
     }
   }
 }
