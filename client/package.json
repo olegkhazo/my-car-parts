@@ -17,6 +17,7 @@
     "@nuxtjs/style-resources": "^2.0.0",
     "eslint": "^8.37.0",
     "nuxt": "^3.8.1",
+    "nuxt-gtag": "^1.1.1",
     "nuxt-simple-robots": "^3.1.9",
     "nuxt-simple-sitemap": "^4.1.2",
     "sharp": "^0.32.6",
