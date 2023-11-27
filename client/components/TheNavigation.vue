@@ -5,23 +5,13 @@
         <NuxtLink to="/">MyNextParts</NuxtLink>
       </div>
       <NuxtImg
-        v-if="screenWidth < 1080 && mobileMenuVisibility"
+        v-if="!mobileMenuVisibility"
         src="/images/menu_black_36dp.svg"
         class="menu-icon"
         @click="showHideMobileMenu"
       />
-      <NuxtImg
-        v-else-if="screenWidth < 1080 && !mobileMenuVisibility"
-        name="close"
-        src="/images/close_black_36dp.svg"
-        class="menu-icon"
-        @click="showHideMobileMenu"
-      />
-      <div
-        class="nav"
-        :class="{ 'show-mobile-menu': !mobileMenuVisibility && screenWidth < 1080 }"
-        v-click-outside="test"
-      >
+      <NuxtImg v-else name="close" src="/images/close_black_36dp.svg" class="menu-icon" @click="showHideMobileMenu" />
+      <div class="nav" :class="{ 'show-mobile-menu': mobileMenuVisibility }" v-click-outside="clickOutsideMobileMenu">
         <ul>
           <li>
             <NuxtLink to="/part-request">Find parts</NuxtLink>
@@ -39,24 +29,16 @@
 </template>
 
 <script setup>
-const screenWidth = ref(null);
-const mobileMenuVisibility = ref(true);
-
-function displayWindowSize() {
-  screenWidth.value = document.documentElement.clientWidth;
-}
-
-window.addEventListener("resize", displayWindowSize);
-
-displayWindowSize();
-console.log(screenWidth.value);
+const mobileMenuVisibility = ref(false);
 
 function showHideMobileMenu() {
   mobileMenuVisibility.value = mobileMenuVisibility.value === false;
 }
 
-function test() {
-  console.log("dfdsfdsfsd");
+function clickOutsideMobileMenu(event) {
+  if (mobileMenuVisibility.value && !event.srcElement.classList.contains("menu-icon")) {
+    mobileMenuVisibility.value = false;
+  }
 }
 </script>
 
@@ -81,12 +63,12 @@ function test() {
 
     .menu-icon {
       width: 38px;
-      // display: none;
+      display: none;
       cursor: pointer;
 
-      // @media (max-width: 1080px) {
-      //   display: block;
-      // }
+      @media (max-width: 1080px) {
+        display: block;
+      }
     }
 
     .nav {
@@ -138,10 +120,6 @@ function test() {
           padding: 10px 0;
         }
       }
-    }
-
-    .hide {
-      display: none;
     }
   }
 }
