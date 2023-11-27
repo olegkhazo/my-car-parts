@@ -9,8 +9,8 @@ export default defineNuxtConfig({
   ],
   modules: [
     "@pinia/nuxt", 
-    "@nuxt/image", 
     "@nuxtjs/style-resources", 
+    "@nuxt/image", 
     "nuxt-simple-robots",  
     "nuxt-simple-sitemap"
   ],
