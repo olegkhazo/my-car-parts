@@ -12,7 +12,7 @@
       />
       <NuxtImg v-else name="close" src="/images/close_black_36dp.svg" class="menu-icon" @click="showHideMobileMenu" />
       <div class="nav" :class="{ 'show-mobile-menu': mobileMenuVisibility }" v-click-outside="clickOutsideMobileMenu">
-        <ul>
+        <ul @click="showHideMobileMenu">
           <li>
             <NuxtLink to="/part-request">Find parts</NuxtLink>
           </li>
