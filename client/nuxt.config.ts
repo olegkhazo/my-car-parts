@@ -10,9 +10,6 @@ export default defineNuxtConfig({
   modules: [
     "@pinia/nuxt", 
     "@nuxtjs/style-resources", 
-    ["nuxt-gtag", {
-      id: 'G-LRYNR27VT7'
-    }],
     "@nuxt/image", 
     "nuxt-simple-robots",  
     "nuxt-simple-sitemap"
