@@ -12,7 +12,7 @@
       />
       <NuxtImg v-else name="close" src="/images/close_black_36dp.svg" class="menu-icon" @click="showHideMobileMenu" />
       <div class="nav" :class="{ 'show-mobile-menu': mobileMenuVisibility }" v-click-outside="clickOutsideMobileMenu">
-        <ul @click="showHideMobileMenu">
+        <ul @click="hideMobileMenu">
           <li>
             <NuxtLink to="/part-request">Find parts</NuxtLink>
           </li>
@@ -39,6 +39,10 @@ function clickOutsideMobileMenu(event) {
   if (mobileMenuVisibility.value && !event.srcElement.classList.contains("menu-icon")) {
     mobileMenuVisibility.value = false;
   }
+}
+
+function hideMobileMenu() {
+  mobileMenuVisibility.value = false;
 }
 </script>
 
