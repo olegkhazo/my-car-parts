@@ -5,14 +5,14 @@
         <NuxtLink to="/">MyNextParts</NuxtLink>
       </div>
       <NuxtImg
-        v-if="mobileMenuIcon === 'menu'"
+        v-if="!mobileMenuVisibility"
         src="/images/menu_black_36dp.svg"
         class="menu-icon"
-        @click="mobileMenuSwitcher"
+        @click="showHideMobileMenu"
       />
-      <NuxtImg v-else name="close" src="/images/close_black_36dp.svg" class="menu-icon" @click="mobileMenuSwitcher" />
-      <div class="nav" :class="{ 'show-mobile-menu': mobileMenuVisibilaty }">
-        <ul>
+      <NuxtImg v-else name="close" src="/images/close_black_36dp.svg" class="menu-icon" @click="showHideMobileMenu" />
+      <div class="nav" :class="{ 'show-mobile-menu': mobileMenuVisibility }" v-click-outside="clickOutsideMobileMenu">
+        <ul @click="showHideMobileMenu">
           <li>
             <NuxtLink to="/part-request">Find parts</NuxtLink>
           </li>
@@ -29,18 +29,17 @@
 </template>
 
 <script setup>
-import { ref, watch } from "vue";
+const mobileMenuVisibility = ref(false);
 
-const mobileMenuVisibilaty = ref(false);
-const mobileMenuIcon = ref("menu");
-
-function mobileMenuSwitcher() {
-  mobileMenuVisibilaty.value = mobileMenuVisibilaty.value === false;
+function showHideMobileMenu() {
+  mobileMenuVisibility.value = mobileMenuVisibility.value === false;
 }
 
-watch(mobileMenuVisibilaty, () => {
-  mobileMenuIcon.value = mobileMenuVisibilaty.value === false ? "menu" : "close";
-});
+function clickOutsideMobileMenu(event) {
+  if (mobileMenuVisibility.value && !event.srcElement.classList.contains("menu-icon")) {
+    mobileMenuVisibility.value = false;
+  }
+}
 </script>
 
 <style lang="scss" scoped>
