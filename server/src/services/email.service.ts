@@ -1,18 +1,18 @@
 import nodemailer from 'nodemailer';
 
 const transporter = nodemailer.createTransport({
-  host: 'smtp-relay.brevo.com',
-  port: 587, 
-  secure: false, // true for 465, false for other ports
+  host: 'mynextparts.com',
+  port: 465,
+  secure: true,
   auth: {
-    user: 'o.zhuravko@gmail.com',
-    pass: 't0BU98nVANjWaZIh',
+    user: 'info@mynextparts.com',
+    pass: 'Applemak1234$$$',
   },
 });
 
 export const sendEmail = async (recipient: string, subject: string, body: string) => {
   const mailOptions = {
-    from: 'o.zhuravko@gmail.com',
+    from: 'info@mynextparts.com',
     to: recipient,
     subject,
     text: body,
