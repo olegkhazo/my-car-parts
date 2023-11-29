@@ -68,85 +68,40 @@
                 <th>Sent</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody v-for="request in firstTenRequests" id="tbody" :key="request._id">
               <tr>
                 <td>
                   <div class="green-wheel-img-wrapper">
-                    <NuxtImg src="/images/green-wheel.svg" title="" />
+                    <NuxtImg src="/images/green-wheel.svg" title="green-gear" />
                   </div>
                 </td>
-                <td>Rear silencer for 2008 Volkswagen Multivan 3.2 petrol</td>
-                <td>Orlando</td>
-                <td>2 minutes ago</td>
-              </tr>
-              <tr>
                 <td>
-                  <div class="green-wheel-img-wrapper">
-                    <NuxtImg src="/images/green-wheel.svg" title="" />
+                  {{ request.part_name }} for {{ request.car_make }} {{ request.car_model }} {{ request.engine_volume }}
+                  {{ request.fuel_type }}
+                  <div class="block-for-mobile-screen">
+                    {{ request.city }} -
+                    {{ getTimeAgo(request.created_date) }}
                   </div>
                 </td>
-                <td>Rear silencer for 2008 Volkswagen Multivan 3.2 petrol</td>
-                <td>Orlando</td>
-                <td>2 minutes ago</td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="green-wheel-img-wrapper">
-                    <NuxtImg src="/images/green-wheel.svg" title="" />
-                  </div>
+                <td class="form-area-column">{{ request.city }}</td>
+                <td class="form-date-column">
+                  {{ getTimeAgo(request.created_date) }}
                 </td>
-                <td>Rear silencer for 2008 Volkswagen Multivan 3.2 petrol</td>
-                <td>Orlando</td>
-                <td>2 minutes ago</td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="green-wheel-img-wrapper">
-                    <NuxtImg src="/images/green-wheel.svg" title="" />
-                  </div>
-                </td>
-                <td>Rear silencer for 2008 Volkswagen Multivan 3.2 petrol</td>
-                <td>Orlando</td>
-                <td>2 minutes ago</td>
               </tr>
             </tbody>
           </table>
         </div>
-        <div class="last-requests-sm-screen-wrapper">
+        <div class="last-requests-sm-screen-wrapper" v-for="request in firstTenRequests" id="tbody" :key="request._id">
           <ul>
             <li>
               <div class="single-request-wrapper">
                 <NuxtImg src="/images/green-wheel.svg" title="" />
                 <div class="request-description">
-                  <p>Rear silencer for 2008 Volkswagen Multivan 3.2 petrol</p>
-                  <span>Orlando - 2 minutes ago</span>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="single-request-wrapper">
-                <NuxtImg src="/images/green-wheel.svg" title="" />
-                <div class="request-description">
-                  <p>Rear silencer for 2008 Volkswagen Multivan 3.2 petrol</p>
-                  <span>Orlando - 2 minutes ago</span>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="single-request-wrapper">
-                <NuxtImg src="/images/green-wheel.svg" title="" />
-                <div class="request-description">
-                  <p>Rear silencer for 2008 Volkswagen Multivan 3.2 petrol</p>
-                  <span>Orlando - 2 minutes ago</span>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="single-request-wrapper">
-                <NuxtImg src="/images/green-wheel.svg" title="" />
-                <div class="request-description">
-                  <p>Rear silencer for 2008 Volkswagen Multivan 3.2 petrol</p>
-                  <span>Orlando - 2 minutes ago</span>
+                  <p>
+                    {{ request.part_name }} for {{ request.car_make }} {{ request.car_model }}
+                    {{ request.engine_volume }}
+                  </p>
+                  <span>{{ request.city }} - {{ getTimeAgo(request.created_date) }}</span>
                 </div>
               </div>
             </li>
@@ -273,7 +228,20 @@ useHead({
     },
   ],
 });
+
 const { dataFromFirstFormStep } = storeToRefs(usePartRequestFormStore());
+import { getTimeAgo } from "@/utils";
+import { API_URL } from "@/utils/constants";
+
+const firstTenRequests = ref(null);
+const { data: allRequests, error } = await useFetch(API_URL + "all-spare-part-requests-data");
+
+if (allRequests.value) {
+  firstTenRequests.value = allRequests.value.slice(-5);
+} else {
+  // should to think how better to show errors
+  console.log("something wrong:" + error.value);
+}
 </script>
 
 <style lang="scss" scoped>
@@ -553,6 +521,15 @@ hr {
 
     @media (max-width: 720px) {
       display: none;
+    }
+
+    .block-for-mobile-screen {
+      display: none;
+
+      @media (max-width: 720px) {
+        display: block;
+        color: $gray-700;
+      }
     }
   }
 
