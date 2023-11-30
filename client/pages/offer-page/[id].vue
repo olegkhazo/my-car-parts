@@ -82,7 +82,7 @@
               </span>
               <input id="email" v-model="formData.email" type="email" name="email" placeholder="E-mail" />
 
-              <label class="label-text" for="phone"> Phone </label>
+              <label class="label-text" for="phone"> Phone *</label>
               <span v-if="!isPhoneValid && formButtonClicked" class="input-error-notification"
                 >Please enter a valid phone number.</span
               >
