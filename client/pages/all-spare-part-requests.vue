@@ -131,7 +131,7 @@
       <br />
       <paginate
         v-model="currentPage"
-        :page-count="3"
+        :page-count="numPages"
         :page-range="5"
         :click-handler="switchPage"
         :container-class="'pagination'"
@@ -158,10 +158,16 @@ import { useAllPartRequestsDataStore } from "@/stores";
 import Paginate from "vuejs-paginate-next";
 
 const currentPage = ref(1);
+const numPages = ref(1);
 
 const switchPage = (pageNum) => {
   console.log(pageNum);
 };
+
+// Should to add numPages calculation after when fetching is done
+// Add switcher to the next/previous 10 requests if pagination clicked,
+// will be one variable with all results and one rewriting variable which will contain current collection,
+// with 10 entries.
 
 const { originalSparePartRequestsData, filteredPartRequestsData } = storeToRefs(useAllPartRequestsDataStore());
 
