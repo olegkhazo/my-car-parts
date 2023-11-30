@@ -128,6 +128,16 @@
           </table>
         </div>
       </div>
+      <br />
+      <paginate
+        v-model="currentPage"
+        :page-count="3"
+        :page-range="5"
+        :click-handler="switchPage"
+        :container-class="'pagination'"
+        prev-text="<"
+        next-text=">"
+      />
     </div>
   </div>
 </template>
@@ -144,8 +154,14 @@ useHead({
 });
 import { getTimeAgo } from "@/utils";
 import { API_URL } from "@/utils/constants";
-
 import { useAllPartRequestsDataStore } from "@/stores";
+import Paginate from "vuejs-paginate-next";
+
+const currentPage = ref(1);
+
+const switchPage = (pageNum) => {
+  console.log(pageNum);
+};
 
 const { originalSparePartRequestsData, filteredPartRequestsData } = storeToRefs(useAllPartRequestsDataStore());
 
