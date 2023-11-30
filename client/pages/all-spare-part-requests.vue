@@ -152,6 +152,11 @@ const { originalSparePartRequestsData, filteredPartRequestsData } = storeToRefs(
 const { data: allRequests, error } = await useFetch(API_URL + "all-spare-part-requests-data");
 
 if (allRequests.value) {
+  allRequests.value.sort((a, b) => {
+    // Compare the created_date in descending order
+    return new Date(b.created_date) - new Date(a.created_date);
+  });
+
   originalSparePartRequestsData.value = allRequests.value;
   filteredPartRequestsData.value = originalSparePartRequestsData.value;
 } else if (error.value) {
