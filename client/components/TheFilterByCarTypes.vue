@@ -15,8 +15,8 @@
 
       <select id="model" v-model="filterByModel" name="model" :disabled="filterByYear === 'Year'">
         <option value="Select Model">Select Model</option>
-        <option v-for="models in modelsCollection.Results" :key="models" value="models.Model_Name">
-          {{ models.Model_Name }}
+        <option v-for="model in modelsCollection.Results" :key="model">
+          {{ model.Model_Name }}
         </option>
       </select>
     </div>
