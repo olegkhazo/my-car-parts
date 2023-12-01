@@ -15,8 +15,8 @@
                 <th class="form-info-button-column"></th>
               </tr>
             </thead>
-            <tbody v-for="request in filteredPartRequestsData" id="tbody" :key="request._id">
-              <tr class="single-request-row" @click="showBlockWithAllRelatedContent">
+            <tbody v-for="request in chunkOfRequestsForView" id="tbody" :key="request._id">
+              <tr class="single-request-row" @click="showAllContentOfSingleRequest">
                 <td>
                   <div class="green-wheel-img-wrapper">
                     <NuxtImg src="/images/green-wheel.svg" title="green-wheel" />
@@ -116,7 +116,7 @@
                         <NuxtLink :to="'/offer-page/' + request._id" class="suggest-button xl-green-btn"
                           >Suggest your variant</NuxtLink
                         >
-                        <span class="close-content-btn blue-btn" @click="hideOpenedContentByButtonClick"
+                        <span class="close-content-btn blue-btn" @click="hideAllContentOfSingleRequest"
                           >Hide content</span
                         >
                       </div>
@@ -128,6 +128,16 @@
           </table>
         </div>
       </div>
+      <br />
+      <paginate
+        v-model="currentPage"
+        :page-count="numPages"
+        :page-range="5"
+        :click-handler="rewriteChunkOfRequests"
+        :container-class="'pagination'"
+        prev-text="<"
+        next-text=">"
+      />
     </div>
   </div>
 </template>
@@ -144,22 +154,56 @@ useHead({
 });
 import { getTimeAgo } from "@/utils";
 import { API_URL } from "@/utils/constants";
-
 import { useAllPartRequestsDataStore } from "@/stores";
+import Paginate from "vuejs-paginate-next";
 
+const currentPage = ref(1);
+const chunkOfRequestsForView = ref([]);
 const { originalSparePartRequestsData, filteredPartRequestsData } = storeToRefs(useAllPartRequestsDataStore());
 
+//fetching all requests
 const { data: allRequests, error } = await useFetch(API_URL + "all-spare-part-requests-data");
 
-if (allRequests.value) {
-  originalSparePartRequestsData.value = allRequests.value;
-  filteredPartRequestsData.value = originalSparePartRequestsData.value;
-} else if (error.value) {
-  // should to think how better to show errors
-  console.log("something wrong:" + error.value);
+onMounted(() => {
+  if (allRequests.value) {
+    allRequests.value.sort((a, b) => {
+      // Comparing and sorting the created_date in descending order
+      return new Date(b.created_date) - new Date(a.created_date);
+    });
+
+    originalSparePartRequestsData.value = allRequests.value;
+    filteredPartRequestsData.value = originalSparePartRequestsData.value;
+
+    chunkOfRequestsForView.value = filteredPartRequestsData.value.slice(0, 10);
+  } else if (error.value) {
+    // should to think how better to show errors
+    console.log("something wrong:" + error.value);
+  }
+});
+
+const numPages = computed(() => {
+  return filteredPartRequestsData.value.length / 10;
+});
+
+function rewriteChunkOfRequests(pageNum) {
+  currentPage.value = pageNum;
+
+  if (currentPage.value === 1) {
+    chunkOfRequestsForView.value = filteredPartRequestsData.value.slice(0, 10);
+  } else {
+    chunkOfRequestsForView.value = filteredPartRequestsData.value.slice(
+      currentPage.value * 10 - 10,
+      currentPage.value * 10
+    );
+  }
+  scrollToTopOfTheTableBody();
 }
 
-function showBlockWithAllRelatedContent(event) {
+watch(filteredPartRequestsData, () => {
+  chunkOfRequestsForView.value = filteredPartRequestsData.value.slice(0, 10);
+});
+
+function showAllContentOfSingleRequest(event) {
   const allContentRow = event.target.closest(".single-request-row").nextElementSibling;
 
   allContentRow.classList.contains("hidden")
@@ -167,11 +211,15 @@ function showBlockWithAllRelatedContent(event) {
     : allContentRow.classList.add("hidden");
 }
 
-function hideOpenedContentByButtonClick(event) {
+function hideAllContentOfSingleRequest(event) {
   const button = event.target;
   const contentRow = button.closest(".all-content-for-single-request");
   contentRow.classList.add("hidden");
 
+  scrollToTopOfTheTableBody();
+}
+
+function scrollToTopOfTheTableBody() {
   document.getElementById("tbody").scrollIntoView({
     block: "start",
     behavior: "smooth",

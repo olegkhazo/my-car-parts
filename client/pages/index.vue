@@ -234,10 +234,16 @@ import { getTimeAgo } from "@/utils";
 import { API_URL } from "@/utils/constants";
 
 const firstTenRequests = ref(null);
+
 const { data: allRequests, error } = await useFetch(API_URL + "all-spare-part-requests-data");
 
 if (allRequests.value) {
-  firstTenRequests.value = allRequests.value.slice(-5);
+  allRequests.value.sort((a, b) => {
+    // Compare the created_date in descending order
+    return new Date(b.created_date) - new Date(a.created_date);
+  });
+
+  firstTenRequests.value = allRequests.value.slice(0, 5);
 } else {
   // should to think how better to show errors
   console.log("something wrong:" + error.value);

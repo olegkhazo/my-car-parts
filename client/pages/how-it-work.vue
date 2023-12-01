@@ -116,12 +116,12 @@ useHead({
       .step-number {
         background-color: $yellow;
         color: $black;
-        padding: 10px 18px;
+        padding: 10px 17px;
         font-size: 20px;
         border-radius: 50%;
 
         @media (max-width: 402px) {
-          padding: 10px 16px;
+          padding: 10px 15px;
           font-size: 13px;
         }
       }
