@@ -13,6 +13,7 @@ export const FORM_VALIDATION_PATTERNS = {
   EMAIL_PATTERN: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
   PHONE_PATTERN: /^(?:\+1)?(?:\(\d{3}\)|\d{3})[-.\s]?\d{3}[-.\s]?\d{4}$/,
   ENGINE_VOLUME_PATTERN: /^(?:\d|1\d|20)(\.\d\d?)?$/,
+  PRICE_PATTERN: /^\d{1,6}$/,
 };
 
 

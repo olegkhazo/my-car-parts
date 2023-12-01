@@ -60,6 +60,12 @@
                 <label class="label-text" for="radio-used"> Used </label>
               </div>
 
+              <label class="label-text" for="price">Price *</label>
+              <span v-if="!isPriceValid && formButtonClicked" class="input-error-notification"
+                >Set the price for your part</span
+              >
+              <input id="price" v-model="formData.price" type="price" name="price" placeholder="Price" />
+
               <label class="label-text" for="state">State *</label>
               <span v-if="!isStateValid && formButtonClicked" class="input-error-notification"
                 >Select the state where spare part is located</span
@@ -211,6 +217,7 @@ const formData = ref({
   company_name: "",
   type_of_part: "original",
   part_condition: "new",
+  price: "",
   state: "",
   city_area: "",
   email: "",
@@ -245,6 +252,10 @@ const isCompanyNameValid = computed(() => {
   return validateFormField(formData.value.company_name, "COMMON_NOT_EMPTY_PATTERN");
 });
 
+const isPriceValid = computed(() => {
+  return validateFormField(formData.value.price, "PRICE_PATTERN");
+});
+
 const isStateValid = computed(() => {
   return validateFormField(formData.value.state, "COMMON_NOT_EMPTY_PATTERN");
 });
@@ -267,6 +278,7 @@ async function createNewOffer() {
     isEmailValid.value &&
     isNameValid.value &&
     isCompanyNameValid.value &&
+    isPriceValid.value &&
     isStateValid.value &&
     isCityValid.value &&
     isPhoneValid.value
