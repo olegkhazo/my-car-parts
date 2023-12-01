@@ -23,6 +23,9 @@ class Offer {
     part_condition: string;
 
     @prop()
+    price: number;
+
+    @prop()
     state: string;
 
     @prop()
@@ -34,7 +37,7 @@ class Offer {
     @prop()
     phone: string;
 
-    @prop({ default: Date.now })
+    @prop({ default: () => Date.now() })
     created_date: Date;
 }
 
