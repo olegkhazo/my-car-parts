@@ -159,17 +159,19 @@ async function checkTheFormFields(step) {
   if (
     isCarTypeValid.value &&
     isCarMakeValid.value &&
-    isCarMakeValid.value &&
     isCarYearValid.value &&
     isCarModelValid.value &&
-    isFuelTypeValid.value
+    isFuelTypeValid.value &&
+    isEngineVolumeValid.value
   ) {
     formData.value.car_make = filterByMake.value;
     formData.value.car_year = filterByYear.value;
-    formData.value.car_model = filterByModel.value.Model_Name;
+    formData.value.car_model = filterByModel.value;
 
     Object.assign(dataFromSecondFormStep.value, formData.value);
+    console.log(formData.value);
 
+    console.log(dataFromSecondFormStep.value);
     switchFormToAnotherStep(step);
   }
 }
