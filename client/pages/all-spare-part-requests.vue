@@ -72,13 +72,13 @@
                             Car make:
                             <span class="bold">{{ request.car_make }}</span>
                           </span>
-                          <span v-if="request.car_year">
-                            Car year:
-                            <span class="bold">{{ request.car_year }}</span>
-                          </span>
                           <span v-if="request.car_model">
                             Car model:
                             <span class="bold">{{ request.car_model }}</span>
+                          </span>
+                          <span v-if="request.car_year">
+                            Car year:
+                            <span class="bold">{{ request.car_year }}</span>
                           </span>
                         </div>
                         <div class="single-request-details-right">
