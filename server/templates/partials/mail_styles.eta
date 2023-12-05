@@ -102,8 +102,15 @@
    }
 
    .wrapper .h-of-email-content {
-        padding-top: 10px;
-        padding-bottom: 10px;
+        padding: 15px;
+   }
+
+   .info-content {
+    padding: 5px 15px;
+   }
+
+   .info-content a {
+    color: #45C5FC !important;
    }
 
    .field-name {
@@ -119,12 +126,19 @@
     font-weight: 600;
    }
 
-    .call-btn {
-        color: #45C5FC;
-    }
+   .email-link {
+    background-color: #F8F8F8 !important;
+   }
 
-    .new-request-btn {
-        color: #D9D9D9;
+    .email-link:hover {
+    background-color: #F8F8F8 !important;
+   }
+
+    .call-btn {
+    padding: 5px 15px;
+    color: black;
+    border-radius: 5px;
+    text-decoration: none;
     }
 
     .content-block {
@@ -134,7 +148,7 @@
 
     .footer {
     clear: both;
-    margin-top: 10px;
+    margin-top: 0;
     text-align: center;
     width: 100%; 
     }
@@ -193,17 +207,11 @@
         width: auto; 
     }
     .btn table td {
-        background-color: #ffffff;
+        background-color: #F8F8F8;
+        padding: 15px;
         border-radius: 5px;
         text-align: center; 
-    }
-
-
-    .btn-primary table td {
-    background-color: #3498db; 
-    }
-
-    
+    }   
 
     /* -------------------------------------
         OTHER STYLES THAT MIGHT BE USEFUL
@@ -255,7 +263,12 @@
 
     hr {
     height: 1px;
-    background: #000;     
+    background: #000; 
+    width: 95%;    
+    }
+
+    .pre-footer-hr {
+        background: #D1D1D1 !important;
     }
 
     /* -------------------------------------
@@ -334,9 +347,17 @@
         font-weight: inherit;
         line-height: inherit;
     }
-    .btn-primary table td:hover {
-        background-color: #34495e !important; 
+
+    .btn-primary a {
+        color: #000;
+        background-color: #45C5FC;
+        border-color: #45C5FC; 
+    } 
+      .btn-primary a:hover {
+        background-color: #1FBCFF;
+        border-color: #1FBCFF; 
+    } 
     }
-    }
+    
 
 </style>
