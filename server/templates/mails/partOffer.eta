@@ -1,20 +1,116 @@
 <% layout("../layouts/mail") %>
 
-<p>Hi there,</p>
-<p>Sometimes you just want to send a simple HTML email with a simple design and clear call to action. This is it.</p>
 <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
     <tbody>
+    <tr>
+        <td class="h-of-email-content">
+            <span class="email-header">New offer on 'MyNextParts' for “<%= it.offerData.part_name %>”:</span>
+        </td>
+    </tr>
+    <hr />
+     <tr>
+        <td class="render-content">
+            <span class="field-name">From: </span>
+            <span class="field-value">
+                <%= it.offerData.full_name %> (<%= it.offerData.company_name %>)
+            </span>
+        </td>
+    </tr>    
+
+    <tr>
+        <td class="render-content">
+            <span class="field-name">Related to: </span>
+            <span class="field-value">
+                <%= it.offerData.part_name %>
+            </span>
+        </td>
+    </tr>
+
+    <tr>
+        <td class="render-content">
+            <span class="field-name">Price: </span>
+            <span class="field-value">
+                <%= it.offerData.price %>
+            </span>
+        </td>
+    </tr>
+
+    <tr>
+        <td class="render-content">
+            <span class="field-name">Type of part: </span>
+            <span class="field-value">
+                <%= it.offerData.type_of_part %>
+            </span>
+        </td>
+    </tr>
+
+    <tr>
+        <td class="render-content">
+            <span class="field-name">Part condition: </span>
+            <span class="field-value">
+                <%= it.offerData.part_condition %>
+            </span>
+        </td>
+    </tr>
+
+    <tr>
+        <td class="render-content">
+            <span class="field-name">City: </span>
+            <span class="field-value">
+                <%= it.offerData.city_area %>
+            </span>
+        </td>
+    </tr>
+
+    <tr>
+        <td class="render-content">
+            <span class="field-name">City: </span>
+            <span class="field-value">
+                <%= it.offerData.city_area %>
+            </span>
+        </td>
+    </tr>
+
+   <tr>
+       <td class="render-content">
+            <span class="field-name">Email: </span>
+            <span class="field-value">
+                <a href="mailto:<%= it.offerData.email %>" class="email-link"><%= it.offerData.email %></a>
+            </span>
+        </td>
+    </tr>
+
+   <tr>
+        <td class="render-content">
+            <span class="field-name">Phone: </span>
+            <span class="field-value">
+                <%= it.offerData.phone %>
+            </span>
+        </td>
+    </tr>
+
+
     <tr>
         <td align="left">
         <table role="presentation" border="0" cellpadding="0" cellspacing="0">
             <tbody>
             <tr>
-                <td> <a href="<%= `${it.url}activate?code=${it.activationCode}` %>" target="_blank">Activate account</a> </td>
+                <td> 
+                    <div>
+                        <a href="tel:<%= it.offerData.phone %>" class="call-btn">Call To Seller</a>
+                        <br />
+                        <a href="https://mynextparts.com/part-request" class="new-request-btn" target="_blank">Send New Request</a>     
+                    </div>
+                </td>
             </tr>
+
+           
             </tbody>
         </table>
         </td>
     </tr>
+
+     <hr />
     </tbody>
 </table>
 <p>This is a really simple email template. Its sole purpose is to get the recipient to click the button with no distractions.</p>

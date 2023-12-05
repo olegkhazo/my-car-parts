@@ -40,7 +40,6 @@ export const sendPartOffer = async (to: string, offerPart: string, offerData: ob
   const html = templater.render("./mails/partOffer", { 
       offerPart,
       offerData,
-      // preheader: "Yo got a new offer",
       url: 'http://localhost:3030/',
       email: to
   });

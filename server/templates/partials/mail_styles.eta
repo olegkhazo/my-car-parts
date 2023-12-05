@@ -24,7 +24,8 @@
     }
 
     table {
-    border-collapse: separate;
+    background-color: #F8F8F8;
+    border-collapse: collapse;
     mso-table-lspace: 0pt;
     mso-table-rspace: 0pt;
     width: 100%; }
@@ -39,8 +40,13 @@
     ------------------------------------- */
 
     .body {
-    background-color: #f6f6f6;
+    background-color: #ffffff;
     width: 100%; 
+    }
+
+    .email-header {
+      font-size: 22px;
+      font-weight: 700;
     }
 
     /* Set a max-width, and make it display as block so it will automatically stretch to that width, but will also shrink down on a phone or something */
@@ -49,7 +55,6 @@
     margin: 0 auto !important;
     /* makes it centered */
     max-width: 580px;
-    padding: 10px;
     width: 580px; 
     }
 
@@ -59,7 +64,20 @@
     display: block;
     margin: 0 auto;
     max-width: 580px;
-    padding: 10px; 
+    }
+
+    .grey-email-ceiling {
+        background-color: #6F6F6F;
+        height: 60px;
+    }
+
+    .grey-email-ceiling img {
+        width: 160px;
+        margin-top: 12px;
+    }
+
+    img {
+        width: 160px;
     }
 
     /* -------------------------------------
@@ -73,7 +91,40 @@
 
     .wrapper {
     box-sizing: border-box;
-    padding: 20px; 
+    }
+
+    .wrapper tr {
+      padding: 0;
+    }
+
+   .wrapper .render-content {
+        padding: 5px 15px;
+   }
+
+   .wrapper .h-of-email-content {
+        padding-top: 10px;
+        padding-bottom: 10px;
+   }
+
+   .field-name {
+    color: #000;
+    font-size: 16px;    
+    font-weight: 600;   
+   }
+
+   .field-value {
+    color: #6F6F6F;
+    font-family: Inter;
+    font-size: 18px;
+    font-weight: 600;
+   }
+
+    .call-btn {
+        color: #45C5FC;
+    }
+
+    .new-request-btn {
+        color: #D9D9D9;
     }
 
     .content-block {
@@ -90,11 +141,6 @@
     .footer td,
     .footer p,
     .footer span,
-    .footer a {
-        color: #999999;
-        font-size: 12px;
-        text-align: center; 
-    }
 
     /* -------------------------------------
         TYPOGRAPHY
@@ -134,10 +180,6 @@
         margin-left: 5px; 
     }
 
-    a {
-    color: #3498db;
-    text-decoration: underline; 
-    }
 
     /* -------------------------------------
         BUTTONS
@@ -155,31 +197,13 @@
         border-radius: 5px;
         text-align: center; 
     }
-    .btn a {
-        background-color: #ffffff;
-        border: solid 1px #3498db;
-        border-radius: 5px;
-        box-sizing: border-box;
-        color: #3498db;
-        cursor: pointer;
-        display: inline-block;
-        font-size: 14px;
-        font-weight: bold;
-        margin: 0;
-        padding: 12px 25px;
-        text-decoration: none;
-        text-transform: capitalize; 
-    }
+
 
     .btn-primary table td {
     background-color: #3498db; 
     }
 
-    .btn-primary a {
-    background-color: #3498db;
-    border-color: #3498db;
-    color: #ffffff; 
-    }
+    
 
     /* -------------------------------------
         OTHER STYLES THAT MIGHT BE USEFUL
@@ -229,14 +253,9 @@
     width: 0; 
     }
 
-    .powered-by a {
-    text-decoration: none; 
-    }
-
     hr {
-    border: 0;
-    border-bottom: 1px solid #f6f6f6;
-    margin: 20px 0; 
+    height: 1px;
+    background: #000;     
     }
 
     /* -------------------------------------
@@ -318,10 +337,6 @@
     .btn-primary table td:hover {
         background-color: #34495e !important; 
     }
-    .btn-primary a:hover {
-        background-color: #34495e !important;
-        border-color: #34495e !important; 
-    } 
     }
 
 </style>
