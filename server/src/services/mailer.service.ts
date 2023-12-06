@@ -18,7 +18,7 @@ const templater = new Eta({ views: templatePath })
 export const SendMail = async (to: string, subject: string, text: string, html: string) => {
   try {
     const info = await transporter.sendMail({
-      from: 'info@mynextparts.com',
+      from: 'MyNextParts <info@mynextparts.com>',
       to,
       subject,
       text,
@@ -33,6 +33,8 @@ export const SendMail = async (to: string, subject: string, text: string, html: 
   }
 };
 
+
+
 export const sendPartOffer = async (to: string, offerPart: string, offerData: object) => {
   const html = templater.render("./mails/partOffer", { 
       offerPart,
@@ -41,6 +43,6 @@ export const sendPartOffer = async (to: string, offerPart: string, offerData: ob
       email: to
   });
   
-  const subject = `New offer on 'MyNextParts' for ${offerPart}`;
+  const subject = `You got a new part offer!`;
   await SendMail(to, subject, "", html);
 }
