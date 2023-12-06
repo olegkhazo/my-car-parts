@@ -16,25 +16,22 @@ const templatePath = path.join(__dirname, "../../templates");
 const templater = new Eta({ views: templatePath })
 
 export const SendMail = async (to: string, subject: string, text: string, html: string) => {
-  const info = await transporter.sendMail({
-    from: 'info@mynextparts.com', //will take it from .env file in future
-    to,
-    subject,
-    text,
-    html,
-  });
-
-  // console.log("Message sent: %s", info.messageId, info);
   try {
-    await transporter.sendMail(info);
+    const info = await transporter.sendMail({
+      from: 'info@mynextparts.com',
+      to,
+      subject,
+      text,
+      html,
+    });
+
     console.log('Email sent successfully');
+    return info;
   } catch (error) {
     console.error('Error sending email:', error);
     throw error;
   }
 };
-
-
 
 export const sendPartOffer = async (to: string, offerPart: string, offerData: object) => {
   const html = templater.render("./mails/partOffer", { 

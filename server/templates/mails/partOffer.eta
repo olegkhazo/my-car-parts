@@ -30,7 +30,7 @@
         <td class="render-content">
             <span class="field-name">Price: </span>
             <span class="field-value">
-                <%= it.offerData.price %>
+                $<%= it.offerData.price %>
             </span>
         </td>
     </tr>
@@ -102,7 +102,7 @@
             <p>If you have any question, write to us: <a href="mailto:info@mynextparts.com" class="email-link">info@mynextparts.com</a></p>
         </td>
      </tr>
-     
+
      <hr class="pre-footer-hr" />
 
     </tbody>
