@@ -2,7 +2,7 @@
   <div class="content-wrapper">
     <div class="request-form-page-wrapper">
       <div class="form-wrapper">
-        <span class="form-description">Find car parts in USA</span>
+        <span id="form-page-title" class="form-description">Find car parts in USA</span>
 
         <form class="part-request-form" action="">
           <div v-if="formStep < 4" class="form-steps">
@@ -81,7 +81,7 @@ useHead({
   meta: [
     {
       name: "description",
-      content: `An easy way to find car parts, just fill out the form, send a 
+      content: `An easy way to find car parts, just fill out the form, send a
           request and hundreds of auto parts sellers will offer the parts they have`,
     },
   ],
@@ -107,7 +107,16 @@ const formStep = ref(1);
 const finalRequestData = ref({});
 
 function formStepsSwitcher(step) {
+  scrollToTopOfTheTableBody();
+
   formStep.value = step;
+}
+
+function scrollToTopOfTheTableBody() {
+  document.getElementById("form-page-title").scrollIntoView({
+    block: "start",
+    behavior: "smooth",
+  });
 }
 
 async function addPartRequestRecordToTheDB() {
@@ -118,6 +127,9 @@ async function addPartRequestRecordToTheDB() {
 
   if (newRequestCreating.value) {
     console.log("Part request created successfully");
+    dataFromFirstFormStep.value = {};
+    dataFromSecondFormStep.value = {};
+    dataFromThirdFormStep.value = {};
   } else if (error.value) {
     // should to think how better to show errors
     console.log("something wrong:" + error.value);
