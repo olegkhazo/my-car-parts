@@ -16,9 +16,9 @@
           <li>
             <NuxtLink to="/about-us">About Us</NuxtLink>
           </li>
-          <!-- <li>
-            <NuxtLink to="/blog">Blog</NuxtLink>
-          </li> -->
+          <li>
+            <NuxtLink to="https://blog.mynextparts.com">Blog</NuxtLink>
+          </li>
           <li>
             <NuxtLink to="/faq">FAQ</NuxtLink>
           </li>
