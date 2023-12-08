@@ -2,7 +2,7 @@
   <div>
     <div class="content-wrapper">
       <h2>Offer Page</h2>
-      <div class="offer-page-wrapper">
+      <div id="offer-page-wrapper" class="offer-page-wrapper">
         <div class="form-wrapper">
           <form class="offer-form">
             <div v-if="!successfulOferSending" class="offer-form-fields-section">
@@ -290,11 +290,19 @@ async function createNewOffer() {
 
     if (newRequestCreating.value) {
       successfulOferSending.value = true;
+      scrollToTopOfTheTableBody();
     } else if (error.value) {
       // should to think how better to show errors
       console.log("something wrong:" + error.value);
     }
   }
+}
+
+function scrollToTopOfTheTableBody() {
+  document.getElementById("offer-page-wrapper").scrollIntoView({
+    block: "start",
+    behavior: "smooth",
+  });
 }
 </script>
 
