@@ -2,8 +2,9 @@
   <div class="header">
     <div class="content-wrapper">
       <div class="header-logo">
-        <NuxtImg src="https://i.ibb.co/ysjxbSY/sports-car.png" alt="sports-car" class="car-repair" />
-        <NuxtLink to="/">My<span class="logo-blue-word">Next</span>Parts</NuxtLink>
+        <NuxtLink to="/">
+          <NuxtImg src="/images/logo.svg" alt="logo" />
+        </NuxtLink>
       </div>
       <NuxtImg
         v-if="!mobileMenuVisibility"
@@ -60,20 +61,6 @@ function hideMobileMenu() {
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-    .header-logo {
-      font-size: 24px;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      .car-repair {
-        margin-right: 2px;
-      }
-
-      .logo-blue-word {
-        color: $blue-100;
-      }
-    }
 
     .menu-icon {
       width: 38px;

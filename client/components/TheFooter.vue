@@ -3,7 +3,11 @@
     <div class="content-wrapper footer-wrapper">
       <div class="main-footer-nav">
         <ul class="logo-container">
-          <li class="footer-logo">MyNextParts</li>
+          <li class="footer-logo">
+            <NuxtLink to="/">
+              <NuxtImg src="/images/logo.svg" alt="logo" />
+            </NuxtLink>
+          </li>
           <li class="footer-project-description">
             <b>MyNextParts</b> is not responsible for the quality of third-party parts and services.
           </li>
@@ -131,8 +135,6 @@
         }
 
         .footer-logo {
-          font-size: 22px;
-          font-weight: 600;
           margin: 10px 0 0 0;
         }
 
