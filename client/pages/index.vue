@@ -112,7 +112,9 @@
         </div>
 
         <div class="info-for-sellers">
-          <NuxtImg src="/images/price.svg" title="price" class="price-label-img" />
+          <div class="info-for-sellers-img">
+            <NuxtImg src="/images/price.svg" title="price" class="price-label-img" />
+          </div>
           <div class="info-for-sellers-right">
             <span class="red-seller-info"> Do you sell auto parts?</span>
             <br />
@@ -145,7 +147,9 @@
 
     <div class="content-wrapper call-to-action-wrapper">
       <div class="buyer-call-to-action">
-        <NuxtImg src="https://i.ibb.co/HxbHzB7/buyer.png" title="buyer" />
+        <div class="buyer-img-wrapper">
+          <NuxtImg src="https://i.ibb.co/HxbHzB7/buyer.png" title="buyer" />
+        </div>
         <div class="buyer-text">
           <span class="action-card-header">In search of specific parts? </span>
           <span class="action-card-body"
@@ -168,7 +172,9 @@
             <NuxtLink to="/all-spare-part-requests" class="yellow-btn">Send An Offer</NuxtLink>
           </span>
         </div>
-        <NuxtImg src="https://i.ibb.co/1fBnyKb/sallesman.png" title="sallesman" />
+        <div class="sellesman-img">
+          <NuxtImg src="https://i.ibb.co/1fBnyKb/sallesman.png" title="sallesman" />
+        </div>
       </div>
     </div>
 
@@ -596,6 +602,10 @@ hr {
       width: 45px;
     }
 
+    info-for-sellers-img {
+      width: 50%;
+    }
+
     .info-for-sellers-right {
       margin-left: 20px;
 
@@ -648,22 +658,33 @@ hr {
   .buyer-call-to-action {
     display: flex;
 
+    .buyer-img-wrapper {
+      width: 50%;
+
+      @media (max-width: 1020px) {
+        width: 90%;
+      }
+    }
+
     img {
       width: 100%;
     }
 
     @media (max-width: 1020px) {
+      align-items: center;
       flex-direction: column;
     }
 
     .buyer-text {
       display: flex;
+      width: 50%;
       flex-direction: column;
       justify-content: center;
       padding: 0 20px 0 60px;
 
       @media (max-width: 1020px) {
         padding: 0;
+        width: 90%;
         align-items: center;
         text-align: center;
       }
@@ -679,19 +700,30 @@ hr {
 
     @media (max-width: 1020px) {
       margin-top: 40px;
+      align-items: center;
       flex-direction: column-reverse;
     }
 
     .sallesman-text {
       display: flex;
+      width: 50%;
       flex-direction: column;
       justify-content: center;
       padding: 0 85px 0 0;
 
       @media (max-width: 1020px) {
         padding: 0;
+        width: 90%;
         align-items: center;
         text-align: center;
+      }
+    }
+
+    .sellesman-img {
+      width: 50%;
+
+      @media (max-width: 1020px) {
+        width: 90%;
       }
     }
   }
