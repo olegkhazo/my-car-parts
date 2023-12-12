@@ -33,8 +33,6 @@ export const SendMail = async (to: string, subject: string, text: string, html: 
   }
 };
 
-
-
 export const sendPartOffer = async (to: string, offerPart: string, offerData: object) => {
   const html = templater.render("./mails/partOffer", { 
       offerPart,
@@ -44,5 +42,19 @@ export const sendPartOffer = async (to: string, offerPart: string, offerData: ob
   });
   
   const subject = `You got a new part offer!`;
+  await SendMail(to, subject, "", html);
+}
+
+// Send it to salesman after successful part offer sending
+export const sendPartOfferNotification = async (to: string, offerPart: string, offerData: object) => {
+  const html = templater.render("./mails/partOffer", { 
+      offerPart,
+      offerData,
+      url: 'http://localhost:3030/',
+      email: to,
+      emailForSalesman: true,
+  });
+  
+  const subject = `You sent a new part offer!`;
   await SendMail(to, subject, "", html);
 }
