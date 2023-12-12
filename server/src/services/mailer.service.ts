@@ -58,3 +58,16 @@ export const sendPartOfferNotification = async (to: string, offerPart: string, o
   const subject = `You sent a new part offer!`;
   await SendMail(to, subject, "", html);
 }
+
+// Send it to buyer after successful part request sent
+export const sendPartRequestDetails = async (to: string, offerPart: string, offerData: object) => {
+  const html = templater.render("./mails/partRequest", { 
+      offerPart,
+      offerData,
+      url: 'http://localhost:3030/',
+      email: to,
+  });
+  
+  const subject = `You sent a new part request!`;
+  await SendMail(to, subject, "", html);
+}

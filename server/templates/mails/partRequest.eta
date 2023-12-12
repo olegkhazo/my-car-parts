@@ -1,0 +1,89 @@
+<% layout("../layouts/mail") %>
+
+<table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
+    <tbody>
+    <tr>
+        <td class="h-of-email-content">                
+            <span class="email-header">Your new part request content on "MyNextParts" for “<%= it.offerData.part_name %>”:</span>
+        </td>
+    </tr>
+    <hr />
+    <tr>
+        <td class="render-content">
+            <span class="field-name">Name: </span>
+            <span class="field-value">
+               <%= it.offerData.name %>
+            </span>
+        </td>
+    </tr>    
+
+    <tr>
+        <td class="render-content">
+            <span class="field-name">Type of part: </span>
+            <span class="field-value">
+                <%= it.offerData.type_of_part %>
+            </span>
+        </td>
+    </tr>
+
+    <tr>
+        <td class="render-content">
+            <span class="field-name">Part condition: </span>
+            <span class="field-value">
+                <%= it.offerData.part_condition %>
+            </span>
+        </td>
+    </tr>
+
+    <tr>
+        <td class="render-content">
+            <span class="field-name">City: </span>
+            <span class="field-value">
+                <%= it.offerData.city_area %>
+            </span>
+        </td>
+    </tr>
+
+   <tr>
+       <td class="render-content">
+            <span class="field-name">Email: </span>
+            <span class="field-value">
+                <a href="mailto:<%= it.offerData.email %>" class="email-link"><%= it.offerData.email %></a>
+            </span>
+        </td>
+    </tr>
+
+   <tr>
+        <td class="render-content">
+            <span class="field-name">Phone: </span>
+            <span class="field-value">
+                <%= it.offerData.phone %>
+            </span>
+        </td>
+    </tr>
+
+    <tr>
+        <td align="left">
+        <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+            <tbody>
+            <tr>
+                <td>                  
+                    <a href="https://mynextparts.com/part-request" class="call-btn">Send New Request</a>            
+                </td>
+            </tr>           
+            </tbody>
+        </table>
+        </td>
+    </tr>   
+
+    <hr />
+
+    <tr>
+      <td class="info-content">
+        <p>If you have any question, write to us: <a href="mailto:info@mynextparts.com" class="email-link">info@mynextparts.com</a></p>
+      </td>
+    </tr>
+
+    <hr class="pre-footer-hr" />
+    </tbody>
+</table>
