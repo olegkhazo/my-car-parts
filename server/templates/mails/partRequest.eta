@@ -8,23 +8,33 @@
         </td>
     </tr>
     <hr />
+
     <tr>
         <td class="render-content">
-            <span class="field-name">Name: </span>
+            <span class="field-name">Part name: </span>
             <span class="field-value">
-               <%= it.offerData.name %>
+               <%= it.offerData.part_name %>
             </span>
         </td>
-    </tr>    
+    </tr> 
+
+    <tr>
+        <td class="render-content">
+            <span class="field-name">Part group: </span>
+            <span class="field-value">
+               <%= it.offerData.part_group %>
+            </span>
+        </td>
+    </tr>  
 
     <tr>
         <td class="render-content">
             <span class="field-name">Type of part: </span>
             <span class="field-value">
-                <%= it.offerData.type_of_part %>
+               <%= it.offerData.type_of_part %>
             </span>
         </td>
-    </tr>
+    </tr>    
 
     <tr>
         <td class="render-content">
@@ -37,23 +47,86 @@
 
     <tr>
         <td class="render-content">
-            <span class="field-name">City: </span>
+            <span class="field-name">Part code: </span>
             <span class="field-value">
-                <%= it.offerData.city_area %>
+                <%= it.offerData.part_code %>
+            </span>
+        </td>
+    </tr>
+
+    <tr>
+        <td class="render-content">
+            <span class="field-name">Car type: </span>
+            <span class="field-value">
+                <%= it.offerData.car_type %>
             </span>
         </td>
     </tr>
 
    <tr>
        <td class="render-content">
-            <span class="field-name">Email: </span>
+            <span class="field-name">Car make: </span>
             <span class="field-value">
-                <a href="mailto:<%= it.offerData.email %>" class="email-link"><%= it.offerData.email %></a>
+                <%= it.offerData.car_make %>
             </span>
         </td>
     </tr>
 
    <tr>
+        <td class="render-content">
+            <span class="field-name">Car model: </span>
+            <span class="field-value">
+                <%= it.offerData.car_model %>
+            </span>
+        </td>
+    </tr>
+
+    <tr>
+        <td class="render-content">
+            <span class="field-name">Car year: </span>
+            <span class="field-value">
+                <%= it.offerData.car_year %>
+            </span>
+        </td>
+    </tr>
+
+        <tr>
+        <td class="render-content">
+            <span class="field-name">Fuel type: </span>
+            <span class="field-value">
+                <%= it.offerData.fuel_type %>
+            </span>
+        </td>
+    </tr>
+
+    <tr>
+        <td class="render-content">
+            <span class="field-name">Engine volume: </span>
+            <span class="field-value">
+                <%= it.offerData.engine_volume %>
+            </span>
+        </td>
+    </tr>
+
+    <tr>
+        <td class="render-content">
+            <span class="field-name">Car body: </span>
+            <span class="field-value">
+                <%= it.offerData.car_body %>
+            </span>
+        </td>
+    </tr>
+
+    <tr>
+        <td class="render-content">
+            <span class="field-name">Vin code: </span>
+            <span class="field-value">
+                <%= it.offerData.vin_code %>
+            </span>
+        </td>
+    </tr>
+
+    <tr>
         <td class="render-content">
             <span class="field-name">Phone: </span>
             <span class="field-value">
@@ -61,6 +134,35 @@
             </span>
         </td>
     </tr>
+
+    <tr>
+        <td class="render-content">
+            <span class="field-name">Name: </span>
+            <span class="field-value">
+                <%= it.offerData.name %>
+            </span>
+        </td>
+    </tr>
+
+    <tr>
+        <td class="render-content">
+            <span class="field-name">City: </span>
+            <span class="field-value">
+                <%= it.offerData.city %>
+            </span>
+        </td>
+    </tr>
+
+    <tr>
+        <td class="render-content">
+            <span class="field-name">Comment: </span>
+            <span class="field-value">
+                <%= it.offerData.comment %>
+            </span>
+        </td>
+    </tr>
+
+
 
     <tr>
         <td align="left">
