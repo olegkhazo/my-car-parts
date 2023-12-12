@@ -2,7 +2,23 @@
 import { defineNuxtConfig } from 'nuxt/config';
 
 export default defineNuxtConfig({
-
+  runtimeConfig: {
+    public: {
+      posthogPublicKey: 'phc_WDTGC09yj0oPOYDgvFnWRC46QuJMzRpKJnCCndeJskW',
+      posthogHost: 'https://eu.posthog.com'
+    }
+  },
+  app: {
+    head: {
+      script: [
+        {
+          src: "<https://example.com/script.js>",
+          type: "text/javascript",
+          async: true,
+        },
+      ],
+    },
+  },
   css: [
     "@/assets/styles/main.scss",
   ],
@@ -19,6 +35,6 @@ export default defineNuxtConfig({
   },
   gtag: {
     id: "G-LRYNR27VT7"
-  }
+  },
 })
 
