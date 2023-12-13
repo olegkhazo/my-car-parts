@@ -2,13 +2,20 @@ import nodemailer from 'nodemailer';
 import { Eta } from "eta";
 import path from 'path';
 
+const host = process.env.MAIL_HOST;
+const port: number = parseInt(process.env.MAIL_PORT as string, 10);
+const user = process.env.MAIL_USER;
+const pass = process.env.MAIL_PASSWORD;
+const from = process.env.MAIL_FROM;
+const api = process.env.API_HOST;
+
 const transporter = nodemailer.createTransport({
-  host: 'mynextparts.com',
-  port: 465,
+  host,
+  port,
   secure: true,
   auth: {
-    user: 'info@mynextparts.com',
-    pass: 'Applemak1234$$$',
+    user,
+    pass,
   },
 });
 
@@ -18,7 +25,7 @@ const templater = new Eta({ views: templatePath })
 export const SendMail = async (to: string, subject: string, text: string, html: string) => {
   try {
     const info = await transporter.sendMail({
-      from: 'MyNextParts <info@mynextparts.com>',
+      from,
       to,
       subject,
       text,
@@ -37,7 +44,7 @@ export const sendPartOffer = async (to: string, offerPart: string, offerData: ob
   const html = templater.render("./mails/partOffer", { 
       offerPart,
       offerData,
-      url: 'http://localhost:3030/',
+      api,
       email: to
   });
   
@@ -50,7 +57,7 @@ export const sendPartOfferNotification = async (to: string, offerPart: string, o
   const html = templater.render("./mails/partOffer", { 
       offerPart,
       offerData,
-      url: 'http://localhost:3030/',
+      api,
       email: to,
       emailForSalesman: true,
   });
@@ -64,7 +71,7 @@ export const sendPartRequestDetails = async (to: string, offerPart: string, offe
   const html = templater.render("./mails/partRequest", { 
       offerPart,
       offerData,
-      url: 'http://localhost:3030/',
+      api,
       email: to,
   });
   
