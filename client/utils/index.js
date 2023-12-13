@@ -15,13 +15,14 @@ export function getTimeAgo(timestamp) {
   } else if (duration.asHours() < 24) {
     return Math.floor(duration.asHours()) + ' hours ago';
   } else if (duration.asDays() < 7) {
-    return Math.floor(duration.asDays()) + ' days ago';
-  } else if (duration.asMonths() < 1) {
-    return Math.floor(duration.asWeeks()) + ' weeks ago';
+    return Math.floor(duration.asDays()) + (Math.floor(duration.asDays()) === 1 ? ' day ago' : ' days ago');
+  } else if (duration.asMonths() < 1 ) {
+    return Math.floor(duration.asWeeks()) + (Math.floor(duration.asWeeks()) === 1 ? ' week ago' : ' weeks ago');
   } else {
-    return Math.floor(duration.asMonths()) + ' months ago';
+    return Math.floor(duration.asMonths()) + (Math.floor(duration.asMonths()) === 1 ? ' month ago' : ' months ago');
   }
 }
+
 
 // Form fields validator function. Used inside computed property
 export function validateFormField(fieldData, validator) {
