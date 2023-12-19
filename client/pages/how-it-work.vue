@@ -35,8 +35,6 @@
     <div class="video-wrapper">
       <h2>Watch a video with the part request tutorial</h2>
       <iframe
-        width="560"
-        height="315"
         src="https://www.youtube.com/embed/YFW1h5gvnrk?si=mkpIMFdrG-GZvbh6"
         title="YouTube video player"
         frameborder="0"
@@ -157,10 +155,38 @@ useHead({
     text-align: center;
     margin-bottom: 50px;
 
+    iframe {
+      width: 560px;
+      height: 315px;
+
+      @media (max-width: 768px) {
+        width: 506px;
+        height: 284px;
+      }
+
+      @media (max-width: 550px) {
+        width: 404px;
+        height: 226px;
+      }
+
+      @media (max-width: 505px) {
+        width: 283px;
+        height: 158px;
+      }
+    }
+
     h2 {
       font-size: 40px;
       font-weight: 300;
       text-align: center;
+
+      @media (max-width: 834px) {
+        font-size: 28px;
+      }
+
+      @media (max-width: 382px) {
+        font-size: 20px;
+      }
     }
   }
 
