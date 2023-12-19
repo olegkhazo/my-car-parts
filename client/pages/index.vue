@@ -125,6 +125,19 @@
           </div>
         </div>
       </div>
+
+      <div class="video-wrapper">
+        <h2>Watch a video with the part request tutorial</h2>
+        <iframe
+          width="560"
+          height="315"
+          src="https://www.youtube.com/embed/YFW1h5gvnrk?si=mkpIMFdrG-GZvbh6"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      </div>
     </div>
 
     <div class="content-wrapper simple-project-decription-wrapper">
@@ -620,6 +633,17 @@ hr {
         font-weight: 600;
       }
     }
+  }
+}
+
+.video-wrapper {
+  text-align: center;
+  margin-bottom: 50px;
+
+  h2 {
+    font-size: 40px;
+    font-weight: 300;
+    text-align: center;
   }
 }
 
