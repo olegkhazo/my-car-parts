@@ -61,10 +61,14 @@
         </span>
         <ul>
           <li>
-            <NuxtImg src="/images/social/facebook.svg" title="facebook" />
+            <NuxtLink to="https://www.facebook.com/mynextparts/" target="_blank">
+              <NuxtImg src="/images/social/facebook.svg" title="facebook" />
+            </NuxtLink>
           </li>
           <li>
-            <NuxtImg src="/images/social/linkedin.svg" title="linkedin" />
+            <NuxtLink to="https://www.linkedin.com/company/mynextparts/" target="_blank">
+              <NuxtImg src="/images/social/linkedin.svg" title="linkedin" />
+            </NuxtLink>
           </li>
           <li>
             <NuxtImg src="/images/social/x.svg" title="x" />
@@ -73,7 +77,9 @@
             <NuxtImg src="/images/social/instagram.svg" title="instagram" />
           </li>
           <li>
-            <NuxtImg src="/images/social/youtube.svg" title="youtube" />
+            <NuxtLink>
+              <NuxtImg src="/images/social/youtube.svg" title="youtube" />
+            </NuxtLink>
           </li>
         </ul>
       </div>
