@@ -71,12 +71,14 @@
             </NuxtLink>
           </li>
           <li>
-            <NuxtLink to="https://twitter.com/mynextparts" target="_blank">
+            <NuxtLink to="https://twitter.com/mynextparts/" target="_blank">
               <NuxtImg src="/images/social/x.svg" title="x" />
             </NuxtLink>
           </li>
           <li>
-            <NuxtImg src="/images/social/instagram.svg" title="instagram" />
+            <NuxtLink to="https://www.instagram.com/mynextparts/" target="_blank">
+              <NuxtImg src="/images/social/instagram.svg" title="instagram" />
+            </NuxtLink>
           </li>
           <li>
             <NuxtLink to="https://www.youtube.com/channel/UCstXDE9fGYmqKiYqttW5tOw" target="_blank">
