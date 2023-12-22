@@ -32,6 +32,16 @@
         >
       </div>
     </div>
+    <div class="video-wrapper">
+      <h2>Watch a video with the part request tutorial</h2>
+      <iframe
+        src="https://www.youtube.com/embed/YFW1h5gvnrk?si=mkpIMFdrG-GZvbh6"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+      ></iframe>
+    </div>
     <span class="important">Important:</span>
     <span class="additional-explanation">
       Sending a request for auto parts through <b>MyNextParts</b> does not yet constitute placing an order. It simply
@@ -137,6 +147,45 @@ useHead({
           width: 100%;
           margin-top: 20px;
         }
+      }
+    }
+  }
+
+  .video-wrapper {
+    text-align: center;
+    margin-bottom: 50px;
+
+    iframe {
+      width: 560px;
+      height: 315px;
+
+      @media (max-width: 768px) {
+        width: 506px;
+        height: 284px;
+      }
+
+      @media (max-width: 550px) {
+        width: 404px;
+        height: 226px;
+      }
+
+      @media (max-width: 505px) {
+        width: 283px;
+        height: 158px;
+      }
+    }
+
+    h2 {
+      font-size: 40px;
+      font-weight: 300;
+      text-align: center;
+
+      @media (max-width: 834px) {
+        font-size: 28px;
+      }
+
+      @media (max-width: 382px) {
+        font-size: 20px;
       }
     }
   }
