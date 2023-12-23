@@ -1,22 +1,23 @@
 import { Request, Response, NextFunction } from 'express';
-import { UserModel } from '../models/user.models';
+import { UsersModel } from '../models/user.models';
 // import { sendPartRequestDetails } from '../services/mailer.service';
 const jwt = require('jsonwebtoken');
 
-export const registerUser = async (req: Request, res: Response) => {
-    const { username, password } = req.body;
+export const registerUser = async (req: Request, res: Response, next: NextFunction) => {
+    const { userEmail, password } = req.body;
   
     try {
-      const existingUser = await UserModel.findOne({ username });
+      const existingUser = await UsersModel.findOne({ userEmail });
   
       if (existingUser) {
-        return res.status(400).json({ error: 'Пользователь с таким именем уже существует' });
+        console.log("already exist");
+        return res.status(400).json({ error: 'Пользователь таким именем уже существует' });
       }
   
-      const activationToken = jwt.sign({ username }, 'activation-secret-key', { expiresIn: '1h' });
+      const activationToken = jwt.sign({ userEmail }, 'activation-secret-key', { expiresIn: '1h' });
       console.log(activationToken);
 
-      const newUser = new UserModel({ username, password, activationToken });
+      const newUser = new UsersModel({ userEmail, password, activationToken });
       await newUser.save();
   
       //const activationLink = `http://localhost:3000/api/activate/${activationToken}`;
@@ -43,9 +44,9 @@ export const registerUser = async (req: Request, res: Response) => {
   
     try {
       const decodedToken = jwt.verify(token, 'activation-secret-key');
-      const { username } = decodedToken;
+      const { userEmail } = decodedToken;
   
-      await UserModel.findOneAndUpdate({ username }, { $set: { isActive: true, activationToken: null } });
+      await UsersModel.findOneAndUpdate({ userEmail }, { $set: { isActive: true, activationToken: null } });
   
       res.redirect('http://localhost:3000/activation-success');
     } catch (error) {

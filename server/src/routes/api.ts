@@ -26,8 +26,8 @@ router.post('/create-offer', createOffer);
 // User registration and Authorisation API routers
 // ***
 
-router.post('/api/register', registerUser);
+router.post('/register', registerUser);
 
-router.get('/api/activate/:token', activateUser);
+router.get('/activate/:token', activateUser);
 
 export default router;

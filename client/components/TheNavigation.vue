@@ -22,10 +22,10 @@
             <NuxtLink to="/all-spare-part-requests">Suggest your parts</NuxtLink>
           </li>
           <li>
-            <NuxtLink to="how-it-work">How it work</NuxtLink>
+            <NuxtLink to="/how-it-work">How it work</NuxtLink>
           </li>
           <li>
-            <NuxtLink href="#">Registration</NuxtLink>
+            <NuxtLink to="/registration/company-registration">Registration</NuxtLink>
           </li>
           <li>
             <NuxtLink href="#" class="blue-btn">Sign In</NuxtLink>
