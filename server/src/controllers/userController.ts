@@ -22,25 +22,14 @@ export const registerUser = async (req: Request, res: Response, next: NextFuncti
       const newUser = new UsersModel({ userEmail, password, activationToken });
       await newUser.save();
   
-      const activationLink = `${API_HOST}/activate/${activationToken}`;
+      const activationLink = `${API_HOST}api/activate/${activationToken}`;
 
-
-      //await sendPartOfferNotification(req.body.email, req.body.part_name, req.body);
 
       await sendUsersAccountActivationLink(req.body.userEmail, activationLink)
 
-      // const mailOptions = {
-      //   from: 'your-email@gmail.com',
-      //   to: 'user-email@example.com',
-      //   subject: 'Активация аккаунта',
-      //   text: `Для активации вашего аккаунта перейдите по следующей ссылке: ${activationLink}`,
-      // };  
-      // await transporter.sendMail(mailOptions);  
-      // res.status(201).json({ message: 'Письмо с инструкциями по активации отправлено' });
-
     } catch (error) {
       console.error(error);
-      res.status(500).json({ error: 'Что-то пошло не так' });
+      res.status(500).json({ error: 'Something wrong' });
     }
   };
   
@@ -53,10 +42,10 @@ export const registerUser = async (req: Request, res: Response, next: NextFuncti
   
       await UsersModel.findOneAndUpdate({ userEmail }, { $set: { isActive: true, activationToken: null } });
   
-      res.redirect('http://localhost:3000/activation-success');
+      res.redirect('http://localhost:3000/registration/activation-success');
     } catch (error) {
       console.error(error);
-      res.status(400).json({ error: 'Неверный токен активации' });
+      res.status(400).json({ error: 'Wrong activation token' });
     }
   };
   
