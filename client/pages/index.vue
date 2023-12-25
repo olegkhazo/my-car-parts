@@ -32,7 +32,7 @@
         <div class="how-it-works-step">
           <span class="step-header">Submit a form</span>
           <span class="step-body">
-            <NuxtLink to="part-request" class="text-link">Submit</NuxtLink> a short request form, indicating the
+            <NuxtLink to="/part-request" class="text-link">Submit</NuxtLink> a short request form, indicating the
             required auto part and information about your car.
           </span>
         </div>
@@ -128,8 +128,6 @@
 
       <div class="video-wrapper">
         <h2>Watch a video with the part request tutorial</h2>
-        <!-- width="560"
-        height="315" -->
         <iframe
           src="https://www.youtube.com/embed/YFW1h5gvnrk?si=mkpIMFdrG-GZvbh6"
           title="YouTube video player"
