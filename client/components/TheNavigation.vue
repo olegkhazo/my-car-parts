@@ -22,7 +22,7 @@
             <NuxtLink to="/all-spare-part-requests">Suggest your parts</NuxtLink>
           </li>
           <li>
-            <NuxtLink to="how-it-work">How it work</NuxtLink>
+            <NuxtLink to="/how-it-work">How it work</NuxtLink>
           </li>
         </ul>
       </div>
