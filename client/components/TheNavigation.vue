@@ -25,10 +25,10 @@
             <NuxtLink to="/how-it-work">How it work</NuxtLink>
           </li>
           <li>
-            <NuxtLink to="/registration/choose-registration-type">Registration</NuxtLink>
+            <!-- <NuxtLink href="#" class="blue-btn">Sign In</NuxtLink> -->
           </li>
           <li>
-            <!-- <NuxtLink href="#" class="blue-btn">Sign In</NuxtLink> -->
+            <NuxtLink to="/registration/choose-registration-type" class="blue-btn">Sign Up</NuxtLink>
           </li>
         </ul>
       </div>
