@@ -8,17 +8,6 @@ export default defineNuxtConfig({
       posthogHost: 'https://eu.posthog.com'
     }
   },
-  app: {
-    head: {
-      script: [
-        {
-          src: "<https://example.com/script.js>",
-          type: "text/javascript",
-          async: true,
-        },
-      ],
-    },
-  },
   css: [
     "@/assets/styles/main.scss",
   ],
