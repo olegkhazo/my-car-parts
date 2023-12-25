@@ -3,11 +3,11 @@
     <div class="registration-type-window">
       <h1>Join us as a buyer or company</h1>
       <div class="registration-options-wrapper">
-        <NuxtLink to="/registration/company-registration" class="registration-single-option">
+        <NuxtLink to="/registration/client-registration" class="registration-single-option">
           <NuxtImg src="/images/shopping-basket.svg" title="shopping-basket" />
           <h3>I am a buyer, looking for car parts</h3>
         </NuxtLink>
-        <NuxtLink to="/registration/client-registration" class="registration-single-option">
+        <NuxtLink to="/registration/company-registration" class="registration-single-option">
           <NuxtImg src="/images/sales.svg" title="sales" />
           <h3>I sell car parts, and I want to increase sales</h3>
         </NuxtLink>
