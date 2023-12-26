@@ -1,49 +1,40 @@
 <template>
   <div class="content-wrapper">
-    <h2>Offer Page</h2>
-    <div id="offer-page-wrapper" class="offer-page-wrapper">
-      <div class="form-wrapper">
-        <div class="offer-form">
-          <div class="offer-form-fields-section">
-            <label class="label-text" for="first-name">First name *</label>
-            <span v-if="!isFirstNameValid && formButtonClicked" class="input-error-notification"
-              >Please enter a valid name.</span
-            >
-            <input id="first-name" v-model="userCreds.first_name" type="text" />
+    <div class="form-wrapper">
+      <h1>Sign up to sell car parts</h1>
+      <div class="offer-form-fields-section">
+        <span v-if="!isFirstNameValid && formButtonClicked" class="input-error-notification"
+          >Please enter a valid name.</span
+        >
+        <input id="first-name" v-model="userCreds.first_name" type="text" placeholder="First name *" />
 
-            <label class="label-text" for="last-name">Last name *</label>
-            <span v-if="!isLastNameValid && formButtonClicked" class="input-error-notification"
-              >Please enter a valid last name.</span
-            >
-            <input id="last-name" v-model="userCreds.last_name" type="text" />
+        <span v-if="!isLastNameValid && formButtonClicked" class="input-error-notification"
+          >Please enter a valid last name.</span
+        >
+        <input id="last-name" v-model="userCreds.last_name" type="text" placeholder="Last name *" />
 
-            <label class="label-text" for="company">Company *</label>
-            <span v-if="!isCompanyValid && formButtonClicked" class="input-error-notification"
-              >Please enter a valid company name.</span
-            >
-            <input id="company" v-model="userCreds.company" type="text" />
+        <span v-if="!isCompanyValid && formButtonClicked" class="input-error-notification"
+          >Please enter a valid company name.</span
+        >
+        <input id="company" v-model="userCreds.company" type="text" placeholder="Company *" />
 
-            <label class="label-text" for="email"> Work email address * </label>
-            <span v-if="!isEmailValid && formButtonClicked" class="input-error-notification">
-              Please enter a valid email address.
-            </span>
-            <input id="email" v-model="userCreds.email" type="email" name="email" placeholder="Work email address" />
+        <span v-if="!isEmailValid && formButtonClicked" class="input-error-notification">
+          Please enter a valid email address.
+        </span>
+        <input id="email" v-model="userCreds.email" type="email" name="email" placeholder="Work email address *" />
 
-            <label class="label-text" for="password"> Password * </label>
-            <span v-if="!isPasswordValid && formButtonClicked" class="input-error-notification">
-              Please enter a valid password.
-            </span>
-            <input
-              id="password"
-              v-model="userCreds.password"
-              type="password"
-              name="password"
-              placeholder="Password(8 or more characters)"
-            />
+        <span v-if="!isPasswordValid && formButtonClicked" class="input-error-notification">
+          Please enter a valid password.
+        </span>
+        <input
+          id="password"
+          v-model="userCreds.password"
+          type="password"
+          name="password"
+          placeholder="Password(8 or more characters) *"
+        />
 
-            <button class="blue-btn" @click="registerNewUser()">Create my account</button>
-          </div>
-        </div>
+        <button class="blue-btn" @click="registerNewUser()">Create my account</button>
       </div>
     </div>
   </div>
@@ -80,7 +71,7 @@ const isFirstNameValid = computed(() => {
 });
 
 const isLastNameValid = computed(() => {
-  return validateFormField(userCreds.value.full_name, "COMMON_NOT_EMPTY_PATTERN");
+  return validateFormField(userCreds.value.last_name, "COMMON_NOT_EMPTY_PATTERN");
 });
 
 const isCompanyValid = computed(() => {
@@ -121,4 +112,55 @@ async function registerNewUser() {
 
 <style lang="scss" scoped>
 @import "@/assets/styles/_variables.scss";
+
+.form-wrapper {
+  margin: 60px auto 100px auto;
+  padding: 30px 60px 10px 60px;
+  border: 2px solid $gray-100;
+  border-radius: 15px;
+  position: relative;
+  text-align: center;
+  width: 690px;
+
+  @media (max-width: 768px) {
+    margin: 40px auto 0 auto;
+    padding: 15px 20px 10px 20px;
+    width: 100%;
+  }
+
+  h1 {
+    font-size: 40px;
+    margin-bottom: 0;
+    margin-top: 0;
+    font-weight: 300;
+    text-align: center;
+
+    @media (max-width: 834px) {
+      font-size: 28px;
+    }
+
+    @media (max-width: 768px) {
+      margin: 0;
+    }
+
+    @media (max-width: 382px) {
+      font-size: 24px;
+    }
+  }
+
+  .offer-form-fields-section {
+    padding-top: 30px;
+
+    input,
+    select,
+    textarea {
+      margin-bottom: 20px;
+    }
+  }
+
+  button {
+    width: 100%;
+    margin: 5px auto 20px auto;
+  }
+}
 </style>
