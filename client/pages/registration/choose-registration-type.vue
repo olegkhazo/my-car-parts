@@ -18,7 +18,17 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+useHead({
+  title: "MyNextParts - Choose type of registration",
+  meta: [
+    {
+      name: "Choose type of registration",
+      content: "Choose type of registration on mynextparts.com. Choose you need to buy or sell car parts",
+    },
+  ],
+});
+</script>
 
 <style lang="scss" scoped>
 @import "@/assets/styles/_variables.scss";

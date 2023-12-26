@@ -14,11 +14,12 @@
 
 <script setup>
 useHead({
-  title: "MyNextParts - Registration",
+  title: "MyNextParts - Company registration",
   meta: [
     {
-      name: "registration page",
-      content: "Mynextparts registration",
+      name: "Company registration page",
+      content:
+        "Mynextparts.com company registration page. After registration sell car parts companies will get the account and became bble to see all clients car parts request and suggest them their car parts variants",
     },
   ],
 });
