@@ -64,8 +64,7 @@ const userCreds = ref({
   password: "",
 });
 
-// Validation
-
+// VALIDATION
 const isFirstNameValid = computed(() => {
   return validateFormField(userCreds.value.first_name, "COMMON_NOT_EMPTY_PATTERN");
 });
@@ -155,6 +154,14 @@ async function registerNewUser() {
     select,
     textarea {
       margin-bottom: 20px;
+    }
+
+    input {
+      @media (max-width: 768px) {
+        &::placeholder {
+          font-size: 14px;
+        }
+      }
     }
   }
 
