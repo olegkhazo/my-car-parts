@@ -2,7 +2,7 @@
   <div class="content-wrapper">
     <div class="form-wrapper">
       <h1>Sign up to sell car parts</h1>
-      <div class="offer-form-fields-section">
+      <div v-if="!userCredentialsSentSuccessful" class="offer-form-fields-section">
         <span v-if="!isFirstNameValid && formButtonClicked" class="input-error-notification"
           >Please enter a valid name.</span
         >
@@ -52,6 +52,13 @@
         </div>
         <button class="blue-btn" @click="registerNewUser()">Create my account</button>
       </div>
+
+      <div v-else class="confirm-information">
+        <NuxtImg src="https://i.ibb.co/6HY86R7/checkmark.png" title="green-checkmark" />
+        <h3>
+          Congratulations, you created account. Check please your email and follow the link to confirm your account.
+        </h3>
+      </div>
     </div>
   </div>
 </template>
@@ -71,6 +78,7 @@ useHead({
 import { API_URL } from "@/utils/constants";
 import { validateFormField } from "@/utils/index";
 const formButtonClicked = ref(false);
+const userCredentialsSentSuccessful = ref(false);
 
 const userCreds = ref({
   first_name: "",
@@ -121,6 +129,7 @@ async function registerNewUser() {
 
     if (newUserCreating.value) {
       console.log("User created succesful");
+      userCredentialsSentSuccessful.value = true;
     } else if (error.value) {
       console.log("something wrong:" + error.value);
     }
@@ -227,6 +236,12 @@ async function registerNewUser() {
   button {
     width: 100%;
     margin: 25px auto 20px auto;
+  }
+
+  .confirm-information {
+    img {
+      width: 60px;
+    }
   }
 }
 </style>
