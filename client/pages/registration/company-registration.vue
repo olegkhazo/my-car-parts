@@ -34,6 +34,22 @@
           placeholder="Password(8 or more characters) *"
         />
 
+        <div class="checkbox-wrapper">
+          <div class="checkbox">
+            <input type="checkbox" id="tips-agreement" name="tips-agreement" v-model="userCreds.tips_agreement" />
+          </div>
+          <label for="tips-agreement">Send me emails with tips on how to find buyers for car parts.</label>
+        </div>
+
+        <div class="checkbox-wrapper terms-checkbox-wrapper">
+          <div class="checkbox">
+            <input type="checkbox" id="terms-agreement" name="terms-agreement" v-model="userCreds.terms_agreement" />
+          </div>
+          <label for="terms-agreement" :class="{ 'empty-checkbox': !userCreds.terms_agreement && formButtonClicked }"
+            >Yes, I understand and agree to the MyNextParts <NuxtLink to="/terms">Terms of Service</NuxtLink>, including
+            the <NuxtLink to="/privacy-policy">User Agreement and Privacy Policy</NuxtLink>.</label
+          >
+        </div>
         <button class="blue-btn" @click="registerNewUser()">Create my account</button>
       </div>
     </div>
@@ -62,6 +78,8 @@ const userCreds = ref({
   company: "",
   email: "",
   password: "",
+  tips_agreement: "",
+  terms_agreement: "",
 });
 
 // VALIDATION
@@ -93,7 +111,8 @@ async function registerNewUser() {
     isLastNameValid.value &&
     isCompanyValid.value &&
     isEmailValid.value &&
-    isPasswordValid.value
+    isPasswordValid.value &&
+    userCreds.terms_agreement
   ) {
     const { data: newUserCreating, error } = await useFetch(API_URL + "register", {
       method: "post",
@@ -163,11 +182,51 @@ async function registerNewUser() {
         }
       }
     }
+
+    .input-error-notification {
+      float: left;
+    }
+  }
+
+  .checkbox-wrapper {
+    display: flex;
+    text-align: left;
+    justify-content: space-between;
+
+    .checkbox {
+      width: 5%;
+      margin: 0;
+    }
+
+    input {
+      cursor: pointer;
+    }
+
+    label {
+      width: 94%;
+
+      @media (max-width: 495px) {
+        width: 92%;
+      }
+    }
+    a {
+      color: $blue;
+    }
+
+    .empty-checkbox {
+      color: $red;
+    }
+  }
+
+  .terms-checkbox-wrapper {
+    @media (max-width: 495px) {
+      margin-top: 10px;
+    }
   }
 
   button {
     width: 100%;
-    margin: 5px auto 20px auto;
+    margin: 25px auto 20px auto;
   }
 }
 </style>
