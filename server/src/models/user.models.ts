@@ -2,16 +2,32 @@ import { prop, getModelForClass } from "@typegoose/typegoose";
 
 export class Users {
   @prop()
-  userEmail: string;
+  first_name: string;
+
+  @prop() 
+  last_name: string;
+
+  @prop() 
+  company: string;
+
+  @prop()
+  email: string;
 
   @prop()
   password: string;
+
+  @prop()
+  tips_agreement: string;
+
+  @prop()
+  terms_agreement: string;
 
   @prop()
   isActive: boolean;
 
   @prop()
   activationToken: string;
+
 
     // @prop({ required: true })
     // public userEmail!: string;

@@ -24,15 +24,31 @@
         >
         <input id="first-name" v-model="userCreds.first_name" type="text" placeholder="First name *" />
 
-        <span v-if="!isLastNameValid && formButtonClicked" class="input-error-notification"
+        <span
+          v-if="!isLastNameValid && formButtonClicked && typeOfRegistration === 'sale'"
+          class="input-error-notification"
           >Please enter a valid last name.</span
         >
-        <input id="last-name" v-model="userCreds.last_name" type="text" placeholder="Last name *" />
+        <input
+          v-if="typeOfRegistration === 'sale'"
+          id="last-name"
+          v-model="userCreds.last_name"
+          type="text"
+          placeholder="Last name *"
+        />
 
-        <span v-if="!isCompanyValid && formButtonClicked" class="input-error-notification"
+        <span
+          v-if="!isCompanyValid && formButtonClicked && typeOfRegistration === 'sale'"
+          class="input-error-notification"
           >Please enter a valid company name.</span
         >
-        <input id="company" v-model="userCreds.company" type="text" placeholder="Company *" />
+        <input
+          v-if="typeOfRegistration === 'sale'"
+          id="company"
+          v-model="userCreds.company"
+          type="text"
+          placeholder="Company *"
+        />
 
         <span v-if="!isEmailValid && formButtonClicked" class="input-error-notification">
           Please enter a valid email address.
@@ -50,7 +66,7 @@
           placeholder="Password(8 or more characters) *"
         />
 
-        <div class="checkbox-wrapper">
+        <div class="checkbox-wrapper" v-if="typeOfRegistration === 'sale'">
           <div class="checkbox">
             <input type="checkbox" id="tips-agreement" name="tips-agreement" v-model="userCreds.tips_agreement" />
           </div>
@@ -66,7 +82,10 @@
             the <NuxtLink to="/privacy-policy">User Agreement and Privacy Policy</NuxtLink>.</label
           >
         </div>
-        <button class="blue-btn" @click="registerNewUser()">Create my account</button>
+        <button v-if="typeOfRegistration === 'sale'" class="blue-btn" @click="registerCompany()">
+          Register a company
+        </button>
+        <button v-else class="blue-btn" @click="registerClient()">Create my account</button>
       </div>
 
       <div v-else class="confirm-information">
@@ -92,9 +111,11 @@ useHead({
 
 import { API_URL } from "@/utils/constants";
 import { validateFormField } from "@/utils/index";
+
 const registrationFormVisibility = ref(false);
 const formButtonClicked = ref(false);
 const userCredentialsSentSuccessful = ref(false);
+const typeOfRegistration = ref("");
 
 const userCreds = ref({
   first_name: "",
@@ -107,7 +128,7 @@ const userCreds = ref({
 });
 
 function showFormRegistration(type) {
-  console.log(type);
+  typeOfRegistration.value = type;
   registrationFormVisibility.value = true;
 }
 
@@ -132,33 +153,50 @@ const isPasswordValid = computed(() => {
   return validateFormField(userCreds.value.password, "PASSWORD_PATTERN");
 });
 
-async function registerNewUser() {
-  formButtonClicked.value = true;
+async function createRequestToRegistrationApi() {
+  const { data: newUserCreating, error } = await useFetch(API_URL + "register", {
+    method: "post",
+    body: JSON.stringify(userCreds.value),
+  });
 
+  console.log(newUserCreating.value);
+  // if (newUserCreating.value) {
+  //   userCredentialsSentSuccessful.value = true;
+  // } else if (error.value) {
+  //   console.error("Error during registration:", error);
+  //   return;
+  // }
+}
+
+function registerCompany() {
+  formButtonClicked.value = true;
   if (
     isFirstNameValid.value &&
     isLastNameValid.value &&
     isCompanyValid.value &&
     isEmailValid.value &&
     isPasswordValid.value &&
-    userCreds.terms_agreement
+    userCreds.value.terms_agreement
   ) {
-    const { data: newUserCreating, error } = await useFetch(API_URL + "register", {
-      method: "post",
-      body: JSON.stringify(userCreds.value),
-    });
+    createRequestToRegistrationApi();
+  }
+}
 
-    if (newUserCreating.value) {
-      console.log("User created succesful");
-      userCredentialsSentSuccessful.value = true;
-    } else if (error.value) {
-      console.log("something wrong:" + error.value);
-    }
+function registerClient() {
+  formButtonClicked.value = true;
+  if (isFirstNameValid.value && isEmailValid.value && isPasswordValid.value && userCreds.value.terms_agreement) {
+    createRequestToRegistrationApi();
   }
 }
 </script>
 
 <style lang="scss" scoped>
+// if (newUserCreating.value) {
+//   console.log("User created succesful");
+//   userCredentialsSentSuccessful.value = true;
+// } else if (error.value) {
+//   console.log("something wrong:" + error.value);
+// }
 @import "@/assets/styles/_variables.scss";
 
 .registration-type-window {
