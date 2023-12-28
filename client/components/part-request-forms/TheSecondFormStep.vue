@@ -34,16 +34,15 @@
       <span v-if="!isEngineVolumeValid && formButtonClicked" class="input-error-notification">Enter engine value</span>
     </div>
     <div class="fuel-data-wrapper">
-      <label class="label-text" for="car-fuel-type"> Fuel Type * </label>
-
+      <label class="label-text" for="car-fuel-type"> Fuel Type</label>
       <select id="car-fuel-type" v-model="formData.fuel_type" name="car-fuel-type">
-        <option v-for="fuel in carsFuelTypes" :key="fuel" value="fuel">
+        <option v-for="fuel in carsFuelTypes" :key="fuel" :value="fuel">
           {{ fuel }}
         </option>
       </select>
 
       <input id="litres" v-model="formData.engine_volume" type="text" placeholder="2.5" />
-      <label class="label-text" for="litres">Volume *</label>
+      <label class="label-text" for="litres">Volume</label>
     </div>
 
     <label class="label-text" for="car-body-type"> Body Type </label>
@@ -109,13 +108,6 @@ const isCarModelValid = computed(() => {
   return filterByModel.value !== "Select Model";
 });
 
-const isFuelTypeValid = computed(() => {
-  return validateFormField(formData.value.fuel_type, "COMMON_NOT_EMPTY_PATTERN");
-});
-
-const isEngineVolumeValid = computed(() => {
-  return validateFormField(formData.value.engine_volume, "ENGINE_VOLUME_PATTERN");
-});
 // End validation block
 
 // Watcher for car_make field
@@ -156,14 +148,7 @@ async function getModelsFromVpicApi() {
 async function checkTheFormFields(step) {
   formButtonClicked.value = true;
 
-  if (
-    isCarTypeValid.value &&
-    isCarMakeValid.value &&
-    isCarYearValid.value &&
-    isCarModelValid.value &&
-    isFuelTypeValid.value &&
-    isEngineVolumeValid.value
-  ) {
+  if (isCarTypeValid.value && isCarMakeValid.value && isCarYearValid.value && isCarModelValid.value) {
     formData.value.car_make = filterByMake.value;
     formData.value.car_year = filterByYear.value;
     formData.value.car_model = filterByModel.value;
