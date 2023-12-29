@@ -159,13 +159,13 @@ async function createRequestToRegistrationApi() {
     body: JSON.stringify(userCreds.value),
   });
 
-  console.log(newUserCreating.value);
-  // if (newUserCreating.value) {
-  //   userCredentialsSentSuccessful.value = true;
-  // } else if (error.value) {
-  //   console.error("Error during registration:", error);
-  //   return;
-  // }
+  if (newUserCreating.value) {
+    console.log("Part request created successfully");
+    userCredentialsSentSuccessful.value = true;
+  } else if (error.value) {
+    // should to think how better to show errors
+    console.log("something really wrong Oleg:" + error.value);
+  }
 }
 
 function registerCompany() {

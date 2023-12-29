@@ -6,7 +6,6 @@ const jwt = require('jsonwebtoken');
 const API_HOST = process.env.API_HOST;
 
 export const registerUser = async (req: Request, res: Response, next: NextFunction) => {
-  // const { userEmail, password } = req.body;
 
   try {
     const existingUser = await UsersModel.findOne({ email: req.body.email });
@@ -23,15 +22,15 @@ export const registerUser = async (req: Request, res: Response, next: NextFuncti
 
     const newUser = new UsersModel(req.body);
     await newUser.save();
+    res.status(201).json(newUser);
 
     const activationLink = `${API_HOST}api/activate/${activationToken}`;
 
 
-    await sendUsersAccountActivationLink(req.body.email, activationLink)
+    await sendUsersAccountActivationLink(req.body.email, activationLink);
 
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Something wrong' });
+    next(error);
   }
 };
   
