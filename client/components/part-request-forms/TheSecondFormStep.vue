@@ -47,7 +47,7 @@
 
     <label class="label-text" for="car-body-type"> Body Type </label>
     <select id="car-body-type" v-model="formData.car_body" name="car-body-type">
-      <option v-for="body in carBodyTypes" :key="body" value="body">
+      <option v-for="body in carBodyTypes" :key="body" :value="body">
         {{ body }}
       </option>
     </select>
