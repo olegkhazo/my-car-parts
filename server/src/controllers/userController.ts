@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { UsersModel } from '../models/user.models';
 import { sendUsersAccountActivationLink } from '../services/mailer.service';
-
+import bcrypt from 'bcrypt';
 const jwt = require('jsonwebtoken');
 const API_HOST = process.env.API_HOST;
 
@@ -34,7 +34,7 @@ export const registerUser = async (req: Request, res: Response, next: NextFuncti
   }
 };
   
-export const activateUser = async (req: Request, res: Response) => {
+export const activateUser = async (req: Request, res: Response, next: NextFunction) => {
   const { token } = req.params;
 
   try {
@@ -50,3 +50,31 @@ export const activateUser = async (req: Request, res: Response) => {
   }
 };
   
+
+export const authoriseUser = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { email, password } = req.body;
+
+    // Find user by email
+    const user = await UsersModel.findOne({ email });
+
+    if (!user) {
+      return res.status(401).json({ error: 'Wrong authentification data' });
+    }
+
+    // Pssword check
+    const passwordMatch = await bcrypt.compare(password, user.password);
+
+    if (!passwordMatch) {
+      return res.status(401).json({ error: 'Wrong user data' });
+    }
+
+    // JWT token generation
+    const token = jwt.sign({ userId: user._id, email: user.email }, 'your-secret-key', { expiresIn: '1h' });
+
+    res.json({ token });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Внутренняя ошибка сервера' });
+  }
+};

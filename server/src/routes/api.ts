@@ -1,7 +1,7 @@
 import express from 'express';
 import { createPart, getAllParts, getSinglePart } from '../controllers/partRequestController';
 import { createOffer } from '../controllers/offerController';
-import { registerUser, activateUser } from '../controllers/userController';
+import { registerUser, activateUser, authoriseUser } from '../controllers/userController';
 
 const router = express.Router();
 
@@ -29,5 +29,7 @@ router.post('/create-offer', createOffer);
 router.post('/register', registerUser);
 
 router.get('/activate/:token', activateUser);
+
+router.post('/login', authoriseUser)
 
 export default router;
