@@ -1,180 +1,178 @@
 <template>
-  <div>
-    <div class="content-wrapper">
-      <h2>Offer Page</h2>
-      <div id="offer-page-wrapper" class="offer-page-wrapper">
-        <div class="form-wrapper">
-          <form class="offer-form">
-            <div v-if="!successfulOferSending" class="offer-form-fields-section">
-              <label class="label-text" for="full-name">Your name *</label>
-              <span v-if="!isNameValid && formButtonClicked" class="input-error-notification"
-                >Please enter a valid name.</span
-              >
-              <input id="full-name" v-model="formData.full_name" type="text" />
+  <div class="content-wrapper">
+    <h2>Offer Page</h2>
+    <div id="offer-page-wrapper" class="offer-page-wrapper">
+      <div class="form-wrapper">
+        <form class="offer-form">
+          <div v-if="!successfulOferSending" class="offer-form-fields-section">
+            <label class="label-text" for="full-name">Your name *</label>
+            <span v-if="!isNameValid && formButtonClicked" class="input-error-notification"
+              >Please enter a valid name.</span
+            >
+            <input id="full-name" v-model="formData.full_name" type="text" />
 
-              <label class="label-text" for="company_name">Company name *</label>
-              <span v-if="!isCompanyNameValid && formButtonClicked" class="input-error-notification"
-                >Please enter a valid company name.</span
-              >
-              <input id="company_name" v-model="formData.company_name" type="text" />
+            <label class="label-text" for="company_name">Company name *</label>
+            <span v-if="!isCompanyNameValid && formButtonClicked" class="input-error-notification"
+              >Please enter a valid company name.</span
+            >
+            <input id="company_name" v-model="formData.company_name" type="text" />
 
-              <span class="label-text">Type of part</span>
-              <div class="radio-toolbar">
-                <input
-                  id="radio-original"
-                  v-model="formData.type_of_part"
-                  type="radio"
-                  name="type-of-part"
-                  value="original"
-                />
-                <label class="label-text" for="radio-original"> Original </label>
+            <span class="label-text">Type of part</span>
+            <div class="radio-toolbar">
+              <input
+                id="radio-original"
+                v-model="formData.type_of_part"
+                type="radio"
+                name="type-of-part"
+                value="original"
+              />
+              <label class="label-text" for="radio-original"> Original </label>
 
-                <input
-                  id="radio-analog"
-                  v-model="formData.type_of_part"
-                  type="radio"
-                  name="type-of-part"
-                  value="analog"
-                />
-                <label class="label-text" for="radio-analog"> Analog </label>
-              </div>
-
-              <span class="label-text">Part condition</span>
-              <div class="radio-toolbar spare-part-condition">
-                <input
-                  id="radio-new-condition"
-                  v-model="formData.part_condition"
-                  type="radio"
-                  name="type-of-condition"
-                  value="new"
-                />
-                <label class="label-text" for="radio-new-condition"> New </label>
-
-                <input
-                  id="radio-used"
-                  v-model="formData.part_condition"
-                  type="radio"
-                  name="type-of-condition"
-                  value="used"
-                />
-                <label class="label-text" for="radio-used"> Used </label>
-              </div>
-
-              <label class="label-text" for="price">Price *</label>
-              <span v-if="!isPriceValid && formButtonClicked" class="input-error-notification"
-                >Set the price for your part</span
-              >
-              <input id="price" v-model="formData.price" type="price" name="price" placeholder="Price" />
-
-              <label class="label-text" for="state">State *</label>
-              <span v-if="!isStateValid && formButtonClicked" class="input-error-notification"
-                >Select the state where spare part is located</span
-              >
-              <select id="state" v-model="formData.state" name="make">
-                <option v-for="state in states" :key="state">
-                  {{ state }}
-                </option>
-              </select>
-
-              <label class="label-text" for="city_area">City/Area *</label>
-              <span v-if="!isCityValid && formButtonClicked" class="input-error-notification"
-                >Please enter a valid city</span
-              >
-              <input id="city_area" v-model="formData.city_area" type="text" />
-
-              <label class="label-text" for="email"> E-mail * </label>
-              <span v-if="!isEmailValid && formButtonClicked" class="input-error-notification">
-                Please enter a valid email address.
-              </span>
-              <input id="email" v-model="formData.email" type="email" name="email" placeholder="E-mail" />
-
-              <label class="label-text" for="phone"> Phone *</label>
-              <span v-if="!isPhoneValid && formButtonClicked" class="input-error-notification"
-                >Please enter a valid phone number.</span
-              >
-              <input id="phone" v-model="formData.phone" type="tel" name="phone" placeholder="Phone" />
-
-              <button class="gray-btn" @click.prevent="createNewOffer">Continue</button>
+              <input
+                id="radio-analog"
+                v-model="formData.type_of_part"
+                type="radio"
+                name="type-of-part"
+                value="analog"
+              />
+              <label class="label-text" for="radio-analog"> Analog </label>
             </div>
-            <TheSuccessRequestForPart v-else :data="successWindowData" />
-          </form>
-        </div>
 
-        <div class="offer-right-info-wrapper">
-          <span v-if="successfulOferSending" class="successfull-notyfication"
-            >You sent your suggestion successfully!</span
-          >
-          <span class="right-blue-block-title">Car part request content:</span>
-          <div v-if="singlePartRequestData" class="all-content-wrapper">
-            <div class="all-content">
-              <span v-if="singlePartRequestData.part_name">
-                Part:
-                <span class="bold">{{ singlePartRequestData.part_name }}</span>
-              </span>
-              <span v-if="singlePartRequestData.part_group">
-                Group:
-                <span class="bold">{{ singlePartRequestData.part_group }}</span>
-              </span>
-              <span v-if="singlePartRequestData.type_of_part">
-                Type of part:
-                <span class="bold">{{ singlePartRequestData.type_of_part }}</span>
-              </span>
-              <span v-if="singlePartRequestData.part_condition">
-                Condition:
-                <span class="bold">{{ singlePartRequestData.part_condition }}</span>
-              </span>
-              <span v-if="singlePartRequestData.part_code">
-                Part code:
-                <span class="bold">{{ singlePartRequestData.part_code }}</span>
-              </span>
-              <span v-if="singlePartRequestData.car_type">
-                Car type:
-                <span class="bold">{{ singlePartRequestData.car_type }}</span>
-              </span>
-              <span v-if="singlePartRequestData.car_make">
-                Car make:
-                <span class="bold">{{ singlePartRequestData.car_make }}</span>
-              </span>
-              <span v-if="singlePartRequestData.car_model">
-                Car model:
-                <span class="bold">{{ singlePartRequestData.car_model }}</span>
-              </span>
-              <span v-if="singlePartRequestData.car_year">
-                Car year:
-                <span class="bold">{{ singlePartRequestData.car_year }}</span>
-              </span>
-              <span v-if="singlePartRequestData.fuel_type">
-                Fuel type:
-                <span class="bold">{{ singlePartRequestData.fuel_type }}</span>
-              </span>
-              <span v-if="singlePartRequestData.engine_volume">
-                Engine volume:
-                <span class="bold">{{ singlePartRequestData.engine_volume }}</span>
-              </span>
-              <span v-if="singlePartRequestData.car_body">
-                Car body:
-                <span class="bold">{{ singlePartRequestData.car_body }}</span>
-              </span>
-              <span v-if="singlePartRequestData.vin_code">
-                VIN code:
-                <span class="bold">{{ singlePartRequestData.vin_code }}</span>
-              </span>
-              <span v-if="singlePartRequestData.comment">
-                User comment:
-                <span class="bold">{{ singlePartRequestData.comment }}</span>
-              </span>
-              <span v-if="singlePartRequestData.city">
-                State/City:
-                <span class="bold">{{ singlePartRequestData.city }}</span>
-              </span>
-              <span v-if="singlePartRequestData.name">
-                Name: <span class="bold">{{ singlePartRequestData.name }}</span>
-              </span>
+            <span class="label-text">Part condition</span>
+            <div class="radio-toolbar spare-part-condition">
+              <input
+                id="radio-new-condition"
+                v-model="formData.part_condition"
+                type="radio"
+                name="type-of-condition"
+                value="new"
+              />
+              <label class="label-text" for="radio-new-condition"> New </label>
+
+              <input
+                id="radio-used"
+                v-model="formData.part_condition"
+                type="radio"
+                name="type-of-condition"
+                value="used"
+              />
+              <label class="label-text" for="radio-used"> Used </label>
             </div>
+
+            <label class="label-text" for="price">Price *</label>
+            <span v-if="!isPriceValid && formButtonClicked" class="input-error-notification"
+              >Set the price for your part</span
+            >
+            <input id="price" v-model="formData.price" type="price" name="price" placeholder="Price" />
+
+            <label class="label-text" for="state">State *</label>
+            <span v-if="!isStateValid && formButtonClicked" class="input-error-notification"
+              >Select the state where spare part is located</span
+            >
+            <select id="state" v-model="formData.state" name="make">
+              <option v-for="state in states" :key="state">
+                {{ state }}
+              </option>
+            </select>
+
+            <label class="label-text" for="city_area">City/Area *</label>
+            <span v-if="!isCityValid && formButtonClicked" class="input-error-notification"
+              >Please enter a valid city</span
+            >
+            <input id="city_area" v-model="formData.city_area" type="text" />
+
+            <label class="label-text" for="email"> E-mail * </label>
+            <span v-if="!isEmailValid && formButtonClicked" class="input-error-notification">
+              Please enter a valid email address.
+            </span>
+            <input id="email" v-model="formData.email" type="email" name="email" placeholder="E-mail" />
+
+            <label class="label-text" for="phone"> Phone *</label>
+            <span v-if="!isPhoneValid && formButtonClicked" class="input-error-notification"
+              >Please enter a valid phone number.</span
+            >
+            <input id="phone" v-model="formData.phone" type="tel" name="phone" placeholder="Phone" />
+
+            <button class="gray-btn" @click.prevent="createNewOffer">Continue</button>
           </div>
+          <TheSuccessRequestForPart v-else :data="successWindowData" />
+        </form>
+      </div>
 
-          <NuxtLink to="/all-spare-part-requests" class="back-button xl-green-btn">Back to all requests</NuxtLink>
+      <div class="offer-right-info-wrapper">
+        <span v-if="successfulOferSending" class="successfull-notyfication"
+          >You sent your suggestion successfully!</span
+        >
+        <span class="right-blue-block-title">Car part request content:</span>
+        <div v-if="singlePartRequestData" class="all-content-wrapper">
+          <div class="all-content">
+            <span v-if="singlePartRequestData.part_name">
+              Part:
+              <span class="bold">{{ singlePartRequestData.part_name }}</span>
+            </span>
+            <span v-if="singlePartRequestData.part_group">
+              Group:
+              <span class="bold">{{ singlePartRequestData.part_group }}</span>
+            </span>
+            <span v-if="singlePartRequestData.type_of_part">
+              Type of part:
+              <span class="bold">{{ singlePartRequestData.type_of_part }}</span>
+            </span>
+            <span v-if="singlePartRequestData.part_condition">
+              Condition:
+              <span class="bold">{{ singlePartRequestData.part_condition }}</span>
+            </span>
+            <span v-if="singlePartRequestData.part_code">
+              Part code:
+              <span class="bold">{{ singlePartRequestData.part_code }}</span>
+            </span>
+            <span v-if="singlePartRequestData.car_type">
+              Car type:
+              <span class="bold">{{ singlePartRequestData.car_type }}</span>
+            </span>
+            <span v-if="singlePartRequestData.car_make">
+              Car make:
+              <span class="bold">{{ singlePartRequestData.car_make }}</span>
+            </span>
+            <span v-if="singlePartRequestData.car_model">
+              Car model:
+              <span class="bold">{{ singlePartRequestData.car_model }}</span>
+            </span>
+            <span v-if="singlePartRequestData.car_year">
+              Car year:
+              <span class="bold">{{ singlePartRequestData.car_year }}</span>
+            </span>
+            <span v-if="singlePartRequestData.fuel_type">
+              Fuel type:
+              <span class="bold">{{ singlePartRequestData.fuel_type }}</span>
+            </span>
+            <span v-if="singlePartRequestData.engine_volume">
+              Engine volume:
+              <span class="bold">{{ singlePartRequestData.engine_volume }}</span>
+            </span>
+            <span v-if="singlePartRequestData.car_body">
+              Car body:
+              <span class="bold">{{ singlePartRequestData.car_body }}</span>
+            </span>
+            <span v-if="singlePartRequestData.vin_code">
+              VIN code:
+              <span class="bold">{{ singlePartRequestData.vin_code }}</span>
+            </span>
+            <span v-if="singlePartRequestData.comment">
+              User comment:
+              <span class="bold">{{ singlePartRequestData.comment }}</span>
+            </span>
+            <span v-if="singlePartRequestData.city">
+              State/City:
+              <span class="bold">{{ singlePartRequestData.city }}</span>
+            </span>
+            <span v-if="singlePartRequestData.name">
+              Name: <span class="bold">{{ singlePartRequestData.name }}</span>
+            </span>
+          </div>
         </div>
+
+        <NuxtLink to="/all-spare-part-requests" class="back-button xl-green-btn">Back to all requests</NuxtLink>
       </div>
     </div>
   </div>

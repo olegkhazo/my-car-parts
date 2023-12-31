@@ -1,11 +1,12 @@
 import express from 'express';
 import { createPart, getAllParts, getSinglePart } from '../controllers/partRequestController';
 import { createOffer } from '../controllers/offerController';
+import { registerUser, activateUser, authoriseUser } from '../controllers/userController';
 
 const router = express.Router();
 
 // ***
-// spare part request API routers
+// offers and requsts API routers
 // ***
 
 // Route for creating new spare part request in DB
@@ -17,12 +18,18 @@ router.get('/all-spare-part-requests-data', getAllParts);
 // Route to get single spare part request from DB
 router.get('/single-spare-part-request-data/:id', getSinglePart);
 
-
-// ***
-// offers API routers
-// ***
-
 // Router for creating single offer entry in DB
 router.post('/create-offer', createOffer);
+
+
+// ***
+// User registration and Authorisation API routers
+// ***
+
+router.post('/register', registerUser);
+
+router.get('/activate/:token', activateUser);
+
+router.post('/login', authoriseUser)
 
 export default router;

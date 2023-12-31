@@ -24,6 +24,12 @@
           <li>
             <NuxtLink to="/how-it-work">How it work</NuxtLink>
           </li>
+          <li>
+            <NuxtLink to="/sign-in" class="xl-green-btn">Sign In</NuxtLink>
+          </li>
+          <li>
+            <NuxtLink to="/sign-up" class="blue-btn">Sign Up</NuxtLink>
+          </li>
         </ul>
       </div>
     </div>
@@ -73,7 +79,7 @@ function hideMobileMenu() {
     }
 
     .nav {
-      width: 40%;
+      width: 60%;
 
       @media (max-width: 1080px) {
         width: 55%;
@@ -116,6 +122,7 @@ function hideMobileMenu() {
       ul {
         flex-direction: column;
         padding-inline-start: 15px;
+        padding-bottom: 15px;
 
         li {
           padding: 10px 0;

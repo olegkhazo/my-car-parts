@@ -61,22 +61,22 @@
         </span>
         <ul>
           <li>
-            <NuxtLink to="https://www.facebook.com/mynextparts/" target="_blank">
+            <NuxtLink to="https://www.facebook.com/mynextparts" target="_blank">
               <NuxtImg src="/images/social/facebook.svg" title="facebook" />
             </NuxtLink>
           </li>
           <li>
-            <NuxtLink to="https://www.linkedin.com/company/mynextparts/" target="_blank">
+            <NuxtLink to="https://www.linkedin.com/company/mynextparts" target="_blank">
               <NuxtImg src="/images/social/linkedin.svg" title="linkedin" />
             </NuxtLink>
           </li>
           <li>
-            <NuxtLink to="https://twitter.com/mynextparts/" target="_blank">
+            <NuxtLink to="https://twitter.com/mynextparts" target="_blank">
               <NuxtImg src="/images/social/x.svg" title="x" />
             </NuxtLink>
           </li>
           <li>
-            <NuxtLink to="https://www.instagram.com/mynextparts/" target="_blank">
+            <NuxtLink to="https://www.instagram.com/mynextparts" target="_blank">
               <NuxtImg src="/images/social/instagram.svg" title="instagram" />
             </NuxtLink>
           </li>

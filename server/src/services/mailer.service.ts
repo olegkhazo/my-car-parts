@@ -78,3 +78,15 @@ export const sendPartRequestDetails = async (to: string, offerPart: string, offe
   const subject = `You sent a new part request!`;
   await SendMail(to, subject, "", html);
 }
+
+// Send Users Account Activation Link
+export const sendUsersAccountActivationLink = async (to: string, link: string) => {
+  const html = templater.render("./mails/usersAccountActivationMail", { 
+      activationPageLink: link,
+      api,
+      email: to,
+  });
+  
+  const subject = `"MyNextParts" account activation`;
+  await SendMail(to, subject, "", html);
+}
