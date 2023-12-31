@@ -24,7 +24,9 @@
           <li>
             <NuxtLink to="/how-it-work">How it work</NuxtLink>
           </li>
-
+          <li>
+            <NuxtLink to="/sign-in" class="xl-green-btn">Sign In</NuxtLink>
+          </li>
           <li>
             <NuxtLink to="/sign-up" class="blue-btn">Sign Up</NuxtLink>
           </li>
