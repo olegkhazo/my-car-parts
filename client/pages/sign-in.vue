@@ -6,20 +6,20 @@
         <span v-if="!isEmailValid && formButtonClicked" class="input-error-notification">
           Please enter a valid email address.
         </span>
-        <input id="email" v-model="userCreds.email" type="email" name="email" placeholder="Work email address *" />
+        <input id="email" v-model="signInCreds.email" type="email" name="email" placeholder="Work email address *" />
 
         <span v-if="!isPasswordValid && formButtonClicked" class="input-error-notification">
           Please enter a valid password.
         </span>
         <input
           id="password"
-          v-model="userCreds.password"
+          v-model="signInCreds.password"
           type="password"
           name="password"
           placeholder="Password(8 or more characters) *"
         />
 
-        <button class="xl-green-btn" @click="signIn">Register a company</button>
+        <button class="xl-green-btn" @click="signIn">Sign In</button>
       </div>
     </div>
   </div>
@@ -34,6 +34,14 @@ useHead({
       content: "MyNextParts sign-in page",
     },
   ],
+});
+
+import { API_URL } from "@/utils/constants";
+import { validateFormField } from "@/utils/index";
+
+const signInCreds = ref({
+  email: "",
+  password: "",
 });
 
 async function signIn() {
