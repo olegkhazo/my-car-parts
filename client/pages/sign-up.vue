@@ -191,12 +191,6 @@ function registerClient() {
 </script>
 
 <style lang="scss" scoped>
-// if (newUserCreating.value) {
-//   console.log("User created succesful");
-//   userCredentialsSentSuccessful.value = true;
-// } else if (error.value) {
-//   console.log("something wrong:" + error.value);
-// }
 @import "@/assets/styles/_variables.scss";
 
 .registration-type-window {
