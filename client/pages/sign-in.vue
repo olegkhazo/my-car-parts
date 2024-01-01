@@ -44,6 +44,14 @@ const signInCreds = ref({
   password: "",
 });
 
+const isEmailValid = computed(() => {
+  return validateFormField(signInCreds.value.email, "EMAIL_PATTERN");
+});
+
+const isPasswordValid = computed(() => {
+  return validateFormField(signInCreds.value.password, "PASSWORD_PATTERN");
+});
+
 async function signIn() {
   console.log("Sign In");
 }
