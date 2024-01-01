@@ -6,18 +6,12 @@
         <span v-if="!isEmailValid && formButtonClicked" class="input-error-notification">
           Please enter a valid email address.
         </span>
-        <input id="email" v-model="signInCreds.email" type="email" name="email" placeholder="Work email address *" />
+        <input id="email" v-model="signInCreds.email" type="email" name="email" placeholder="Email address *" />
 
         <span v-if="!isPasswordValid && formButtonClicked" class="input-error-notification">
           Please enter a valid password.
         </span>
-        <input
-          id="password"
-          v-model="signInCreds.password"
-          type="password"
-          name="password"
-          placeholder="Password(8 or more characters) *"
-        />
+        <input id="password" v-model="signInCreds.password" type="password" name="password" placeholder="Password *" />
 
         <button class="xl-green-btn" @click="signIn">Sign In</button>
       </div>
