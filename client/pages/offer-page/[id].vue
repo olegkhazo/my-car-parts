@@ -207,6 +207,8 @@ const singlePartRequestData = ref(null);
 const successfulOferSending = ref(false);
 const states = ref([]);
 
+const token = localStorage.getItem("token");
+
 const formData = ref({
   related_request_id: id,
   part_name: "",
@@ -281,9 +283,15 @@ async function createNewOffer() {
     isCityValid.value &&
     isPhoneValid.value
   ) {
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    };
+
     const { data: newRequestCreating, error } = await useFetch(API_URL + "create-offer", {
       method: "post",
       body: JSON.stringify(formData.value),
+      headers: headers,
     });
 
     if (newRequestCreating.value) {

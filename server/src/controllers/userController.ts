@@ -7,6 +7,8 @@ const API_HOST = process.env.API_HOST;
 const CLIENT_HOST = process.env.CLIENT_HOST;
 
 export const registerUser = async (req: Request, res: Response, next: NextFunction) => {
+  const SECRET_KEY: string = process.env.SECRET_KEY as string;
+  
   try {
     const existingUser = await UsersModel.findOne({ email: req.body.email });
 
@@ -22,7 +24,7 @@ export const registerUser = async (req: Request, res: Response, next: NextFuncti
     // Rewriting password to hashed one
     req.body.password = hashedPassword;
 
-    const activationToken = jwt.sign({ email: req.body.email }, 'activation-secret-key', { expiresIn: '1h' });
+    const activationToken = jwt.sign({ email: req.body.email }, SECRET_KEY, { expiresIn: '1h' });
     console.log(activationToken);
 
     Object.assign(req.body, activationToken);
@@ -41,10 +43,12 @@ export const registerUser = async (req: Request, res: Response, next: NextFuncti
 };
   
 export const activateUser = async (req: Request, res: Response, next: NextFunction) => {
+  const SECRET_KEY: string = process.env.SECRET_KEY as string;
+
   const { token } = req.params;
 
   try {
-    const decodedToken = jwt.verify(token, 'activation-secret-key');
+    const decodedToken = jwt.verify(token, SECRET_KEY);
     const { userEmail } = decodedToken;
 
     await UsersModel.findOneAndUpdate({ userEmail }, { $set: { isActive: true, activationToken: null } });
@@ -58,6 +62,8 @@ export const activateUser = async (req: Request, res: Response, next: NextFuncti
   
 
 export const authoriseUser = async (req: Request, res: Response, next: NextFunction) => {
+  const SECRET_KEY: string = process.env.SECRET_KEY as string;
+
   try {
     // Find user by email
     const user = await UsersModel.findOne({ email: req.body.email });
@@ -67,25 +73,28 @@ export const authoriseUser = async (req: Request, res: Response, next: NextFunct
       return res.status(401).json({ error: 'Wrong authentification data' });
     }
 
+    if (!user.isActive) {
+      return res.status(401).json({ error: 'Not activated' });
+    }
+
     // Password check
     const passwordMatch = await bcrypt.compare(req.body.password, user.password);
 
-    if (!passwordMatch) {
+    if (passwordMatch) {
+
+      // JWT token generation
+      const token = jwt.sign({ userId: user._id?.toString(), email: user.email }, SECRET_KEY, { expiresIn: '1h' });
+      console.log("Authorized successfully");
+      res.json({ token });
+
+    } else {
+
       console.log("Password mismatch");
-      return res.status(401).json({ error: 'Wrong user data' });
+      return res.status(401).json({ error: 'Wrong user data' });  
+          
     }
-
-    // JWT token generation
-    const token = jwt.sign({ userId: user._id, email: user.email }, 'your-secret-key', { expiresIn: '1h' });
-
-    console.log("Authorized successfully");
-    
-
-    res.json({ token });
-    // W56Cspxcs6%8$L9K
-
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Внутренняя ошибка сервера' });
+    res.status(500).json({ error: 'Server error' });
   }
 };

@@ -2,6 +2,7 @@ import express from 'express';
 import { createPart, getAllParts, getSinglePart } from '../controllers/partRequestController';
 import { createOffer } from '../controllers/offerController';
 import { registerUser, activateUser, authoriseUser } from '../controllers/userController';
+import { authenticate } from "../middlewares/authMiddleware";
 
 const router = express.Router();
 
@@ -19,7 +20,7 @@ router.get('/all-spare-part-requests-data', getAllParts);
 router.get('/single-spare-part-request-data/:id', getSinglePart);
 
 // Router for creating single offer entry in DB
-router.post('/create-offer', createOffer);
+router.post('/create-offer', authenticate, createOffer);
 
 
 // ***
