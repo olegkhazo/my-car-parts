@@ -58,10 +58,13 @@ async function signIn() {
     });
 
     if (authorisedUser.value) {
+      userCredentialsSentSuccessful.value = true;
       const token = authorisedUser.value.token;
+
       // Add token to localStorage
       localStorage.setItem("token", token);
-      userCredentialsSentSuccessful.value = true;
+
+      navigateTo("/");
     } else if (error.value) {
       console.log(error.value);
       // should to think how better to show errors
