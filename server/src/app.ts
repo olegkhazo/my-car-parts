@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 import apiRoutes from './routes/api';
 import { errorHandler } from './middlewares/errorMiddleware';
 import cors from 'cors';
+require('dotenv').config();
 
 const app = express();
 
