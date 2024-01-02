@@ -4,6 +4,7 @@ import { sendUsersAccountActivationLink } from '../services/mailer.service';
 import bcrypt from 'bcrypt';
 const jwt = require('jsonwebtoken');
 const API_HOST = process.env.API_HOST;
+const CLIENT_HOST = process.env.CLIENT_HOST;
 
 export const registerUser = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -48,7 +49,7 @@ export const activateUser = async (req: Request, res: Response, next: NextFuncti
 
     await UsersModel.findOneAndUpdate({ userEmail }, { $set: { isActive: true, activationToken: null } });
 
-    res.redirect('http://localhost:3000/activation-success');
+    res.redirect(`${CLIENT_HOST}activation-success`);
   } catch (error) {
     console.error(error);
     res.status(400).json({ error: 'Wrong activation token' });
@@ -78,7 +79,11 @@ export const authoriseUser = async (req: Request, res: Response, next: NextFunct
     const token = jwt.sign({ userId: user._id, email: user.email }, 'your-secret-key', { expiresIn: '1h' });
 
     console.log("Authorized successfully");
+    
+
     res.json({ token });
+    // W56Cspxcs6%8$L9K
+
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Внутренняя ошибка сервера' });

@@ -58,7 +58,9 @@ async function signIn() {
     });
 
     if (authorisedUser.value) {
-      console.log("Authorized successfully");
+      const token = authorisedUser.value.token;
+      // Add token to localStorage
+      localStorage.setItem("token", token);
       userCredentialsSentSuccessful.value = true;
     } else if (error.value) {
       console.log(error.value);
