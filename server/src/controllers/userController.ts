@@ -6,14 +6,20 @@ const jwt = require('jsonwebtoken');
 const API_HOST = process.env.API_HOST;
 
 export const registerUser = async (req: Request, res: Response, next: NextFunction) => {
-
   try {
     const existingUser = await UsersModel.findOne({ email: req.body.email });
 
     if (existingUser) {
       console.log("already exist");
-      return res.status(400).json({ error: 'User with such email already exist' });
+      return res.status(400).json({ error: 'User with such email already exists' });
     }
+
+    // Password hashing
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(req.body.password, saltRounds);
+
+    // Rewriting password to hashed one
+    req.body.password = hashedPassword;
 
     const activationToken = jwt.sign({ email: req.body.email }, 'activation-secret-key', { expiresIn: '1h' });
     console.log(activationToken);
@@ -25,7 +31,6 @@ export const registerUser = async (req: Request, res: Response, next: NextFuncti
     res.status(201).json(newUser);
 
     const activationLink = `${API_HOST}api/activate/${activationToken}`;
-
 
     await sendUsersAccountActivationLink(req.body.email, activationLink);
 
@@ -53,25 +58,26 @@ export const activateUser = async (req: Request, res: Response, next: NextFuncti
 
 export const authoriseUser = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { email, password } = req.body;
-
     // Find user by email
-    const user = await UsersModel.findOne({ email });
+    const user = await UsersModel.findOne({ email: req.body.email });
 
     if (!user) {
+      console.log("User not found");
       return res.status(401).json({ error: 'Wrong authentification data' });
     }
 
-    // Pssword check
-    const passwordMatch = await bcrypt.compare(password, user.password);
+    // Password check
+    const passwordMatch = await bcrypt.compare(req.body.password, user.password);
 
     if (!passwordMatch) {
+      console.log("Password mismatch");
       return res.status(401).json({ error: 'Wrong user data' });
     }
 
     // JWT token generation
     const token = jwt.sign({ userId: user._id, email: user.email }, 'your-secret-key', { expiresIn: '1h' });
 
+    console.log("Authorized successfully");
     res.json({ token });
   } catch (error) {
     console.error(error);

@@ -34,6 +34,7 @@ import { API_URL } from "@/utils/constants";
 import { validateFormField } from "@/utils/index";
 
 const formButtonClicked = ref(false);
+const userCredentialsSentSuccessful = ref(false);
 
 const signInCreds = ref({
   email: "",
@@ -49,7 +50,22 @@ const isPasswordValid = computed(() => {
 });
 
 async function signIn() {
-  console.log("Sign In");
+  formButtonClicked.value = true;
+  if (isEmailValid.value && isPasswordValid.value) {
+    const { data: authorisedUser, error } = await useFetch(API_URL + "login", {
+      method: "post",
+      body: JSON.stringify(signInCreds.value),
+    });
+
+    if (authorisedUser.value) {
+      console.log("Authorized successfully");
+      userCredentialsSentSuccessful.value = true;
+    } else if (error.value) {
+      console.log(error.value);
+      // should to think how better to show errors
+      console.log("something really wrong:" + error.value);
+    }
+  }
 }
 </script>
 
