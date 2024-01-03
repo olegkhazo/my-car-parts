@@ -24,15 +24,15 @@
           <li>
             <NuxtLink to="/how-it-work">How it work</NuxtLink>
           </li>
-          <li>
+          <li v-show="!loggedIn">
             <NuxtLink to="/sign-in" class="xl-green-btn">Sign In</NuxtLink>
           </li>
-          <li>
+          <li v-show="!loggedIn">
             <NuxtLink to="/sign-up" class="blue-btn">Sign Up</NuxtLink>
           </li>
-          <!-- <li>
-            <NuxtLink to="/sign-out">Sign Out</NuxtLink>
-          </li> -->
+          <li v-show="loggedIn">
+            <NuxtLink @click="logoutUser">Sign Out</NuxtLink>
+          </li>
         </ul>
       </div>
     </div>
@@ -41,6 +41,11 @@
 
 <script setup>
 const mobileMenuVisibility = ref(false);
+
+import { useAuthStore } from "@/stores";
+const authManager = useAuthStore();
+
+const { loggedIn } = storeToRefs(authManager);
 
 function showHideMobileMenu() {
   mobileMenuVisibility.value = mobileMenuVisibility.value === false;
@@ -54,6 +59,11 @@ function clickOutsideMobileMenu(event) {
 
 function hideMobileMenu() {
   mobileMenuVisibility.value = false;
+}
+
+async function logoutUser() {
+  await authManager.logout();
+  window.location.reload();
 }
 </script>
 

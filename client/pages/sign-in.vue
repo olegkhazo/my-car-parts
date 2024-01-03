@@ -55,8 +55,13 @@ async function signIn() {
   formButtonClicked.value = true;
   if (isEmailValid.value && isPasswordValid.value) {
     await authManager.login(signInCreds.value);
+    navigateTo("/");
   }
 }
+
+onBeforeUnmount(() => {
+  window.location.reload();
+});
 </script>
 
 <style lang="scss" scoped>

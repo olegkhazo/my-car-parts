@@ -2,39 +2,44 @@ import { defineStore } from "pinia";
 import { API_URL } from "@/utils/constants";
 
 export const useAuthStore = defineStore("auth", () => {
+  const loggedIn = computed(() => {
+    if (process.client) {
+      return !!localStorage.getItem("token");
+    }
+    return false;
+  });
+
   async function login(creds) {
     const { data: authorisedUser, error } = await useFetch(API_URL + "login", {
       method: "post",
       body: JSON.stringify(creds),
     });
 
-    if (authorisedUser.value) { 
+    if (authorisedUser.value) {
       const token = authorisedUser.value.token;
 
       // Add token to localStorage
-      localStorage.setItem("token", token);
+      if (process.client) {
+        localStorage.setItem("token", token);
+      }
 
-      navigateTo("/");
     } else if (error.value) {
-      console.log(error.value);
-      // should to think how better to show errors
-      console.log("something really wrong:" + error.value);
+      console.error(error.value);
+      // Consider better ways to handle and display errors
+      console.log("Something went wrong: " + error.value);
     }
   }
 
   async function logout() {
-    try {
-     
-    } catch (error) {
-     
-    }
-
     clearUserInfo();
   }
 
   function clearUserInfo() {
     // Logout successful. Remove token
-    localStorage.removeItem("token");
+    if (process.client) {
+      localStorage.removeItem("token");
+    }
   }
-  return { login, logout };
-  });
+
+  return { login, loggedIn, logout };
+});
