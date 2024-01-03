@@ -30,6 +30,9 @@
           <li>
             <NuxtLink to="/sign-up" class="blue-btn">Sign Up</NuxtLink>
           </li>
+          <!-- <li>
+            <NuxtLink to="/sign-out">Sign Out</NuxtLink>
+          </li> -->
         </ul>
       </div>
     </div>

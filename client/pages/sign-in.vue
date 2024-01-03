@@ -31,11 +31,12 @@ useHead({
   ],
 });
 
-import { API_URL } from "@/utils/constants";
 import { validateFormField } from "@/utils/index";
+import { useAuthStore } from "@/stores";
+
+const authManager = useAuthStore();
 
 const formButtonClicked = ref(false);
-const userCredentialsSentSuccessful = ref(false);
 
 const signInCreds = ref({
   email: "",
@@ -53,24 +54,7 @@ const isPasswordValid = computed(() => {
 async function signIn() {
   formButtonClicked.value = true;
   if (isEmailValid.value && isPasswordValid.value) {
-    const { data: authorisedUser, error } = await useFetch(API_URL + "login", {
-      method: "post",
-      body: JSON.stringify(signInCreds.value),
-    });
-
-    if (authorisedUser.value) {
-      userCredentialsSentSuccessful.value = true;
-      const token = authorisedUser.value.token;
-
-      // Add token to localStorage
-      localStorage.setItem("token", token);
-
-      navigateTo("/");
-    } else if (error.value) {
-      console.log(error.value);
-      // should to think how better to show errors
-      console.log("something really wrong:" + error.value);
-    }
+    await authManager.login(signInCreds.value);
   }
 }
 </script>
