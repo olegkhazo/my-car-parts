@@ -31,7 +31,7 @@
             <NuxtLink to="/sign-up" class="blue-btn">Sign Up</NuxtLink>
           </li>
           <li v-show="loggedIn">
-            <NuxtLink @click="logoutUser">Sign Out</NuxtLink>
+            <NuxtLink @click="logoutUser" class="sign-out-link">Sign Out</NuxtLink>
           </li>
         </ul>
       </div>
@@ -117,6 +117,9 @@ async function logoutUser() {
               color: $gray-800;
             }
           }
+        }
+        .sign-out-link {
+          color: $blue;
         }
       }
     }
