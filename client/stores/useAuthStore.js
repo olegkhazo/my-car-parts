@@ -16,7 +16,6 @@ export const useAuthStore = defineStore("auth", () => {
     if (storedToken) {
       const decodedToken = JSON.parse(atob(storedToken.split(".")[1]));
       const expirationTime = decodedToken.exp * 1000;
-      console.log("Stored Token Expiration Time:", new Date(expirationTime));
       tokenExpiration.value = new Date(expirationTime);
     }
   }
@@ -25,10 +24,8 @@ export const useAuthStore = defineStore("auth", () => {
   watch(
     tokenExpiration,
     (newExpiration, oldExpiration) => {
-      console.log("Token Expiration Changed:", newExpiration, oldExpiration);
       if (oldExpiration !== null) {
         const now = new Date();
-        console.log("Current Time:", now);
         if (now >= newExpiration) {
           clearUserInfo();
         }
@@ -52,16 +49,13 @@ export const useAuthStore = defineStore("auth", () => {
 
         // Parse token to get expiration time
         const decodedToken = JSON.parse(atob(token.split(".")[1]));
-        console.log("Decoded Token:", decodedToken);
         const expirationTime = decodedToken.exp * 1000;
-        console.log("New Token Expiration Time:", new Date(expirationTime));
 
         // Set token expiration date
         tokenExpiration.value = new Date(expirationTime);
       }
     } else if (error.value) {
       console.error(error.value);
-      console.log("Something went wrong: " + error.value);
     }
   }
 
