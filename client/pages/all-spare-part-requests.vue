@@ -113,8 +113,11 @@
                       </div>
 
                       <div class="spare-part-requests-btn-wrapper">
-                        <NuxtLink :to="'/offer-page/' + request._id" class="suggest-button xl-green-btn"
+                        <NuxtLink v-if="loggedIn" :to="'/offer-page/' + request._id" class="suggest-button xl-green-btn"
                           >Suggest your variant</NuxtLink
+                        >
+                        <NuxtLink v-else :to="'/sign-in'" class="suggest-button xl-green-btn"
+                          >Sign in and suggest your variant</NuxtLink
                         >
                         <span class="close-content-btn blue-btn" @click="hideAllContentOfSingleRequest"
                           >Hide content</span
@@ -154,8 +157,11 @@ useHead({
 });
 import { getTimeAgo } from "@/utils";
 import { API_URL } from "@/utils/constants";
-import { useAllPartRequestsDataStore } from "@/stores";
+import { useAllPartRequestsDataStore, useAuthStore } from "@/stores";
 import Paginate from "vuejs-paginate-next";
+const authManager = useAuthStore();
+
+const { loggedIn } = storeToRefs(authManager);
 
 const currentPage = ref(1);
 const chunkOfRequestsForView = ref([]);
