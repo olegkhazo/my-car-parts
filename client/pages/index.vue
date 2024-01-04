@@ -420,7 +420,7 @@ if (allRequests.value) {
     return new Date(b.created_date) - new Date(a.created_date);
   });
 
-  firstTenRequests.value = allRequests.value.slice(0, 5);
+  firstTenRequests.value = allRequests.value.slice(0, 10);
 } else {
   // should to think how better to show errors
   console.log("something wrong:" + error.value);

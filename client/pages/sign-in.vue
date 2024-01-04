@@ -1,7 +1,7 @@
 <template>
   <div class="content-wrapper">
     <div class="form-wrapper">
-      <h1>Sign In</h1>
+      <h1>Log in to MyNextParts</h1>
       <div class="sign-in-field-section">
         <span v-if="!isEmailValid && formButtonClicked" class="input-error-notification">
           Please enter a valid email address.
@@ -15,6 +15,7 @@
 
         <button class="xl-green-btn" @click="signIn">Sign In</button>
       </div>
+      <p>Dont have "MyNextParts" account? <NuxtLink to="/sign-up">Sign Up</NuxtLink></p>
     </div>
   </div>
 </template>
@@ -30,11 +31,12 @@ useHead({
   ],
 });
 
-import { API_URL } from "@/utils/constants";
 import { validateFormField } from "@/utils/index";
+import { useAuthStore } from "@/stores";
+
+const authManager = useAuthStore();
 
 const formButtonClicked = ref(false);
-const userCredentialsSentSuccessful = ref(false);
 
 const signInCreds = ref({
   email: "",
@@ -52,26 +54,14 @@ const isPasswordValid = computed(() => {
 async function signIn() {
   formButtonClicked.value = true;
   if (isEmailValid.value && isPasswordValid.value) {
-    const { data: authorisedUser, error } = await useFetch(API_URL + "login", {
-      method: "post",
-      body: JSON.stringify(signInCreds.value),
-    });
-
-    if (authorisedUser.value) {
-      userCredentialsSentSuccessful.value = true;
-      const token = authorisedUser.value.token;
-
-      // Add token to localStorage
-      localStorage.setItem("token", token);
-
-      navigateTo("/");
-    } else if (error.value) {
-      console.log(error.value);
-      // should to think how better to show errors
-      console.log("something really wrong:" + error.value);
-    }
+    await authManager.login(signInCreds.value);
+    navigateTo("/");
   }
 }
+
+onBeforeUnmount(() => {
+  window.location.reload();
+});
 </script>
 
 <style lang="scss" scoped>
@@ -140,6 +130,19 @@ async function signIn() {
     button {
       width: 100%;
       margin: 25px auto 20px auto;
+    }
+
+    p {
+      margin-top: 20px;
+
+      @media (max-width: 768px) {
+        margin-top: 20px;
+      }
+      a {
+        text-decoration: none;
+        color: $blue;
+        font-weight: 600;
+      }
     }
   }
 }

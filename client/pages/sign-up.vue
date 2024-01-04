@@ -1,7 +1,7 @@
 <template>
   <div class="content-wrapper">
     <div v-if="!registrationFormVisibility" class="registration-type-window">
-      <h1>Join us as a buyer or company</h1>
+      <h1>Join us as either a buyer or a company</h1>
       <div class="registration-options-wrapper">
         <div @click="showFormRegistration('buy')" class="registration-single-option">
           <NuxtImg src="/images/shopping-basket.svg" title="shopping-basket" />
@@ -12,13 +12,13 @@
           <h3>I sell car parts, and I want to increase sales</h3>
         </div>
       </div>
-
-      <p>Already have an account? <NuxtLink to="/">Log In</NuxtLink></p>
+      <br />
+      <p>Already have an account? <NuxtLink to="/sign-in">Log In</NuxtLink></p>
     </div>
 
     <div v-else class="form-wrapper">
       <h1>Sign up to sell car parts</h1>
-      <div v-if="!userCredentialsSentSuccessful" class="offer-form-fields-section">
+      <div v-if="!userCredentialsSentSuccessful" class="registration-form-fields-section">
         <span v-if="!isFirstNameValid && formButtonClicked" class="input-error-notification"
           >Please enter a valid name.</span
         >
@@ -86,6 +86,13 @@
           Register a company
         </button>
         <button v-else class="blue-btn" @click="registerClient()">Create my account</button>
+        <p>Already have an account? <NuxtLink to="/sign-in">Log In</NuxtLink></p>
+        <p v-if="typeOfRegistration === 'sale'" @click="showFormRegistration('buy')">
+          Looking for a car parts? <NuxtLink to="/sign-up">Register as a buyer</NuxtLink>
+        </p>
+        <p v-else @click="showFormRegistration('sale')">
+          Do you sell car parts? <NuxtLink to="/sign-up">Register as a company</NuxtLink>
+        </p>
       </div>
 
       <div v-else class="confirm-information">
@@ -193,43 +200,191 @@ function registerClient() {
 <style lang="scss" scoped>
 @import "@/assets/styles/_variables.scss";
 
-.registration-type-window {
-  margin: 60px auto 100px auto;
-  padding: 30px 60px 10px 60px;
-  border: 2px solid $gray-100;
-  border-radius: 15px;
-  position: relative;
-  text-align: center;
-  width: 690px;
-
-  @media (max-width: 768px) {
-    margin: 40px auto 0 auto;
-    padding: 0;
-    width: 100%;
-    border: none;
-  }
-
-  h1 {
-    font-size: 40px;
-    margin-bottom: 40px;
-    font-weight: 300;
+.content-wrapper {
+  .registration-type-window {
+    margin: 60px auto 100px auto;
+    padding: 30px 60px 10px 60px;
+    border: 2px solid $gray-100;
+    border-radius: 15px;
+    position: relative;
     text-align: center;
-
-    @media (max-width: 834px) {
-      font-size: 28px;
-    }
+    width: 690px;
 
     @media (max-width: 768px) {
-      margin: 0 auto 20px auto;
+      margin: 40px auto 0 auto;
+      padding: 0;
+      width: 100%;
+      border: none;
     }
 
-    @media (max-width: 382px) {
-      font-size: 24px;
+    h1 {
+      font-size: 40px;
+      margin-bottom: 40px;
+      font-weight: 300;
+      text-align: center;
+
+      @media (max-width: 834px) {
+        font-size: 28px;
+      }
+
+      @media (max-width: 768px) {
+        margin: 0 auto 20px auto;
+      }
+
+      @media (max-width: 382px) {
+        font-size: 24px;
+      }
+    }
+
+    .registration-options-wrapper {
+      display: flex;
+      justify-content: space-around;
+
+      @media (max-width: 768px) {
+        flex-direction: column;
+      }
+
+      .registration-single-option {
+        width: 240px;
+        padding: 30px 15px 15px 15px;
+        border: 2px solid $gray-100;
+        border-radius: 15px;
+        cursor: pointer;
+
+        @media (max-width: 768px) {
+          padding: 15px 10px 0 10px;
+          width: 100%;
+        }
+
+        h3 {
+          font-size: 18px;
+          margin-top: 15px;
+
+          @media (max-width: 768px) {
+            font-size: 16px;
+          }
+        }
+
+        &:hover {
+          border: 2px solid $green;
+        }
+      }
+
+      .sales-option {
+        @media (max-width: 768px) {
+          margin-top: 20px;
+        }
+      }
+    }
+  }
+
+  .form-wrapper {
+    margin: 60px auto 100px auto;
+    padding: 30px 60px 10px 60px;
+    border: 2px solid $gray-100;
+    border-radius: 15px;
+    position: relative;
+    text-align: center;
+    width: 690px;
+
+    @media (max-width: 768px) {
+      margin: 40px auto 0 auto;
+      padding: 15px 20px 10px 20px;
+      width: 100%;
+    }
+
+    h1 {
+      font-size: 40px;
+      margin-bottom: 0;
+      margin-top: 0;
+      font-weight: 300;
+      text-align: center;
+
+      @media (max-width: 834px) {
+        font-size: 28px;
+      }
+
+      @media (max-width: 768px) {
+        margin: 0;
+      }
+
+      @media (max-width: 382px) {
+        font-size: 24px;
+      }
+    }
+
+    .registration-form-fields-section {
+      padding-top: 30px;
+
+      input,
+      select,
+      textarea {
+        margin-bottom: 20px;
+      }
+
+      input {
+        @media (max-width: 768px) {
+          &::placeholder {
+            font-size: 14px;
+          }
+        }
+      }
+
+      .input-error-notification {
+        float: left;
+      }
+    }
+
+    .checkbox-wrapper {
+      display: flex;
+      text-align: left;
+      justify-content: space-between;
+
+      .checkbox {
+        width: 5%;
+        margin: 0;
+      }
+
+      input {
+        cursor: pointer;
+      }
+
+      label {
+        width: 94%;
+
+        @media (max-width: 495px) {
+          width: 92%;
+        }
+      }
+      a {
+        color: $blue;
+      }
+
+      .empty-checkbox {
+        color: $red;
+      }
+    }
+
+    .terms-checkbox-wrapper {
+      @media (max-width: 495px) {
+        margin-top: 10px;
+      }
+    }
+
+    button {
+      width: 100%;
+      margin: 25px auto 20px auto;
+    }
+
+    .confirm-information {
+      img {
+        width: 60px;
+      }
     }
   }
 
   p {
-    margin-top: 60px;
+    margin-top: 20px;
 
     @media (max-width: 768px) {
       margin-top: 20px;
@@ -238,152 +393,6 @@ function registerClient() {
       text-decoration: none;
       color: $blue;
       font-weight: 600;
-    }
-  }
-
-  .registration-options-wrapper {
-    display: flex;
-    justify-content: space-around;
-
-    @media (max-width: 768px) {
-      flex-direction: column;
-    }
-
-    .registration-single-option {
-      width: 240px;
-      padding: 30px 15px 15px 15px;
-      border: 2px solid $gray-100;
-      border-radius: 15px;
-      cursor: pointer;
-
-      @media (max-width: 768px) {
-        padding: 15px 10px 0 10px;
-        width: 100%;
-      }
-
-      h3 {
-        font-size: 18px;
-        margin-top: 15px;
-
-        @media (max-width: 768px) {
-          font-size: 16px;
-        }
-      }
-
-      &:hover {
-        border: 2px solid $green;
-      }
-    }
-
-    .sales-option {
-      @media (max-width: 768px) {
-        margin-top: 20px;
-      }
-    }
-  }
-}
-
-.form-wrapper {
-  margin: 60px auto 100px auto;
-  padding: 30px 60px 10px 60px;
-  border: 2px solid $gray-100;
-  border-radius: 15px;
-  position: relative;
-  text-align: center;
-  width: 690px;
-
-  @media (max-width: 768px) {
-    margin: 40px auto 0 auto;
-    padding: 15px 20px 10px 20px;
-    width: 100%;
-  }
-
-  h1 {
-    font-size: 40px;
-    margin-bottom: 0;
-    margin-top: 0;
-    font-weight: 300;
-    text-align: center;
-
-    @media (max-width: 834px) {
-      font-size: 28px;
-    }
-
-    @media (max-width: 768px) {
-      margin: 0;
-    }
-
-    @media (max-width: 382px) {
-      font-size: 24px;
-    }
-  }
-
-  .offer-form-fields-section {
-    padding-top: 30px;
-
-    input,
-    select,
-    textarea {
-      margin-bottom: 20px;
-    }
-
-    input {
-      @media (max-width: 768px) {
-        &::placeholder {
-          font-size: 14px;
-        }
-      }
-    }
-
-    .input-error-notification {
-      float: left;
-    }
-  }
-
-  .checkbox-wrapper {
-    display: flex;
-    text-align: left;
-    justify-content: space-between;
-
-    .checkbox {
-      width: 5%;
-      margin: 0;
-    }
-
-    input {
-      cursor: pointer;
-    }
-
-    label {
-      width: 94%;
-
-      @media (max-width: 495px) {
-        width: 92%;
-      }
-    }
-    a {
-      color: $blue;
-    }
-
-    .empty-checkbox {
-      color: $red;
-    }
-  }
-
-  .terms-checkbox-wrapper {
-    @media (max-width: 495px) {
-      margin-top: 10px;
-    }
-  }
-
-  button {
-    width: 100%;
-    margin: 25px auto 20px auto;
-  }
-
-  .confirm-information {
-    img {
-      width: 60px;
     }
   }
 }
