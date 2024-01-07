@@ -161,7 +161,7 @@ const isPasswordValid = computed(() => {
 });
 
 async function createRequestToRegistrationApi() {
-  const { data: newUserCreating, error } = await useFetch(API_URL + "register", {
+  const { data: newUserCreating, error } = await useFetch(API_URL + "sign-up", {
     method: "post",
     body: JSON.stringify(userCreds.value),
   });
