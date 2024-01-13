@@ -5,47 +5,12 @@
     <div>
       <slot />
     </div>
-
-    <div class="admin-footer">
-      <span class="admin-footer-header"
-        ><b>MyNextParts</b> offers the utmost convenience in acquiring your next car parts.</span
-      >
-      <span>
-        Simply submit a request by filling out a straightforward form, and hundreds of sellers will see your needs!
-      </span>
-      <ul>
-        <li>
-          <NuxtLink to="https://www.facebook.com/mynextparts" target="_blank">
-            <NuxtImg src="/images/social/facebook.svg" title="facebook" />
-          </NuxtLink>
-        </li>
-        <li>
-          <NuxtLink to="https://www.linkedin.com/company/mynextparts" target="_blank">
-            <NuxtImg src="/images/social/linkedin.svg" title="linkedin" />
-          </NuxtLink>
-        </li>
-        <li>
-          <NuxtLink to="https://twitter.com/mynextparts" target="_blank">
-            <NuxtImg src="/images/social/x.svg" title="x" />
-          </NuxtLink>
-        </li>
-        <li>
-          <NuxtLink to="https://www.instagram.com/mynextparts" target="_blank">
-            <NuxtImg src="/images/social/instagram.svg" title="instagram" />
-          </NuxtLink>
-        </li>
-        <li>
-          <NuxtLink to="https://www.youtube.com/channel/UCstXDE9fGYmqKiYqttW5tOw" target="_blank">
-            <NuxtImg src="/images/social/youtube.svg" title="youtube" />
-          </NuxtLink>
-        </li>
-      </ul>
-    </div>
-    <div class="footer-rights">
-      <span> © 2022-2023 "MyNextParts" All rights reserved. </span>
-    </div>
   </div>
 </template>
+
+<script setup>
+import TheAdminPanelHeader from "@/components/admin-panel-components/TheAdminPanelHeader";
+</script>
 
 <style lang="scss" scoped>
 @import "@/assets/styles/_variables.scss";
