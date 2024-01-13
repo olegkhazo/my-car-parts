@@ -1,13 +1,9 @@
 <template>
   <div>
-    <TheNavigation v-if="route.name !== 'admin-panel'" />
+    <TheNavigation />
 
     <NuxtPage />
 
     <TheFooter />
   </div>
 </template>
-
-<script setup>
-const route = useRoute();
-</script>
