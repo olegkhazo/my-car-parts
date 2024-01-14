@@ -1,7 +1,7 @@
 <template>
   <div>
     <TheAdminPanelHeader />
-
+    <TheSideAdminNavigation />
     <div>
       <slot />
     </div>
@@ -10,6 +10,7 @@
 
 <script setup>
 import TheAdminPanelHeader from "@/components/admin-panel-components/TheAdminPanelHeader";
+import TheSideAdminNavigation from "@/components/admin-panel-components/TheSideAdminNavigation";
 </script>
 
 <style lang="scss" scoped>
