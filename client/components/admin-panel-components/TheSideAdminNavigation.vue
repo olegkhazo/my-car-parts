@@ -1,5 +1,12 @@
 <template>
-  <div class="side-admin-navigation"></div>
+  <div class="side-admin-navigation">
+    <ul>
+      <li>All part requests</li>
+      <li>My suggestions</li>
+      <li>Answers</li>
+      <li>Profile</li>
+    </ul>
+  </div>
 </template>
 
 <script setup></script>
