@@ -27,6 +27,11 @@
   padding: 40px 0 10px 30px;
   background-color: $gray-1000;
 
+  @media (max-width: 850px) {
+    width: 150px;
+    padding: 40px 5px 10px 10px;
+  }
+
   ul {
     li {
       margin-bottom: 25px;
@@ -36,6 +41,10 @@
         font-size: 16px;
         font-weight: 400;
         letter-spacing: 1px;
+
+        @media (max-width: 850px) {
+          font-size: 14px;
+        }
       }
     }
   }
