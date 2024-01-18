@@ -2,7 +2,9 @@
   <div>
     <TheNavigation />
 
-    <NuxtPage />
+    <div>
+      <slot />
+    </div>
 
     <TheFooter />
   </div>
