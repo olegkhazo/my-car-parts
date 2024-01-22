@@ -230,6 +230,7 @@ function scrollToTopOfTheTableBody() {
 @import "@/assets/styles/_variables.scss";
 
 .all-requests-wrapper {
+  padding: 0 10px;
   margin: 30px auto 150px auto;
 
   @media (max-width: 834px) {
