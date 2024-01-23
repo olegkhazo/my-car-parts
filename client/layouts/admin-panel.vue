@@ -3,7 +3,7 @@
     <TheAdminPanelHeader />
     <div class="main-admin-content">
       <TheSideAdminNavigation />
-      <div>
+      <div class="admin-panel-right-content">
         <slot />
       </div>
     </div>
@@ -21,5 +21,13 @@ import TheSideAdminNavigation from "@/components/admin-panel-components/TheSideA
 .main-admin-content {
   display: flex;
   min-height: calc(100vh - 63px);
+
+  .admin-panel-right-content {
+    width: calc(100% - 200px);
+
+    @media (max-width: 850px) {
+      width: calc(100% - 150px);
+    }
+  }
 }
 </style>

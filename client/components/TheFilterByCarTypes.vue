@@ -109,8 +109,8 @@ async function getModelsFromVpicApi() {
     .filters-title {
       font-weight: 500;
 
-      @media (max-width: 395px) {
-        margin-bottom: 10px;
+      @media (max-width: 600px) {
+        display: none;
       }
     }
 

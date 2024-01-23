@@ -2,7 +2,7 @@
   <div class="side-admin-navigation">
     <ul>
       <li>
-        <NuxtLink to="/">All part requests</NuxtLink>
+        <NuxtLink to="/admin-panel/all-spare-part-requests">All part requests</NuxtLink>
       </li>
       <li>
         <NuxtLink to="/">My suggestions</NuxtLink>
