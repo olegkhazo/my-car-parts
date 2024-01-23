@@ -226,7 +226,7 @@ function scrollToTopOfTheTableBody() {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "@/assets/styles/_variables.scss";
 
 .all-requests-wrapper {
@@ -235,6 +235,14 @@ function scrollToTopOfTheTableBody() {
 
   @media (max-width: 834px) {
     margin: 20px auto 150px auto;
+  }
+
+  .filters {
+    .filters-title {
+      @media (max-width: 600px) {
+        color: red;
+      }
+    }
   }
 
   h1 {

@@ -24,6 +24,10 @@ import TheSideAdminNavigation from "@/components/admin-panel-components/TheSideA
 
   .admin-panel-right-content {
     width: calc(100% - 200px);
+
+    @media (max-width: 850px) {
+      width: calc(100% - 150px);
+    }
   }
 }
 </style>
