@@ -237,14 +237,6 @@ function scrollToTopOfTheTableBody() {
     margin: 20px auto 150px auto;
   }
 
-  .filters {
-    .filters-title {
-      @media (max-width: 600px) {
-        color: red;
-      }
-    }
-  }
-
   h1 {
     font-size: 30px;
     font-weight: 500;
