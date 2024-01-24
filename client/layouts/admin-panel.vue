@@ -13,6 +13,15 @@
 <script setup>
 import TheAdminPanelHeader from "@/components/admin-panel-components/TheAdminPanelHeader";
 import TheSideAdminNavigation from "@/components/admin-panel-components/TheSideAdminNavigation";
+const authManager = useAuthStore();
+
+const { loggedIn } = storeToRefs(authManager);
+
+onMounted(() => {
+  if (!loggedIn.value) {
+    navigateTo("/sign-in");
+  }
+});
 </script>
 
 <style lang="scss" scoped>
