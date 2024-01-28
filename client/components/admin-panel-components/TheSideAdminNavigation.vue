@@ -5,13 +5,10 @@
         <NuxtLink to="/admin-panel/all-spare-part-requests">All part requests</NuxtLink>
       </li>
       <li>
-        <NuxtLink to="/">My suggestions</NuxtLink>
+        <NuxtLink to="/admin-panel/my-requests">My suggestions</NuxtLink>
       </li>
       <li>
-        <NuxtLink to="/">Answers</NuxtLink>
-      </li>
-      <li>
-        <NuxtLink to="/">Profile</NuxtLink>
+        <NuxtLink to="/admin-panel/my-profile">My profile</NuxtLink>
       </li>
     </ul>
   </div>
