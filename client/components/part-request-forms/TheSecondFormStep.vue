@@ -8,14 +8,14 @@
 
     <label class="label-text" for="car-make"> Make * </label>
     <span v-if="!isCarMakeValid && formButtonClicked" class="input-error-notification">Please choose car make</span>
-    <select id="car-make" v-model="filterByMake" name="car-make-group">
+    <select id="car-make" v-model="formData.car_make" name="car-make-group">
       <option value="Select Make">Select Make</option>
       <option v-for="make in makesCollection" :key="make">{{ make }}</option>
     </select>
 
     <label class="label-text" for="car-year"> Year * </label>
     <span v-if="!isCarYearValid && formButtonClicked" class="input-error-notification">Please choose car year</span>
-    <select id="car-year" v-model="filterByYear" name="car-year-group" :disabled="filterByMake === 'Select Make'">
+    <select id="car-year" v-model="filterByYear" name="car-year-group" :disabled="formData.car_make === 'Select Make'">
       <option value="Year">Year</option>
       <option v-for="year in yearOptions" :key="year">{{ year }}</option>
     </select>
@@ -69,14 +69,14 @@ import { GET_MODELS_BY_MAKE_AND_YEAR } from "@/utils/constants";
 const { dataFromSecondFormStep } = storeToRefs(usePartRequestFormStore());
 const formButtonClicked = ref(false);
 
-const filterByMake = ref("Select Make");
+// const filterByMake = ref("Select Make");
 const filterByYear = ref("Year");
 const filterByModel = ref("Select Model");
 const modelsCollection = ref({});
 
 const formData = ref({
   car_type: "car",
-  car_make: "",
+  car_make: "Select Make",
   car_year: "",
   car_model: "",
   fuel_type: "",
@@ -89,6 +89,7 @@ onMounted(() => {
   if (Object.keys(dataFromSecondFormStep.value).length) {
     Object.assign(formData.value, dataFromSecondFormStep.value);
   }
+  console.log("the second form data: " + formData.value.car_make, formData.value.car_year, formData.value.car_model);
 });
 
 // Validation block
@@ -97,7 +98,7 @@ const isCarTypeValid = computed(() => {
 });
 
 const isCarMakeValid = computed(() => {
-  return filterByMake.value !== "Select Make";
+  return formData.value.car_make !== "Select Make";
 });
 
 const isCarYearValid = computed(() => {
@@ -111,7 +112,7 @@ const isCarModelValid = computed(() => {
 // End validation block
 
 // Watcher for car_make field
-watch(filterByMake, (newVal) => {
+watch(formData.value.car_make, (newVal) => {
   if (newVal !== "Select Make") {
     filterByModel.value = "Select Model";
     filterByYear.value = "Year";
@@ -123,7 +124,7 @@ watch(filterByMake, (newVal) => {
 
 // Watcher for year field
 watch(filterByYear, (newVal) => {
-  if (filterByMake.value !== "Select Make") {
+  if (formData.value.car_make !== "Select Make") {
     if (newVal !== "Year") {
       filterByModel.value = "Select Model";
 
@@ -134,7 +135,7 @@ watch(filterByYear, (newVal) => {
 
 async function getModelsFromVpicApi() {
   const { data: carModels, error } = await useFetch(
-    `${GET_MODELS_BY_MAKE_AND_YEAR}/${filterByMake.value}/modelyear/${filterByYear.value}?format=json`
+    `${GET_MODELS_BY_MAKE_AND_YEAR}/${formData.value.car_make}/modelyear/${filterByYear.value}?format=json`
   );
 
   modelsCollection.value = carModels.value;
@@ -149,7 +150,7 @@ async function checkTheFormFields(step) {
   formButtonClicked.value = true;
 
   if (isCarTypeValid.value && isCarMakeValid.value && isCarYearValid.value && isCarModelValid.value) {
-    formData.value.car_make = filterByMake.value;
+    // formData.value.car_make = filterByMake.value;
     formData.value.car_year = filterByYear.value;
     formData.value.car_model = filterByModel.value;
 
