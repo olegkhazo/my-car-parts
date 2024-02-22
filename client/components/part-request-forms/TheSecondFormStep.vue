@@ -29,10 +29,6 @@
       </option>
     </select>
 
-    <div class="fuel-validator-errors-wrapper">
-      <span v-if="!isFuelTypeValid && formButtonClicked" class="input-error-notification">Choose fuel type</span>
-      <span v-if="!isEngineVolumeValid && formButtonClicked" class="input-error-notification">Enter engine value</span>
-    </div>
     <div class="fuel-data-wrapper">
       <label class="label-text" for="car-fuel-type"> Fuel Type</label>
       <select id="car-fuel-type" v-model="formData.fuel_type" name="car-fuel-type">
@@ -88,6 +84,10 @@ const formData = ref({
 onMounted(() => {
   if (Object.keys(dataFromSecondFormStep.value).length) {
     Object.assign(formData.value, dataFromSecondFormStep.value);
+
+    filterByMake.value = dataFromSecondFormStep.value.car_make;
+    filterByYear.value = dataFromSecondFormStep.value.car_year;
+    filterByModel.value = dataFromSecondFormStep.value.car_model;
   }
 });
 
