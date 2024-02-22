@@ -86,8 +86,6 @@ onMounted(() => {
     Object.assign(formData.value, dataFromSecondFormStep.value);
 
     filterByMake.value = dataFromSecondFormStep.value.car_make;
-    filterByYear.value = dataFromSecondFormStep.value.car_year;
-    filterByModel.value = dataFromSecondFormStep.value.car_model;
   }
 });
 
