@@ -55,7 +55,7 @@
     <label class="label-text" for="car-vin"> VIN </label>
     <input id="car-vin" v-model="formData.vin_code" name="car-vin" placeholder="VIN" />
 
-    <button class="light-gray-btn" @click.prevent="checkTheFormFields(1)">Back</button>
+    <button class="light-gray-btn" @click.prevent="switchFormToAnotherStep(1)">Back</button>
     <button class="gray-btn" @click.prevent="checkTheFormFields(3)">Continue</button>
   </div>
 </template>
