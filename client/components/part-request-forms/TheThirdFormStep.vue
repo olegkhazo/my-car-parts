@@ -26,9 +26,9 @@
     <label class="label-text" for="comment"> Leave a comment </label>
     <textarea id="comment" v-model="formData.comment" name="comment" rows="2"></textarea>
 
-    <button class="light-gray-btn" @click.prevent="checkTheFormFields(false, 2)">Back</button>
+    <button class="light-gray-btn" @click.prevent="switchFormToAnotherStep(2)">Back</button>
 
-    <button class="gray-btn" @click.prevent="checkTheFormFields(true, 4)">Send request</button>
+    <button class="gray-btn" @click.prevent="checkTheFormFields(4)">Send request</button>
   </div>
 </template>
 
@@ -66,17 +66,13 @@ const isCityValid = computed(() => {
   return validateFormField(formData.value.city, "COMMON_NOT_EMPTY_PATTERN");
 });
 
-async function checkTheFormFields(sendRequest = false, step = "") {
+async function checkTheFormFields(step = "") {
   formButtonClicked.value = true;
 
   if (isEmailValid.value && isNameValid.value && isCityValid.value) {
     Object.assign(dataFromThirdFormStep.value, formData.value);
 
-    if (sendRequest === true) {
-      switchFormToAnotherStep(step);
-    } else {
-      switchFormToAnotherStep(step);
-    }
+    switchFormToAnotherStep(step);
   }
 }
 const emit = defineEmits(["switchFormToAnotherStep"]);
