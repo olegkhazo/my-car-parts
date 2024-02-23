@@ -31,16 +31,18 @@
             <NuxtLink to="/sign-up" class="blue-btn">Sign Up</NuxtLink>
           </li>
           <li v-show="loggedIn">
-            <!-- <NuxtLink @click="logoutUser" class="sign-out-link">Sign Out</NuxtLink> -->
             <div class="avatar-wrapper" @click="showHideMenu">
               <NuxtImg src="/images/avatar-default.svg" alt="avatar" />
               <div class="menu" :class="{ 'show-menu': menuVisibility }" v-click-outside="clickOutsideMenu">
                 <ul @click="hideMenu" class="registered-menu">
                   <li>
-                    <NuxtLink to="/part-request">Find parts</NuxtLink>
+                    <NuxtLink to="/admin-panel/all-spare-part-requests">Admin Panel</NuxtLink>
                   </li>
                   <li>
-                    <NuxtLink to="/all-spare-part-requests">Suggest your parts</NuxtLink>
+                    <NuxtLink to="/admin-panel/my-profile">My Profile</NuxtLink>
+                  </li>
+                  <li>
+                    <NuxtLink @click="logoutUser" class="sign-out-link">Sign Out</NuxtLink>
                   </li>
                 </ul>
               </div>

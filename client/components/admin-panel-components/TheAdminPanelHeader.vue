@@ -12,10 +12,13 @@
         <div class="menu" :class="{ 'show-menu': menuVisibility }" v-click-outside="clickOutsideMenu">
           <ul @click="hideMenu">
             <li>
-              <NuxtLink to="/part-request">Find parts</NuxtLink>
+              <NuxtLink to="/admin-panel/all-spare-part-requests">Admin Panel</NuxtLink>
             </li>
             <li>
-              <NuxtLink to="/all-spare-part-requests">Suggest your parts</NuxtLink>
+              <NuxtLink to="/admin-panel/my-profile">My Profile</NuxtLink>
+            </li>
+            <li>
+              <NuxtLink @click="logoutUser" class="sign-out-link">Sign Out</NuxtLink>
             </li>
           </ul>
         </div>
@@ -91,6 +94,9 @@ function hideMenu() {
       li {
         padding: 10px 0;
       }
+    }
+    .sign-out-link {
+      color: $blue;
     }
   }
 

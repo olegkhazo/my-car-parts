@@ -35,7 +35,7 @@
 
       a {
         color: $white;
-        font-size: 16px;
+        font-size: 14px;
         font-weight: 400;
         letter-spacing: 1px;
 
