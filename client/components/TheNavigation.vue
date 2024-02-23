@@ -31,7 +31,20 @@
             <NuxtLink to="/sign-up" class="blue-btn">Sign Up</NuxtLink>
           </li>
           <li v-show="loggedIn">
-            <NuxtLink @click="logoutUser" class="sign-out-link">Sign Out</NuxtLink>
+            <!-- <NuxtLink @click="logoutUser" class="sign-out-link">Sign Out</NuxtLink> -->
+            <div class="avatar-wrapper" @click="showHideMenu">
+              <NuxtImg src="/images/avatar-default.svg" alt="avatar" />
+              <div class="menu" :class="{ 'show-menu': menuVisibility }" v-click-outside="clickOutsideMenu">
+                <ul @click="hideMenu" class="registered-menu">
+                  <li>
+                    <NuxtLink to="/part-request">Find parts</NuxtLink>
+                  </li>
+                  <li>
+                    <NuxtLink to="/all-spare-part-requests">Suggest your parts</NuxtLink>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </li>
         </ul>
       </div>
@@ -41,6 +54,7 @@
 
 <script setup>
 const mobileMenuVisibility = ref(false);
+const menuVisibility = ref(false);
 
 import { useAuthStore } from "@/stores";
 const authManager = useAuthStore();
@@ -64,6 +78,23 @@ function hideMobileMenu() {
 async function logoutUser() {
   await authManager.logout();
   window.location.reload();
+}
+
+function showHideMenu() {
+  menuVisibility.value = menuVisibility.value === false;
+  console.log(menuVisibility.value);
+}
+
+function clickOutsideMenu(event) {
+  const avatarWrapper = event.target.closest(".avatar-wrapper");
+
+  if (!avatarWrapper) {
+    menuVisibility.value = false;
+  }
+}
+
+function hideMenu() {
+  menuVisibility.value = false;
 }
 </script>
 
@@ -105,6 +136,7 @@ async function logoutUser() {
       ul {
         display: flex;
         justify-content: space-between;
+        align-items: center;
 
         li {
           list-style: none;
@@ -120,6 +152,19 @@ async function logoutUser() {
         }
         .sign-out-link {
           color: $blue;
+        }
+      }
+
+      .avatar-wrapper {
+        height: 35px;
+        width: 35px;
+        background-color: $gray-100;
+        border-radius: 50%;
+        cursor: pointer;
+
+        img {
+          width: inherit;
+          padding: 3px;
         }
       }
     }
@@ -144,6 +189,33 @@ async function logoutUser() {
           padding: 10px 0;
         }
       }
+    }
+
+    .menu {
+      z-index: 10;
+      display: none;
+      position: absolute;
+      background-color: $white;
+      right: 5px;
+      top: 65px;
+      width: 200px;
+      border: 1px solid $white;
+      box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.25);
+
+      .registered-menu {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-inline-start: 15px;
+        padding-bottom: 15px;
+
+        li {
+          padding: 10px 0;
+        }
+      }
+    }
+
+    .show-menu {
+      display: block;
     }
   }
 }
