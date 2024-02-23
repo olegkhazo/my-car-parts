@@ -1,5 +1,7 @@
 <template>
-  <div>In development</div>
+  <div>
+    <h2>In development</h2>
+  </div>
 </template>
 
 <script setup>
