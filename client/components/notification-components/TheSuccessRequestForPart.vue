@@ -1,5 +1,3 @@
-import type { imgProps } from '@nuxt/image/dist/runtime/components/nuxt-img'; import type { imgProps } from
-'@nuxt/image/dist/runtime/components/nuxt-img';
 <template>
   <div class="request-sending-result">
     <div class="succesful-notification">

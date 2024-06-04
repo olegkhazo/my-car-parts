@@ -32,7 +32,6 @@ const menuVisibility = ref(false);
 
 function showHideMenu() {
   menuVisibility.value = menuVisibility.value === false;
-  console.log(menuVisibility.value);
 }
 
 function clickOutsideMenu(event) {
