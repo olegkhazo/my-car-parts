@@ -106,6 +106,7 @@
         <span class="right-blue-block-title">Car part request content:</span>
         <div v-if="singlePartRequestData" class="all-content-wrapper">
           <div class="all-content">
+            <!-- Necessary to rebuild this block v-if structure is't look good here -->
             <span v-if="singlePartRequestData.part_name">
               Part:
               <span class="bold">{{ singlePartRequestData.part_name }}</span>
