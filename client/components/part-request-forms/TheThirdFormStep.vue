@@ -75,6 +75,7 @@ async function checkTheFormFields(step = "") {
     switchFormToAnotherStep(step);
   }
 }
+
 const emit = defineEmits(["switchFormToAnotherStep"]);
 const switchFormToAnotherStep = (step) => emit("switchFormToAnotherStep", step);
 </script>
