@@ -9,7 +9,7 @@ require('dotenv').config();
 const app = express();
 
 // App variables
-const PORT = process.env.PORT|| 3030;
+const PORT = process.env.PORT || 3030;
 const DB_SERVER = process.env.DB_SERVER;
 const DB_PORT = process.env.DB_PORT;
 const DB_NAME = process.env.DB_NAME;

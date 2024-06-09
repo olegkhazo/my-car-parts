@@ -25,4 +25,3 @@ export const authenticate = (req: CustomRequest, res: Response, next: NextFuncti
     res.status(401).send("Error:" + error);
   }
 };
-// fZmSz!Yy9SjdVTAX
