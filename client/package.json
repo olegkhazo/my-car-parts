@@ -2,7 +2,7 @@
   "name": "mynextparts",
   "version": "0.0.1",
   "description": "Car parts searcher",
-  "author": "Oleg Zhuravko",
+  "author": "Oleh Zhuravko",
   "private": true,
   "type": "module",
   "scripts": {
