@@ -167,7 +167,7 @@ async function createRequestToRegistrationApi() {
   });
 
   if (newUserCreating.value) {
-    console.log("Part request created successfully");
+    console.log("Sign-up went successfully");
     userCredentialsSentSuccessful.value = true;
   } else if (error.value) {
     // should to think how better to show errors
