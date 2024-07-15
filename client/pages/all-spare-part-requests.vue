@@ -135,11 +135,12 @@
       <paginate
         v-model="currentPage"
         :page-count="numPages"
-        :page-range="5"
+        :page-range="21"
+        :first-last-button="true"
+        :next-text="Next"
+        :prev-text="Prev"
         :click-handler="rewriteChunkOfRequests"
         :container-class="'pagination'"
-        prev-text="<"
-        next-text=">"
       />
     </div>
   </div>
