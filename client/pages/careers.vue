@@ -1,3 +1,15 @@
+<script setup>
+useHead({
+  title: "MyNextParts - Careers",
+  meta: [
+    {
+      name: "description",
+      content: "MyNextParts is looking for a new talant who can join to our team",
+    },
+  ],
+});
+</script>
+
 <template>
   <div class="content-wrapper">
     <h1>Careers</h1>
@@ -50,18 +62,6 @@
     </p>
   </div>
 </template>
-
-<script setup>
-useHead({
-  title: "MyNextParts - Careers",
-  meta: [
-    {
-      name: "description",
-      content: "MyNextParts is looking for a new talant who can join to our team",
-    },
-  ],
-});
-</script>
 
 <style lang="scss" scoped>
 @import "@/assets/styles/_variables.scss";

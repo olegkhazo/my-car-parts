@@ -1,3 +1,49 @@
+<script setup>
+const mobileMenuVisibility = ref(false);
+const menuVisibility = ref(false);
+
+import { useAuthStore } from "@/stores";
+const authManager = useAuthStore();
+
+const { loggedIn } = storeToRefs(authManager);
+
+function showHideMobileMenu() {
+  mobileMenuVisibility.value = mobileMenuVisibility.value === false;
+}
+
+function clickOutsideMobileMenu(event) {
+  if (mobileMenuVisibility.value && !event.srcElement.classList.contains("menu-icon")) {
+    mobileMenuVisibility.value = false;
+  }
+}
+
+function hideMobileMenu() {
+  mobileMenuVisibility.value = false;
+}
+
+async function logoutUser() {
+  await authManager.logout();
+  window.location.reload();
+}
+
+function showHideMenu() {
+  menuVisibility.value = menuVisibility.value === false;
+  console.log(menuVisibility.value);
+}
+
+function clickOutsideMenu(event) {
+  const avatarWrapper = event.target.closest(".avatar-wrapper");
+
+  if (!avatarWrapper) {
+    menuVisibility.value = false;
+  }
+}
+
+function hideMenu() {
+  menuVisibility.value = false;
+}
+</script>
+
 <template>
   <div class="header">
     <div class="content-wrapper">
@@ -53,52 +99,6 @@
     </div>
   </div>
 </template>
-
-<script setup>
-const mobileMenuVisibility = ref(false);
-const menuVisibility = ref(false);
-
-import { useAuthStore } from "@/stores";
-const authManager = useAuthStore();
-
-const { loggedIn } = storeToRefs(authManager);
-
-function showHideMobileMenu() {
-  mobileMenuVisibility.value = mobileMenuVisibility.value === false;
-}
-
-function clickOutsideMobileMenu(event) {
-  if (mobileMenuVisibility.value && !event.srcElement.classList.contains("menu-icon")) {
-    mobileMenuVisibility.value = false;
-  }
-}
-
-function hideMobileMenu() {
-  mobileMenuVisibility.value = false;
-}
-
-async function logoutUser() {
-  await authManager.logout();
-  window.location.reload();
-}
-
-function showHideMenu() {
-  menuVisibility.value = menuVisibility.value === false;
-  console.log(menuVisibility.value);
-}
-
-function clickOutsideMenu(event) {
-  const avatarWrapper = event.target.closest(".avatar-wrapper");
-
-  if (!avatarWrapper) {
-    menuVisibility.value = false;
-  }
-}
-
-function hideMenu() {
-  menuVisibility.value = false;
-}
-</script>
 
 <style lang="scss" scoped>
 @import "@/assets/styles/_variables.scss";

@@ -1,3 +1,35 @@
+<script setup>
+useHead({
+  title: "MyNextParts - Easy search for car parts",
+  meta: [
+    {
+      name: "description",
+      content: "Home page of a service for searching and selling car parts, both new and used",
+    },
+  ],
+});
+
+const { dataFromFirstFormStep } = storeToRefs(usePartRequestFormStore());
+import { getTimeAgo } from "@/utils";
+import { API_URL } from "@/utils/constants";
+
+const firstTenRequests = ref(null);
+
+const { data: allRequests, error } = await useFetch(API_URL + "all-spare-part-requests-data");
+
+if (allRequests.value) {
+  allRequests.value.sort((a, b) => {
+    // Compare the created_date in descending order
+    return new Date(b.created_date) - new Date(a.created_date);
+  });
+
+  firstTenRequests.value = allRequests.value.slice(0, 10);
+} else {
+  // should to think how better to show errors
+  console.log("something wrong:" + error.value);
+}
+</script>
+
 <template>
   <div class="content-wrapper request-form-wrapper">
     <div class="request-form">
@@ -391,38 +423,6 @@
     </p>
   </div>
 </template>
-
-<script setup>
-useHead({
-  title: "MyNextParts - Easy search for car parts",
-  meta: [
-    {
-      name: "description",
-      content: "Home page of a service for searching and selling car parts, both new and used",
-    },
-  ],
-});
-
-const { dataFromFirstFormStep } = storeToRefs(usePartRequestFormStore());
-import { getTimeAgo } from "@/utils";
-import { API_URL } from "@/utils/constants";
-
-const firstTenRequests = ref(null);
-
-const { data: allRequests, error } = await useFetch(API_URL + "all-spare-part-requests-data");
-
-if (allRequests.value) {
-  allRequests.value.sort((a, b) => {
-    // Compare the created_date in descending order
-    return new Date(b.created_date) - new Date(a.created_date);
-  });
-
-  firstTenRequests.value = allRequests.value.slice(0, 10);
-} else {
-  // should to think how better to show errors
-  console.log("something wrong:" + error.value);
-}
-</script>
 
 <style lang="scss" scoped>
 @import "@/assets/styles/_variables.scss";

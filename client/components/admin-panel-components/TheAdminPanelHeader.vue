@@ -1,3 +1,23 @@
+<script setup>
+const menuVisibility = ref(false);
+
+function showHideMenu() {
+  menuVisibility.value = menuVisibility.value === false;
+}
+
+function clickOutsideMenu(event) {
+  const avatarWrapper = event.target.closest(".avatar-wrapper");
+
+  if (!avatarWrapper) {
+    menuVisibility.value = false;
+  }
+}
+
+function hideMenu() {
+  menuVisibility.value = false;
+}
+</script>
+
 <template>
   <div class="header">
     <div class="content-wrapper">
@@ -26,26 +46,6 @@
     </div>
   </div>
 </template>
-
-<script setup>
-const menuVisibility = ref(false);
-
-function showHideMenu() {
-  menuVisibility.value = menuVisibility.value === false;
-}
-
-function clickOutsideMenu(event) {
-  const avatarWrapper = event.target.closest(".avatar-wrapper");
-
-  if (!avatarWrapper) {
-    menuVisibility.value = false;
-  }
-}
-
-function hideMenu() {
-  menuVisibility.value = false;
-}
-</script>
 
 <style lang="scss" scoped>
 @import "@/assets/styles/_variables.scss";

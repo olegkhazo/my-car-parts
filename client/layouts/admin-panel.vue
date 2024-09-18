@@ -1,15 +1,3 @@
-<template>
-  <div>
-    <TheAdminPanelHeader />
-    <div class="main-admin-content">
-      <TheSideAdminNavigation />
-      <div class="admin-panel-right-content">
-        <slot />
-      </div>
-    </div>
-  </div>
-</template>
-
 <script setup>
 import TheAdminPanelHeader from "@/components/admin-panel-components/TheAdminPanelHeader";
 import TheSideAdminNavigation from "@/components/admin-panel-components/TheSideAdminNavigation";
@@ -23,6 +11,18 @@ onMounted(() => {
   }
 });
 </script>
+
+<template>
+  <div>
+    <TheAdminPanelHeader />
+    <div class="main-admin-content">
+      <TheSideAdminNavigation />
+      <div class="admin-panel-right-content">
+        <slot />
+      </div>
+    </div>
+  </div>
+</template>
 
 <style lang="scss" scoped>
 @import "@/assets/styles/_variables.scss";

@@ -1,3 +1,95 @@
+<script setup>
+useHead({
+  title: "MyNextParts - Choose type of registration",
+  meta: [
+    {
+      name: "Choose type of registration",
+      content: "Choose type of registration on mynextparts.com. Choose you need to buy or sell car parts",
+    },
+  ],
+});
+
+import { API_URL } from "@/utils/constants";
+import { validateFormField } from "@/utils/index";
+
+const registrationFormVisibility = ref(false);
+const formButtonClicked = ref(false);
+const userCredentialsSentSuccessful = ref(false);
+const typeOfRegistration = ref("");
+
+const userCreds = ref({
+  first_name: "",
+  last_name: "",
+  company: "",
+  email: "",
+  password: "",
+  tips_agreement: "",
+  terms_agreement: "",
+});
+
+function showFormRegistration(type) {
+  typeOfRegistration.value = type;
+  registrationFormVisibility.value = true;
+}
+
+// VALIDATION
+const isFirstNameValid = computed(() => {
+  return validateFormField(userCreds.value.first_name, "COMMON_NOT_EMPTY_PATTERN");
+});
+
+const isLastNameValid = computed(() => {
+  return validateFormField(userCreds.value.last_name, "COMMON_NOT_EMPTY_PATTERN");
+});
+
+const isCompanyValid = computed(() => {
+  return validateFormField(userCreds.value.company, "COMMON_NOT_EMPTY_PATTERN");
+});
+
+const isEmailValid = computed(() => {
+  return validateFormField(userCreds.value.email, "EMAIL_PATTERN");
+});
+
+const isPasswordValid = computed(() => {
+  return validateFormField(userCreds.value.password, "PASSWORD_PATTERN");
+});
+
+async function createRequestToRegistrationApi() {
+  const { data: newUserCreating, error } = await useFetch(API_URL + "sign-up", {
+    method: "post",
+    body: JSON.stringify(userCreds.value),
+  });
+
+  if (newUserCreating.value) {
+    console.log("Sign-up went successfully");
+    userCredentialsSentSuccessful.value = true;
+  } else if (error.value) {
+    // should to think how better to show errors
+    console.log("something really wrong Oleg:" + error.value);
+  }
+}
+
+function registerCompany() {
+  formButtonClicked.value = true;
+  if (
+    isFirstNameValid.value &&
+    isLastNameValid.value &&
+    isCompanyValid.value &&
+    isEmailValid.value &&
+    isPasswordValid.value &&
+    userCreds.value.terms_agreement
+  ) {
+    createRequestToRegistrationApi();
+  }
+}
+
+function registerClient() {
+  formButtonClicked.value = true;
+  if (isFirstNameValid.value && isEmailValid.value && isPasswordValid.value && userCreds.value.terms_agreement) {
+    createRequestToRegistrationApi();
+  }
+}
+</script>
+
 <template>
   <div class="content-wrapper">
     <div v-if="!registrationFormVisibility" class="registration-type-window">
@@ -104,98 +196,6 @@
     </div>
   </div>
 </template>
-
-<script setup>
-useHead({
-  title: "MyNextParts - Choose type of registration",
-  meta: [
-    {
-      name: "Choose type of registration",
-      content: "Choose type of registration on mynextparts.com. Choose you need to buy or sell car parts",
-    },
-  ],
-});
-
-import { API_URL } from "@/utils/constants";
-import { validateFormField } from "@/utils/index";
-
-const registrationFormVisibility = ref(false);
-const formButtonClicked = ref(false);
-const userCredentialsSentSuccessful = ref(false);
-const typeOfRegistration = ref("");
-
-const userCreds = ref({
-  first_name: "",
-  last_name: "",
-  company: "",
-  email: "",
-  password: "",
-  tips_agreement: "",
-  terms_agreement: "",
-});
-
-function showFormRegistration(type) {
-  typeOfRegistration.value = type;
-  registrationFormVisibility.value = true;
-}
-
-// VALIDATION
-const isFirstNameValid = computed(() => {
-  return validateFormField(userCreds.value.first_name, "COMMON_NOT_EMPTY_PATTERN");
-});
-
-const isLastNameValid = computed(() => {
-  return validateFormField(userCreds.value.last_name, "COMMON_NOT_EMPTY_PATTERN");
-});
-
-const isCompanyValid = computed(() => {
-  return validateFormField(userCreds.value.company, "COMMON_NOT_EMPTY_PATTERN");
-});
-
-const isEmailValid = computed(() => {
-  return validateFormField(userCreds.value.email, "EMAIL_PATTERN");
-});
-
-const isPasswordValid = computed(() => {
-  return validateFormField(userCreds.value.password, "PASSWORD_PATTERN");
-});
-
-async function createRequestToRegistrationApi() {
-  const { data: newUserCreating, error } = await useFetch(API_URL + "sign-up", {
-    method: "post",
-    body: JSON.stringify(userCreds.value),
-  });
-
-  if (newUserCreating.value) {
-    console.log("Sign-up went successfully");
-    userCredentialsSentSuccessful.value = true;
-  } else if (error.value) {
-    // should to think how better to show errors
-    console.log("something really wrong Oleg:" + error.value);
-  }
-}
-
-function registerCompany() {
-  formButtonClicked.value = true;
-  if (
-    isFirstNameValid.value &&
-    isLastNameValid.value &&
-    isCompanyValid.value &&
-    isEmailValid.value &&
-    isPasswordValid.value &&
-    userCreds.value.terms_agreement
-  ) {
-    createRequestToRegistrationApi();
-  }
-}
-
-function registerClient() {
-  formButtonClicked.value = true;
-  if (isFirstNameValid.value && isEmailValid.value && isPasswordValid.value && userCreds.value.terms_agreement) {
-    createRequestToRegistrationApi();
-  }
-}
-</script>
 
 <style lang="scss" scoped>
 @import "@/assets/styles/_variables.scss";

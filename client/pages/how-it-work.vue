@@ -1,3 +1,15 @@
+<script setup>
+useHead({
+  title: "MyNextParts - How It Work",
+  meta: [
+    {
+      name: "description",
+      content: "Step-by-step description of how the MyNextParts auto parts search service works",
+    },
+  ],
+});
+</script>
+
 <template>
   <div class="content-wrapper">
     <h1>How It Work</h1>
@@ -61,17 +73,6 @@
   </div>
 </template>
 
-<script setup>
-useHead({
-  title: "MyNextParts - How It Work",
-  meta: [
-    {
-      name: "description",
-      content: "Step-by-step description of how the MyNextParts auto parts search service works",
-    },
-  ],
-});
-</script>
 <style lang="scss" scoped>
 @import "@/assets/styles/_variables.scss";
 

@@ -1,13 +1,3 @@
-<template>
-  <div class="content-wrapper">
-    <h1>Contuct Us</h1>
-    <p>
-      For any questions and suggestions write to us to this email please:
-      <a href="mailto:o.zhuravko@gmail.com">o.zhuravko@gmail.com</a>
-    </p>
-  </div>
-</template>
-
 <script setup>
 useHead({
   title: "MyNextParts - Contact Us",
@@ -20,6 +10,16 @@ useHead({
   ],
 });
 </script>
+
+<template>
+  <div class="content-wrapper">
+    <h1>Contuct Us</h1>
+    <p>
+      For any questions and suggestions write to us to this email please:
+      <a href="mailto:o.zhuravko@gmail.com">o.zhuravko@gmail.com</a>
+    </p>
+  </div>
+</template>
 
 <style lang="scss" scoped>
 @import "@/assets/styles/_variables.scss";

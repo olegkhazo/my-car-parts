@@ -1,3 +1,15 @@
+<script setup>
+useHead({
+  title: "MyNextParts - Privacy policy",
+  meta: [
+    {
+      name: "description",
+      content: "Privacy policy of MyNextParts service",
+    },
+  ],
+});
+</script>
+
 <template>
   <div class="content-wrapper">
     <div>
@@ -93,18 +105,6 @@
     <NuxtLink class="light-gray-btn" to="/">Home Page</NuxtLink>
   </div>
 </template>
-
-<script setup>
-useHead({
-  title: "MyNextParts - Privacy policy",
-  meta: [
-    {
-      name: "description",
-      content: "Privacy policy of MyNextParts service",
-    },
-  ],
-});
-</script>
 
 <style lang="scss" scoped>
 @import "@/assets/styles/_variables.scss";

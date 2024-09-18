@@ -1,68 +1,3 @@
-<template>
-  <div class="content-wrapper">
-    <div class="form-wrapper">
-      <h1>Sign up to sell car parts</h1>
-      <div v-if="!userCredentialsSentSuccessful" class="offer-form-fields-section">
-        <span v-if="!isFirstNameValid && formButtonClicked" class="input-error-notification"
-          >Please enter a valid name.</span
-        >
-        <input id="first-name" v-model="userCreds.first_name" type="text" placeholder="First name *" />
-
-        <span v-if="!isLastNameValid && formButtonClicked" class="input-error-notification"
-          >Please enter a valid last name.</span
-        >
-        <input id="last-name" v-model="userCreds.last_name" type="text" placeholder="Last name *" />
-
-        <span v-if="!isCompanyValid && formButtonClicked" class="input-error-notification"
-          >Please enter a valid company name.</span
-        >
-        <input id="company" v-model="userCreds.company" type="text" placeholder="Company *" />
-
-        <span v-if="!isEmailValid && formButtonClicked" class="input-error-notification">
-          Please enter a valid email address.
-        </span>
-        <input id="email" v-model="userCreds.email" type="email" name="email" placeholder="Work email address *" />
-
-        <span v-if="!isPasswordValid && formButtonClicked" class="input-error-notification">
-          Please enter a valid password.
-        </span>
-        <input
-          id="password"
-          v-model="userCreds.password"
-          type="password"
-          name="password"
-          placeholder="Password(8 or more characters) *"
-        />
-
-        <div class="checkbox-wrapper">
-          <div class="checkbox">
-            <input type="checkbox" id="tips-agreement" name="tips-agreement" v-model="userCreds.tips_agreement" />
-          </div>
-          <label for="tips-agreement">Send me emails with tips on how to find buyers for car parts.</label>
-        </div>
-
-        <div class="checkbox-wrapper terms-checkbox-wrapper">
-          <div class="checkbox">
-            <input type="checkbox" id="terms-agreement" name="terms-agreement" v-model="userCreds.terms_agreement" />
-          </div>
-          <label for="terms-agreement" :class="{ 'empty-checkbox': !userCreds.terms_agreement && formButtonClicked }"
-            >Yes, I understand and agree to the MyNextParts <NuxtLink to="/terms">Terms of Service</NuxtLink>, including
-            the <NuxtLink to="/privacy-policy">User Agreement and Privacy Policy</NuxtLink>.</label
-          >
-        </div>
-        <button class="blue-btn" @click="registerNewUser()">Create my account</button>
-      </div>
-
-      <div v-else class="confirm-information">
-        <NuxtImg src="https://i.ibb.co/6HY86R7/checkmark.png" title="green-checkmark" />
-        <h3>
-          Congratulations, you created account. Check please your email and follow the link to confirm your account.
-        </h3>
-      </div>
-    </div>
-  </div>
-</template>
-
 <script setup>
 // useHead({
 //   title: "MyNextParts - Company registration",
@@ -136,6 +71,71 @@ async function registerNewUser() {
   }
 }
 </script>
+
+<template>
+  <div class="content-wrapper">
+    <div class="form-wrapper">
+      <h1>Sign up to sell car parts</h1>
+      <div v-if="!userCredentialsSentSuccessful" class="offer-form-fields-section">
+        <span v-if="!isFirstNameValid && formButtonClicked" class="input-error-notification"
+          >Please enter a valid name.</span
+        >
+        <input id="first-name" v-model="userCreds.first_name" type="text" placeholder="First name *" />
+
+        <span v-if="!isLastNameValid && formButtonClicked" class="input-error-notification"
+          >Please enter a valid last name.</span
+        >
+        <input id="last-name" v-model="userCreds.last_name" type="text" placeholder="Last name *" />
+
+        <span v-if="!isCompanyValid && formButtonClicked" class="input-error-notification"
+          >Please enter a valid company name.</span
+        >
+        <input id="company" v-model="userCreds.company" type="text" placeholder="Company *" />
+
+        <span v-if="!isEmailValid && formButtonClicked" class="input-error-notification">
+          Please enter a valid email address.
+        </span>
+        <input id="email" v-model="userCreds.email" type="email" name="email" placeholder="Work email address *" />
+
+        <span v-if="!isPasswordValid && formButtonClicked" class="input-error-notification">
+          Please enter a valid password.
+        </span>
+        <input
+          id="password"
+          v-model="userCreds.password"
+          type="password"
+          name="password"
+          placeholder="Password(8 or more characters) *"
+        />
+
+        <div class="checkbox-wrapper">
+          <div class="checkbox">
+            <input type="checkbox" id="tips-agreement" name="tips-agreement" v-model="userCreds.tips_agreement" />
+          </div>
+          <label for="tips-agreement">Send me emails with tips on how to find buyers for car parts.</label>
+        </div>
+
+        <div class="checkbox-wrapper terms-checkbox-wrapper">
+          <div class="checkbox">
+            <input type="checkbox" id="terms-agreement" name="terms-agreement" v-model="userCreds.terms_agreement" />
+          </div>
+          <label for="terms-agreement" :class="{ 'empty-checkbox': !userCreds.terms_agreement && formButtonClicked }"
+            >Yes, I understand and agree to the MyNextParts <NuxtLink to="/terms">Terms of Service</NuxtLink>, including
+            the <NuxtLink to="/privacy-policy">User Agreement and Privacy Policy</NuxtLink>.</label
+          >
+        </div>
+        <button class="blue-btn" @click="registerNewUser()">Create my account</button>
+      </div>
+
+      <div v-else class="confirm-information">
+        <NuxtImg src="https://i.ibb.co/6HY86R7/checkmark.png" title="green-checkmark" />
+        <h3>
+          Congratulations, you created account. Check please your email and follow the link to confirm your account.
+        </h3>
+      </div>
+    </div>
+  </div>
+</template>
 
 <style lang="scss" scoped>
 @import "@/assets/styles/_variables.scss";

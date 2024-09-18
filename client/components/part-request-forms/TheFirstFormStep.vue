@@ -1,3 +1,54 @@
+<script setup>
+useHead({
+  title: "Page with a form for requesting a car spare part",
+  meta: [
+    {
+      name: "description",
+      content: `An easy way to find car parts, just fill out the form, send a 
+          request and hundreds of auto parts sellers will offer the parts they have`,
+    },
+  ],
+});
+import { usePartRequestFormStore } from "@/stores";
+import { validateFormField } from "@/utils/index";
+import { sparePartGroups } from "@/utils/collections";
+
+const formButtonClicked = ref(false);
+
+const { dataFromFirstFormStep } = storeToRefs(usePartRequestFormStore());
+
+const formData = ref({
+  part_name: "",
+  part_group: "",
+  type_of_part: "any-type",
+  part_condition: "any-condition",
+  part_code: "",
+});
+
+onMounted(() => {
+  if (Object.keys(dataFromFirstFormStep.value).length) {
+    Object.assign(formData.value, dataFromFirstFormStep.value);
+  }
+});
+
+// Validation
+const isPartNameValid = computed(() => {
+  return validateFormField(formData.value.part_name, "COMMON_NOT_EMPTY_PATTERN");
+});
+
+async function checkTheFormFields() {
+  formButtonClicked.value = true;
+  if (isPartNameValid.value) {
+    Object.assign(dataFromFirstFormStep.value, formData.value);
+
+    switchFormToAnotherStep();
+  }
+}
+
+const emit = defineEmits(["switchFormToAnotherStep"]);
+const switchFormToAnotherStep = () => emit("switchFormToAnotherStep", 2);
+</script>
+
 <template>
   <div class="form-fields-section">
     <label class="label-text" for="part-name">Part *</label>
@@ -53,57 +104,6 @@
     <button class="gray-btn" @click.prevent="checkTheFormFields">Continue</button>
   </div>
 </template>
-
-<script setup>
-useHead({
-  title: "Page with a form for requesting a car spare part",
-  meta: [
-    {
-      name: "description",
-      content: `An easy way to find car parts, just fill out the form, send a 
-          request and hundreds of auto parts sellers will offer the parts they have`,
-    },
-  ],
-});
-import { usePartRequestFormStore } from "@/stores";
-import { validateFormField } from "@/utils/index";
-import { sparePartGroups } from "@/utils/collections";
-
-const formButtonClicked = ref(false);
-
-const { dataFromFirstFormStep } = storeToRefs(usePartRequestFormStore());
-
-const formData = ref({
-  part_name: "",
-  part_group: "",
-  type_of_part: "any-type",
-  part_condition: "any-condition",
-  part_code: "",
-});
-
-onMounted(() => {
-  if (Object.keys(dataFromFirstFormStep.value).length) {
-    Object.assign(formData.value, dataFromFirstFormStep.value);
-  }
-});
-
-// Validation
-const isPartNameValid = computed(() => {
-  return validateFormField(formData.value.part_name, "COMMON_NOT_EMPTY_PATTERN");
-});
-
-async function checkTheFormFields() {
-  formButtonClicked.value = true;
-  if (isPartNameValid.value) {
-    Object.assign(dataFromFirstFormStep.value, formData.value);
-
-    switchFormToAnotherStep();
-  }
-}
-
-const emit = defineEmits(["switchFormToAnotherStep"]);
-const switchFormToAnotherStep = () => emit("switchFormToAnotherStep", 2);
-</script>
 
 <style lang="scss" scoped>
 .form-fields-section {

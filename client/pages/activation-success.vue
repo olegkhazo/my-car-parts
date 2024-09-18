@@ -1,3 +1,16 @@
+<script setup>
+useHead({
+  title: "MyNextParts - Success activation",
+  meta: [
+    {
+      name: "Success activation account page",
+      content:
+        "Your Account activated succesful. Now you can use your mynextparts.com account and use the service to the fullest. Sell and buy car parts from your admin panel",
+    },
+  ],
+});
+</script>
+
 <template>
   <div class="content-wrapper">
     <div class="error-page-content">
@@ -19,19 +32,6 @@
   </div>
   <TheFooter />
 </template>
-
-<script setup>
-useHead({
-  title: "MyNextParts - Success activation",
-  meta: [
-    {
-      name: "Success activation account page",
-      content:
-        "Your Account activated succesful. Now you can use your mynextparts.com account and use the service to the fullest. Sell and buy car parts from your admin panel",
-    },
-  ],
-});
-</script>
 
 <style lang="scss" scoped>
 @import "@/assets/styles/_variables.scss";

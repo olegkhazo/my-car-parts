@@ -1,25 +1,3 @@
-<template>
-  <div class="content-wrapper">
-    <div class="form-wrapper">
-      <h1>Log in to MyNextParts</h1>
-      <div class="sign-in-field-section">
-        <span v-if="!isEmailValid && formButtonClicked" class="input-error-notification">
-          Please enter a valid email address.
-        </span>
-        <input id="email" v-model="signInCreds.email" type="email" name="email" placeholder="Email address *" />
-
-        <span v-if="!isPasswordValid && formButtonClicked" class="input-error-notification">
-          Please enter a valid password.
-        </span>
-        <input id="password" v-model="signInCreds.password" type="password" name="password" placeholder="Password *" />
-
-        <button class="xl-green-btn" @click="signIn">Sign In</button>
-      </div>
-      <p>Dont have "MyNextParts" account? <NuxtLink to="/sign-up">Sign Up</NuxtLink></p>
-    </div>
-  </div>
-</template>
-
 <script setup>
 useHead({
   title: "MyNextParts - Sign in",
@@ -63,6 +41,28 @@ onBeforeUnmount(() => {
   window.location.reload();
 });
 </script>
+
+<template>
+  <div class="content-wrapper">
+    <div class="form-wrapper">
+      <h1>Log in to MyNextParts</h1>
+      <div class="sign-in-field-section">
+        <span v-if="!isEmailValid && formButtonClicked" class="input-error-notification">
+          Please enter a valid email address.
+        </span>
+        <input id="email" v-model="signInCreds.email" type="email" name="email" placeholder="Email address *" />
+
+        <span v-if="!isPasswordValid && formButtonClicked" class="input-error-notification">
+          Please enter a valid password.
+        </span>
+        <input id="password" v-model="signInCreds.password" type="password" name="password" placeholder="Password *" />
+
+        <button class="xl-green-btn" @click="signIn">Sign In</button>
+      </div>
+      <p>Dont have "MyNextParts" account? <NuxtLink to="/sign-up">Sign Up</NuxtLink></p>
+    </div>
+  </div>
+</template>
 
 <style lang="scss" scoped>
 @import "@/assets/styles/_variables.scss";
