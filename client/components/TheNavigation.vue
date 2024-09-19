@@ -82,7 +82,7 @@ function hideMenu() {
               <div class="menu" :class="{ 'show-menu': menuVisibility }" v-click-outside="clickOutsideMenu">
                 <ul @click="hideMenu" class="registered-menu">
                   <li>
-                    <NuxtLink to="/admin-panel/all-spare-part-requests">Admin Panel</NuxtLink>
+                    <NuxtLink to="/admin-panel">Admin Panel</NuxtLink>
                   </li>
                   <li>
                     <NuxtLink to="/admin-panel/my-profile">My Profile</NuxtLink>

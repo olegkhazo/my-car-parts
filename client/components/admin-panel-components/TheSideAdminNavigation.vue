@@ -8,6 +8,9 @@
         <NuxtLink to="/admin-panel/my-requests">My suggestions</NuxtLink>
       </li>
       <li>
+        <NuxtLink to="/admin-panel/all-users">All users</NuxtLink>
+      </li>
+      <li>
         <NuxtLink to="/admin-panel/my-profile">My profile</NuxtLink>
       </li>
     </ul>
