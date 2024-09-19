@@ -25,10 +25,12 @@ const userCreds = ref({
   password: "",
   tips_agreement: "",
   terms_agreement: "",
+  role: "",
 });
 
 function showFormRegistration(type) {
   typeOfRegistration.value = type;
+  userCreds.value.role = type;
   registrationFormVisibility.value = true;
 }
 
@@ -64,7 +66,7 @@ async function createRequestToRegistrationApi() {
     userCredentialsSentSuccessful.value = true;
   } else if (error.value) {
     // should to think how better to show errors
-    console.log("something really wrong Oleg:" + error.value);
+    console.log("something really wrong:" + error.value);
   }
 }
 
@@ -95,11 +97,11 @@ function registerClient() {
     <div v-if="!registrationFormVisibility" class="registration-type-window">
       <h1>Join us as either a buyer or a company</h1>
       <div class="registration-options-wrapper">
-        <div @click="showFormRegistration('buy')" class="registration-single-option">
+        <div @click="showFormRegistration('user')" class="registration-single-option">
           <NuxtImg src="/images/shopping-basket.svg" title="shopping-basket" />
           <h3>I am a buyer, looking for car parts</h3>
         </div>
-        <div @click="showFormRegistration('sale')" class="registration-single-option sales-option">
+        <div @click="showFormRegistration('seller')" class="registration-single-option sales-option">
           <NuxtImg src="/images/sales.svg" title="sales" />
           <h3>I sell car parts, and I want to increase sales</h3>
         </div>
@@ -117,12 +119,12 @@ function registerClient() {
         <input id="first-name" v-model="userCreds.first_name" type="text" placeholder="First name *" />
 
         <span
-          v-if="!isLastNameValid && formButtonClicked && typeOfRegistration === 'sale'"
+          v-if="!isLastNameValid && formButtonClicked && typeOfRegistration === 'seller'"
           class="input-error-notification"
           >Please enter a valid last name.</span
         >
         <input
-          v-if="typeOfRegistration === 'sale'"
+          v-if="typeOfRegistration === 'seller'"
           id="last-name"
           v-model="userCreds.last_name"
           type="text"
@@ -130,12 +132,12 @@ function registerClient() {
         />
 
         <span
-          v-if="!isCompanyValid && formButtonClicked && typeOfRegistration === 'sale'"
+          v-if="!isCompanyValid && formButtonClicked && typeOfRegistration === 'seller'"
           class="input-error-notification"
           >Please enter a valid company name.</span
         >
         <input
-          v-if="typeOfRegistration === 'sale'"
+          v-if="typeOfRegistration === 'seller'"
           id="company"
           v-model="userCreds.company"
           type="text"
@@ -158,7 +160,7 @@ function registerClient() {
           placeholder="Password(8 or more characters) *"
         />
 
-        <div class="checkbox-wrapper" v-if="typeOfRegistration === 'sale'">
+        <div class="checkbox-wrapper" v-if="typeOfRegistration === 'seller'">
           <div class="checkbox">
             <input type="checkbox" id="tips-agreement" name="tips-agreement" v-model="userCreds.tips_agreement" />
           </div>
@@ -174,15 +176,15 @@ function registerClient() {
             the <NuxtLink to="/privacy-policy">User Agreement and Privacy Policy</NuxtLink>.</label
           >
         </div>
-        <button v-if="typeOfRegistration === 'sale'" class="blue-btn" @click="registerCompany()">
+        <button v-if="typeOfRegistration === 'seller'" class="blue-btn" @click="registerCompany()">
           Register a company
         </button>
         <button v-else class="blue-btn" @click="registerClient()">Create my account</button>
         <p>Already have an account? <NuxtLink to="/sign-in">Log In</NuxtLink></p>
-        <p v-if="typeOfRegistration === 'sale'" @click="showFormRegistration('buy')">
+        <p v-if="typeOfRegistration === 'seller'" @click="showFormRegistration('user')">
           Looking for a car parts? <NuxtLink to="/sign-up">Register as a buyer</NuxtLink>
         </p>
-        <p v-else @click="showFormRegistration('sale')">
+        <p v-else @click="showFormRegistration('seller')">
           Do you sell car parts? <NuxtLink to="/sign-up">Register as a company</NuxtLink>
         </p>
       </div>
