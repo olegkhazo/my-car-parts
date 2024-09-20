@@ -51,7 +51,7 @@ export const activateUser = async (req: Request, res: Response, next: NextFuncti
 
     await UsersModel.findOneAndUpdate({ userEmail }, { $set: { isActive: true, activationToken: null } });
 
-    res.redirect(`${CLIENT_HOST}activation-success`);
+    res.redirect(303, `${CLIENT_HOST}activation-success`);
   } catch (error) {
     res.status(400).json({ error: 'Wrong activation token' });
   }
