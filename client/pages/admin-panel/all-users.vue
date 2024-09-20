@@ -1,4 +1,8 @@
-<script setup></script>
+<script setup>
+definePageMeta({
+  layout: "admin-panel",
+});
+</script>
 
 <template>
   <div class="all-users-wrapper">All users will be here</div>
