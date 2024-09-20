@@ -1,3 +1,15 @@
+<script setup>
+useHead({
+  title: "MyNextParts - FAQ",
+  meta: [
+    {
+      name: "description",
+      content: "FAQ page where users can find the most common questions and answers for them",
+    },
+  ],
+});
+</script>
+
 <template>
   <div class="content-wrapper">
     <h1>FAQ</h1>
@@ -60,18 +72,6 @@
     </div>
   </div>
 </template>
-
-<script setup>
-useHead({
-  title: "MyNextParts - FAQ",
-  meta: [
-    {
-      name: "description",
-      content: "FAQ page where users can find the most common questions and answers for them",
-    },
-  ],
-});
-</script>
 
 <style lang="scss" scoped>
 @import "@/assets/styles/_variables.scss";

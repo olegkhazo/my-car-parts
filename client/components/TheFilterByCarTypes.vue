@@ -1,28 +1,3 @@
-<template>
-  <div class="filters-wrapper">
-    <div class="filters">
-      <span class="filters-title">Sort requests with filters</span>
-
-      <select id="make" v-model="filterByMake" name="make">
-        <option value="Select Make">Select Make</option>
-        <option v-for="make in makesCollection" :key="make">{{ make }}</option>
-      </select>
-
-      <select id="car-year" v-model="filterByYear" name="car-year" :disabled="filterByMake === 'Select Make'">
-        <option value="Year">Year</option>
-        <option v-for="year in yearOptions" :key="year">{{ year }}</option>
-      </select>
-
-      <select id="model" v-model="filterByModel" name="model" :disabled="filterByYear === 'Year'">
-        <option value="Select Model">Select Model</option>
-        <option v-for="model in modelsCollection.Results" :key="model">
-          {{ model.Model_Name }}
-        </option>
-      </select>
-    </div>
-  </div>
-</template>
-
 <script setup>
 import { useAllPartRequestsDataStore } from "@/stores";
 import { makesCollection, yearOptions } from "@/utils/collections";
@@ -93,6 +68,31 @@ async function getModelsFromVpicApi() {
   }
 }
 </script>
+
+<template>
+  <div class="filters-wrapper">
+    <div class="filters">
+      <span class="filters-title">Sort requests with filters</span>
+
+      <select id="make" v-model="filterByMake" name="make">
+        <option value="Select Make">Select Make</option>
+        <option v-for="make in makesCollection" :key="make">{{ make }}</option>
+      </select>
+
+      <select id="car-year" v-model="filterByYear" name="car-year" :disabled="filterByMake === 'Select Make'">
+        <option value="Year">Year</option>
+        <option v-for="year in yearOptions" :key="year">{{ year }}</option>
+      </select>
+
+      <select id="model" v-model="filterByModel" name="model" :disabled="filterByYear === 'Year'">
+        <option value="Select Model">Select Model</option>
+        <option v-for="model in modelsCollection.Results" :key="model">
+          {{ model.Model_Name }}
+        </option>
+      </select>
+    </div>
+  </div>
+</template>
 
 <style lang="scss" scoped>
 @import "@/assets/styles/_variables.scss";

@@ -1,3 +1,78 @@
+<script setup>
+useHead({
+  title: "Page with a form for requesting a car spare part",
+  meta: [
+    {
+      name: "description",
+      content: `An easy way to find car parts, just fill out the form, send a
+          request and hundreds of auto parts sellers will offer the parts they have`,
+    },
+  ],
+});
+
+import { API_URL } from "@/utils/constants";
+import TheFirstFormStep from "@/components/part-request-forms/TheFirstFormStep";
+import TheSecondFormStep from "@/components/part-request-forms/TheSecondFormStep";
+import TheThirdFormStep from "@/components/part-request-forms/TheThirdFormStep";
+import TheSuccessRequestForPart from "@/components/notification-components/TheSuccessRequestForPart";
+
+import { usePartRequestFormStore } from "@/stores";
+
+const successWindowData = {
+  header:
+    "Your request was sent successfully! Hundreds of sellers will see your request soon and will suggest the best variants.",
+  typeOfRequest: "part-request",
+};
+
+const { dataFromFirstFormStep, dataFromSecondFormStep, dataFromThirdFormStep } = storeToRefs(usePartRequestFormStore());
+
+const formStep = ref(1);
+const finalRequestData = ref({});
+
+function formStepsSwitcher(step) {
+  scrollToTopOfTheTableBody();
+
+  formStep.value = step;
+}
+
+function scrollToTopOfTheTableBody() {
+  document.getElementById("form-page-title").scrollIntoView({
+    block: "start",
+    behavior: "smooth",
+  });
+}
+
+async function addPartRequestRecordToTheDB() {
+  const { data: newRequestCreating, error } = await useFetch(API_URL + "create-part-request", {
+    method: "post",
+    body: JSON.stringify(finalRequestData.value),
+  });
+
+  if (newRequestCreating.value) {
+    console.log("Part request created successfully");
+    dataFromFirstFormStep.value = {};
+    dataFromSecondFormStep.value = {};
+    dataFromThirdFormStep.value = {};
+  } else if (error.value) {
+    // should to think how better to show errors
+    console.log("something wrong:" + error.value);
+  }
+}
+
+watch(formStep, (newStep) => {
+  if (newStep === 4) {
+    Object.assign(
+      finalRequestData.value,
+      dataFromFirstFormStep.value,
+      dataFromSecondFormStep.value,
+      dataFromThirdFormStep.value
+    );
+
+    addPartRequestRecordToTheDB();
+  }
+});
+</script>
+
 <template>
   <div class="content-wrapper">
     <div class="request-form-page-wrapper">
@@ -74,81 +149,6 @@
     </div>
   </div>
 </template>
-
-<script setup>
-useHead({
-  title: "Page with a form for requesting a car spare part",
-  meta: [
-    {
-      name: "description",
-      content: `An easy way to find car parts, just fill out the form, send a
-          request and hundreds of auto parts sellers will offer the parts they have`,
-    },
-  ],
-});
-
-import { API_URL } from "@/utils/constants";
-import TheFirstFormStep from "@/components/part-request-forms/TheFirstFormStep";
-import TheSecondFormStep from "@/components/part-request-forms/TheSecondFormStep";
-import TheThirdFormStep from "@/components/part-request-forms/TheThirdFormStep";
-import TheSuccessRequestForPart from "@/components/notification-components/TheSuccessRequestForPart";
-
-import { usePartRequestFormStore } from "@/stores";
-
-const successWindowData = {
-  header:
-    "Your request was sent successfully! Hundreds of sellers will see your request soon and will suggest the best variants.",
-  typeOfRequest: "part-request",
-};
-
-const { dataFromFirstFormStep, dataFromSecondFormStep, dataFromThirdFormStep } = storeToRefs(usePartRequestFormStore());
-
-const formStep = ref(1);
-const finalRequestData = ref({});
-
-function formStepsSwitcher(step) {
-  scrollToTopOfTheTableBody();
-
-  formStep.value = step;
-}
-
-function scrollToTopOfTheTableBody() {
-  document.getElementById("form-page-title").scrollIntoView({
-    block: "start",
-    behavior: "smooth",
-  });
-}
-
-async function addPartRequestRecordToTheDB() {
-  const { data: newRequestCreating, error } = await useFetch(API_URL + "create-part-request", {
-    method: "post",
-    body: JSON.stringify(finalRequestData.value),
-  });
-
-  if (newRequestCreating.value) {
-    console.log("Part request created successfully");
-    dataFromFirstFormStep.value = {};
-    dataFromSecondFormStep.value = {};
-    dataFromThirdFormStep.value = {};
-  } else if (error.value) {
-    // should to think how better to show errors
-    console.log("something wrong:" + error.value);
-  }
-}
-
-watch(formStep, (newStep) => {
-  if (newStep === 4) {
-    Object.assign(
-      finalRequestData.value,
-      dataFromFirstFormStep.value,
-      dataFromSecondFormStep.value,
-      dataFromThirdFormStep.value
-    );
-
-    addPartRequestRecordToTheDB();
-  }
-});
-</script>
 
 <style lang="scss" scoped>
 @import "@/assets/styles/_variables.scss";

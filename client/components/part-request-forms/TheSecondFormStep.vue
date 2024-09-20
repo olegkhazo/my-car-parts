@@ -1,61 +1,3 @@
-<template>
-  <div class="form-fields-section">
-    <label class="label-text" for="car-type">Type *</label>
-    <span v-if="!isCarTypeValid && formButtonClicked" class="input-error-notification">Please enter a valid type</span>
-    <select id="car-type" v-model="formData.car_type" name="type-group">
-      <option value="car" selected>Car</option>
-    </select>
-
-    <label class="label-text" for="car-make"> Make * </label>
-    <span v-if="!isCarMakeValid && formButtonClicked" class="input-error-notification">Please choose car make</span>
-    <select id="car-make" v-model="filterByMake" name="car-make-group">
-      <option value="Select Make">Select Make</option>
-      <option v-for="make in makesCollection" :key="make">{{ make }}</option>
-    </select>
-
-    <label class="label-text" for="car-year"> Year * </label>
-    <span v-if="!isCarYearValid && formButtonClicked" class="input-error-notification">Please choose car year</span>
-    <select id="car-year" v-model="filterByYear" name="car-year-group" :disabled="filterByMake === 'Select Make'">
-      <option value="Year">Year</option>
-      <option v-for="year in yearOptions" :key="year">{{ year }}</option>
-    </select>
-
-    <label class="label-text" for="car-model"> Model * </label>
-    <span v-if="!isCarModelValid && formButtonClicked" class="input-error-notification">Please choose car model</span>
-    <select id="car-model" v-model="filterByModel" name="car-model-group" :disabled="filterByYear === 'Year'">
-      <option value="Select Model">Select Model</option>
-      <option v-for="model in modelsCollection.Results" :key="model">
-        {{ model.Model_Name }}
-      </option>
-    </select>
-
-    <div class="fuel-data-wrapper">
-      <label class="label-text" for="car-fuel-type"> Fuel Type</label>
-      <select id="car-fuel-type" v-model="formData.fuel_type" name="car-fuel-type">
-        <option v-for="fuel in carsFuelTypes" :key="fuel" :value="fuel">
-          {{ fuel }}
-        </option>
-      </select>
-
-      <input id="litres" v-model="formData.engine_volume" type="text" placeholder="2.5" />
-      <label class="label-text" for="litres">Volume</label>
-    </div>
-
-    <label class="label-text" for="car-body-type"> Body Type </label>
-    <select id="car-body-type" v-model="formData.car_body" name="car-body-type">
-      <option v-for="body in carBodyTypes" :key="body" :value="body">
-        {{ body }}
-      </option>
-    </select>
-
-    <label class="label-text" for="car-vin"> VIN </label>
-    <input id="car-vin" v-model="formData.vin_code" name="car-vin" placeholder="VIN" />
-
-    <button class="light-gray-btn" @click.prevent="switchFormToAnotherStep(1)">Back</button>
-    <button class="gray-btn" @click.prevent="checkTheFormFields(3)">Continue</button>
-  </div>
-</template>
-
 <script setup>
 import { usePartRequestFormStore } from "@/stores";
 import { validateFormField } from "@/utils/index";
@@ -159,6 +101,64 @@ async function checkTheFormFields(step) {
 const emit = defineEmits(["switchFormToAnotherStep"]);
 const switchFormToAnotherStep = (step) => emit("switchFormToAnotherStep", step);
 </script>
+
+<template>
+  <div class="form-fields-section">
+    <label class="label-text" for="car-type">Type *</label>
+    <span v-if="!isCarTypeValid && formButtonClicked" class="input-error-notification">Please enter a valid type</span>
+    <select id="car-type" v-model="formData.car_type" name="type-group">
+      <option value="car" selected>Car</option>
+    </select>
+
+    <label class="label-text" for="car-make"> Make * </label>
+    <span v-if="!isCarMakeValid && formButtonClicked" class="input-error-notification">Please choose car make</span>
+    <select id="car-make" v-model="filterByMake" name="car-make-group">
+      <option value="Select Make">Select Make</option>
+      <option v-for="make in makesCollection" :key="make">{{ make }}</option>
+    </select>
+
+    <label class="label-text" for="car-year"> Year * </label>
+    <span v-if="!isCarYearValid && formButtonClicked" class="input-error-notification">Please choose car year</span>
+    <select id="car-year" v-model="filterByYear" name="car-year-group" :disabled="filterByMake === 'Select Make'">
+      <option value="Year">Year</option>
+      <option v-for="year in yearOptions" :key="year">{{ year }}</option>
+    </select>
+
+    <label class="label-text" for="car-model"> Model * </label>
+    <span v-if="!isCarModelValid && formButtonClicked" class="input-error-notification">Please choose car model</span>
+    <select id="car-model" v-model="filterByModel" name="car-model-group" :disabled="filterByYear === 'Year'">
+      <option value="Select Model">Select Model</option>
+      <option v-for="model in modelsCollection.Results" :key="model">
+        {{ model.Model_Name }}
+      </option>
+    </select>
+
+    <div class="fuel-data-wrapper">
+      <label class="label-text" for="car-fuel-type"> Fuel Type</label>
+      <select id="car-fuel-type" v-model="formData.fuel_type" name="car-fuel-type">
+        <option v-for="fuel in carsFuelTypes" :key="fuel" :value="fuel">
+          {{ fuel }}
+        </option>
+      </select>
+
+      <input id="litres" v-model="formData.engine_volume" type="text" placeholder="2.5" />
+      <label class="label-text" for="litres">Volume</label>
+    </div>
+
+    <label class="label-text" for="car-body-type"> Body Type </label>
+    <select id="car-body-type" v-model="formData.car_body" name="car-body-type">
+      <option v-for="body in carBodyTypes" :key="body" :value="body">
+        {{ body }}
+      </option>
+    </select>
+
+    <label class="label-text" for="car-vin"> VIN </label>
+    <input id="car-vin" v-model="formData.vin_code" name="car-vin" placeholder="VIN" />
+
+    <button class="light-gray-btn" @click.prevent="switchFormToAnotherStep(1)">Back</button>
+    <button class="gray-btn" @click.prevent="checkTheFormFields(3)">Continue</button>
+  </div>
+</template>
 
 <style lang="scss" scoped>
 .form-fields-section {

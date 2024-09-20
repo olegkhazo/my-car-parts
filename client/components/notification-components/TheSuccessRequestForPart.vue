@@ -1,3 +1,12 @@
+<script setup>
+const props = defineProps({
+  data: {
+    type: Object,
+    required: true,
+  },
+});
+</script>
+
 <template>
   <div class="request-sending-result">
     <div class="succesful-notification">
@@ -19,15 +28,6 @@
     </div>
   </div>
 </template>
-
-<script setup>
-const props = defineProps({
-  data: {
-    type: Object,
-    required: true,
-  },
-});
-</script>
 
 <style lang="scss" scoped>
 .request-sending-result {

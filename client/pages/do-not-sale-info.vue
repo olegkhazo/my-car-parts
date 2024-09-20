@@ -1,3 +1,15 @@
+<script setup>
+useHead({
+  title: "MyNextParts - Do not sale my info (CA)",
+  meta: [
+    {
+      name: "description",
+      content: " Do not sale my info (CA) of MyNextParts service",
+    },
+  ],
+});
+</script>
+
 <template>
   <div class="content-wrapper">
     <div>
@@ -36,18 +48,6 @@
     <NuxtLink class="light-gray-btn" to="/">Home Page</NuxtLink>
   </div>
 </template>
-
-<script setup>
-useHead({
-  title: "MyNextParts - Do not sale my info (CA)",
-  meta: [
-    {
-      name: "description",
-      content: " Do not sale my info (CA) of MyNextParts service",
-    },
-  ],
-});
-</script>
 
 <style lang="scss" scoped>
 @import "@/assets/styles/_variables.scss";

@@ -7,8 +7,8 @@ export interface CustomRequest extends Request {
 }
 
 export const authenticate = (req: CustomRequest, res: Response, next: NextFunction) => {
-  const SECRET_KEY: string = process.env.SECRET_KEY as string;
- console.log(SECRET_KEY);
+ const SECRET_KEY: string = process.env.SECRET_KEY as string;
+ 
   try {
     const token = req.headers.authorization?.replace('Bearer ', '');
     

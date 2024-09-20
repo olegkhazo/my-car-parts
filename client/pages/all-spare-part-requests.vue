@@ -1,3 +1,91 @@
+<script setup>
+useHead({
+  title: "Table of user requests for car parts",
+  meta: [
+    {
+      name: "description",
+      content: "A detailed table of all user requests for car parts with detailed descriptions and information.",
+    },
+  ],
+});
+import { getTimeAgo } from "@/utils";
+import { API_URL } from "@/utils/constants";
+import { useAllPartRequestsDataStore, useAuthStore } from "@/stores";
+import Paginate from "vuejs-paginate-next";
+const authManager = useAuthStore();
+
+const { loggedIn } = storeToRefs(authManager);
+
+const currentPage = ref(1);
+const chunkOfRequestsForView = ref([]);
+const { originalSparePartRequestsData, filteredPartRequestsData } = storeToRefs(useAllPartRequestsDataStore());
+
+//fetching all requests
+const { data: allRequests, error } = await useFetch(API_URL + "all-spare-part-requests-data");
+
+onMounted(() => {
+  if (allRequests.value) {
+    allRequests.value.sort((a, b) => {
+      // Comparing and sorting the created_date in descending order
+      return new Date(b.created_date) - new Date(a.created_date);
+    });
+
+    originalSparePartRequestsData.value = allRequests.value;
+    filteredPartRequestsData.value = originalSparePartRequestsData.value;
+
+    chunkOfRequestsForView.value = filteredPartRequestsData.value.slice(0, 10);
+  } else if (error.value) {
+    // should to think how better to show errors
+    console.log("something wrong:" + error.value);
+  }
+});
+
+const numPages = computed(() => {
+  return filteredPartRequestsData.value.length / 10;
+});
+
+function rewriteChunkOfRequests(pageNum) {
+  currentPage.value = pageNum;
+
+  if (currentPage.value === 1) {
+    chunkOfRequestsForView.value = filteredPartRequestsData.value.slice(0, 10);
+  } else {
+    chunkOfRequestsForView.value = filteredPartRequestsData.value.slice(
+      currentPage.value * 10 - 10,
+      currentPage.value * 10
+    );
+  }
+  scrollToTopOfTheTableBody();
+}
+
+watch(filteredPartRequestsData, () => {
+  chunkOfRequestsForView.value = filteredPartRequestsData.value.slice(0, 10);
+});
+
+function showAllContentOfSingleRequest(event) {
+  const allContentRow = event.target.closest(".single-request-row").nextElementSibling;
+
+  allContentRow.classList.contains("hidden")
+    ? allContentRow.classList.remove("hidden")
+    : allContentRow.classList.add("hidden");
+}
+
+function hideAllContentOfSingleRequest(event) {
+  const button = event.target;
+  const contentRow = button.closest(".all-content-for-single-request");
+  contentRow.classList.add("hidden");
+
+  scrollToTopOfTheTableBody();
+}
+
+function scrollToTopOfTheTableBody() {
+  document.getElementById("tbody").scrollIntoView({
+    block: "start",
+    behavior: "smooth",
+  });
+}
+</script>
+
 <template>
   <div class="content-wrapper">
     <div class="all-requests-wrapper">
@@ -145,94 +233,6 @@
     </div>
   </div>
 </template>
-
-<script setup>
-useHead({
-  title: "Table of user requests for car parts",
-  meta: [
-    {
-      name: "description",
-      content: "A detailed table of all user requests for car parts with detailed descriptions and information.",
-    },
-  ],
-});
-import { getTimeAgo } from "@/utils";
-import { API_URL } from "@/utils/constants";
-import { useAllPartRequestsDataStore, useAuthStore } from "@/stores";
-import Paginate from "vuejs-paginate-next";
-const authManager = useAuthStore();
-
-const { loggedIn } = storeToRefs(authManager);
-
-const currentPage = ref(1);
-const chunkOfRequestsForView = ref([]);
-const { originalSparePartRequestsData, filteredPartRequestsData } = storeToRefs(useAllPartRequestsDataStore());
-
-//fetching all requests
-const { data: allRequests, error } = await useFetch(API_URL + "all-spare-part-requests-data");
-
-onMounted(() => {
-  if (allRequests.value) {
-    allRequests.value.sort((a, b) => {
-      // Comparing and sorting the created_date in descending order
-      return new Date(b.created_date) - new Date(a.created_date);
-    });
-
-    originalSparePartRequestsData.value = allRequests.value;
-    filteredPartRequestsData.value = originalSparePartRequestsData.value;
-
-    chunkOfRequestsForView.value = filteredPartRequestsData.value.slice(0, 10);
-  } else if (error.value) {
-    // should to think how better to show errors
-    console.log("something wrong:" + error.value);
-  }
-});
-
-const numPages = computed(() => {
-  return filteredPartRequestsData.value.length / 10;
-});
-
-function rewriteChunkOfRequests(pageNum) {
-  currentPage.value = pageNum;
-
-  if (currentPage.value === 1) {
-    chunkOfRequestsForView.value = filteredPartRequestsData.value.slice(0, 10);
-  } else {
-    chunkOfRequestsForView.value = filteredPartRequestsData.value.slice(
-      currentPage.value * 10 - 10,
-      currentPage.value * 10
-    );
-  }
-  scrollToTopOfTheTableBody();
-}
-
-watch(filteredPartRequestsData, () => {
-  chunkOfRequestsForView.value = filteredPartRequestsData.value.slice(0, 10);
-});
-
-function showAllContentOfSingleRequest(event) {
-  const allContentRow = event.target.closest(".single-request-row").nextElementSibling;
-
-  allContentRow.classList.contains("hidden")
-    ? allContentRow.classList.remove("hidden")
-    : allContentRow.classList.add("hidden");
-}
-
-function hideAllContentOfSingleRequest(event) {
-  const button = event.target;
-  const contentRow = button.closest(".all-content-for-single-request");
-  contentRow.classList.add("hidden");
-
-  scrollToTopOfTheTableBody();
-}
-
-function scrollToTopOfTheTableBody() {
-  document.getElementById("tbody").scrollIntoView({
-    block: "start",
-    behavior: "smooth",
-  });
-}
-</script>
 
 <style lang="scss" scoped>
 @import "@/assets/styles/_variables.scss";

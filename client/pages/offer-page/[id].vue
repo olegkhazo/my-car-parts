@@ -1,3 +1,137 @@
+<script setup>
+useHead({
+  title: "Creating an offer for car parts",
+  meta: [
+    {
+      name: "description",
+      content: "Page for sending an offer of a car spare part to a user request",
+    },
+  ],
+});
+
+import { API_URL } from "@/utils/constants";
+import { usaStates } from "@/utils/usaStates";
+import { validateFormField } from "@/utils/index";
+import TheSuccessRequestForPart from "@/components/notification-components/TheSuccessRequestForPart";
+
+const { id } = useRoute().params;
+const formButtonClicked = ref(false);
+
+const successWindowData = {
+  header:
+    "Your suggestion was sent successfully! If your variant fits the client, he will connect with you by your contacts.",
+  typeOfRequest: "offer",
+};
+
+const singlePartRequestData = ref(null);
+const successfulOferSending = ref(false);
+const states = ref([]);
+
+const token = localStorage.getItem("token");
+
+const formData = ref({
+  related_request_id: id,
+  part_name: "",
+  byer_email: "",
+  full_name: "",
+  company_name: "",
+  type_of_part: "original",
+  part_condition: "new",
+  price: "",
+  state: "",
+  city_area: "",
+  email: "",
+  phone: "",
+});
+
+const { data: singleRequest, error } = await useFetch(API_URL + `single-spare-part-request-data/${id}`);
+
+onMounted(() => {
+  if (singleRequest.value) {
+    singlePartRequestData.value = singleRequest.value;
+  } else if (error.value) {
+    // should to think how better to show errors
+    console.log("something wrong:" + error.value);
+  }
+
+  for (let stateData of Object.values(usaStates)) {
+    states.value.push(stateData.name);
+  }
+});
+
+// Validation
+const isEmailValid = computed(() => {
+  return validateFormField(formData.value.email, "EMAIL_PATTERN");
+});
+
+const isNameValid = computed(() => {
+  return validateFormField(formData.value.full_name, "COMMON_NOT_EMPTY_PATTERN");
+});
+
+const isCompanyNameValid = computed(() => {
+  return validateFormField(formData.value.company_name, "COMMON_NOT_EMPTY_PATTERN");
+});
+
+const isPriceValid = computed(() => {
+  return validateFormField(formData.value.price, "PRICE_PATTERN");
+});
+
+const isStateValid = computed(() => {
+  return validateFormField(formData.value.state, "COMMON_NOT_EMPTY_PATTERN");
+});
+
+const isCityValid = computed(() => {
+  return validateFormField(formData.value.city_area, "COMMON_NOT_EMPTY_PATTERN");
+});
+
+const isPhoneValid = computed(() => {
+  return validateFormField(formData.value.phone, "PHONE_PATTERN");
+});
+
+async function createNewOffer() {
+  formButtonClicked.value = true;
+
+  formData.value.byer_email = singlePartRequestData.value.email;
+  formData.value.part_name = singlePartRequestData.value.part_name;
+
+  if (
+    isEmailValid.value &&
+    isNameValid.value &&
+    isCompanyNameValid.value &&
+    isPriceValid.value &&
+    isStateValid.value &&
+    isCityValid.value &&
+    isPhoneValid.value
+  ) {
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    };
+
+    const { data: newRequestCreating, error } = await useFetch(API_URL + "create-offer", {
+      method: "post",
+      body: JSON.stringify(formData.value),
+      headers: headers,
+    });
+
+    if (newRequestCreating.value) {
+      successfulOferSending.value = true;
+      scrollToTopOfTheTableBody();
+    } else if (error.value) {
+      // should to think how better to show errors
+      console.log("something wrong:" + error.value);
+    }
+  }
+}
+
+function scrollToTopOfTheTableBody() {
+  document.getElementById("offer-page-wrapper").scrollIntoView({
+    block: "start",
+    behavior: "smooth",
+  });
+}
+</script>
+
 <template>
   <div class="content-wrapper">
     <h2>Offer Page</h2>
@@ -178,140 +312,6 @@
     </div>
   </div>
 </template>
-
-<script setup>
-useHead({
-  title: "Creating an offer for car parts",
-  meta: [
-    {
-      name: "description",
-      content: "Page for sending an offer of a car spare part to a user request",
-    },
-  ],
-});
-
-import { API_URL } from "@/utils/constants";
-import { usaStates } from "@/utils/usaStates";
-import { validateFormField } from "@/utils/index";
-import TheSuccessRequestForPart from "@/components/notification-components/TheSuccessRequestForPart";
-
-const { id } = useRoute().params;
-const formButtonClicked = ref(false);
-
-const successWindowData = {
-  header:
-    "Your suggestion was sent successfully! If your variant fits the client, he will connect with you by your contacts.",
-  typeOfRequest: "offer",
-};
-
-const singlePartRequestData = ref(null);
-const successfulOferSending = ref(false);
-const states = ref([]);
-
-const token = localStorage.getItem("token");
-
-const formData = ref({
-  related_request_id: id,
-  part_name: "",
-  byer_email: "",
-  full_name: "",
-  company_name: "",
-  type_of_part: "original",
-  part_condition: "new",
-  price: "",
-  state: "",
-  city_area: "",
-  email: "",
-  phone: "",
-});
-
-const { data: singleRequest, error } = await useFetch(API_URL + `single-spare-part-request-data/${id}`);
-
-onMounted(() => {
-  if (singleRequest.value) {
-    singlePartRequestData.value = singleRequest.value;
-  } else if (error.value) {
-    // should to think how better to show errors
-    console.log("something wrong:" + error.value);
-  }
-
-  for (let stateData of Object.values(usaStates)) {
-    states.value.push(stateData.name);
-  }
-});
-
-// Validation
-const isEmailValid = computed(() => {
-  return validateFormField(formData.value.email, "EMAIL_PATTERN");
-});
-
-const isNameValid = computed(() => {
-  return validateFormField(formData.value.full_name, "COMMON_NOT_EMPTY_PATTERN");
-});
-
-const isCompanyNameValid = computed(() => {
-  return validateFormField(formData.value.company_name, "COMMON_NOT_EMPTY_PATTERN");
-});
-
-const isPriceValid = computed(() => {
-  return validateFormField(formData.value.price, "PRICE_PATTERN");
-});
-
-const isStateValid = computed(() => {
-  return validateFormField(formData.value.state, "COMMON_NOT_EMPTY_PATTERN");
-});
-
-const isCityValid = computed(() => {
-  return validateFormField(formData.value.city_area, "COMMON_NOT_EMPTY_PATTERN");
-});
-
-const isPhoneValid = computed(() => {
-  return validateFormField(formData.value.phone, "PHONE_PATTERN");
-});
-
-async function createNewOffer() {
-  formButtonClicked.value = true;
-
-  formData.value.byer_email = singlePartRequestData.value.email;
-  formData.value.part_name = singlePartRequestData.value.part_name;
-
-  if (
-    isEmailValid.value &&
-    isNameValid.value &&
-    isCompanyNameValid.value &&
-    isPriceValid.value &&
-    isStateValid.value &&
-    isCityValid.value &&
-    isPhoneValid.value
-  ) {
-    const headers = {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    };
-
-    const { data: newRequestCreating, error } = await useFetch(API_URL + "create-offer", {
-      method: "post",
-      body: JSON.stringify(formData.value),
-      headers: headers,
-    });
-
-    if (newRequestCreating.value) {
-      successfulOferSending.value = true;
-      scrollToTopOfTheTableBody();
-    } else if (error.value) {
-      // should to think how better to show errors
-      console.log("something wrong:" + error.value);
-    }
-  }
-}
-
-function scrollToTopOfTheTableBody() {
-  document.getElementById("offer-page-wrapper").scrollIntoView({
-    block: "start",
-    behavior: "smooth",
-  });
-}
-</script>
 
 <style lang="scss" scoped>
 @import "@/assets/styles/_variables.scss";

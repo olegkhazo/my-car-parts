@@ -5,9 +5,7 @@ definePageMeta({
 </script>
 
 <template>
-  <div>
-    <h2>In development</h2>
-  </div>
+  <div class="all-users-wrapper">All users will be here</div>
 </template>
 
 <style lang="scss" scoped></style>

@@ -10,36 +10,27 @@ export class Users {
   @prop() 
   company: string;
 
-  @prop()
+  @prop() 
   email: string;
 
-  @prop()
+  @prop() 
   password: string;
 
-  @prop()
+  @prop() 
   tips_agreement: string;
 
-  @prop()
+  @prop() 
   terms_agreement: string;
 
-  @prop()
+  @prop({ default: false })
   isActive: boolean;
 
-  @prop()
+  @prop() 
   activationToken: string;
 
-
-    // @prop({ required: true })
-    // public userEmail!: string;
-  
-    // @prop({ required: true })
-    // public password!: string;
-  
-    // @prop({ default: false })
-    // public isActive?: boolean;
-  
-    // @prop()
-    // public activationToken?: string;
-  }
+  // different user types (user, seller, super_admin)
+  @prop({ default: 'user' }) // Default to 'user' role
+  role: string;
+}
 
 export const UsersModel = getModelForClass(Users);
