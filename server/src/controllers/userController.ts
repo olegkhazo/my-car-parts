@@ -36,7 +36,7 @@ export const registerUser = async (req: Request, res: Response, next: NextFuncti
     await sendUsersAccountActivationLink(req.body.email, activationLink);
 
   } catch (error) {
-    next(error);
+    res.status(500).json({ error: 'Server error' });
   }
 };
   
@@ -53,7 +53,7 @@ export const activateUser = async (req: Request, res: Response, next: NextFuncti
 
     res.redirect(303, `${CLIENT_HOST}activation-success`);
   } catch (error) {
-    res.status(400).json({ error: 'Wrong activation token' });
+    res.status(401).json({ error: 'Invalid or expired activation token' });
   }
 };
   
@@ -70,7 +70,7 @@ export const authoriseUser = async (req: Request, res: Response, next: NextFunct
     }
 
     if (!user.isActive) {
-      return res.status(401).json({ error: 'User with such email is not activated' });
+      return res.status(401).json({ error: 'User with such an email is not activated' });
     }
 
     // Password check
