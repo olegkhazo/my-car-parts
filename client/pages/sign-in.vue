@@ -32,8 +32,12 @@ const isPasswordValid = computed(() => {
 async function signIn() {
   formButtonClicked.value = true;
   if (isEmailValid.value && isPasswordValid.value) {
-    await authManager.login(signInCreds.value);
-    navigateTo("/");
+    try {
+      await authManager.login(signInCreds.value);
+      navigateTo("/");
+    } catch (error) {
+      console.log("The password is wrong! Try again");
+    }
   }
 }
 

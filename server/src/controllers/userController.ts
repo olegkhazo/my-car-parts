@@ -13,7 +13,6 @@ export const registerUser = async (req: Request, res: Response, next: NextFuncti
     const existingUser = await UsersModel.findOne({ email: req.body.email });
 
     if (existingUser) {
-      console.log("already exist");
       return res.status(400).json({ error: 'User with such email already exists' });
     }
 
@@ -25,7 +24,6 @@ export const registerUser = async (req: Request, res: Response, next: NextFuncti
     req.body.password = hashedPassword;
 
     const activationToken = jwt.sign({ email: req.body.email }, SECRET_KEY, { expiresIn: '1h' });
-    console.log(activationToken);
 
     Object.assign(req.body, activationToken);
 
@@ -55,7 +53,6 @@ export const activateUser = async (req: Request, res: Response, next: NextFuncti
 
     res.redirect(`${CLIENT_HOST}activation-success`);
   } catch (error) {
-    console.error(error);
     res.status(400).json({ error: 'Wrong activation token' });
   }
 };
@@ -69,12 +66,11 @@ export const authoriseUser = async (req: Request, res: Response, next: NextFunct
     const user = await UsersModel.findOne({ email: req.body.email });
 
     if (!user) {
-      console.log("User not found");
-      return res.status(401).json({ error: 'Wrong authentification data' });
+      return res.status(401).json({ error: 'User with such an email is not available' });
     }
 
     if (!user.isActive) {
-      return res.status(401).json({ error: 'Not activated' });
+      return res.status(401).json({ error: 'User with such email is not activated' });
     }
 
     // Password check
@@ -84,17 +80,12 @@ export const authoriseUser = async (req: Request, res: Response, next: NextFunct
 
       // JWT token generation
       const token = jwt.sign({ userId: user._id?.toString(), email: user.email }, SECRET_KEY, { expiresIn: '1h' });
-      console.log("Authorized successfully");
       res.json({ token });
-
     } else {
 
-      console.log("Password mismatch");
-      return res.status(401).json({ error: 'Wrong user data' });  
-          
+      return res.status(401).json({ error: 'The password is wrong, try again' });            
     }
   } catch (error) {
-    console.error(error);
     res.status(500).json({ error: 'Server error' });
   }
 };
