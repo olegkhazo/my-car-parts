@@ -47,11 +47,11 @@ export const activateUser = async (req: Request, res: Response, next: NextFuncti
 
   try {
     const decodedToken = jwt.verify(token, SECRET_KEY);
-    const { userEmail } = decodedToken;
+    const { email } = decodedToken;
 
-    await UsersModel.findOneAndUpdate({ userEmail }, { $set: { isActive: true, activationToken: null } });
+    await UsersModel.findOneAndUpdate({ email }, { $set: { isActive: true, activationToken: null } });
 
-    res.redirect(303, `${CLIENT_HOST}activation-success`);
+    res.redirect(`${CLIENT_HOST}activation-success`);
   } catch (error) {
     res.status(401).json({ error: 'Invalid or expired activation token' });
   }
@@ -66,11 +66,11 @@ export const authoriseUser = async (req: Request, res: Response, next: NextFunct
     const user = await UsersModel.findOne({ email: req.body.email });
 
     if (!user) {
-      return res.status(401).json({ error: 'User with such an email is not available' });
+      return res.status(401).json({ error: 'Wrong authentification data' });
     }
 
     if (!user.isActive) {
-      return res.status(401).json({ error: 'User with such an email is not activated' });
+      return res.status(401).json({ error: 'Not activated' });
     }
 
     // Password check
@@ -81,9 +81,11 @@ export const authoriseUser = async (req: Request, res: Response, next: NextFunct
       // JWT token generation
       const token = jwt.sign({ userId: user._id?.toString(), email: user.email }, SECRET_KEY, { expiresIn: '1h' });
       res.json({ token });
+
     } else {
 
-      return res.status(401).json({ error: 'The password is wrong, try again' });            
+      return res.status(401).json({ error: 'Wrong user data' });  
+          
     }
   } catch (error) {
     res.status(500).json({ error: 'Server error' });

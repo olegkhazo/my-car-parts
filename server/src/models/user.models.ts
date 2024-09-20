@@ -22,7 +22,7 @@ export class Users {
   @prop() 
   terms_agreement: string;
 
-  @prop() 
+  @prop({ default: false })
   isActive: boolean;
 
   @prop() 
