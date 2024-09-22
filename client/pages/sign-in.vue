@@ -13,8 +13,12 @@ import { validateFormField } from "@/utils/index";
 import { useAuthStore } from "@/stores";
 
 const authManager = useAuthStore();
-
 const formButtonClicked = ref(false);
+const backendErrors = ref({
+  email: "",
+  password: "",
+  general: "",
+});
 
 const signInCreds = ref({
   email: "",
@@ -31,12 +35,16 @@ const isPasswordValid = computed(() => {
 
 async function signIn() {
   formButtonClicked.value = true;
+  backendErrors.value = { email: "", password: "", general: "" };
+
   if (isEmailValid.value && isPasswordValid.value) {
-    try {
-      await authManager.login(signInCreds.value);
+    const loginResponse = await authManager.login(signInCreds.value);
+
+    if (loginResponse.success) {
       navigateTo("/");
-    } catch (error) {
-      console.log("The password is wrong! Try again");
+    } else {
+      backendErrors.value.general = "Login failed. Please check your credentials.";
+      console.error("Login error:", loginResponse.error);
     }
   }
 }
@@ -54,12 +62,21 @@ onBeforeUnmount(() => {
         <span v-if="!isEmailValid && formButtonClicked" class="input-error-notification">
           Please enter a valid email address.
         </span>
+        <span v-if="backendErrors.email" class="input-error-notification">
+          {{ backendErrors.email }}
+        </span>
         <input id="email" v-model="signInCreds.email" type="email" name="email" placeholder="Email address *" />
 
         <span v-if="!isPasswordValid && formButtonClicked" class="input-error-notification">
           Please enter a valid password.
         </span>
+        <span v-if="backendErrors.password" class="input-error-notification">
+          {{ backendErrors.password }}
+        </span>
         <input id="password" v-model="signInCreds.password" type="password" name="password" placeholder="Password *" />
+        <span v-if="backendErrors.general" class="input-error-notification">
+          {{ backendErrors.general }}
+        </span>
 
         <button class="xl-green-btn" @click="signIn">Sign In</button>
       </div>
