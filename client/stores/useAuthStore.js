@@ -35,29 +35,40 @@ export const useAuthStore = defineStore("auth", () => {
   );
 
   async function login(creds) {
-    const { data: authorisedUser, error } = await useFetch(API_URL + "login", {
-      method: "post",
-      body: JSON.stringify(creds),
-    });
-
-    if (authorisedUser.value) {
-      const token = authorisedUser.value.token;
-
-      // Add token to localStorage
-      if (process.client) {
-        localStorage.setItem("token", token);
-
-        // Parse token to get expiration time
-        const decodedToken = JSON.parse(atob(token.split(".")[1]));
-        const expirationTime = decodedToken.exp * 1000;
-
-        // Set token expiration date
-        tokenExpiration.value = new Date(expirationTime);
+    try {
+      const { data: authorisedUser, error } = await useFetch(API_URL + "login", {
+        method: "post",
+        body: JSON.stringify(creds),
+      });
+  
+      if (error.value) {
+        console.error("Login error:", error.value);
+        throw new Error("Authentication failed");
       }
-    } else if (error.value) {
-      console.error(error.value);
+  
+      if (authorisedUser.value) {
+        const token = authorisedUser.value.token;
+  
+        // Add token to localStorage
+        if (process.client) {
+          localStorage.setItem("token", token);
+  
+          // Parse token to get expiration time
+          const decodedToken = JSON.parse(atob(token.split(".")[1]));
+          const expirationTime = decodedToken.exp * 1000;
+  
+          // Set token expiration date
+          tokenExpiration.value = new Date(expirationTime);
+        }
+  
+        return { success: true };
+      }
+    } catch (err) {
+      console.error("Error during login:", err);
+      return { success: false, error: err.message };
     }
   }
+  
 
   async function logout() {
     clearUserInfo();
