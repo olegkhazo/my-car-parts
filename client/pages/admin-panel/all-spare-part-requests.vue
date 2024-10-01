@@ -84,7 +84,7 @@ function scrollToTopOfTheTableBody() {
 <template>
   <div class="all-requests-wrapper">
     <h1>All car part requests</h1>
-    <TheFilterByCarTypes />
+    <FilterByCarTypes />
     <div class="all-requests-table-wrapper">
       <div class="table-wrapper">
         <table>

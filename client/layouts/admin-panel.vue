@@ -1,6 +1,6 @@
 <script setup>
-import TheAdminPanelHeader from "@/components/admin-panel-components/TheAdminPanelHeader";
-import TheSideAdminNavigation from "@/components/admin-panel-components/TheSideAdminNavigation";
+import AdminHeader from "@/components/admin-components/AdminHeader";
+import AdminNavigation from "@/components/admin-components/AdminNavigation";
 const authManager = useAuthStore();
 
 const { loggedIn } = storeToRefs(authManager);
@@ -14,9 +14,9 @@ onMounted(() => {
 
 <template>
   <div>
-    <TheAdminPanelHeader />
+    <AdminHeader />
     <div class="main-admin-content">
-      <TheSideAdminNavigation />
+      <AdminNavigation />
       <div class="admin-panel-right-content">
         <slot />
       </div>

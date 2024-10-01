@@ -12,7 +12,7 @@ useHead({
 import { API_URL } from "@/utils/constants";
 import { usaStates } from "@/utils/usaStates";
 import { validateFormField } from "@/utils/index";
-import TheSuccessRequestForPart from "@/components/notification-components/TheSuccessRequestForPart";
+import SuccessRequestWindow from "@/components/notification/SuccessRequestWindow";
 
 const { id } = useRoute().params;
 const formButtonClicked = ref(false);
@@ -229,7 +229,7 @@ function scrollToTopOfTheTableBody() {
 
             <button class="gray-btn" @click.prevent="createNewOffer">Continue</button>
           </div>
-          <TheSuccessRequestForPart v-else :data="successWindowData" />
+          <SuccessRequestWindow v-else :data="successWindowData" />
         </form>
       </div>
 
