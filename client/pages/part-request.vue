@@ -11,10 +11,10 @@ useHead({
 });
 
 import { API_URL } from "@/utils/constants";
-import TheFirstFormStep from "@/components/part-request-forms/TheFirstFormStep";
-import TheSecondFormStep from "@/components/part-request-forms/TheSecondFormStep";
-import TheThirdFormStep from "@/components/part-request-forms/TheThirdFormStep";
-import TheSuccessRequestForPart from "@/components/notification-components/TheSuccessRequestForPart";
+import FirstFormStep from "@/components/part-request-forms/FirstFormStep";
+import SecondFormStep from "@/components/part-request-forms/SecondFormStep";
+import ThirdFormStep from "@/components/part-request-forms/ThirdFormStep";
+import SuccessRequestWindow from "@/components/notification/SuccessRequestWindow";
 
 import { usePartRequestFormStore } from "@/stores";
 
@@ -88,10 +88,10 @@ watch(formStep, (newStep) => {
             <span class="step" :class="{ 'active-step': formStep === 3 }">3</span>
           </div>
 
-          <TheFirstFormStep v-if="formStep === 1" @switch-form-to-another-step="formStepsSwitcher" />
-          <TheSecondFormStep v-else-if="formStep === 2" @switch-form-to-another-step="formStepsSwitcher" />
-          <TheThirdFormStep v-else-if="formStep === 3" @switch-form-to-another-step="formStepsSwitcher" />
-          <TheSuccessRequestForPart
+          <FirstFormStep v-if="formStep === 1" @switch-form-to-another-step="formStepsSwitcher" />
+          <SecondFormStep v-else-if="formStep === 2" @switch-form-to-another-step="formStepsSwitcher" />
+          <ThirdFormStep v-else-if="formStep === 3" @switch-form-to-another-step="formStepsSwitcher" />
+          <SuccessRequestWindow
             v-else-if="formStep === 4"
             @switch-form-to-another-step="formStepsSwitcher"
             :data="successWindowData"

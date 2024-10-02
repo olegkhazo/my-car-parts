@@ -1,11 +1,11 @@
 <template>
   <div>
-    <TheNavigation />
+    <AppNavigation />
 
     <div>
       <slot />
     </div>
 
-    <TheFooter />
+    <AppFooter />
   </div>
 </template>

@@ -1,5 +1,11 @@
+<script setup>
+const props = defineProps({
+  error: Object,
+});
+</script>
+
 <template>
-  <TheNavigation />
+  <AppNavigation />
   <div class="content-wrapper">
     <div class="error-page-content">
       <h1>Whoops</h1>
@@ -15,14 +21,8 @@
       <NuxtImg src="https://i.ibb.co/5L4Qxkj/404.png" title="sad-dog" />
     </div>
   </div>
-  <TheFooter />
+  <AppFooter />
 </template>
-
-<script setup>
-const props = defineProps({
-  error: Object,
-});
-</script>
 
 <style lang="scss" scoped>
 @import "@/assets/styles/_variables.scss";

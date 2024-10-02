@@ -55,6 +55,7 @@ function hideMenu() {
   box-shadow: 0px -13px 33px rgba(0, 0, 0, 0.25);
 
   .content-wrapper {
+    width: 95%;
     height: inherit;
     display: flex;
     align-items: center;
