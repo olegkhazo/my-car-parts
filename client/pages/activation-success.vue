@@ -30,7 +30,7 @@ useHead({
       <NuxtImg src="/images/shaking-hands.jpg" title="shaking-hands" />
     </div>
   </div>
-  <TheFooter />
+  <AppFooter />
 </template>
 
 <style lang="scss" scoped>
