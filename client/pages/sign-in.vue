@@ -41,7 +41,7 @@ async function signIn() {
     const loginResponse = await authManager.login(signInCreds.value);
 
     if (loginResponse.success) {
-      navigateTo("/");
+      navigateTo("/admin-panel");
     } else {
       backendErrors.value.general = "Login failed. Please check your credentials.";
       console.error("Login error:", loginResponse.error);

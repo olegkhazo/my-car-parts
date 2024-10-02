@@ -57,7 +57,6 @@ export const activateUser = async (req: Request, res: Response, next: NextFuncti
   }
 };
   
-
 export const authoriseUser = async (req: Request, res: Response, next: NextFunction) => {
   const SECRET_KEY: string = process.env.SECRET_KEY as string;
 
@@ -87,6 +86,18 @@ export const authoriseUser = async (req: Request, res: Response, next: NextFunct
       return res.status(401).json({ error: 'Wrong user data' });  
           
     }
+  } catch (error) {
+    res.status(500).json({ error: 'Server error' });
+  }
+};
+
+export const getUser = async (req: Request, res: Response) => {
+  try {
+    const user = await UsersModel.findById(req.params.id);
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+    res.json(user);
   } catch (error) {
     res.status(500).json({ error: 'Server error' });
   }

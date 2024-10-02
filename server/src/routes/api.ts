@@ -1,7 +1,7 @@
 import express from 'express';
 import { createPart, getAllParts, getSinglePart } from '../controllers/partRequestController';
 import { createOffer } from '../controllers/offerController';
-import { registerUser, activateUser, authoriseUser } from '../controllers/userController';
+import { registerUser, activateUser, authoriseUser, getUser } from '../controllers/userController';
 import { authenticate } from "../middlewares/authMiddleware";
 
 const router = express.Router();
@@ -24,13 +24,15 @@ router.post('/create-offer', authenticate, createOffer);
 
 
 // ***
-// User registration and Authorisation API routers
+// User API routers
 // ***
 
 router.post('/sign-up', registerUser);
 
 router.get('/activate/:token', activateUser);
 
-router.post('/login', authoriseUser)
+router.post('/login', authoriseUser);
+
+router.get('/user/:id', getUser);
 
 export default router;
