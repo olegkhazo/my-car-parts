@@ -1,4 +1,7 @@
 <script setup>
+import { useAuthStore } from "@/stores";
+const authManager = useAuthStore();
+
 const menuVisibility = ref(false);
 
 function showHideMenu() {
@@ -15,6 +18,11 @@ function clickOutsideMenu(event) {
 
 function hideMenu() {
   menuVisibility.value = false;
+}
+
+async function logoutUser() {
+  await authManager.logout();
+  window.location.reload();
 }
 </script>
 

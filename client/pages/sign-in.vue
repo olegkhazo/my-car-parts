@@ -40,18 +40,16 @@ async function signIn() {
   if (isEmailValid.value && isPasswordValid.value) {
     const loginResponse = await authManager.login(signInCreds.value);
 
-    if (loginResponse.success) {
-      navigateTo("/admin-panel");
+    if (loginResponse && loginResponse.success) {
+      setTimeout(() => {
+        navigateTo("/");
+      }, "1000");
     } else {
       backendErrors.value.general = "Login failed. Please check your credentials.";
       console.error("Login error:", loginResponse.error);
     }
   }
 }
-
-onBeforeUnmount(() => {
-  window.location.reload();
-});
 </script>
 
 <template>

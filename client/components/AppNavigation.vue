@@ -1,14 +1,14 @@
 <script setup>
-const mobileMenuVisibility = ref(false);
-const menuVisibility = ref(false);
-
 import { useAuthStore } from "@/stores";
 const authManager = useAuthStore();
 
-const { loggedIn } = storeToRefs(authManager);
+const { isAuthenticated } = storeToRefs(authManager);
+
+const mobileMenuVisibility = ref(false);
+const menuVisibility = ref(false);
 
 function showHideMobileMenu() {
-  mobileMenuVisibility.value = mobileMenuVisibility.value === false;
+  mobileMenuVisibility.value = !mobileMenuVisibility.value;
 }
 
 function clickOutsideMobileMenu(event) {
@@ -23,17 +23,14 @@ function hideMobileMenu() {
 
 async function logoutUser() {
   await authManager.logout();
-  window.location.reload();
 }
 
 function showHideMenu() {
-  menuVisibility.value = menuVisibility.value === false;
-  console.log(menuVisibility.value);
+  menuVisibility.value = !menuVisibility.value;
 }
 
 function clickOutsideMenu(event) {
   const avatarWrapper = event.target.closest(".avatar-wrapper");
-
   if (!avatarWrapper) {
     menuVisibility.value = false;
   }
@@ -58,7 +55,7 @@ function hideMenu() {
         class="menu-icon"
         @click="showHideMobileMenu"
       />
-      <NuxtImg v-else name="close" src="/images/close_black_36dp.svg" class="menu-icon" @click="showHideMobileMenu" />
+      <NuxtImg v-else src="/images/close_black_36dp.svg" class="menu-icon" @click="showHideMobileMenu" />
       <div class="nav" :class="{ 'show-mobile-menu': mobileMenuVisibility }" v-click-outside="clickOutsideMobileMenu">
         <ul @click="hideMobileMenu">
           <li>
@@ -70,13 +67,13 @@ function hideMenu() {
           <li>
             <NuxtLink to="/how-it-work">How it work</NuxtLink>
           </li>
-          <li v-show="!loggedIn">
+          <li v-if="!isAuthenticated">
             <NuxtLink to="/sign-in" class="xl-green-btn">Sign In</NuxtLink>
           </li>
-          <li v-show="!loggedIn">
+          <li v-if="!isAuthenticated">
             <NuxtLink to="/sign-up" class="blue-btn">Sign Up</NuxtLink>
           </li>
-          <li v-show="loggedIn">
+          <li v-if="isAuthenticated">
             <div class="avatar-wrapper" @click="showHideMenu">
               <NuxtImg src="/images/avatar-default.svg" alt="avatar" />
               <div class="menu" :class="{ 'show-menu': menuVisibility }" v-click-outside="clickOutsideMenu">

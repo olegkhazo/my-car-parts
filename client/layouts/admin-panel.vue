@@ -1,12 +1,14 @@
 <script setup>
 import AdminHeader from "@/components/admin-components/AdminHeader";
 import AdminNavigation from "@/components/admin-components/AdminNavigation";
+
+import { useAuthStore } from "@/stores/useAuthStore";
 const authManager = useAuthStore();
 
-const { loggedIn } = storeToRefs(authManager);
+const { isAuthenticated } = storeToRefs(authManager);
 
-onMounted(() => {
-  if (!loggedIn.value) {
+onMounted(async () => {
+  if (!isAuthenticated.value) {
     navigateTo("/sign-in");
   }
 });
@@ -18,6 +20,7 @@ onMounted(() => {
     <div class="main-admin-content">
       <div class="admin-panel-right-content">
         <AdminHeader />
+
         <slot />
       </div>
     </div>
