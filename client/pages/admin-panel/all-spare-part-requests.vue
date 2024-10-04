@@ -5,11 +5,8 @@ definePageMeta({
 
 import { getTimeAgo } from "@/utils";
 import { API_URL } from "@/utils/constants";
-import { useAllPartRequestsDataStore, useAuthStore } from "@/stores";
+import { useAllPartRequestsDataStore } from "@/stores";
 import Paginate from "vuejs-paginate-next";
-const authManager = useAuthStore();
-
-const { loggedIn } = storeToRefs(authManager);
 
 const currentPage = ref(1);
 const chunkOfRequestsForView = ref([]);
@@ -195,11 +192,8 @@ function scrollToTopOfTheTableBody() {
                     </div>
 
                     <div class="spare-part-requests-btn-wrapper">
-                      <NuxtLink v-if="loggedIn" :to="'/offer-page/' + request._id" class="suggest-button xl-green-btn"
+                      <NuxtLink :to="'/offer-page/' + request._id" class="suggest-button xl-green-btn"
                         >Suggest your variant</NuxtLink
-                      >
-                      <NuxtLink v-else :to="'/sign-in'" class="suggest-button xl-green-btn"
-                        >Sign in and suggest your variant</NuxtLink
                       >
                       <span class="close-content-btn blue-btn" @click="hideAllContentOfSingleRequest"
                         >Hide content</span
