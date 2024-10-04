@@ -42,7 +42,7 @@ async function signIn() {
 
     if (loginResponse && loginResponse.success) {
       setTimeout(() => {
-        navigateTo("/");
+        navigateTo("/admin-panel");
       }, "1000");
     } else {
       backendErrors.value.general = "Login failed. Please check your credentials.";
