@@ -1,23 +1,24 @@
 <script setup>
 import AdminHeader from "@/components/admin-components/AdminHeader";
 import AdminNavigation from "@/components/admin-components/AdminNavigation";
+
+import { useAuthStore } from "@/stores/useAuthStore";
 const authManager = useAuthStore();
 
-const { loggedIn } = storeToRefs(authManager);
-
-onMounted(() => {
-  if (!loggedIn.value) {
+onMounted(async () => {
+  if (!authManager.loggedIn) {
     navigateTo("/sign-in");
   }
 });
 </script>
 
 <template>
-  <div>
-    <AdminHeader />
+  <div class="admin-panel">
+    <AdminNavigation />
     <div class="main-admin-content">
-      <AdminNavigation />
       <div class="admin-panel-right-content">
+        <AdminHeader />
+
         <slot />
       </div>
     </div>
@@ -27,16 +28,15 @@ onMounted(() => {
 <style lang="scss" scoped>
 @import "@/assets/styles/_variables.scss";
 
-.main-admin-content {
+.admin-panel {
   display: flex;
-  min-height: calc(100vh - 63px);
+  width: 100%;
+  min-height: 100vh;
 
-  .admin-panel-right-content {
-    width: calc(100% - 200px);
-
-    @media (max-width: 850px) {
-      width: calc(100% - 150px);
-    }
+  .main-admin-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
   }
 }
 </style>

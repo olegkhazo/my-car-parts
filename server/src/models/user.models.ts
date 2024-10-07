@@ -16,6 +16,15 @@ export class Users {
   @prop() 
   password: string;
 
+  @prop()
+  phone?: string;
+
+  @prop()
+  address?: string;
+
+  @prop() 
+  avatar?: string;
+
   @prop() 
   tips_agreement: string;
 

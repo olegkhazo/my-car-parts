@@ -433,7 +433,7 @@ h2 {
     border-radius: 15px;
     background-color: $blue-250;
     padding: 20px 25px;
-    color: $gray-1000;
+    color: $gray-950;
     height: fit-content;
 
     @media (max-width: 900px) {

@@ -1,38 +1,52 @@
 import { defineStore } from "pinia";
 
+const userStorageKey = "user-info";
+const tokenKey = "user-token";
+
 export const useAuthStore = defineStore("auth", () => {
+  const userInfo = ref({});
+  const userToken = ref('');
+  const tokenExpiration = ref(null);
+  const userId = ref(null);
+
   const loggedIn = computed(() => {
-    if (process.client) {
-      return !!localStorage.getItem("token");
-    }
-    return false;
+    return userInfo.value?.access && userToken.value ? true : false;
   });
 
-  const tokenExpiration = ref(null);
+  function setNewUserInfo(newUserInfo, newUserToken) {
+    localStorage.setItem(userStorageKey, JSON.stringify(newUserInfo));
+    localStorage.setItem(tokenKey, newUserToken);
 
-  // Initialize tokenExpiration from localStorage on store creation
-  if (process.client) {
-    const storedToken = localStorage.getItem("token");
-    if (storedToken) {
-      const decodedToken = JSON.parse(atob(storedToken.split(".")[1]));
-      const expirationTime = decodedToken.exp * 1000;
-      tokenExpiration.value = new Date(expirationTime);
-    }
+    userInfo.value = newUserInfo;
+    userToken.value = newUserToken;
   }
 
-  // Schedule clearing token after expiration
-  watch(
-    tokenExpiration,
-    (newExpiration, oldExpiration) => {
-      if (oldExpiration !== null) {
-        const now = new Date();
-        if (now >= newExpiration) {
+  // Инициализация токена и userInfo из localStorage при загрузке стора
+  function initializeAuthState() {
+    if (process.client) {
+      const storedToken = localStorage.getItem(tokenKey);
+      if (storedToken) {
+        try {
+          const decodedToken = JSON.parse(atob(storedToken.split(".")[1]));
+          const expirationTime = decodedToken.exp * 1000;
+       
+          tokenExpiration.value = new Date(expirationTime);
+          userId.value = decodedToken.userId || null; // Извлекаем userId из токена
+
+          // Если токен действителен, загружаем данные пользователя
+          if (new Date() < tokenExpiration.value) {
+            userToken.value = storedToken;
+            userInfo.value = JSON.parse(localStorage.getItem(userStorageKey));
+          } else {
+            clearUserInfo(); // Если токен истек, очищаем данные
+          }
+        } catch (error) {
+          console.error("Error during token decode:", error);
           clearUserInfo();
         }
       }
-    },
-    { immediate: true }
-  );
+    }
+  }
 
   async function login(creds) {
     try {
@@ -40,27 +54,17 @@ export const useAuthStore = defineStore("auth", () => {
         method: "post",
         body: JSON.stringify(creds),
       });
-  
+
       if (error.value) {
         console.error("Login error:", error.value);
         throw new Error("Authentication failed");
       }
-  
+
       if (authorisedUser.value) {
-        const token = authorisedUser.value.token;
-  
-        // Add token to localStorage
-        if (process.client) {
-          localStorage.setItem("token", token);
-  
-          // Parse token to get expiration time
-          const decodedToken = JSON.parse(atob(token.split(".")[1]));
-          const expirationTime = decodedToken.exp * 1000;
-  
-          // Set token expiration date
-          tokenExpiration.value = new Date(expirationTime);
-        }
-  
+        userToken.value = authorisedUser.value.token;
+        userInfo.value = JSON.parse(atob(userToken.value.split(".")[1]));
+
+        setNewUserInfo(userInfo.value, userToken.value);
         return { success: true };
       }
     } catch (err) {
@@ -68,19 +72,46 @@ export const useAuthStore = defineStore("auth", () => {
       return { success: false, error: err.message };
     }
   }
-  
 
   async function logout() {
+    try {
+      const { data, error } = await useFetch(API_URL + "logout", {
+        method: "post",
+        headers: {
+          Authorization: `Bearer ${userToken.value}`,
+        },
+      });
+    } catch (error) {
+      if (error.response && ![401, 403].includes(error.response.status)) {
+        alert("Logout failed!");
+        throw error;
+      }
+      clearUserInfo();
+    }
+
     clearUserInfo();
   }
 
   function clearUserInfo() {
-    // Logout successful. Remove token
-    if (process.client) {
-      localStorage.removeItem("token");
-      tokenExpiration.value = null;
-    }
+    localStorage.removeItem(userStorageKey);
+    localStorage.removeItem(tokenKey);
+    userInfo.value = {};
+    userToken.value = '';
+    userId.value = null;
+    tokenExpiration.value = null;
   }
 
-  return { login, loggedIn, logout };
+  onMounted(() => {
+    initializeAuthState();
+  });
+
+  return {
+    login,
+    logout,
+    loggedIn,
+    userInfo,
+    userToken,
+    userId,
+    initializeAuthState
+  };
 });

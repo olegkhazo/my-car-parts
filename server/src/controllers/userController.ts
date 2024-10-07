@@ -57,7 +57,6 @@ export const activateUser = async (req: Request, res: Response, next: NextFuncti
   }
 };
   
-
 export const authoriseUser = async (req: Request, res: Response, next: NextFunction) => {
   const SECRET_KEY: string = process.env.SECRET_KEY as string;
 
@@ -77,9 +76,8 @@ export const authoriseUser = async (req: Request, res: Response, next: NextFunct
     const passwordMatch = await bcrypt.compare(req.body.password, user.password);
 
     if (passwordMatch) {
-
       // JWT token generation
-      const token = jwt.sign({ userId: user._id?.toString(), email: user.email }, SECRET_KEY, { expiresIn: '1h' });
+      const token = jwt.sign({ userId: user._id?.toString(), name: user.first_name, lastName: user.last_name, role: user.role, email: user.email, access: user.isActive }, SECRET_KEY, { expiresIn: '1h' });
       res.json({ token });
 
     } else {
@@ -87,6 +85,28 @@ export const authoriseUser = async (req: Request, res: Response, next: NextFunct
       return res.status(401).json({ error: 'Wrong user data' });  
           
     }
+  } catch (error) {
+    res.status(500).json({ error: 'Server error' });
+  }
+};
+
+export const logOut = (req: Request, res: Response, next: NextFunction) => {
+  try {
+    // Add Black List for tokens in the future
+    res.status(200).json({ message: 'Logged out successfully' });
+  } catch (error) {
+    res.status(500).json({ error: 'Server error during logout' });
+  }
+};
+
+export const getUser = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const user = await UsersModel.findById(req.params.id);
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+    console.log("User found:", user);
+    res.json(user);
   } catch (error) {
     res.status(500).json({ error: 'Server error' });
   }
