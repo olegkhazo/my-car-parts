@@ -5,10 +5,8 @@ import AdminNavigation from "@/components/admin-components/AdminNavigation";
 import { useAuthStore } from "@/stores/useAuthStore";
 const authManager = useAuthStore();
 
-const { isAuthenticated } = storeToRefs(authManager);
-
 onMounted(async () => {
-  if (!isAuthenticated.value) {
+  if (!authManager.loggedIn) {
     navigateTo("/sign-in");
   }
 });

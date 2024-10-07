@@ -1,38 +1,53 @@
 import { defineStore } from "pinia";
 
-export const useAuthStore = defineStore("auth", () => {
-  const userId = ref(null);
-  const tokenExpiration = ref(null);
-  const currentUserData = ref(null);
-  const isAuthenticated = ref(false); // Новая переменная для хранения состояния авторизации
+const userStorageKey = "user-info";
+const tokenKey = "user-token";
 
-  // Инициализация токена и userId из localStorage при загрузке стора
-  if (process.client) {
-    const storedToken = localStorage.getItem("token");
-    if (storedToken) {
-      const decodedToken = JSON.parse(atob(storedToken.split(".")[1]));
-      const expirationTime = decodedToken.exp * 1000;
-      tokenExpiration.value = new Date(expirationTime);
-      userId.value = decodedToken.userId || null;
-      isAuthenticated.value = !!storedToken; // Устанавливаем флаг авторизации
+export const useAuthStore = defineStore("auth", () => {
+  const userInfo = ref({});
+  const userToken = ref('');
+  const tokenExpiration = ref(null);
+  const userId = ref(null);
+
+  const loggedIn = computed(() => {
+    return userInfo.value?.access && userToken.value ? true : false;
+  });
+
+  function setNewUserInfo(newUserInfo, newUserToken) {
+    localStorage.setItem(userStorageKey, JSON.stringify(newUserInfo));
+    localStorage.setItem(tokenKey, newUserToken);
+
+    userInfo.value = newUserInfo;
+    userToken.value = newUserToken;
+  }
+
+  // Инициализация токена и userInfo из localStorage при загрузке стора
+  function initializeAuthState() {
+    if (process.client) {
+      const storedToken = localStorage.getItem(tokenKey);
+      if (storedToken) {
+        try {
+          const decodedToken = JSON.parse(atob(storedToken.split(".")[1]));
+          const expirationTime = decodedToken.exp * 1000;
+       
+          tokenExpiration.value = new Date(expirationTime);
+          userId.value = decodedToken.userId || null; // Извлекаем userId из токена
+
+          // Если токен действителен, загружаем данные пользователя
+          if (new Date() < tokenExpiration.value) {
+            userToken.value = storedToken;
+            userInfo.value = JSON.parse(localStorage.getItem(userStorageKey));
+          } else {
+            clearUserInfo(); // Если токен истек, очищаем данные
+          }
+        } catch (error) {
+          console.error("Error during token decode:", error);
+          clearUserInfo();
+        }
+      }
     }
   }
 
-  // Проверка истечения срока действия токена
-  watch(
-    tokenExpiration,
-    (newExpiration) => {
-      if (newExpiration) {
-        const now = new Date();
-        if (now >= newExpiration) {
-          clearUserInfo(); // Удаляем данные пользователя, если токен истек
-        }
-      }
-    },
-    { immediate: true }
-  );
-
-  // Функция для авторизации
   async function login(creds) {
     try {
       const { data: authorisedUser, error } = await useFetch(API_URL + "login", {
@@ -46,26 +61,10 @@ export const useAuthStore = defineStore("auth", () => {
       }
 
       if (authorisedUser.value) {
-        const token = authorisedUser.value.token;
+        userToken.value = authorisedUser.value.token;
+        userInfo.value = JSON.parse(atob(userToken.value.split(".")[1]));
 
-        // Если на клиенте, сохраняем токен и декодируем его
-        if (process.client) {
-          localStorage.setItem("token", token);
-
-          const decodedToken = JSON.parse(atob(token.split(".")[1]));
-          const expirationTime = decodedToken.exp * 1000;
-          tokenExpiration.value = new Date(expirationTime);
-
-          // Извлекаем и сохраняем userId из токена
-          userId.value = decodedToken.userId;
-
-          isAuthenticated.value = true; // Обновляем статус авторизации
-
-          if (!userId.value) {
-            console.error("userId is not present in the token");
-          }
-        }
-
+        setNewUserInfo(userInfo.value, userToken.value);
         return { success: true };
       }
     } catch (err) {
@@ -74,46 +73,45 @@ export const useAuthStore = defineStore("auth", () => {
     }
   }
 
-  watch(userId, (newUserId) => {
-    if (newUserId) {
-      getUserData(newUserId);
-    }
-  });
-
-  async function getUserData(userId) {
-    try {
-      const { data: userData, error } = await useFetch(API_URL + "user/" + userId, {
-        method: "get",
-      });
-
-      console.log(userData);
-      currentUserData.value = userData.value;
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  // Функция для выхода из системы
   async function logout() {
+    try {
+      const { data, error } = await useFetch(API_URL + "logout", {
+        method: "post",
+        headers: {
+          Authorization: `Bearer ${userToken.value}`,
+        },
+      });
+    } catch (error) {
+      if (error.response && ![401, 403].includes(error.response.status)) {
+        alert("Logout failed!");
+        throw error;
+      }
+      clearUserInfo();
+    }
+
     clearUserInfo();
-    isAuthenticated.value = false; // Сбрасываем статус авторизации
   }
 
-  // Очистка данных пользователя
   function clearUserInfo() {
-    if (process.client) {
-      localStorage.removeItem("token");
-      tokenExpiration.value = null;
-      userId.value = null;
-      isAuthenticated.value = false; // Сбрасываем статус авторизации
-    }
+    localStorage.removeItem(userStorageKey);
+    localStorage.removeItem(tokenKey);
+    userInfo.value = {};
+    userToken.value = '';
+    userId.value = null;
+    tokenExpiration.value = null;
   }
+
+  onMounted(() => {
+    initializeAuthState();
+  });
 
   return {
     login,
     logout,
-    isAuthenticated, // Используем новую реактивную переменную
+    loggedIn,
+    userInfo,
+    userToken,
     userId,
-    currentUserData,
+    initializeAuthState
   };
 });

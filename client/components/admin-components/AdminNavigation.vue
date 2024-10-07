@@ -1,3 +1,10 @@
+<script setup>
+import { useAuthStore } from "@/stores";
+const authManager = useAuthStore();
+
+const { userInfo } = storeToRefs(authManager);
+</script>
+
 <template>
   <div class="side-admin-navigation">
     <div class="admin-logo">
@@ -7,8 +14,8 @@
     </div>
 
     <div class="user-info">
-      <span class="user-full-name">Oleh Zhuravko</span>
-      <span class="user-role">Admin</span>
+      <span class="user-full-name">{{ userInfo.name }} {{ userInfo.lastName }}</span>
+      <span class="user-role">{{ userInfo.role }}</span>
     </div>
 
     <ul>
