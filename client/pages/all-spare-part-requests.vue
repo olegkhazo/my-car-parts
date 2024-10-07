@@ -15,7 +15,7 @@ import { useAllPartRequestsDataStore, useAuthStore } from "@/stores";
 import Paginate from "vuejs-paginate-next";
 const authManager = useAuthStore();
 
-const { isAuthenticated } = storeToRefs(authManager);
+const { loggedIn } = storeToRefs(authManager);
 
 const currentPage = ref(1);
 const chunkOfRequestsForView = ref([]);
@@ -202,10 +202,7 @@ function scrollToTopOfTheTableBody() {
                       </div>
 
                       <div class="spare-part-requests-btn-wrapper">
-                        <NuxtLink
-                          v-if="isAuthenticated"
-                          :to="'/offer-page/' + request._id"
-                          class="suggest-button xl-green-btn"
+                        <NuxtLink v-if="loggedIn" :to="'/offer-page/' + request._id" class="suggest-button xl-green-btn"
                           >Suggest your variant</NuxtLink
                         >
                         <NuxtLink v-else :to="'/sign-in'" class="suggest-button xl-green-btn"
