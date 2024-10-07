@@ -2,7 +2,7 @@
 import { useAuthStore } from "@/stores";
 const authManager = useAuthStore();
 
-const { isAuthenticated } = storeToRefs(authManager);
+const { loggedIn } = storeToRefs(authManager);
 
 const mobileMenuVisibility = ref(false);
 const menuVisibility = ref(false);
@@ -67,13 +67,13 @@ function hideMenu() {
           <li>
             <NuxtLink to="/how-it-work">How it work</NuxtLink>
           </li>
-          <li v-if="!isAuthenticated">
+          <li v-if="!loggedIn">
             <NuxtLink to="/sign-in" class="xl-green-btn">Sign In</NuxtLink>
           </li>
-          <li v-if="!isAuthenticated">
+          <li v-if="!loggedIn">
             <NuxtLink to="/sign-up" class="blue-btn">Sign Up</NuxtLink>
           </li>
-          <li v-if="isAuthenticated">
+          <li v-if="loggedIn">
             <div class="avatar-wrapper" @click="showHideMenu">
               <NuxtImg src="/images/avatar-default.svg" alt="avatar" />
               <div class="menu" :class="{ 'show-menu': menuVisibility }" v-click-outside="clickOutsideMenu">
