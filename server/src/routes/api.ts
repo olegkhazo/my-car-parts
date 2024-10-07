@@ -1,7 +1,7 @@
 import express from 'express';
 import { createPart, getAllParts, getSinglePart } from '../controllers/partRequestController';
 import { createOffer } from '../controllers/offerController';
-import { registerUser, activateUser, authoriseUser, getUser } from '../controllers/userController';
+import { registerUser, activateUser, authoriseUser, logOut, getUser } from '../controllers/userController';
 import { authenticate } from "../middlewares/authMiddleware";
 
 const router = express.Router();
@@ -34,5 +34,7 @@ router.get('/activate/:token', activateUser);
 router.post('/login', authoriseUser);
 
 router.get('/user/:id', getUser);
+
+router.post('/logout', logOut);
 
 export default router;
