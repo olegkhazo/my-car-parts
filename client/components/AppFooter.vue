@@ -88,7 +88,7 @@
         </ul>
       </div>
       <div class="footer-rights">
-        <span> © 2022-2023 "MyNextParts" All rights reserved. </span>
+        <span> © 2022-2025 "MyNextParts" All rights reserved. </span>
       </div>
     </div>
   </div>
