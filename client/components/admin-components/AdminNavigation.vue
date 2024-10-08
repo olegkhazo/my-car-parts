@@ -23,7 +23,7 @@ const { userInfo } = storeToRefs(authManager);
         <NuxtLink to="/admin-panel/all-spare-part-requests">All part requests</NuxtLink>
       </li>
       <li>
-        <NuxtLink to="/admin-panel/my-requests">My suggestions</NuxtLink>
+        <NuxtLink to="/admin-panel/my-suggestions">My suggestions</NuxtLink>
       </li>
       <li>
         <NuxtLink to="/admin-panel/all-users">All users</NuxtLink>

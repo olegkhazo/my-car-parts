@@ -10,6 +10,9 @@ class Offer {
     @prop()
     related_request_id: string;
 
+    @prop() 
+    seller_id: string;
+
     @prop()
     full_name: string;
 
@@ -27,6 +30,15 @@ class Offer {
 
     @prop()
     state: string;
+
+    @prop()
+    car_make: string;
+  
+    @prop()
+    car_model: string;
+  
+    @prop()
+    car_year: string;
 
     @prop()
     city_area: string;

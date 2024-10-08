@@ -18,3 +18,18 @@ export const createOffer = async (req: Request, res: Response, next: NextFunctio
         next(error);
     }
 };
+
+export const getSingleUserSuggestions = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const userId = req.params.id;
+        const offers = await OfferModel.find({ seller_id: userId });
+
+        if (!offers.length) {
+            return res.status(404).json({ message: 'No offers found for this user.' });
+        }
+
+        res.status(200).json(offers);
+    } catch (error) {
+        next(error);
+    }
+};

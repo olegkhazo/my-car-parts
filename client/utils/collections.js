@@ -56,3 +56,12 @@ export const carBodyTypes = [
   "SUV",
   "Wagon",
 ];
+
+export const userSuggestionTableData = [
+  "Car make",
+  "Car model",
+  "Car year",
+  "Part",
+  "Your price",
+  "More info"
+]
