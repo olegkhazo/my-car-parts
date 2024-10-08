@@ -7,6 +7,7 @@ import { API_URL } from "@/utils/constants";
 import { useAllPartRequestsDataStore } from "@/stores";
 import Paginate from "vuejs-paginate-next";
 import PartRequestsTable from "~/components/common/PartRequestsTable.vue";
+import FilterByCarTypes from "~/components/common/FilterByCarTypes.vue";
 
 const currentPage = ref(1);
 const chunkOfRequestsForView = ref([]);
