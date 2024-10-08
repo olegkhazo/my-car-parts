@@ -1,10 +1,9 @@
 <script setup>
-import { getTimeAgo } from "@/utils";
-
 const props = defineProps({
   partRequests: Object,
 });
 
+import { getTimeAgo } from "@/utils";
 import { useAuthStore } from "@/stores";
 
 const authManager = useAuthStore();

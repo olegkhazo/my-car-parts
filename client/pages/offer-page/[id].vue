@@ -9,12 +9,18 @@ useHead({
   ],
 });
 
+import { useAuthStore } from "@/stores";
+const authManager = useAuthStore();
+const { userInfo } = storeToRefs(authManager);
+
 import { API_URL } from "@/utils/constants";
 import { usaStates } from "@/utils/usaStates";
 import { validateFormField } from "@/utils/index";
 import SuccessRequestWindow from "@/components/notification/SuccessRequestWindow";
 
 const { id } = useRoute().params;
+const userId = userInfo.value.userId;
+
 const formButtonClicked = ref(false);
 
 const successWindowData = {
@@ -27,16 +33,20 @@ const singlePartRequestData = ref(null);
 const successfulOferSending = ref(false);
 const states = ref([]);
 
-const token = localStorage.getItem("token");
+const token = localStorage.getItem("user-token");
 
 const formData = ref({
   related_request_id: id,
+  seller_id: userId,
   part_name: "",
   byer_email: "",
   full_name: "",
   company_name: "",
   type_of_part: "original",
   part_condition: "new",
+  car_make: "",
+  car_model: "",
+  car_year: "",
   price: "",
   state: "",
   city_area: "",
@@ -44,11 +54,15 @@ const formData = ref({
   phone: "",
 });
 
-const { data: singleRequest, error } = await useFetch(API_URL + `single-spare-part-request-data/${id}`);
+onMounted(async () => {
+  const { data: singleRequest, error } = await useFetch(API_URL + `single-spare-part-request-data/${id}`);
 
-onMounted(() => {
   if (singleRequest.value) {
     singlePartRequestData.value = singleRequest.value;
+
+    formData.value.car_make = singlePartRequestData.value.car_make;
+    formData.value.car_model = singlePartRequestData.value.car_model;
+    formData.value.car_year = singlePartRequestData.value.car_year;
   } else if (error.value) {
     // should to think how better to show errors
     console.log("something wrong:" + error.value);
