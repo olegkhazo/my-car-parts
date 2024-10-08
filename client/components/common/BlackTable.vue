@@ -1,9 +1,8 @@
 <script setup>
 const props = defineProps({
   allUserSuggestions: Object,
+  userSuggestionTableData: Array,
 });
-
-import { userSuggestionTableData } from "@/utils/collections";
 
 onMounted(() => {
   console.log(props.allUserSuggestions);
@@ -15,7 +14,7 @@ onMounted(() => {
     <table>
       <thead>
         <tr>
-          <th v-for="item in userSuggestionTableData" :key="item" class="form-area-column">
+          <th v-for="item in props.userSuggestionTableData" :key="item" class="form-area-column">
             {{ item }}
           </th>
         </tr>
