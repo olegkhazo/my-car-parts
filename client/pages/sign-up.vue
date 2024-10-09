@@ -97,7 +97,7 @@ function registerClient() {
     <div v-if="!registrationFormVisibility" class="registration-type-window">
       <h1>Join us as either a buyer or a company</h1>
       <div class="registration-options-wrapper">
-        <div @click="showFormRegistration('user')" class="registration-single-option">
+        <div @click="showFormRegistration('buyer')" class="registration-single-option">
           <NuxtImg src="/images/shopping-basket.svg" title="shopping-basket" />
           <h3>I am a buyer, looking for car parts</h3>
         </div>
@@ -175,7 +175,7 @@ function registerClient() {
         </button>
         <button v-else class="blue-btn" @click="registerClient()">Create my account</button>
         <p>Already have an account? <NuxtLink to="/sign-in">Log In</NuxtLink></p>
-        <p v-if="typeOfRegistration === 'seller'" @click="showFormRegistration('user')">
+        <p v-if="typeOfRegistration === 'seller'" @click="showFormRegistration('buyer')">
           Looking for a car parts? <NuxtLink to="/sign-up">Register as a buyer</NuxtLink>
         </p>
         <p v-else @click="showFormRegistration('seller')">
