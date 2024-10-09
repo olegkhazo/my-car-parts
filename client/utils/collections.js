@@ -74,5 +74,13 @@ export const allUsersTableHeaderContent = [
   "Role",
   "Tips Agreement",
   "Terms Agreement",
-  "Activated"
+  "Status"
 ];
+
+//Colors
+export const infoTabColors = {
+  trueInfoTab: "#017042",
+  trueBgInfoTab: "#E4F0EB",
+  falseInfoTab: "#FA8282",
+  falseBgInfoTab: "#FFE4E4",
+};
