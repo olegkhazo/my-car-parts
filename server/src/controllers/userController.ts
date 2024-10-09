@@ -8,10 +8,10 @@ const CLIENT_HOST = process.env.CLIENT_HOST;
 
 export const registerUser = async (req: Request, res: Response, next: NextFunction) => {
   const SECRET_KEY: string = process.env.SECRET_KEY as string;
-  
+
   try {
     const existingUser = await UsersModel.findOne({ email: req.body.email });
-
+    
     if (existingUser) {
       return res.status(400).json({ error: 'User with such email already exists' });
     }
@@ -25,20 +25,24 @@ export const registerUser = async (req: Request, res: Response, next: NextFuncti
 
     const activationToken = jwt.sign({ email: req.body.email }, SECRET_KEY, { expiresIn: '1h' });
 
-    Object.assign(req.body, activationToken);
-
     const newUser = new UsersModel(req.body);
     await newUser.save();
-    res.status(201).json(newUser);
 
     const activationLink = `${API_HOST}api/activate/${activationToken}`;
 
-    await sendUsersAccountActivationLink(req.body.email, activationLink);
+    try {
+      await sendUsersAccountActivationLink(req.body.email, activationLink);
+    } catch (error) {
+      console.error('Error sending activation email:', error);
+    }
+
+    res.status(201).json(newUser);
 
   } catch (error) {
     res.status(500).json({ error: 'Server error' });
   }
 };
+
   
 export const activateUser = async (req: Request, res: Response, next: NextFunction) => {
   const SECRET_KEY: string = process.env.SECRET_KEY as string;
@@ -107,6 +111,19 @@ export const getUser = async (req: Request, res: Response, next: NextFunction) =
     }
     console.log("User found:", user);
     res.json(user);
+  } catch (error) {
+    res.status(500).json({ error: 'Server error' });
+  }
+};
+
+export const getAllUsers = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const users = await UsersModel.find();
+    if (!users || users.length === 0) {
+      return res.status(404).json({ error: 'No users found' });
+    }
+    console.log("All users retrieved:", users);
+    res.json(users);
   } catch (error) {
     res.status(500).json({ error: 'Server error' });
   }

@@ -57,11 +57,30 @@ export const carBodyTypes = [
   "Wagon",
 ];
 
-export const userSuggestionTableData = [
+export const suggestionsTableHeaderContent = [
   "Car make",
   "Car model",
   "Car year",
   "Part",
   "Your price",
   "More info"
-]
+];
+
+export const allUsersTableHeaderContent = [
+  "First name",
+  "Last name",
+  "Company",
+  "Email",
+  "Role",
+  "Tips Agreement",
+  "Terms Agreement",
+  "Status"
+];
+
+//Colors
+export const infoTabColors = {
+  trueInfoTab: "#017042",
+  trueBgInfoTab: "#E4F0EB",
+  falseInfoTab: "#FA8282",
+  falseBgInfoTab: "#FFE4E4",
+};
