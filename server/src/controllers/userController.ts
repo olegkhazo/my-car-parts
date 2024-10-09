@@ -8,10 +8,11 @@ const CLIENT_HOST = process.env.CLIENT_HOST;
 
 export const registerUser = async (req: Request, res: Response, next: NextFunction) => {
   const SECRET_KEY: string = process.env.SECRET_KEY as string;
-  
+
   try {
     const existingUser = await UsersModel.findOne({ email: req.body.email });
-
+    
+    console.log(existingUser);
     if (existingUser) {
       return res.status(400).json({ error: 'User with such email already exists' });
     }
@@ -107,6 +108,19 @@ export const getUser = async (req: Request, res: Response, next: NextFunction) =
     }
     console.log("User found:", user);
     res.json(user);
+  } catch (error) {
+    res.status(500).json({ error: 'Server error' });
+  }
+};
+
+export const getAllUsers = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const users = await UsersModel.find();
+    if (!users || users.length === 0) {
+      return res.status(404).json({ error: 'No users found' });
+    }
+    console.log("All users retrieved:", users);
+    res.json(users);
   } catch (error) {
     res.status(500).json({ error: 'Server error' });
   }
