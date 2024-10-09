@@ -56,7 +56,7 @@ const isPasswordValid = computed(() => {
 });
 
 async function createRequestToRegistrationApi() {
-  const { data: newUserCreating, error } = await useFetch(API_URL + "sign-up", {
+  const { data: newUserCreating, error } = await useFetch(`${API_URL}sign-up`, {
     method: "post",
     body: JSON.stringify(userCreds.value),
   });
@@ -111,25 +111,19 @@ function registerClient() {
     </div>
 
     <div v-else class="form-wrapper">
-      <h1>Sign up to sell car parts</h1>
+      <h1 v-if="typeOfRegistration === 'seller'">Sign up to sell car parts</h1>
+      <h1 v-else>Sign up to find car parts</h1>
+
       <div v-if="!userCredentialsSentSuccessful" class="registration-form-fields-section">
         <span v-if="!isFirstNameValid && formButtonClicked" class="input-error-notification"
           >Please enter a valid name.</span
         >
         <input id="first-name" v-model="userCreds.first_name" type="text" placeholder="First name *" />
 
-        <span
-          v-if="!isLastNameValid && formButtonClicked && typeOfRegistration === 'seller'"
-          class="input-error-notification"
+        <span v-if="!isLastNameValid && formButtonClicked" class="input-error-notification"
           >Please enter a valid last name.</span
         >
-        <input
-          v-if="typeOfRegistration === 'seller'"
-          id="last-name"
-          v-model="userCreds.last_name"
-          type="text"
-          placeholder="Last name *"
-        />
+        <input id="last-name" v-model="userCreds.last_name" type="text" placeholder="Last name *" />
 
         <span
           v-if="!isCompanyValid && formButtonClicked && typeOfRegistration === 'seller'"
