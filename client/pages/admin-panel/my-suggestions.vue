@@ -10,7 +10,7 @@ const { userInfo } = storeToRefs(authManager);
 import { API_URL } from "@/utils/constants";
 import Paginate from "vuejs-paginate-next";
 import BlackTable from "@/components/common/BlackTable.vue";
-import { userSuggestionTableData } from "@/utils/collections";
+import { suggestionsTableHeaderContent } from "@/utils/collections";
 
 //fetching all requests
 const { data: allUserSuggestions, error } = await useFetch(
@@ -30,7 +30,7 @@ onMounted(() => {
 <template>
   <div class="my-suggestions-wrapper">
     <h1>My suggestions</h1>
-    <BlackTable :all-user-suggestions="allUserSuggestions" :user-suggestion-table-data="userSuggestionTableData" />
+    <BlackTable :all-user-suggestions="allUserSuggestions" :table-header="suggestionsTableHeaderContent" />
   </div>
 </template>
 
