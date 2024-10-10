@@ -34,3 +34,35 @@ export const getSinglePart = async (req: Request, res: Response, next: NextFunct
     next(error);
   }
 }
+
+export const getRequestsByUser = async (req: Request, res: Response, next: NextFunction) => {
+  const userId = req.params.id;
+  
+  try {
+    const parts = await PartRequestModel.find({ user_id: userId });
+    
+    if (!parts.length) {
+      return res.status(404).json({ message: 'No parts found for this user' });
+    }
+
+    res.status(200).json(parts);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const deleteRequest = async (req: Request, res: Response, next: NextFunction) => {
+  const requestId = req.params.id;
+
+  try {
+    const deletedRequest = await PartRequestModel.findByIdAndDelete(requestId);
+
+    if (!deletedRequest) {
+      return res.status(404).json({ message: 'Request not found' });
+    }
+
+    res.status(200).json({ message: 'Request deleted successfully' });
+  } catch (error) {
+    next(error);
+  }
+};
