@@ -76,6 +76,15 @@
     }
 }
 
+.sm-red-btn {
+    @include small-btn;
+    background-color: $coral;
+    color: $white;
+
+    &:hover {
+        color: $gray-100;
+    }
+}
 
 table {
     width: inherit;

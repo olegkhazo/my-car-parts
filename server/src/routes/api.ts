@@ -1,5 +1,5 @@
 import express from 'express';
-import { createPart, getAllParts, getSinglePart } from '../controllers/partRequestController';
+import { createPart, getAllParts, getSinglePart, getRequestsByUser, deleteRequest } from '../controllers/partRequestController';
 import { createOffer, getSingleUserSuggestions } from '../controllers/offerController';
 import { registerUser, activateUser, authoriseUser, logOut, getUser, getAllUsers } from '../controllers/userController';
 import { authenticate } from "../middlewares/authMiddleware";
@@ -17,8 +17,14 @@ router.post('/create-part-request', createPart);
 // Route to get all spare part requests from DB
 router.get('/all-spare-part-requests-data', getAllParts);
 
+// Get all parts requests for a single user by his ID
+router.get('/single-user-requests/:id', getRequestsByUser);
+
 // Route to get single spare part request from DB
 router.get('/single-spare-part-request-data/:id', getSinglePart);
+
+// Route for deleting single part request by ID
+router.get('/delete-part-request/:id', deleteRequest);
 
 
 // ***

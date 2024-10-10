@@ -91,9 +91,7 @@ async function checkTheFormFields(step) {
     formData.value.car_model = filterByModel.value;
 
     Object.assign(dataFromSecondFormStep.value, formData.value);
-    console.log(formData.value);
 
-    console.log(dataFromSecondFormStep.value);
     switchFormToAnotherStep(step);
   }
 }
