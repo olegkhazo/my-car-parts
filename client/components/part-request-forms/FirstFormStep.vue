@@ -4,20 +4,25 @@ useHead({
   meta: [
     {
       name: "description",
-      content: `An easy way to find car parts, just fill out the form, send a 
+      content: `An easy way to find car parts, just fill out the form, send a
           request and hundreds of auto parts sellers will offer the parts they have`,
     },
   ],
 });
-import { usePartRequestFormStore } from "@/stores";
+
+import { usePartRequestFormStore, useAuthStore } from "@/stores";
 import { validateFormField } from "@/utils/index";
 import { sparePartGroups } from "@/utils/collections";
+
+const authManager = useAuthStore();
+const { userInfo } = storeToRefs(authManager);
 
 const formButtonClicked = ref(false);
 
 const { dataFromFirstFormStep } = storeToRefs(usePartRequestFormStore());
 
 const formData = ref({
+  user_id: "",
   part_name: "",
   part_group: "",
   type_of_part: "any-type",
@@ -26,6 +31,7 @@ const formData = ref({
 });
 
 onMounted(() => {
+  formData.value.user_id = userInfo.value.userId;
   if (Object.keys(dataFromFirstFormStep.value).length) {
     Object.assign(formData.value, dataFromFirstFormStep.value);
   }
