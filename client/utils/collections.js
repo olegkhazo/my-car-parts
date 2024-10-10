@@ -77,6 +77,16 @@ export const allUsersTableHeaderContent = [
   "Status"
 ];
 
+export const requestTableHeaderContent = [
+  "Part",
+  "Car make",
+  "Car model",
+  "Year",
+  "Condition",
+  "Action",
+];
+
+
 //Colors
 export const infoTabColors = {
   trueInfoTab: "#017042",

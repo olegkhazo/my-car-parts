@@ -27,8 +27,8 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="all-users-wrapper">
-    <h1>All Users</h1>
+  <div class="all-suggestions-wrapper">
+    <h1>My suggestions</h1>
     <div class="table-wrapper">
       <table>
         <thead>
@@ -59,7 +59,7 @@ onMounted(() => {
 <style lang="scss" scoped>
 @import "@/assets/styles/_variables.scss";
 
-.all-users-wrapper {
+.all-suggestions-wrapper {
   padding: 0 10px;
   margin: 30px auto 40px auto;
 
