@@ -5,20 +5,86 @@ definePageMeta({
 
 import { useAuthStore } from "@/stores";
 const authManager = useAuthStore();
-
 const { userInfo } = storeToRefs(authManager);
+import { validateFormField } from "@/utils/index";
+
+const editForm = ref(false);
 
 //fetching user data
 const { data: userData, error } = await useFetch(`${API_URL}user/${userInfo.value.userId}`);
 
 onMounted(() => {
   if (userData) {
-    console.log(userData.value);
-    console.log("User data get successfull");
+    console.log("Data fetched");
   } else {
     console.log("something wrong:" + error.value);
   }
 });
+
+// VALIDATION
+const isFirstNameValid = computed(() => {
+  return validateFormField(userData.value.first_name, "COMMON_NOT_EMPTY_PATTERN");
+});
+
+const isLastNameValid = computed(() => {
+  return validateFormField(userData.value.last_name, "COMMON_NOT_EMPTY_PATTERN");
+});
+
+const isCompanyValid = computed(() => {
+  return validateFormField(userData.value.company, "COMMON_NOT_EMPTY_PATTERN");
+});
+
+const isEmailValid = computed(() => {
+  return validateFormField(userData.value.email, "EMAIL_PATTERN");
+});
+
+function showEditForm() {
+  editForm.value = !editForm.value;
+}
+
+const formButtonClicked = ref(false);
+
+async function changeUserPersonalInformation() {
+  formButtonClicked.value = true;
+
+  if (!isFirstNameValid.value || !isLastNameValid.value || !isCompanyValid.value) {
+    return;
+  }
+
+  try {
+    const updatedData = {
+      first_name: userData.value.first_name,
+      last_name: userData.value.last_name,
+      company: userData.value.company,
+    };
+
+    const response = await fetch(`${API_URL}user/${userInfo.value.userId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedData),
+    });
+
+    if (!response.ok) {
+      throw new Error("User data updatong error");
+    }
+
+    const updatedUser = await response.json();
+    console.log("Updated user data:", updatedUser);
+
+    userData.value = updatedUser;
+    editForm.value = false;
+    formButtonClicked.value = false;
+  } catch (error) {
+    console.error("Error during data updaiting:", error);
+  }
+}
+
+// async function changeUserEmail() {
+//   formButtonClicked.value = true;
+//   console.log(userData.value);
+// }
 </script>
 
 <template>
@@ -26,16 +92,16 @@ onMounted(() => {
     <div class="profile-header">
       <div class="user-avatar">
         <NuxtImg src="/images/photo-camera.svg" alt="camera" />
-        <span class="download-awatar-img">
-          <NuxtImg src="/images/download-image.svg" alt="download" />
-        </span>
+        <!-- <span class="download-awatar-img">
+          <NuxtImg src="/images/download-image.svg" @click="uploadAvatar" alt="download" />
+        </span> -->
       </div>
     </div>
 
     <div class="user-information-wrapper">
       <div class="name-and-role">
         <span class="name">{{ userData.first_name }} {{ userData.last_name }}</span>
-        <span>{{ userData.role }}</span>
+        <span>{{ userInfo.role }}</span>
       </div>
 
       <div class="main-user-information">
@@ -43,17 +109,23 @@ onMounted(() => {
           <div class="subheader">
             <NuxtImg class="green-icon" src="/images/green-user.svg" alt="user-icon" />
             <span class="subheader-text">PERSONAL INFORMATION</span>
-            <NuxtImg class="pencil" src="/images/black-pencil.svg" alt="pencil-icon" />
+            <NuxtImg
+              v-if="!editForm"
+              @click="showEditForm"
+              class="pencil"
+              src="/images/black-pencil.svg"
+              alt="pencil-icon"
+            />
           </div>
 
-          <div class="information-content">
+          <div v-if="!editForm" class="information-content">
             <div class="single-info-point-block">
               <span class="info-item">First name</span>
               <span class="info-item-content">{{ userData.first_name }}</span>
             </div>
 
             <div class="single-info-point-block">
-              <span class="info-item">First name</span>
+              <span class="info-item">Last name</span>
               <span class="info-item-content">{{ userData.last_name }}</span>
             </div>
 
@@ -62,16 +134,43 @@ onMounted(() => {
               <span class="info-item-content">{{ userData.company }}</span>
             </div>
           </div>
+
+          <div v-else class="information-edit-form">
+            <span v-if="!isFirstNameValid && formButtonClicked" class="input-error-notification"
+              >Please enter a valid name.</span
+            >
+            <input id="first-name" v-model="userData.first_name" type="text" :placeholder="userData.first_name" />
+
+            <span v-if="!isLastNameValid && formButtonClicked" class="input-error-notification"
+              >Please enter a valid last name.</span
+            >
+            <input id="last-name" v-model="userData.last_name" type="text" :placeholder="userData.last_name" />
+
+            <span v-if="!isCompanyValid && formButtonClicked" class="input-error-notification"
+              >Please enter a valid company name.</span
+            >
+            <input id="company" v-model="userData.company" type="text" :placeholder="userData.company" />
+
+            <div class="edit-button-wrapper">
+              <button @click="changeUserPersonalInformation" class="green-btn">Save</button>
+            </div>
+          </div>
         </div>
 
         <div class="personal-information">
           <div class="subheader">
             <NuxtImg class="green-icon" src="/images/green-envelope.svg" alt="green-envelope-icon" />
             <span class="subheader-text">CONTACT INFORMATION</span>
-            <NuxtImg class="pencil" src="/images/black-pencil.svg" alt="pencil-icon" />
+            <NuxtImg
+              v-if="!editForm"
+              @click="showEditForm"
+              class="pencil"
+              src="/images/black-pencil.svg"
+              alt="pencil-icon"
+            />
           </div>
 
-          <div class="information-content">
+          <div v-if="!editForm" class="information-content">
             <div class="single-info-point-block">
               <span class="info-item">Email</span>
               <span class="info-item-content">{{ userData.email }}</span>
@@ -82,6 +181,17 @@ onMounted(() => {
               <span class="info-item-content">{{ userData.phone }}</span>
             </div>
           </div>
+
+          <div v-else class="information-edit-form">
+            <span v-if="!isEmailValid && formButtonClicked" class="input-error-notification">
+              Please enter a valid email address.
+            </span>
+            <input id="email" v-model="userData.email" type="email" name="email" :placeholder="userData.email" />
+
+            <!-- <div class="edit-button-wrapper">
+              <button @click="changeUserEmail" class="green-btn">Change email</button>
+            </div> -->
+          </div>
         </div>
 
         <div class="personal-information">
@@ -90,7 +200,7 @@ onMounted(() => {
             <span class="subheader-text">PASSWORD</span>
           </div>
           <div class="password-btn-wrapper">
-            <NuxtLink to="/" class="transparent-green-btn">Change password</NuxtLink>
+            <NuxtLink class="transparent-green-btn">Change password</NuxtLink>
           </div>
         </div>
       </div>
@@ -103,7 +213,7 @@ onMounted(() => {
 
 .profile-settings-wrapper {
   padding: 0 20px;
-  margin: 0 auto 40px auto;
+  margin: 0 auto 80px auto;
   display: flex;
   flex-direction: column;
 
@@ -218,6 +328,24 @@ onMounted(() => {
           .info-item-content {
             font-weight: 600;
             font-size: 18px;
+          }
+        }
+      }
+
+      .information-edit-form {
+        width: 70%;
+        margin: 40px auto 20px auto;
+
+        input {
+          margin-bottom: 20px;
+        }
+
+        .edit-button-wrapper {
+          text-align: center;
+          margin-bottom: 30px;
+
+          .green-btn {
+            width: 100%;
           }
         }
       }

@@ -97,7 +97,17 @@
     &:hover {
         opacity: 0.5;
     }
+}
 
+.green-btn {
+    @include middle-btn;
+
+    background-color: $green-600;
+    color: $white;
+    
+    &:hover {
+        opacity: 0.8;
+    }
 }
 
 table {
