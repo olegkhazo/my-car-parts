@@ -22,7 +22,7 @@ export class Users {
   @prop()
   address?: string;
 
-  @prop() 
+  @prop({ default: "" })
   avatar?: string;
 
   @prop() 

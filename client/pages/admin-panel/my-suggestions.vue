@@ -61,7 +61,7 @@ onMounted(() => {
 
 .all-suggestions-wrapper {
   padding: 0 10px;
-  margin: 30px auto 40px auto;
+  margin: 0 auto 40px auto;
 
   @media (max-width: 834px) {
     margin: 20px auto 150px auto;

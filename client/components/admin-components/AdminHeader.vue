@@ -56,8 +56,9 @@ async function logoutUser() {
 
   .avatar-wrapper {
     height: 35px;
+    display: flex;
     width: 35px;
-    background-color: $gray-100;
+    background-color: $gray-300;
     border-radius: 50%;
     cursor: pointer;
 

@@ -128,3 +128,22 @@ export const getAllUsers = async (req: Request, res: Response, next: NextFunctio
     res.status(500).json({ error: 'Server error' });
   }
 };
+
+export const updateUser = async (req: Request, res: Response, next: NextFunction) => {
+  const userId = req.params.id;
+  const updatedData = req.body;
+
+  try {
+    const updatedUser = await UsersModel.findByIdAndUpdate(userId, updatedData, { new: true });
+
+    if (!updatedUser) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    console.log('User updated:', updatedUser);
+    res.json(updatedUser);
+  } catch (error) {
+    console.error('Error updating user:', error);
+    res.status(500).json({ error: 'Server error' });
+  }
+};

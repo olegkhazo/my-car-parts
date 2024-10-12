@@ -157,7 +157,7 @@ function hideMenu() {
       .avatar-wrapper {
         height: 35px;
         width: 35px;
-        background-color: $gray-100;
+        background-color: $gray-200;
         border-radius: 50%;
         cursor: pointer;
 

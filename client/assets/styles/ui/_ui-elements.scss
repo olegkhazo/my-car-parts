@@ -64,7 +64,9 @@
     &:hover {
         color: $gray-950;
     }
+
 }
+
 
 .sm-green-btn {
     @include small-btn;
@@ -83,6 +85,28 @@
 
     &:hover {
         color: $gray-100;
+    }
+}
+
+.transparent-green-btn {
+    @include middle-btn;
+
+    color: $green-600;
+    border: 1px solid $green-600;
+
+    &:hover {
+        opacity: 0.5;
+    }
+}
+
+.green-btn {
+    @include middle-btn;
+
+    background-color: $green-600;
+    color: $white;
+    
+    &:hover {
+        opacity: 0.8;
     }
 }
 
