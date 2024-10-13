@@ -65,7 +65,7 @@ function scrollToTopOfTheTableBody() {
 
 <template>
   <div class="all-requests-wrapper">
-    <h1>All car part requests</h1>
+    <h1>All car parts requests</h1>
     <FilterByCarTypes />
     <div class="all-requests-table-wrapper">
       <PartRequestsTable :part-requests="chunkOfRequestsForView" />

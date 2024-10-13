@@ -36,7 +36,7 @@ async function deleteRequest(id) {
 
 <template>
   <div class="my-requests-wrapper">
-    <h1>All my parts requests</h1>
+    <h1>My parts requests</h1>
     <div class="table-wrapper">
       <table>
         <thead>
