@@ -7,7 +7,9 @@ import { getTimeAgo } from "@/utils";
 import { useAuthStore } from "@/stores";
 
 const authManager = useAuthStore();
-const { loggedIn } = storeToRefs(authManager);
+const { loggedIn, userInfo } = storeToRefs(authManager);
+
+const userRole = ref(userInfo.value.role);
 
 function showAllContentOfSingleRequest(event) {
   const allContentRow = event.target.closest(".single-request-row").nextElementSibling;
@@ -23,6 +25,10 @@ function hideAllContentOfSingleRequest(event) {
   contentRow.classList.add("hidden");
 
   scrollToTopOfTheTableBody();
+}
+
+async function logoutUser() {
+  await authManager.logout();
 }
 </script>
 
@@ -136,10 +142,20 @@ function hideAllContentOfSingleRequest(event) {
                 </div>
 
                 <div class="spare-part-requests-btn-wrapper">
-                  <NuxtLink v-if="loggedIn" :to="'/offer-page/' + request._id" class="suggest-button xl-green-btn"
+                  <NuxtLink
+                    v-if="loggedIn && userRole !== 'buyer'"
+                    :to="'/offer-page/' + request._id"
+                    class="suggest-button xl-green-btn"
                     >Suggest your variant</NuxtLink
                   >
-                  <NuxtLink v-else to="sign-in" class="suggest-button xl-green-btn"
+                  <NuxtLink
+                    v-if="loggedIn && userRole === 'buyer'"
+                    to="/sign-up"
+                    @click="logoutUser"
+                    class="suggest-button xl-green-btn"
+                    >Register as a seller to suggest your variant</NuxtLink
+                  >
+                  <NuxtLink v-if="!loggedIn" to="sign-in" class="suggest-button xl-green-btn"
                     >Sign in and suggest your variant</NuxtLink
                   >
                   <span class="close-content-btn blue-btn" @click="hideAllContentOfSingleRequest">Hide content</span>

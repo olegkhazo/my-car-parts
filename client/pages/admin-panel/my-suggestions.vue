@@ -17,11 +17,8 @@ const { data: allUserSuggestions, error } = await useFetch(
 );
 
 onMounted(() => {
-  if (allUserSuggestions.value) {
-    console.log("Suggestions get successful");
-  } else if (error.value) {
-    // should to think how better to show errors
-    console.log("something wrong:" + error.value);
+  if (userInfo.value.role === "buyer") {
+    navigateTo("my-requests");
   }
 });
 </script>

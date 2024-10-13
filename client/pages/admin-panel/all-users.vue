@@ -14,12 +14,8 @@ import ColorfulInfoTab from "~/components/UI/ColorfulInfoTab.vue";
 const { data: allUsers, error } = await useFetch(`${API_URL}users/`);
 
 onMounted(() => {
-  if (allUsers.value) {
-    console.log(allUsers.value);
-    console.log("Users get successful");
-  } else if (error.value) {
-    // should to think how better to show errors
-    console.log("something wrong:" + error.value);
+  if (userInfo.value.role === "buyer") {
+    navigateTo("my-requests");
   }
 });
 </script>
