@@ -11,6 +11,8 @@ watchEffect(() => {
     isUserInfoLoaded.value = true;
   }
 });
+
+console.log(userInfo.value.role);
 </script>
 
 <template>
@@ -30,14 +32,14 @@ watchEffect(() => {
       <li>
         <NuxtLink to="/admin-panel/all-spare-part-requests">All part requests</NuxtLink>
       </li>
-      <li>
-        <NuxtLink v-if="userInfo.role !== 'buyer'" to="/admin-panel/my-suggestions">My suggestions</NuxtLink>
+      <li v-if="userInfo.role !== 'buyer'">
+        <NuxtLink to="/admin-panel/my-suggestions">My suggestions</NuxtLink>
       </li>
       <li>
         <NuxtLink to="/admin-panel/my-requests">My requests</NuxtLink>
       </li>
-      <li>
-        <NuxtLink v-if="userInfo.role !== 'buyer'" to="/admin-panel/all-users">All users</NuxtLink>
+      <li v-if="userInfo.role === 'admin'">
+        <NuxtLink to="/admin-panel/all-users">All users</NuxtLink>
       </li>
       <li>
         <NuxtLink to="/admin-panel/my-profile">My profile</NuxtLink>

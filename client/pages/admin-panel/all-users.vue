@@ -14,7 +14,7 @@ import ColorfulInfoTab from "~/components/UI/ColorfulInfoTab.vue";
 const { data: allUsers, error } = await useFetch(`${API_URL}users/`);
 
 onMounted(() => {
-  if (userInfo.value.role === "buyer") {
+  if (userInfo.value.role !== "admin") {
     navigateTo("my-requests");
   }
 });
