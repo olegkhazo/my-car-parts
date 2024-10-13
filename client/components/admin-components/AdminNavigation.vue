@@ -11,8 +11,6 @@ watchEffect(() => {
     isUserInfoLoaded.value = true;
   }
 });
-
-console.log(userInfo.value.role);
 </script>
 
 <template>

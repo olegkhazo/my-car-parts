@@ -5,7 +5,7 @@ const authManager = useAuthStore();
 const menuVisibility = ref(false);
 
 function showHideMenu() {
-  menuVisibility.value = menuVisibility.value === false;
+  menuVisibility.value = !menuVisibility.value;
 }
 
 function clickOutsideMenu(event) {
@@ -30,17 +30,22 @@ async function logoutUser() {
   <div class="header">
     <div class="avatar-wrapper" @click="showHideMenu">
       <NuxtImg src="/images/avatar-default.svg" alt="avatar" />
-      <div class="menu" :class="{ 'show-menu': menuVisibility }" v-click-outside="clickOutsideMenu">
-        <ul @click="hideMenu">
-          <li>
-            <NuxtLink to="/admin-panel/all-spare-part-requests">Admin Panel</NuxtLink>
-          </li>
-          <li>
+
+      <div class="menu" :class="{ 'show-menu': menuVisibility }" v-click-outside="clickOutsideMenu" @click.stop>
+        <ul>
+          <li @click="hideMenu">
             <NuxtLink to="/admin-panel/my-profile">My Profile</NuxtLink>
           </li>
-          <li>
-            <NuxtLink @click="logoutUser" class="sign-out-link">Sign Out</NuxtLink>
+          <li @click="hideMenu">
+            <NuxtLink to="/part-request">Find parts</NuxtLink>
           </li>
+          <li @click="hideMenu">
+            <NuxtLink to="/admin-panel/all-spare-part-requests">Suggest your parts</NuxtLink>
+          </li>
+          <li @click="hideMenu">
+            <NuxtLink to="/how-it-work">How it work</NuxtLink>
+          </li>
+          <li @click="logoutUser" class="sign-out-link">Sign Out</li>
         </ul>
       </div>
     </div>
