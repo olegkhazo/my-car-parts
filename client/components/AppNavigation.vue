@@ -68,10 +68,10 @@ onUnmounted(() => {
             <NuxtLink to="/how-it-work">How it work</NuxtLink>
           </li>
           <li v-if="!loggedIn">
-            <NuxtLink to="/sign-in" class="xl-green-btn">Sign In</NuxtLink>
-          </li>
-          <li v-if="!loggedIn">
-            <NuxtLink to="/sign-up" class="blue-btn">Sign Up</NuxtLink>
+            <div class="sign-buttons">
+              <NuxtLink to="/sign-in" class="xl-green-btn">Sign In</NuxtLink>
+              <NuxtLink to="/sign-up" class="blue-btn">Sign Up</NuxtLink>
+            </div>
           </li>
           <li v-if="loggedIn">
             <NuxtLink to="/admin-panel">Admin Panel</NuxtLink>
@@ -127,6 +127,14 @@ onUnmounted(() => {
 
         li {
           list-style: none;
+
+          .sign-buttons {
+            display: flex;
+
+            .xl-green-btn {
+              margin-right: 15px;
+            }
+          }
 
           a {
             font-weight: 500;
