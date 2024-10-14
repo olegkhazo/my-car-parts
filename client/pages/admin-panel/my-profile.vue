@@ -5,7 +5,9 @@ definePageMeta({
 
 import { useAuthStore } from "@/stores";
 const authManager = useAuthStore();
-const { userInfo, userId, initializeAuthState } = storeToRefs(authManager);
+const { userInfo, userId } = storeToRefs(authManager);
+const isAuthInitialized = ref(false);
+
 import { validateFormField } from "@/utils/index";
 
 const editForm = ref(false);
@@ -13,7 +15,8 @@ const userData = ref(null);
 
 // Инициализируем состояние аутентификации
 onMounted(async () => {
-  await initializeAuthState; // Ждем, пока завершится инициализация данных
+  await authManager.initializeAuthState();
+  isAuthInitialized.value = true;
 
   if (userId.value) {
     const { data, error: fetchError } = await useFetch(`${API_URL}user/${userId.value}`);
