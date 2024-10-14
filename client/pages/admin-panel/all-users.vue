@@ -10,6 +10,8 @@ const { userInfo } = storeToRefs(authManager);
 import { allUsersTableHeaderContent, infoTabColors } from "@/utils/collections";
 import ColorfulInfoTab from "~/components/UI/ColorfulInfoTab.vue";
 
+const dataGeted = ref(false);
+
 //fetching all requests
 const { data: allUsers, error } = await useFetch(`${API_URL}users/`);
 
@@ -17,13 +19,20 @@ onMounted(() => {
   if (userInfo.value.role !== "admin") {
     navigateTo("my-requests");
   }
+
+  if (allUsers.value) {
+    dataGeted.value = true;
+  } else if (error.value) {
+    // should to think how better to show errors
+    console.error("something wrong:" + error.value);
+  }
 });
 </script>
 
 <template>
   <div class="all-users-wrapper">
     <h1>All Users</h1>
-    <div class="table-wrapper">
+    <div v-if="dataGeted" class="table-wrapper">
       <table>
         <thead>
           <tr>
@@ -85,6 +94,11 @@ onMounted(() => {
         </tbody>
       </table>
     </div>
+
+    <div v-else class="no-db-entries-block">
+      <p>It seems you haven't any requests yet</p>
+      <NuxtLink to="/part-request" class="yellow-btn">Find parts</NuxtLink>
+    </div>
   </div>
 </template>
 
@@ -108,6 +122,16 @@ onMounted(() => {
     }
 
     @media (max-width: 382px) {
+      font-size: 22px;
+    }
+  }
+
+  .no-db-entries-block {
+    text-align: center;
+    margin-top: 20vh;
+
+    p {
+      font-weight: 300;
       font-size: 22px;
     }
   }

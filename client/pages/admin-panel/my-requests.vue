@@ -13,13 +13,14 @@ import { requestTableHeaderContent } from "@/utils/collections";
 
 //fetching all requests for single user
 const { data: singleUserRequests, error } = await useFetch(`${API_URL}single-user-requests/${userInfo.value.userId}`);
+const dataGeted = ref(false);
 
 onMounted(() => {
   if (singleUserRequests.value) {
-    console.log(singleUserRequests.value);
+    dataGeted.value = true;
   } else if (error.value) {
     // should to think how better to show errors
-    console.log("something wrong:" + error.value);
+    console.error("something wrong:" + error.value);
   }
 });
 
@@ -37,7 +38,8 @@ async function deleteRequest(id) {
 <template>
   <div class="my-requests-wrapper">
     <h1>My parts requests</h1>
-    <div class="table-wrapper">
+
+    <div v-if="dataGeted" class="table-wrapper">
       <table>
         <thead>
           <tr>
@@ -57,6 +59,11 @@ async function deleteRequest(id) {
           </tr>
         </tbody>
       </table>
+    </div>
+
+    <div v-else class="no-db-entries-block">
+      <p>It seems you haven't any requests yet</p>
+      <NuxtLink to="/part-request" class="yellow-btn">Find parts</NuxtLink>
     </div>
   </div>
 </template>
@@ -81,6 +88,16 @@ async function deleteRequest(id) {
     }
 
     @media (max-width: 382px) {
+      font-size: 22px;
+    }
+  }
+
+  .no-db-entries-block {
+    text-align: center;
+    margin-top: 20vh;
+
+    p {
+      font-weight: 300;
       font-size: 22px;
     }
   }

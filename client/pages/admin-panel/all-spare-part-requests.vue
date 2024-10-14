@@ -12,6 +12,7 @@ import FilterByCarTypes from "~/components/common/FilterByCarTypes.vue";
 const currentPage = ref(1);
 const chunkOfRequestsForView = ref([]);
 const { originalSparePartRequestsData, filteredPartRequestsData } = storeToRefs(useAllPartRequestsDataStore());
+const dataGeted = ref(false);
 
 //fetching all requests
 const { data: allRequests, error } = await useFetch(API_URL + "all-spare-part-requests-data");
@@ -27,9 +28,11 @@ onMounted(() => {
     filteredPartRequestsData.value = originalSparePartRequestsData.value;
 
     chunkOfRequestsForView.value = filteredPartRequestsData.value.slice(0, 10);
+
+    dataGeted.value = true;
   } else if (error.value) {
     // should to think how better to show errors
-    console.log("something wrong:" + error.value);
+    console.error("something wrong:" + error.value);
   }
 });
 
@@ -66,20 +69,26 @@ function scrollToTopOfTheTableBody() {
 <template>
   <div class="all-requests-wrapper">
     <h1>All car parts requests</h1>
-    <FilterByCarTypes />
-    <div class="all-requests-table-wrapper">
-      <PartRequestsTable :part-requests="chunkOfRequestsForView" />
+    <div v-if="dataGeted" class="admin-requests-wrapper">
+      <FilterByCarTypes />
+      <div class="all-requests-table-wrapper">
+        <PartRequestsTable :part-requests="chunkOfRequestsForView" />
+      </div>
+      <br />
+      <paginate
+        v-model="currentPage"
+        :page-count="numPages"
+        :page-range="5"
+        :click-handler="rewriteChunkOfRequests"
+        :container-class="'pagination'"
+        prev-text="<"
+        next-text=">"
+      />
     </div>
-    <br />
-    <paginate
-      v-model="currentPage"
-      :page-count="numPages"
-      :page-range="5"
-      :click-handler="rewriteChunkOfRequests"
-      :container-class="'pagination'"
-      prev-text="<"
-      next-text=">"
-    />
+    <div v-else class="no-db-entries-block">
+      <p>It seems no any requests yet</p>
+      <NuxtLink to="/part-request" class="yellow-btn">Find parts</NuxtLink>
+    </div>
   </div>
 </template>
 
@@ -107,29 +116,41 @@ function scrollToTopOfTheTableBody() {
     }
   }
 
-  .filters {
-    display: flex;
-    align-items: center;
+  .no-db-entries-block {
+    text-align: center;
+    margin-top: 20vh;
 
-    .filters-title {
-      font-weight: 500;
-    }
-
-    select {
-      max-width: 150px;
-      font-size: 12px;
-      height: 30px;
-      margin-left: 10px;
-      padding: 5px;
+    p {
+      font-weight: 300;
+      font-size: 22px;
     }
   }
 
-  .all-requests-table-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 15px;
-    position: relative;
+  .admin-requests-wrapper {
+    .filters {
+      display: flex;
+      align-items: center;
+
+      .filters-title {
+        font-weight: 500;
+      }
+
+      select {
+        max-width: 150px;
+        font-size: 12px;
+        height: 30px;
+        margin-left: 10px;
+        padding: 5px;
+      }
+    }
+
+    .all-requests-table-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 15px;
+      position: relative;
+    }
   }
 }
 </style>

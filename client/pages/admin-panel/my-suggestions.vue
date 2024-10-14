@@ -10,6 +10,7 @@ const { userInfo } = storeToRefs(authManager);
 import { API_URL } from "@/utils/constants";
 // import Paginate from "vuejs-paginate-next";
 import { suggestionsTableHeaderContent } from "@/utils/collections";
+const dataGeted = ref(false);
 
 //fetching all requests
 const { data: allUserSuggestions, error } = await useFetch(
@@ -20,13 +21,20 @@ onMounted(() => {
   if (userInfo.value.role === "buyer") {
     navigateTo("my-requests");
   }
+
+  if (allUserSuggestions.value) {
+    dataGeted.value = true;
+  } else if (error.value) {
+    // should to think how better to show errors
+    console.error("something wrong:" + error.value);
+  }
 });
 </script>
 
 <template>
   <div class="all-suggestions-wrapper">
     <h1>My suggestions</h1>
-    <div class="table-wrapper">
+    <div v-if="dataGeted" class="table-wrapper">
       <table>
         <thead>
           <tr>
@@ -49,6 +57,11 @@ onMounted(() => {
           </tr>
         </tbody>
       </table>
+    </div>
+
+    <div v-else class="no-db-entries-block">
+      <p>It seems you haven't any suggestions yet</p>
+      <NuxtLink to="/part-request" class="yellow-btn">Find parts</NuxtLink>
     </div>
   </div>
 </template>
@@ -73,6 +86,16 @@ onMounted(() => {
     }
 
     @media (max-width: 382px) {
+      font-size: 22px;
+    }
+  }
+
+  .no-db-entries-block {
+    text-align: center;
+    margin-top: 20vh;
+
+    p {
+      font-weight: 300;
       font-size: 22px;
     }
   }
