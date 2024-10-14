@@ -2,6 +2,10 @@
 definePageMeta({
   layout: "admin-panel",
 });
+
+onMounted(() => {
+  navigateTo("/admin-panel/all-spare-part-requests");
+});
 </script>
 
 <template>
