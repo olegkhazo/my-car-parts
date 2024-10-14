@@ -4,9 +4,9 @@ import { storeToRefs } from "pinia";
 
 const authManager = useAuthStore();
 const { loggedIn } = storeToRefs(authManager);
+const isAuthInitialized = ref(false);
 
 const mobileMenuVisibility = ref(false);
-const screenWidth = ref(window.innerWidth);
 
 function showHideMobileMenu() {
   mobileMenuVisibility.value = !mobileMenuVisibility.value;
@@ -26,16 +26,9 @@ async function logoutUser() {
   await authManager.logout();
 }
 
-const updateScreenWidth = () => {
-  screenWidth.value = window.innerWidth;
-};
-
-onMounted(() => {
-  window.addEventListener("resize", updateScreenWidth);
-});
-
-onUnmounted(() => {
-  window.removeEventListener("resize", updateScreenWidth);
+onMounted(async () => {
+  await authManager.initializeAuthState();
+  isAuthInitialized.value = true;
 });
 </script>
 
@@ -57,32 +50,34 @@ onUnmounted(() => {
       <NuxtImg v-else src="/images/close_black_36dp.svg" class="menu-icon" @click="showHideMobileMenu" />
 
       <div class="nav" :class="{ 'show-mobile-menu': mobileMenuVisibility }" v-click-outside="clickOutsideMobileMenu">
-        <ul @click="hideMobileMenu">
-          <li>
-            <NuxtLink to="/part-request">Find parts</NuxtLink>
-          </li>
-          <li>
-            <NuxtLink to="/all-spare-part-requests">Suggest your parts</NuxtLink>
-          </li>
-          <li>
-            <NuxtLink to="/how-it-work">How it work</NuxtLink>
-          </li>
-          <li v-if="!loggedIn">
-            <div class="sign-buttons">
-              <NuxtLink to="/sign-in" class="xl-green-btn">Sign In</NuxtLink>
-              <NuxtLink to="/sign-up" class="blue-btn">Sign Up</NuxtLink>
-            </div>
-          </li>
-          <li v-if="loggedIn">
-            <NuxtLink to="/admin-panel">Admin Panel</NuxtLink>
-          </li>
-          <li v-if="loggedIn">
-            <NuxtLink to="/admin-panel/my-profile">My Profile</NuxtLink>
-          </li>
-          <li v-if="loggedIn">
-            <NuxtLink @click="logoutUser" class="blue-btn">Sign Out</NuxtLink>
-          </li>
-        </ul>
+        <template v-if="isAuthInitialized">
+          <ul @click="hideMobileMenu">
+            <li>
+              <NuxtLink to="/part-request">Find parts</NuxtLink>
+            </li>
+            <li>
+              <NuxtLink to="/all-spare-part-requests">Suggest your parts</NuxtLink>
+            </li>
+            <li>
+              <NuxtLink to="/how-it-work">How it work</NuxtLink>
+            </li>
+            <li v-if="!loggedIn">
+              <div class="sign-buttons">
+                <NuxtLink to="/sign-in" class="xl-green-btn">Sign In</NuxtLink>
+                <NuxtLink to="/sign-up" class="blue-btn">Sign Up</NuxtLink>
+              </div>
+            </li>
+            <li v-if="loggedIn">
+              <NuxtLink to="/admin-panel">Admin Panel</NuxtLink>
+            </li>
+            <li v-if="loggedIn">
+              <NuxtLink to="/admin-panel/my-profile">My Profile</NuxtLink>
+            </li>
+            <li v-if="loggedIn">
+              <NuxtLink @click="logoutUser" class="blue-btn">Sign Out</NuxtLink>
+            </li>
+          </ul>
+        </template>
       </div>
     </div>
   </div>
@@ -131,8 +126,16 @@ onUnmounted(() => {
           .sign-buttons {
             display: flex;
 
+            @media (max-width: 1080px) {
+              flex-direction: column;
+            }
+
             .xl-green-btn {
               margin-right: 15px;
+
+              @media (max-width: 1080px) {
+                margin: 0 0 10px 0;
+              }
             }
           }
 
