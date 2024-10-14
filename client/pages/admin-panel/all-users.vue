@@ -30,6 +30,18 @@ onMounted(() => {
 
   isLoading.value = false;
 });
+
+async function deleteUser(id) {
+  const { data: deletedUser, error } = await useFetch(`${API_URL}delete-user/${id}`, {
+    method: "DELETE",
+  });
+
+  if (!error.value) {
+    allUsers.value = allUsers.value.filter((user) => user._id !== id);
+  } else {
+    console.log("Error deleting user:", error.value);
+  }
+}
 </script>
 
 <template>
@@ -98,6 +110,7 @@ onMounted(() => {
                 :text-color="infoTabColors.falseInfoTab"
               />
             </td>
+            <td><span class="sm-red-btn" @click="deleteUser(user._id)">DELETE</span></td>
           </tr>
         </tbody>
       </table>

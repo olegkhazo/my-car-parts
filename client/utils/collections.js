@@ -74,7 +74,8 @@ export const allUsersTableHeaderContent = [
   "Role",
   "Tips Agreement",
   "Terms Agreement",
-  "Status"
+  "Status",
+  "Action"
 ];
 
 export const requestTableHeaderContent = [

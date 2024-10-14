@@ -1,6 +1,6 @@
 import express from 'express';
 import { createOffer, getSingleUserSuggestions } from '../controllers/offerController';
-import { registerUser, activateUser, authoriseUser, logOut, getUser, getAllUsers, updateUser } from '../controllers/userController';
+import { registerUser, activateUser, authoriseUser, logOut, getUser, getAllUsers, updateUser, deleteUser } from '../controllers/userController';
 import { createPart, getAllParts, getSinglePart, getRequestsByUser, deleteRequest } from '../controllers/partRequestController';
 import { authenticate } from "../middlewares/authMiddleware";
 
@@ -24,7 +24,7 @@ router.get('/single-user-requests/:id', getRequestsByUser);
 router.get('/single-spare-part-request-data/:id', getSinglePart);
 
 // Route for deleting single part request by ID
-router.get('/delete-part-request/:id', deleteRequest);
+router.delete('/delete-part-request/:id', deleteRequest);
 
 
 // ***
@@ -55,5 +55,7 @@ router.post('/logout', logOut);
 router.get('/users', getAllUsers);
 
 router.put('/user/:id', updateUser);
+
+router.delete('/delete-user/:id', deleteUser);
 
 export default router;

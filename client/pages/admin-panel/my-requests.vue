@@ -30,7 +30,9 @@ onMounted(() => {
 });
 
 async function deleteRequest(id) {
-  const { data: deletedRequest, error } = await useFetch(`${API_URL}delete-part-request/${id}`);
+  const { data: deletedRequest, error } = await useFetch(`${API_URL}delete-part-request/${id}`, {
+    method: "DELETE",
+  });
 
   if (!error.value) {
     singleUserRequests.value = singleUserRequests.value.filter((request) => request._id !== id);
