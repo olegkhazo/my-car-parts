@@ -12,8 +12,11 @@ import { API_URL } from "@/utils/constants";
 import { requestTableHeaderContent } from "@/utils/collections";
 
 //fetching all requests for single user
+
 const { data: singleUserRequests, error } = await useFetch(`${API_URL}single-user-requests/${userInfo.value.userId}`);
+
 const dataGeted = ref(false);
+const isLoading = ref(true);
 
 onMounted(() => {
   if (singleUserRequests.value) {
@@ -22,6 +25,8 @@ onMounted(() => {
     // should to think how better to show errors
     console.error("something wrong:" + error.value);
   }
+
+  isLoading.value = false;
 });
 
 async function deleteRequest(id) {
@@ -39,7 +44,11 @@ async function deleteRequest(id) {
   <div class="my-requests-wrapper">
     <h1>My parts requests</h1>
 
-    <div v-if="dataGeted" class="table-wrapper">
+    <div v-if="isLoading" class="loading-state">
+      <p>Loading suggestions...</p>
+    </div>
+
+    <div v-else-if="dataGeted && !isLoading" class="table-wrapper">
       <table>
         <thead>
           <tr>

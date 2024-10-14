@@ -12,6 +12,7 @@ import { validateFormField } from "@/utils/index";
 
 const editForm = ref(false);
 const userData = ref(null);
+const isLoading = ref(true);
 
 // Инициализируем состояние аутентификации
 onMounted(async () => {
@@ -28,6 +29,8 @@ onMounted(async () => {
   } else {
     console.error("User ID is missing");
   }
+
+  isLoading.value = false;
 });
 
 // Валидации
@@ -101,7 +104,11 @@ async function changeUserPersonalInformation() {
       </div>
     </div>
 
-    <div v-if="userData && userData.first_name" class="user-information-wrapper">
+    <div v-if="isLoading" class="loading-state">
+      <p>Loading suggestions...</p>
+    </div>
+
+    <div v-else-if="userData && userData.first_name && !isLoading" class="user-information-wrapper">
       <div class="name-and-role">
         <span class="name">{{ userData.first_name }} {{ userData.last_name }}</span>
         <span>{{ userInfo.role }}</span>

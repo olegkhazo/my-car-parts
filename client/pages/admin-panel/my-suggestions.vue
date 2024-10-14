@@ -8,9 +8,9 @@ const authManager = useAuthStore();
 const { userInfo } = storeToRefs(authManager);
 
 import { API_URL } from "@/utils/constants";
-// import Paginate from "vuejs-paginate-next";
 import { suggestionsTableHeaderContent } from "@/utils/collections";
 const dataGeted = ref(false);
+const isLoading = ref(true);
 
 //fetching all requests
 const { data: allUserSuggestions, error } = await useFetch(
@@ -25,16 +25,22 @@ onMounted(() => {
   if (allUserSuggestions.value) {
     dataGeted.value = true;
   } else if (error.value) {
-    // should to think how better to show errors
     console.error("something wrong:" + error.value);
   }
+
+  isLoading.value = false;
 });
 </script>
 
 <template>
   <div class="all-suggestions-wrapper">
     <h1>My suggestions</h1>
-    <div v-if="dataGeted" class="table-wrapper">
+
+    <div v-if="isLoading" class="loading-state">
+      <p>Loading suggestions...</p>
+    </div>
+
+    <div v-else-if="dataGeted" class="table-wrapper">
       <table>
         <thead>
           <tr>
@@ -51,7 +57,6 @@ onMounted(() => {
             <td>{{ singleRecord.part_name }}</td>
             <td>${{ singleRecord.price }}</td>
             <td>
-              <!-- Here add more convinient approach to view all part request details. Maybe modal window -->
               <NuxtLink :to="`/offer-page/${singleRecord.related_request_id}`">DETAILS</NuxtLink>
             </td>
           </tr>

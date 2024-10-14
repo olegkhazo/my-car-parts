@@ -11,6 +11,7 @@ import { allUsersTableHeaderContent, infoTabColors } from "@/utils/collections";
 import ColorfulInfoTab from "~/components/UI/ColorfulInfoTab.vue";
 
 const dataGeted = ref(false);
+const isLoading = ref(true);
 
 //fetching all requests
 const { data: allUsers, error } = await useFetch(`${API_URL}users/`);
@@ -26,13 +27,20 @@ onMounted(() => {
     // should to think how better to show errors
     console.error("something wrong:" + error.value);
   }
+
+  isLoading.value = false;
 });
 </script>
 
 <template>
   <div class="all-users-wrapper">
     <h1>All Users</h1>
-    <div v-if="dataGeted" class="table-wrapper">
+
+    <div v-if="isLoading" class="loading-state">
+      <p>Loading suggestions...</p>
+    </div>
+
+    <div v-else-if="dataGeted && !isLoading" class="table-wrapper">
       <table>
         <thead>
           <tr>

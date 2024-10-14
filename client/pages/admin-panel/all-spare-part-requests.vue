@@ -12,7 +12,9 @@ import FilterByCarTypes from "~/components/common/FilterByCarTypes.vue";
 const currentPage = ref(1);
 const chunkOfRequestsForView = ref([]);
 const { originalSparePartRequestsData, filteredPartRequestsData } = storeToRefs(useAllPartRequestsDataStore());
+
 const dataGeted = ref(false);
+const isLoading = ref(true);
 
 //fetching all requests
 const { data: allRequests, error } = await useFetch(API_URL + "all-spare-part-requests-data");
@@ -34,6 +36,8 @@ onMounted(() => {
     // should to think how better to show errors
     console.error("something wrong:" + error.value);
   }
+
+  isLoading.value = false;
 });
 
 const numPages = computed(() => {
@@ -69,7 +73,12 @@ function scrollToTopOfTheTableBody() {
 <template>
   <div class="all-requests-wrapper">
     <h1>All car parts requests</h1>
-    <div v-if="dataGeted" class="admin-requests-wrapper">
+
+    <div v-if="isLoading" class="loading-state">
+      <p>Loading suggestions...</p>
+    </div>
+
+    <div v-else-if="dataGeted" class="admin-requests-wrapper">
       <FilterByCarTypes />
       <div class="all-requests-table-wrapper">
         <PartRequestsTable :part-requests="chunkOfRequestsForView" />
