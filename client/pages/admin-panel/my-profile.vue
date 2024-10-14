@@ -5,37 +5,49 @@ definePageMeta({
 
 import { useAuthStore } from "@/stores";
 const authManager = useAuthStore();
-const { userInfo } = storeToRefs(authManager);
+const { userInfo, userId } = storeToRefs(authManager);
+const isAuthInitialized = ref(false);
+
 import { validateFormField } from "@/utils/index";
 
 const editForm = ref(false);
+const userData = ref(null);
+const isLoading = ref(true);
 
-//fetching user data
-const { data: userData, error } = await useFetch(`${API_URL}user/${userInfo.value.userId}`);
+// Инициализируем состояние аутентификации
+onMounted(async () => {
+  await authManager.initializeAuthState();
+  isAuthInitialized.value = true;
 
-onMounted(() => {
-  if (userData) {
-    console.log("Data fetched");
+  if (userId.value) {
+    const { data, error: fetchError } = await useFetch(`${API_URL}user/${userId.value}`);
+    if (data.value) {
+      userData.value = data.value;
+    } else {
+      console.error("Error fetching user data:", fetchError.value);
+    }
   } else {
-    console.log("something wrong:" + error.value);
+    console.error("User ID is missing");
   }
+
+  isLoading.value = false;
 });
 
-// VALIDATION
+// Валидации
 const isFirstNameValid = computed(() => {
-  return validateFormField(userData.value.first_name, "COMMON_NOT_EMPTY_PATTERN");
+  return validateFormField(userData.value?.first_name, "COMMON_NOT_EMPTY_PATTERN");
 });
 
 const isLastNameValid = computed(() => {
-  return validateFormField(userData.value.last_name, "COMMON_NOT_EMPTY_PATTERN");
+  return validateFormField(userData.value?.last_name, "COMMON_NOT_EMPTY_PATTERN");
 });
 
 const isCompanyValid = computed(() => {
-  return validateFormField(userData.value.company, "COMMON_NOT_EMPTY_PATTERN");
+  return validateFormField(userData.value?.company, "COMMON_NOT_EMPTY_PATTERN");
 });
 
 const isEmailValid = computed(() => {
-  return validateFormField(userData.value.email, "EMAIL_PATTERN");
+  return validateFormField(userData.value?.email, "EMAIL_PATTERN");
 });
 
 function showEditForm() {
@@ -58,7 +70,7 @@ async function changeUserPersonalInformation() {
       company: userData.value.company,
     };
 
-    const response = await fetch(`${API_URL}user/${userInfo.value.userId}`, {
+    const response = await fetch(`${API_URL}user/${userId.value}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -67,24 +79,18 @@ async function changeUserPersonalInformation() {
     });
 
     if (!response.ok) {
-      throw new Error("User data updatong error");
+      throw new Error("User data updating error");
     }
 
     const updatedUser = await response.json();
-    console.log("Updated user data:", updatedUser);
 
     userData.value = updatedUser;
     editForm.value = false;
     formButtonClicked.value = false;
   } catch (error) {
-    console.error("Error during data updaiting:", error);
+    console.error("Error during data updating:", error);
   }
 }
-
-// async function changeUserEmail() {
-//   formButtonClicked.value = true;
-//   console.log(userData.value);
-// }
 </script>
 
 <template>
@@ -98,7 +104,11 @@ async function changeUserPersonalInformation() {
       </div>
     </div>
 
-    <div class="user-information-wrapper">
+    <div v-if="isLoading" class="loading-state">
+      <p>Loading suggestions...</p>
+    </div>
+
+    <div v-else-if="userData && userData.first_name && !isLoading" class="user-information-wrapper">
       <div class="name-and-role">
         <span class="name">{{ userData.first_name }} {{ userData.last_name }}</span>
         <span>{{ userInfo.role }}</span>

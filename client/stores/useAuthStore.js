@@ -23,29 +23,31 @@ export const useAuthStore = defineStore("auth", () => {
 
   // Инициализация токена и userInfo из localStorage при загрузке стора
   function initializeAuthState() {
-    if (process.client) {
-      const storedToken = localStorage.getItem(tokenKey);
-      if (storedToken) {
-        try {
-          const decodedToken = JSON.parse(atob(storedToken.split(".")[1]));
-          const expirationTime = decodedToken.exp * 1000;
-       
-          tokenExpiration.value = new Date(expirationTime);
-          userId.value = decodedToken.userId || null; // Извлекаем userId из токена
+    return new Promise((resolve) => {
+      if (process.client) {
+        const storedToken = localStorage.getItem(tokenKey);
+        if (storedToken) {
+          try {
+            const decodedToken = JSON.parse(atob(storedToken.split(".")[1]));
+            const expirationTime = decodedToken.exp * 1000;
 
-          // Если токен действителен, загружаем данные пользователя
-          if (new Date() < tokenExpiration.value) {
-            userToken.value = storedToken;
-            userInfo.value = JSON.parse(localStorage.getItem(userStorageKey));
-          } else {
-            clearUserInfo(); // Если токен истек, очищаем данные
+            tokenExpiration.value = new Date(expirationTime);
+            userId.value = decodedToken.userId || null; // Извлекаем userId из токена
+
+            if (new Date() < tokenExpiration.value) {
+              userToken.value = storedToken;
+              userInfo.value = JSON.parse(localStorage.getItem(userStorageKey));
+            } else {
+              clearUserInfo(); // Если токен истек, очищаем данные
+            }
+          } catch (error) {
+            console.error("Error during token decode:", error);
+            clearUserInfo();
           }
-        } catch (error) {
-          console.error("Error during token decode:", error);
-          clearUserInfo();
         }
       }
-    }
+      resolve(); // Завершаем обещание, чтобы продолжить обработку
+    });
   }
 
   async function login(creds) {

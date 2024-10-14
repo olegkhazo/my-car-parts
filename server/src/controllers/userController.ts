@@ -147,3 +147,18 @@ export const updateUser = async (req: Request, res: Response, next: NextFunction
     res.status(500).json({ error: 'Server error' });
   }
 };
+
+export const deleteUser = async (req: Request, res: Response, next: NextFunction) => {
+  const userId = req.params.id;
+
+  try {
+    const deletedRequest = await UsersModel.findByIdAndDelete(userId);
+    if (!deletedRequest) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    res.status(200).json({ message: 'User deleted successfully' });
+  } catch (error) {
+    next(error);
+  }
+};

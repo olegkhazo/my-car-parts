@@ -3,6 +3,14 @@ import { useAuthStore } from "@/stores";
 const authManager = useAuthStore();
 
 const { userInfo } = storeToRefs(authManager);
+
+const isUserInfoLoaded = ref(false);
+
+watchEffect(() => {
+  if (userInfo.value && userInfo.value.name) {
+    isUserInfoLoaded.value = true;
+  }
+});
 </script>
 
 <template>
@@ -18,17 +26,17 @@ const { userInfo } = storeToRefs(authManager);
       <span class="user-role">{{ userInfo.role }}</span>
     </div>
 
-    <ul>
+    <ul v-if="isUserInfoLoaded">
       <li>
         <NuxtLink to="/admin-panel/all-spare-part-requests">All part requests</NuxtLink>
       </li>
-      <li>
+      <li v-if="userInfo.role !== 'buyer'">
         <NuxtLink to="/admin-panel/my-suggestions">My suggestions</NuxtLink>
       </li>
       <li>
         <NuxtLink to="/admin-panel/my-requests">My requests</NuxtLink>
       </li>
-      <li>
+      <li v-if="userInfo.role === 'admin'">
         <NuxtLink to="/admin-panel/all-users">All users</NuxtLink>
       </li>
       <li>

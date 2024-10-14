@@ -518,8 +518,6 @@ hr {
 
         .yellow-btn {
           padding: 10px 17px;
-          font-size: 15px;
-          font-weight: 500;
 
           @media (max-width: 500px) {
             margin-top: 10px;

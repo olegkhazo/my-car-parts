@@ -50,7 +50,9 @@
 .yellow-btn {
     @include middle-btn;
     background-color: $yellow;
-
+    font-size: 15px;
+    font-weight: 500;
+    
     &:hover {
         color: $gray-950;
     }

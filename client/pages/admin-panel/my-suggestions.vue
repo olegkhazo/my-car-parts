@@ -8,8 +8,9 @@ const authManager = useAuthStore();
 const { userInfo } = storeToRefs(authManager);
 
 import { API_URL } from "@/utils/constants";
-// import Paginate from "vuejs-paginate-next";
 import { suggestionsTableHeaderContent } from "@/utils/collections";
+const dataGeted = ref(false);
+const isLoading = ref(true);
 
 //fetching all requests
 const { data: allUserSuggestions, error } = await useFetch(
@@ -17,19 +18,29 @@ const { data: allUserSuggestions, error } = await useFetch(
 );
 
 onMounted(() => {
-  if (allUserSuggestions.value) {
-    console.log("Suggestions get successful");
-  } else if (error.value) {
-    // should to think how better to show errors
-    console.log("something wrong:" + error.value);
+  if (userInfo.value.role === "buyer") {
+    navigateTo("my-requests");
   }
+
+  if (allUserSuggestions.value) {
+    dataGeted.value = true;
+  } else if (error.value) {
+    console.error("something wrong:" + error.value);
+  }
+
+  isLoading.value = false;
 });
 </script>
 
 <template>
   <div class="all-suggestions-wrapper">
     <h1>My suggestions</h1>
-    <div class="table-wrapper">
+
+    <div v-if="isLoading" class="loading-state">
+      <p>Loading suggestions...</p>
+    </div>
+
+    <div v-else-if="dataGeted" class="table-wrapper">
       <table>
         <thead>
           <tr>
@@ -46,12 +57,16 @@ onMounted(() => {
             <td>{{ singleRecord.part_name }}</td>
             <td>${{ singleRecord.price }}</td>
             <td>
-              <!-- Here add more convinient approach to view all part request details. Maybe modal window -->
               <NuxtLink :to="`/offer-page/${singleRecord.related_request_id}`">DETAILS</NuxtLink>
             </td>
           </tr>
         </tbody>
       </table>
+    </div>
+
+    <div v-else class="no-db-entries-block">
+      <p>It seems you haven't any suggestions yet</p>
+      <NuxtLink to="/part-request" class="yellow-btn">Find parts</NuxtLink>
     </div>
   </div>
 </template>
@@ -76,6 +91,16 @@ onMounted(() => {
     }
 
     @media (max-width: 382px) {
+      font-size: 22px;
+    }
+  }
+
+  .no-db-entries-block {
+    text-align: center;
+    margin-top: 20vh;
+
+    p {
+      font-weight: 300;
       font-size: 22px;
     }
   }
