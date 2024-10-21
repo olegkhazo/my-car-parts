@@ -224,6 +224,7 @@ async function changeUserPersonalInformation() {
 .profile-settings-wrapper {
   padding: 0 20px;
   margin: 0 auto 80px auto;
+  width: 100%;
   display: flex;
   flex-direction: column;
 
@@ -295,6 +296,10 @@ async function changeUserPersonalInformation() {
       border-radius: 5px;
       border: 2px solid $gray-300;
       margin-top: 20px;
+
+      @media (max-width: 768px) {
+        width: 100%;
+      }
 
       .subheader {
         display: flex;
