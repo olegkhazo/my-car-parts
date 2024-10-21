@@ -49,15 +49,6 @@ watchEffect(() => {
 <style lang="scss" scoped>
 @import "@/assets/styles/_variables.scss";
 .side-admin-navigation {
-  width: 195px;
-  background-color: $gray-950;
-  display: flex;
-  flex-direction: column;
-
-  @media (max-width: 768px) {
-    width: 130px;
-  }
-
   .admin-logo {
     margin: 20px auto 20px auto;
     display: flex;
@@ -89,11 +80,11 @@ watchEffect(() => {
       color: $white;
 
       @media (max-width: 768px) {
-        font-size: 14px;
+        font-size: 12px;
       }
 
       @media (max-width: 425px) {
-        font-size: 11px;
+        font-size: 10px;
       }
     }
 
@@ -102,7 +93,7 @@ watchEffect(() => {
       font-weight: 300;
 
       @media (max-width: 768px) {
-        font-size: 12px;
+        font-size: 10px;
       }
 
       @media (max-width: 425px) {
@@ -123,7 +114,8 @@ watchEffect(() => {
         cursor: pointer;
 
         @media (max-width: 768px) {
-          padding: 15px 0 15px 10px;
+          padding: 10px 0 10px 5px;
+          font-size: 10px;
         }
 
         &:hover {
@@ -132,14 +124,6 @@ watchEffect(() => {
 
         &.router-link-active {
           background-color: $gray-700;
-        }
-
-        @media (max-width: 768px) {
-          font-size: 12px;
-        }
-
-        @media (max-width: 425px) {
-          font-size: 10px;
         }
       }
     }

@@ -42,6 +42,15 @@ async function deleteUser(id) {
     console.log("Error deleting user:", error.value);
   }
 }
+
+// Функция для получения данных для компонента ColorfulInfoTab
+function getColorfulInfoTabData(condition, trueText = "Yes", falseText = "No") {
+  return {
+    text: condition ? trueText : falseText,
+    bgColor: condition ? infoTabColors.trueBgInfoTab : infoTabColors.falseBgInfoTab,
+    textColor: condition ? infoTabColors.trueInfoTab : infoTabColors.falseInfoTab,
+  };
+}
 </script>
 
 <template>
@@ -63,54 +72,34 @@ async function deleteUser(id) {
         </thead>
         <tbody>
           <tr class="single-request-row" v-for="user in allUsers" id="tbody" :key="user._id">
-            <td>{{ user.first_name }}</td>
-            <td>{{ user.last_name }}</td>
+            <td>{{ user.first_name }} {{ user.last_name }}</td>
             <td>{{ user.company }}</td>
-            <td>{{ user.email }}</td>
+            <td class="limited-view-column">{{ user.email }}</td>
             <td>{{ user.role }}</td>
+
             <td>
               <ColorfulInfoTab
-                v-if="user.tips_agreement"
-                text="Yes"
-                :bg-color="infoTabColors.trueBgInfoTab"
-                :text-color="infoTabColors.trueInfoTab"
-              />
-              <ColorfulInfoTab
-                v-else
-                text="No"
-                :bg-color="infoTabColors.falseBgInfoTab"
-                :text-color="infoTabColors.falseInfoTab"
+                :text="getColorfulInfoTabData(user.tips_agreement).text"
+                :bg-color="getColorfulInfoTabData(user.tips_agreement).bgColor"
+                :text-color="getColorfulInfoTabData(user.tips_agreement).textColor"
               />
             </td>
             <td>
               <ColorfulInfoTab
-                v-if="user.terms_agreement"
-                text="Yes"
-                :bg-color="infoTabColors.trueBgInfoTab"
-                :text-color="infoTabColors.trueInfoTab"
-              />
-              <ColorfulInfoTab
-                v-else
-                text="No"
-                :bg-color="infoTabColors.falseBgInfoTab"
-                :text-color="infoTabColors.falseInfoTab"
+                :text="getColorfulInfoTabData(user.terms_agreement).text"
+                :bg-color="getColorfulInfoTabData(user.terms_agreement).bgColor"
+                :text-color="getColorfulInfoTabData(user.terms_agreement).textColor"
               />
             </td>
             <td>
               <ColorfulInfoTab
-                v-if="user.isActive"
-                text="Active"
-                :bg-color="infoTabColors.trueBgInfoTab"
-                :text-color="infoTabColors.trueInfoTab"
-              />
-              <ColorfulInfoTab
-                v-else
-                text="No"
-                :bg-color="infoTabColors.falseBgInfoTab"
-                :text-color="infoTabColors.falseInfoTab"
+                :text="getColorfulInfoTabData(user.isActive, 'Active', 'No').text"
+                :bg-color="getColorfulInfoTabData(user.isActive, 'Active', 'No').bgColor"
+                :text-color="getColorfulInfoTabData(user.isActive, 'Active', 'No').textColor"
               />
             </td>
-            <td><span class="sm-red-btn" @click="deleteUser(user._id)">DELETE</span></td>
+
+            <td><span class="sm-red-btn" @click="deleteUser(user._id)">delete</span></td>
           </tr>
         </tbody>
       </table>
@@ -129,6 +118,7 @@ async function deleteUser(id) {
 .all-users-wrapper {
   padding: 0 10px;
   margin: 0 auto 40px auto;
+  width: 100%;
 
   @media (max-width: 834px) {
     margin: 20px auto 150px auto;
@@ -188,8 +178,19 @@ async function deleteUser(id) {
     tbody {
       tr {
         td {
-          padding: 10px;
+          padding: 10px 5px;
           border-bottom: 1px solid $gray-300;
+
+          &.limited-view-column {
+            max-width: 100px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+
+          .sm-red-btn {
+            padding: 2px 4px;
+          }
 
           a {
             color: $blue-100;

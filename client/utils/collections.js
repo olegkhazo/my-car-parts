@@ -67,13 +67,12 @@ export const suggestionsTableHeaderContent = [
 ];
 
 export const allUsersTableHeaderContent = [
-  "First name",
-  "Last name",
+  "User",
   "Company",
   "Email",
   "Role",
-  "Tips Agreement",
-  "Terms Agreement",
+  "Tips",
+  "Terms",
   "Status",
   "Action"
 ];

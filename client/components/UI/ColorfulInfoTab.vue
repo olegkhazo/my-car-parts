@@ -14,7 +14,7 @@ const props = defineProps({
 
 <style lang="scss" scoped>
 span {
-  padding: 3px 12px;
+  padding: 2px 4px;
   border-radius: 5px;
   background: opacity(0.9);
 }
