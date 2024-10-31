@@ -28,6 +28,9 @@
         </ul>
         <ul class="footer-navs-column">
           <li>
+            <NuxtLink to="/market">Market</NuxtLink>
+          </li>
+          <li>
             <NuxtLink to="/how-it-work">How it work</NuxtLink>
           </li>
           <li>
