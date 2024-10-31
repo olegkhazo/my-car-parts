@@ -4,8 +4,8 @@ import { defineNuxtConfig } from 'nuxt/config';
 export default defineNuxtConfig({
   runtimeConfig: {
     public: {
-      // posthogPublicKey: 'phc_WDTGC09yj0oPOYDgvFnWRC46QuJMzRpKJnCCndeJskW',
-      // posthogHost: 'https://eu.posthog.com'
+      posthogPublicKey: 'phc_WDTGC09yj0oPOYDgvFnWRC46QuJMzRpKJnCCndeJskW',
+      posthogHost: 'https://eu.posthog.com'
     }
   },
   css: [
