@@ -13,10 +13,21 @@ useHead({
     },
   ],
 });
+
+import carPartsCategory from "@/assets/json/carPartsCategory";
+import carMakes from "@/assets/json/carMakes";
+
+function categoryClicked(href) {
+  //Think how to implement pages with iteractiive URL, seo description, but with the same template
+  console.log(href);
+}
 </script>
 
 <template>
   <div class="market-home-wrapper">
+    <div class="short-description">
+      <h3>Browse from Millions of Used Auto Parts</h3>
+    </div>
     <div class="market-top">
       <div class="market-home-header">
         <div class="search-form-block">
@@ -59,6 +70,64 @@ useHead({
         </div>
       </div>
     </div>
+
+    <div class="body-market-wrapper">
+      <div class="part-categories-wrapper">
+        <h2>FEATURED CATEGORIES</h2>
+        <div class="categories-conteiner">
+          <div
+            v-for="category in carPartsCategory"
+            :key="category"
+            class="category-card"
+            @click="categoryClicked(category.href)"
+          >
+            <NuxtImg :src="category.image" />
+            <p>{{ category.category }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="make-wrapper">
+      <h3>SHOP BY VEHICAL MAKE</h3>
+      <p>Our partner dismantling companies work with vehicles from the most popular car manufacturers</p>
+      <div class="makes-block">
+        <NuxtLink v-for="make in carMakes" :key="make" :to="`/market${make.href}`" class="make">
+          {{ make.title.toUpperCase() }}
+        </NuxtLink>
+      </div>
+    </div>
+
+    <div class="limited-time-deals-wrapper">
+      <h3>Limited Time Deals</h3>
+      <div class="limited-deals">
+        <div class="single-product">
+          <NuxtImg src="https://i.ebayimg.com/thumbs/images/g/dCsAAOSwTT9kSf8p/s-l225.webp" />
+          <p>BIG RED Hydraulic Floor Jack with Single Quick Lift Piston Pump, 3 Ton, Red</p>
+          <span class="limited-deals-price">$250</span>
+        </div>
+        <div class="single-product">
+          <NuxtImg src="https://i.ebayimg.com/thumbs/images/g/MLIAAOSwafdml0CP/s-l225.webp" />
+          <p>BIG RED Hydraulic Floor Jack with Single Quick Lift Piston Pump, 3 Ton, Red</p>
+          <span class="limited-deals-price">$155</span>
+        </div>
+        <div class="single-product">
+          <NuxtImg src="https://i.ebayimg.com/thumbs/images/g/7j8AAOSwR6FlP74T/s-l225.webp" />
+          <p>BIG RED Hydraulic Floor Jack with Single Quick Lift Piston Pump, 3 Ton, Red</p>
+          <span class="limited-deals-price">$110</span>
+        </div>
+        <div class="single-product">
+          <NuxtImg src="https://i.ebayimg.com/thumbs/images/g/O7kAAOSwh6lmH0Af/s-l225.webp" />
+          <p>BIG RED Hydraulic Floor Jack with Single Quick Lift Piston Pump, 3 Ton, Red</p>
+          <span class="limited-deals-price">$380</span>
+        </div>
+        <div class="single-product">
+          <NuxtImg src="https://i.ebayimg.com/thumbs/images/g/8KUAAOSww21iBDSN/s-l225.webp" />
+          <p>BIG RED Hydraulic Floor Jack with Single Quick Lift Piston Pump, 3 Ton, Red</p>
+          <span class="limited-deals-price">$80</span>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -66,6 +135,25 @@ useHead({
 @import "@/assets/styles/_variables.scss";
 
 .market-home-wrapper {
+  .short-description {
+    display: flex;
+    justify-content: center;
+    background-color: $gray-750;
+    text-align: center;
+
+    h3 {
+      font-size: 22px;
+      font-weight: 400;
+      color: $gray-150;
+      line-height: 1;
+      letter-spacing: 2px;
+
+      @media (max-width: 680px) {
+        font-size: 16px;
+      }
+    }
+  }
+
   .market-top {
     display: flex;
     justify-content: center;
@@ -236,6 +324,177 @@ useHead({
               font-size: 14px;
             }
           }
+        }
+      }
+    }
+  }
+
+  .body-market-wrapper {
+    .part-categories-wrapper {
+      display: flex;
+      flex-direction: column;
+      width: 95%;
+      margin: 20px auto;
+      align-items: center;
+
+      h2 {
+        font-size: 22px;
+        font-weight: 400;
+      }
+
+      .categories-conteiner {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        width: 850px;
+
+        @media (max-width: 1024px) {
+          width: 650px;
+        }
+
+        @media (max-width: 680px) {
+          width: 340px;
+        }
+
+        .category-card {
+          display: flex;
+          flex-direction: column;
+          align-content: center;
+          text-align: center;
+          width: 200px;
+          cursor: pointer;
+
+          @media (max-width: 1024px) {
+            width: 155px;
+          }
+
+          @media (max-width: 680px) {
+            width: 110px;
+          }
+
+          img {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  .make-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 60px auto;
+    align-items: center;
+
+    h3 {
+      font-size: 22px;
+      font-weight: 400;
+      margin: 0;
+      text-align: center;
+    }
+
+    p {
+      text-align: center;
+      font-size: 18px;
+      font-weight: 300;
+      color: $gray-900;
+      margin: 5px auto 20px auto;
+    }
+
+    .makes-block {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      background-image: url("/images/market-images/junkyard.webp");
+      background-size: cover;
+      background-position: center;
+      padding: 40px 0;
+    }
+
+    .make {
+      display: block;
+      font-weight: 500;
+      margin: 8px;
+      border: 1px solid $gray-850;
+      border-radius: 5px;
+      padding: 10px 20px;
+      background-color: $white;
+      opacity: 0.8;
+    }
+  }
+
+  .limited-time-deals-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 60px auto;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    width: 95%;
+    padding-bottom: 20px;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 50px;
+      height: 100%;
+      pointer-events: none;
+      background: linear-gradient(to left, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+    }
+
+    h3 {
+      font-size: 22px;
+      font-weight: 400;
+      margin: 0;
+      text-align: center;
+    }
+
+    .limited-deals {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      overflow-x: auto;
+      scrollbar-width: thin;
+      padding-bottom: 10px;
+
+      &::-webkit-scrollbar {
+        height: 20px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, 0.3);
+        border-radius: 4px;
+      }
+
+      .single-product {
+        width: auto;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        margin-right: 60px;
+        cursor: pointer;
+
+        &:last-child {
+          margin-right: 0;
+        }
+
+        img {
+          height: 150px;
+          object-fit: contain;
+          margin-bottom: 10px;
+        }
+
+        p {
+          margin: 5px 0;
+          flex-grow: 1;
+        }
+
+        .limited-deals-price {
+          font-weight: bold;
+          margin-top: auto;
         }
       }
     }
