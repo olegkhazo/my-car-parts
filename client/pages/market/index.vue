@@ -133,89 +133,89 @@ function categoryClicked(href) {
       <h1>MyNextParts Market</h1>
 
       <p>
-        At MyNextParts Market, you’ll find high-quality used parts for repairing, upgrading, or maintaining any make and
-        model of vehicle. The site is easy to navigate, allowing you to search by vehicle type, product category,
-        special deals, or by brand and model, including cars, motorcycles, pickups, and SUVs.
+        Welcome to MyNextParts Market, your source for top-quality used parts to repair, enhance, or maintain any
+        vehicle, from cars and motorcycles to pickups and SUVs. Our site is designed for easy browsing, enabling you to
+        search by vehicle type, product category, special offers, or even specific brands and models.
       </p>
 
       <h2>What is MyNextParts Market?</h2>
 
       <p>
-        MyNextParts Market provides a comprehensive platform for locating the best parts, accessories, and special
-        offers for your vehicle. By simply entering the year, make, model, trim, and engine type, MyNextParts Market
-        filters search results to display only the parts that best match your needs. You can also explore Daily
-        Discounts and “Hot Deals”. If you don’t find the part you’re looking for, you can
-        <NuxtLink to="/part-request">submit a request</NuxtLink>, allowing hundreds of sellers to view your inquiry and
-        respond with offers. Register to gain access to a personalized dashboard where you can manage requests and track
-        offers from sellers. These features make it simple to find and buy the parts you need.
+        MyNextParts Market is a comprehensive platform for discovering the best parts, accessories, and exclusive deals
+        for your vehicle. By inputting details such as year, make, model, trim, and engine type, the platform refines
+        search results to show the most relevant parts for your needs. You can also explore Daily Discounts and “Hot
+        Deals”. If a specific part isn’t available, you can <NuxtLink to="/part-request">submit a request</NuxtLink>,
+        allowing multiple sellers to view it and respond with offers. Sign up to access a personalized dashboard where
+        you can track and manage your requests and offers from sellers, making it easy to find and purchase the parts
+        you need.
       </p>
 
       <h2>How to Search for Specific Parts or Accessories</h2>
 
       <p>
-        MyNextParts Market primarily focuses on used auto parts and partners with hundreds of salvage yards across the
-        U.S. If you submit a part request, you can specify condition preferences, choosing between new or used options.
+        MyNextParts Market focuses primarily on used auto parts and collaborates with numerous salvage yards across the
+        U.S. When placing a part request, you can specify the condition you prefer, choosing between new and used
+        options.
       </p>
 
       <ul>
         <li>
           <strong>Select Vehicle Type or Manufacturer:</strong> Use drop-down menus to choose the make, model, and trim
-          of your vehicle, pickup, or motorcycle.
+          of your car, pickup, or motorcycle.
         </li>
         <li>
-          <strong>Choose Model Year:</strong> Different model years often require specific sizes, styles, and compatible
-          components.
+          <strong>Choose Model Year:</strong> Some parts are specific to certain model years, so select the correct year
+          to find compatible components.
         </li>
         <li>
-          <strong>Enter Product, Brand, or Keyword:</strong> Use precise terms like “anti-lock braking system,” “brake
-          pads,” “struts,” “wiper blades,” or any specific part category to find what you need.
+          <strong>Enter Product, Brand, or Keyword:</strong> Use precise terms, such as “anti-lock braking system,”
+          “brake pads,” “struts,” or “wiper blades,” to locate specific parts quickly.
         </li>
       </ul>
 
       <h2>Categories of Auto Parts for Cars and Pickups</h2>
 
       <p>
-        To make your search even easier, you can browse parts by category. At the top of the page, you’ll find intuitive
-        search forms and a general search bar.
+        To make it even easier to locate parts, you can browse by category. Convenient search forms and a general search
+        bar are available at the top of the page.
       </p>
 
-      <p>Explore popular categories such as:</p>
+      <p>Popular categories include:</p>
 
       <ul>
         <li>
-          <strong>Engines and Components:</strong> This includes motor parts such as engine mounts, drivetrain
-          components, belts, and gaskets, as well as complete engines and rebuild kits.
+          <strong>Engines and Components:</strong> Find engine parts like mounts, drivetrain parts, belts, gaskets,
+          complete engines, and rebuild kits.
         </li>
         <li>
-          <strong>Brakes and Brake Parts:</strong> Here, you’ll find rotors, discs, pads, linings, and other essential
-          brake accessories.
+          <strong>Brakes and Brake Parts:</strong> Includes rotors, discs, pads, linings, and other essential brake
+          parts.
         </li>
         <li>
-          <strong>Mirrors:</strong> Find interior and exterior mirrors, including add-on mirrors for vehicles and
-          trucks.
+          <strong>Mirrors:</strong> Browse both interior and exterior mirrors, including options for cars and trucks.
         </li>
         <li>
-          <strong>Lighting and Headlights:</strong> Browse both interior and exterior lights, including cabin lights,
-          fog lights, headlights, tail lights, brake lights, bulbs, and complete light assemblies.
+          <strong>Lighting and Headlights:</strong> Discover interior and exterior lighting, including cabin lights, fog
+          lights, headlights, tail lights, brake lights, bulbs, and full light assemblies.
         </li>
         <li>
-          <strong>Wheels, Tires, and Accessories:</strong> This section offers wheels and tires of all sizes, hub
+          <strong>Wheels, Tires, and Accessories:</strong> A variety of wheels and tires in all sizes, plus hub
           assemblies, hubcaps, tire chains, spacers, and more.
         </li>
         <li>
-          <strong>Exterior:</strong> From body kits and spoilers to bumpers and other styling accessories, this category
-          features parts that enhance both the look and performance of your vehicle.
+          <strong>Exterior:</strong> From body kits and spoilers to bumpers and other styling parts, this category has
+          options to enhance your vehicle’s look and functionality.
         </li>
       </ul>
 
       <p>
-        This inventory extends beyond just cars and pickups; you’ll also find similar categories for motorcycles, ATVs,
+        The selection isn’t limited to cars and pickups; you’ll also find similar categories for motorcycles, ATVs,
         boats, commercial trucks, and more.
       </p>
 
       <p>
-        If you’re unsure of the exact part or accessory you need, try narrowing your search by brand. MyNextParts Market
-        offers parts from all major manufacturers, including:
+        If you’re unsure about the specific part or accessory you need, try searching by brand. MyNextParts Market
+        features parts from all major manufacturers, such as:
       </p>
 
       <p>
