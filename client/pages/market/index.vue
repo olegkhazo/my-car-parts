@@ -99,7 +99,7 @@ function categoryClicked(href) {
     </div>
 
     <div class="limited-time-deals-wrapper">
-      <h3>Limited Time Deals</h3>
+      <h3>LIMITED TIME DEALS</h3>
       <div class="limited-deals">
         <div class="single-product">
           <NuxtImg src="https://i.ebayimg.com/thumbs/images/g/dCsAAOSwTT9kSf8p/s-l225.webp" />
@@ -127,6 +127,104 @@ function categoryClicked(href) {
           <span class="limited-deals-price">$80</span>
         </div>
       </div>
+    </div>
+
+    <div class="market-description">
+      <h1>MyNextParts Market</h1>
+
+      <p>
+        At MyNextParts Market, you’ll find high-quality used parts for repairing, upgrading, or maintaining any make and
+        model of vehicle. The site is easy to navigate, allowing you to search by vehicle type, product category,
+        special deals, or by brand and model, including cars, motorcycles, pickups, and SUVs.
+      </p>
+
+      <h2>What is MyNextParts Market?</h2>
+
+      <p>
+        MyNextParts Market provides a comprehensive platform for locating the best parts, accessories, and special
+        offers for your vehicle. By simply entering the year, make, model, trim, and engine type, MyNextParts Market
+        filters search results to display only the parts that best match your needs. You can also explore Daily
+        Discounts and “Hot Deals”. If you don’t find the part you’re looking for, you can
+        <NuxtLink to="/part-request">submit a request</NuxtLink>, allowing hundreds of sellers to view your inquiry and
+        respond with offers. Register to gain access to a personalized dashboard where you can manage requests and track
+        offers from sellers. These features make it simple to find and buy the parts you need.
+      </p>
+
+      <h2>How to Search for Specific Parts or Accessories</h2>
+
+      <p>
+        MyNextParts Market primarily focuses on used auto parts and partners with hundreds of salvage yards across the
+        U.S. If you submit a part request, you can specify condition preferences, choosing between new or used options.
+      </p>
+
+      <ul>
+        <li>
+          <strong>Select Vehicle Type or Manufacturer:</strong> Use drop-down menus to choose the make, model, and trim
+          of your vehicle, pickup, or motorcycle.
+        </li>
+        <li>
+          <strong>Choose Model Year:</strong> Different model years often require specific sizes, styles, and compatible
+          components.
+        </li>
+        <li>
+          <strong>Enter Product, Brand, or Keyword:</strong> Use precise terms like “anti-lock braking system,” “brake
+          pads,” “struts,” “wiper blades,” or any specific part category to find what you need.
+        </li>
+      </ul>
+
+      <h2>Categories of Auto Parts for Cars and Pickups</h2>
+
+      <p>
+        To make your search even easier, you can browse parts by category. At the top of the page, you’ll find intuitive
+        search forms and a general search bar.
+      </p>
+
+      <p>Explore popular categories such as:</p>
+
+      <ul>
+        <li>
+          <strong>Engines and Components:</strong> This includes motor parts such as engine mounts, drivetrain
+          components, belts, and gaskets, as well as complete engines and rebuild kits.
+        </li>
+        <li>
+          <strong>Brakes and Brake Parts:</strong> Here, you’ll find rotors, discs, pads, linings, and other essential
+          brake accessories.
+        </li>
+        <li>
+          <strong>Mirrors:</strong> Find interior and exterior mirrors, including add-on mirrors for vehicles and
+          trucks.
+        </li>
+        <li>
+          <strong>Lighting and Headlights:</strong> Browse both interior and exterior lights, including cabin lights,
+          fog lights, headlights, tail lights, brake lights, bulbs, and complete light assemblies.
+        </li>
+        <li>
+          <strong>Wheels, Tires, and Accessories:</strong> This section offers wheels and tires of all sizes, hub
+          assemblies, hubcaps, tire chains, spacers, and more.
+        </li>
+        <li>
+          <strong>Exterior:</strong> From body kits and spoilers to bumpers and other styling accessories, this category
+          features parts that enhance both the look and performance of your vehicle.
+        </li>
+      </ul>
+
+      <p>
+        This inventory extends beyond just cars and pickups; you’ll also find similar categories for motorcycles, ATVs,
+        boats, commercial trucks, and more.
+      </p>
+
+      <p>
+        If you’re unsure of the exact part or accessory you need, try narrowing your search by brand. MyNextParts Market
+        offers parts from all major manufacturers, including:
+      </p>
+
+      <p>
+        AMC, Acura, Alfa Romeo, Audi, BMW, Buick, Cadillac, Chevrolet, Chrysler, Daewoo, Daihatsu, Dodge, Eagle, Fiat,
+        Ford, GMC, Honda, Hummer, Hyundai, International Harvester, Infiniti, Isuzu, Jaguar, Jeep, Kia, Lamborghini,
+        Land Rover, Lexus, Lincoln, Mazda, Mercedes-Benz, Mercury, Mini, Mitsubishi, Nissan, Oldsmobile, Plymouth,
+        Pontiac, Porsche, Peugeot, Ram, Renault, Saab, Saturn, Scion, Smart, Subaru, Suzuki, Toyota, Volkswagen, and
+        Volvo.
+      </p>
     </div>
   </div>
 </template>
@@ -415,11 +513,11 @@ function categoryClicked(href) {
       display: block;
       font-weight: 500;
       margin: 8px;
-      border: 1px solid $gray-850;
+      border: 2px solid $gray-850;
       border-radius: 5px;
       padding: 10px 20px;
       background-color: $white;
-      opacity: 0.8;
+      opacity: 0.9;
     }
   }
 
@@ -447,7 +545,7 @@ function categoryClicked(href) {
     h3 {
       font-size: 22px;
       font-weight: 400;
-      margin: 0;
+      margin: 30px auto 40px auto;
       text-align: center;
     }
 
@@ -497,6 +595,19 @@ function categoryClicked(href) {
           margin-top: auto;
         }
       }
+    }
+  }
+
+  .market-description {
+    border-top: 1px solid $gray-750;
+    padding-top: 30px;
+    width: 90%;
+    margin: 0 auto;
+
+    a {
+      color: $blue;
+      font-size: 15px;
+      font-weight: 600;
     }
   }
 }
