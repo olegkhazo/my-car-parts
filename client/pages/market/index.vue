@@ -7,20 +7,15 @@ useHead({
   title: "MyNextParts - the biggest used car parts market in U.S.",
   meta: [
     {
-      name: "Market - home page",
+      name: "MyNextParts Market - home page",
       content:
-        "Your one-stop marketplace for quality used auto parts, connecting car owners across the U.S. with top dismantlers and trusted parts suppliers nationwide.",
+        "MyNextParts Market is a comprehensive platform for discovering the best parts, accessories, and exclusive deals for your vehicle. By inputting details such as year, make, model, trim, and engine type, the platform refines search results to show the most relevant parts for your needs.",
     },
   ],
 });
 
 import carPartsCategory from "@/assets/json/carPartsCategory";
 import carMakes from "@/assets/json/carMakes";
-
-function categoryClicked(href) {
-  //Think how to implement pages with iteractiive URL, seo description, but with the same template
-  console.log(href);
-}
 </script>
 
 <template>
@@ -75,15 +70,15 @@ function categoryClicked(href) {
       <div class="part-categories-wrapper">
         <h2>FEATURED CATEGORIES</h2>
         <div class="categories-conteiner">
-          <div
+          <NuxtLink
             v-for="category in carPartsCategory"
             :key="category"
             class="category-card"
-            @click="categoryClicked(category.href)"
+            :to="`/market/${category.href}`"
           >
             <NuxtImg :src="category.image" />
             <p>{{ category.category }}</p>
-          </div>
+          </NuxtLink>
         </div>
       </div>
     </div>
