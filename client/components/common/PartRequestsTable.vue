@@ -1,6 +1,4 @@
 <script setup>
-import { computed, ref } from "vue";
-import { defineProps } from "vue";
 import { useAuthStore } from "@/stores";
 import { getTimeAgo } from "@/utils";
 
