@@ -1,7 +1,7 @@
 [
     {
         "category": "Wheels",
-        "href": "/Car-Truck-Wheels-Tires-Parts",
+        "href": "Car-Truck-Wheels-Tires-Parts",
         "image": "https://i.ebayimg.com/thumbs/images/g/4g0AAOSwoZJiDrXP/s-l225.webp",
         "subcategory": [
             {
@@ -48,7 +48,7 @@
     },
     {
         "category": "Exterior",
-        "href": "/Car-Truck-Exterior-Parts-Accessories",
+        "href": "Car-Truck-Exterior-Parts-Accessories",
         "image": "https://i.ebayimg.com/thumbs/images/g/gSIAAOSwJu1iDrXT/s-l225.webp",
         "subcategory": [
             {
@@ -246,7 +246,7 @@
     },
     {
         "category": "Lighting",
-        "href": "/Car-Truck-Lighting-Lamps",
+        "href": "Car-Truck-Lighting-Lamps",
         "image": "https://i.ebayimg.com/thumbs/images/g/hpkAAOSwlAJiDrXc/s-l225.webp",
         "subcategory": [
             {
@@ -320,7 +320,7 @@
         ]
     },
     {
-        "category": "Steering/Suspension",
+        "category": "Steering&Suspension",
         "href": "Car-Truck-Steering-Suspension",
         "image": "https://i.ebayimg.com/thumbs/images/g/xS0AAOSwAP9iDrXi/s-l225.webp",
         "subcategory": [
@@ -420,7 +420,7 @@
     },
     {
         "category": "Engine",
-        "href": "/Car-Truck-Engines-Engine-Parts",
+        "href": "Car-Truck-Engines-Engine-Parts",
         "image": "https://i.ebayimg.com/thumbs/images/g/VJoAAOSw4TFiBqjV/s-l225.webp",
         "subcategory": [
             {
@@ -503,7 +503,7 @@
     },
     {
         "category": "Air/Fuel Delivery",
-        "href": "/Car-Truck-Air-Fuel-Delivery",
+        "href": "Car-Truck-Air-Fuel-Delivery",
         "image": "https://i.ebayimg.com/thumbs/images/g/NrwAAOSwSDRiDrXv/s-l225.webp",
         "subcategory": [
             {
@@ -582,7 +582,7 @@
     },
     {
         "category": "Transmission",
-        "href": "/Car-Truck-Transmission-Drivetrain",
+        "href": "Car-Truck-Transmission-Drivetrain",
         "image": "https://i.ebayimg.com/thumbs/images/g/j0sAAOSwFvNiDrXz/s-l225.webp",
         "subcategory": [
             {
@@ -693,7 +693,7 @@
     },
     {
         "category": "Brakes",
-        "href": "/Car-Truck-Brakes-Brake-Parts",
+        "href": "Car-Truck-Brakes-Brake-Parts",
         "image": "https://i.ebayimg.com/thumbs/images/g/xdQAAOSwdTpiDrX2/s-l225.webp",
         "subcategory": [
             {
