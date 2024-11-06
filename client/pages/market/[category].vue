@@ -1,6 +1,7 @@
 <script setup>
 import carPartsCategory from "@/assets/json/carPartsCategory.json";
 import BreadCrumbs from "@/components/market/common/breadCrumbs";
+import ProductCard from "@/components/market/product-components/productCard";
 
 const route = useRoute();
 const categoryParam = ref(route.params.category);
@@ -82,14 +83,16 @@ watch(
             </button>
             <ul v-if="openCategories[index]" class="subcategory-list">
               <li v-for="(sub, subIndex) in category.subcategory" :key="subIndex">
-                <NuxtLink :to="`/market/${category.category}${sub.href}`">{{ sub.title }}</NuxtLink>
+                <NuxtLink :to="`/market/${category.href}${sub.href}`">{{ sub.title }}</NuxtLink>
               </li>
             </ul>
           </li>
         </ul>
       </div>
 
-      <div class="content"></div>
+      <div class="content">
+        <ProductCard />
+      </div>
     </div>
   </div>
 </template>
@@ -274,82 +277,88 @@ watch(
     margin: 30px auto 10px auto;
   }
 
-  .sidebar {
-    width: 230px;
-    padding: 10px;
-
-    @media (max-width: 768px) {
-      width: 190px;
-    }
-
-    h2 {
-      font-size: 18px;
-      margin-bottom: 10px;
+  .main-content-wrapper {
+    display: flex;
+    .sidebar {
+      width: 230px;
+      padding: 10px;
 
       @media (max-width: 768px) {
-        font-size: 16px;
+        width: 190px;
+      }
+
+      h2 {
+        font-size: 18px;
+        margin-bottom: 10px;
+
+        @media (max-width: 768px) {
+          font-size: 16px;
+        }
+      }
+
+      .category-list {
+        .category {
+          .category-button {
+            margin-top: 15px;
+            background: none;
+            border: none;
+            font-size: 15px;
+            color: $gray-850;
+            width: 100%;
+            cursor: pointer;
+            outline: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            @media (max-width: 768px) {
+              font-size: 14px;
+            }
+
+            .arrow {
+              display: inline-block;
+              width: 0;
+              height: 0;
+              margin-left: 8px;
+              border-left: 5px solid transparent;
+              border-right: 5px solid transparent;
+              border-top: 5px solid $blue-500;
+              transition: transform 0.3s ease;
+            }
+
+            .arrow.active {
+              transform: rotate(180deg);
+            }
+          }
+
+          .subcategory-list {
+            padding-left: 15px;
+            margin-top: 5px;
+            overflow: hidden;
+
+            li {
+              padding: 5px 0;
+              font-size: 14px;
+
+              @media (max-width: 768px) {
+                font-size: 12px;
+              }
+            }
+
+            a {
+              color: $gray-700;
+
+              &:hover {
+                color: #000;
+                text-decoration: underline;
+              }
+            }
+          }
+        }
       }
     }
 
-    .category-list {
-      .category {
-        .category-button {
-          margin-top: 15px;
-          background: none;
-          border: none;
-          font-size: 15px;
-          color: $gray-850;
-          width: 100%;
-          cursor: pointer;
-          outline: none;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-
-          @media (max-width: 768px) {
-            font-size: 14px;
-          }
-
-          .arrow {
-            display: inline-block;
-            width: 0;
-            height: 0;
-            margin-left: 8px;
-            border-left: 5px solid transparent;
-            border-right: 5px solid transparent;
-            border-top: 5px solid $blue-500;
-            transition: transform 0.3s ease;
-          }
-
-          .arrow.active {
-            transform: rotate(180deg);
-          }
-        }
-
-        .subcategory-list {
-          padding-left: 15px;
-          margin-top: 5px;
-          overflow: hidden;
-
-          li {
-            padding: 5px 0;
-            font-size: 14px;
-
-            @media (max-width: 768px) {
-              font-size: 12px;
-            }
-          }
-
-          a {
-            color: $gray-700;
-
-            &:hover {
-              color: #000;
-              text-decoration: underline;
-            }
-          }
-        }
-      }
+    .content {
     }
   }
 }
