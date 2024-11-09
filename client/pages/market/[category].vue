@@ -2,6 +2,7 @@
 import carPartsCategory from "@/assets/json/carPartsCategory.json";
 import BreadCrumbs from "@/components/market/common/breadCrumbs";
 import ProductCard from "@/components/market/product-components/productCard";
+import FilterByMake from "~/components/market/common/FilterByMake";
 
 const route = useRoute();
 const categoryParam = ref(route.params.category);
@@ -90,8 +91,20 @@ watch(
         </ul>
       </div>
 
-      <div class="content">
-        <ProductCard />
+      <div class="right-side-content">
+        <FilterByMake />
+
+        <div class="products-wrapper">
+          <div class="products">
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -287,6 +300,10 @@ watch(
         width: 190px;
       }
 
+      @media (max-width: 515px) {
+        width: 25%;
+      }
+
       h2 {
         font-size: 18px;
         margin-bottom: 10px;
@@ -358,7 +375,28 @@ watch(
       }
     }
 
-    .content {
+    .right-side-content {
+      display: flex;
+      flex-direction: column;
+      padding: 15px;
+
+      @media (max-width: 515px) {
+        width: 75%;
+      }
+
+      .products-wrapper {
+        .products {
+          margin: 50px;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          gap: 20px;
+
+          @media (max-width: 525px) {
+            justify-content: center;
+          }
+        }
+      }
     }
   }
 }
