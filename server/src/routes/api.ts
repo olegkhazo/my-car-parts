@@ -2,6 +2,7 @@ import express from 'express';
 import { createOffer, getSingleUserSuggestions } from '../controllers/offerController';
 import { registerUser, activateUser, authoriseUser, logOut, getUser, getAllUsers, updateUser, deleteUser } from '../controllers/userController';
 import { createPart, getAllParts, getSinglePart, getRequestsByUser, deleteRequest } from '../controllers/partRequestController';
+import { getVMAutoPartsList } from '../controllers/partnersApiController';
 import { authenticate } from "../middlewares/authMiddleware";
 
 const router = express.Router();
@@ -25,6 +26,13 @@ router.get('/single-spare-part-request-data/:id', getSinglePart);
 
 // Route for deleting single part request by ID
 router.delete('/delete-part-request/:id', deleteRequest);
+
+
+// ***
+// Third side partner API routes
+// ***
+
+router.get('/vm-auto-list', getVMAutoPartsList);
 
 
 // ***

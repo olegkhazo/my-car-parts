@@ -16,13 +16,8 @@ html {
         margin: 0 auto;
 
         .content-wrapper {
-            width: 1010px;
+            width: 98%;
             margin: 0 auto;
-        
-            @media (max-width: 1080px) {
-                width: 90%;
-                margin: 0 auto;
-            }
         } 
         
         a {

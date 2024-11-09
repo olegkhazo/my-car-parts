@@ -53,6 +53,9 @@ onMounted(async () => {
         <template v-if="isAuthInitialized">
           <ul @click="hideMobileMenu">
             <li>
+              <NuxtLink to="/market">Market</NuxtLink>
+            </li>
+            <li>
               <NuxtLink to="/part-request">Find parts</NuxtLink>
             </li>
             <li>

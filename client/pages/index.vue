@@ -1,10 +1,11 @@
 <script setup>
 useHead({
-  title: "MyNextParts - Easy search for car parts",
+  title: "MyNextParts - Easy used parts searching",
   meta: [
     {
-      name: "description",
-      content: "Home page of a service for searching and selling car parts, both new and used",
+      name: "MyNextParts - best online platform for fast used parts searching in the USA",
+      content:
+        "MyNextParts Market is a comprehensive platform for discovering the best parts, accessories, and exclusive deals for your vehicle. By inputting details such as year, make, model, trim, and engine type, the platform refines search results to show the most relevant parts for your needs",
     },
   ],
 });

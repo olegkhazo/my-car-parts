@@ -1,30 +1,24 @@
 <script setup>
+import { useAuthStore } from "@/stores";
+import { getTimeAgo } from "@/utils";
+
 const props = defineProps({
   partRequests: Object,
 });
 
-import { getTimeAgo } from "@/utils";
-import { useAuthStore } from "@/stores";
-
+// Auth store
 const authManager = useAuthStore();
 const { loggedIn, userInfo } = storeToRefs(authManager);
+const userRole = computed(() => userInfo.value.role);
 
-const userRole = ref(userInfo.value.role);
+const expandedRequestIds = ref(new Set());
 
-function showAllContentOfSingleRequest(event) {
-  const allContentRow = event.target.closest(".single-request-row").nextElementSibling;
-
-  allContentRow.classList.contains("hidden")
-    ? allContentRow.classList.remove("hidden")
-    : allContentRow.classList.add("hidden");
-}
-
-function hideAllContentOfSingleRequest(event) {
-  const button = event.target;
-  const contentRow = button.closest(".all-content-for-single-request");
-  contentRow.classList.add("hidden");
-
-  scrollToTopOfTheTableBody();
+function toggleContentVisibility(requestId) {
+  if (expandedRequestIds.value.has(requestId)) {
+    expandedRequestIds.value.delete(requestId);
+  } else {
+    expandedRequestIds.value.add(requestId);
+  }
 }
 
 async function logoutUser() {
@@ -44,8 +38,8 @@ async function logoutUser() {
           <th class="form-info-button-column"></th>
         </tr>
       </thead>
-      <tbody v-for="request in props.partRequests" id="tbody" :key="request._id">
-        <tr class="single-request-row" @click="showAllContentOfSingleRequest">
+      <tbody v-for="request in props.partRequests" :key="request._id">
+        <tr class="single-request-row" @click="toggleContentVisibility(request._id)">
           <td>
             <div class="green-wheel-img-wrapper">
               <NuxtImg src="/images/green-wheel.svg" title="green-wheel" />
@@ -54,90 +48,71 @@ async function logoutUser() {
           <td>
             {{ request.part_name }} for {{ request.car_make }} {{ request.car_model }} {{ request.engine_volume }}
             {{ request.fuel_type }}
-            <div class="block-for-mobile-screen">
-              {{ request.city }} -
-              {{ getTimeAgo(request.created_date) }}
-            </div>
+            <div class="block-for-mobile-screen">{{ request.city }} - {{ getTimeAgo(request.created_date) }}</div>
           </td>
           <td class="form-area-column">{{ request.city }}</td>
-          <td class="form-date-column">
-            {{ getTimeAgo(request.created_date) }}
-          </td>
+          <td class="form-date-column">{{ getTimeAgo(request.created_date) }}</td>
           <td class="form-info-button-column">
             <span class="sm-green-btn">Info</span>
           </td>
         </tr>
-        <tr class="all-content-for-single-request hidden">
+
+        <tr v-show="expandedRequestIds.has(request._id)" class="all-content-for-single-request">
           <td colspan="5">
             <div class="all-content-wrapper">
               <div class="all-content">
                 <div class="single-request-details">
                   <div class="single-request-details-left">
-                    <span v-if="request.part_name">
-                      Spare part:
-                      <span class="bold">{{ request.part_name }}</span>
-                    </span>
-                    <span v-if="request.part_group">
-                      Group:
-                      <span class="bold">{{ request.part_group }}</span>
-                    </span>
-                    <span v-if="request.type_of_part">
-                      Type of part:
-                      <span class="bold">{{ request.type_of_part }}</span>
-                    </span>
-                    <span v-if="request.part_condition">
-                      Condition:
-                      <span class="bold">{{ request.part_condition }}</span>
-                    </span>
-                    <span v-if="request.part_code">
-                      Part code:
-                      <span class="bold">{{ request.part_code }}</span>
-                    </span>
-                    <span v-if="request.car_type">
-                      Car type:
-                      <span class="bold">{{ request.car_type }}</span>
-                    </span>
-                    <span v-if="request.car_make">
-                      Car make:
-                      <span class="bold">{{ request.car_make }}</span>
-                    </span>
-                    <span v-if="request.car_model">
-                      Car model:
-                      <span class="bold">{{ request.car_model }}</span>
-                    </span>
-                    <span v-if="request.car_year">
-                      Car year:
-                      <span class="bold">{{ request.car_year }}</span>
-                    </span>
+                    <span v-if="request.part_name"
+                      >Spare part: <span class="bold">{{ request.part_name }}</span></span
+                    >
+                    <span v-if="request.part_group"
+                      >Group: <span class="bold">{{ request.part_group }}</span></span
+                    >
+                    <span v-if="request.type_of_part"
+                      >Type of part: <span class="bold">{{ request.type_of_part }}</span></span
+                    >
+                    <span v-if="request.part_condition"
+                      >Condition: <span class="bold">{{ request.part_condition }}</span></span
+                    >
+                    <span v-if="request.part_code"
+                      >Part code: <span class="bold">{{ request.part_code }}</span></span
+                    >
+                    <span v-if="request.car_type"
+                      >Car type: <span class="bold">{{ request.car_type }}</span></span
+                    >
+                    <span v-if="request.car_make"
+                      >Car make: <span class="bold">{{ request.car_make }}</span></span
+                    >
+                    <span v-if="request.car_model"
+                      >Car model: <span class="bold">{{ request.car_model }}</span></span
+                    >
+                    <span v-if="request.car_year"
+                      >Car year: <span class="bold">{{ request.car_year }}</span></span
+                    >
                   </div>
                   <div class="single-request-details-right">
-                    <span v-if="request.fuel_type">
-                      Fuel type:
-                      <span class="bold">{{ request.fuel_type }}</span>
-                    </span>
-                    <span v-if="request.engine_volume">
-                      Engine volume:
-                      <span class="bold">{{ request.engine_volume }}</span>
-                    </span>
-                    <span v-if="request.car_body">
-                      Car body:
-                      <span class="bold">{{ request.car_body }}</span>
-                    </span>
-                    <span v-if="request.vin_code">
-                      VIN code:
-                      <span class="bold">{{ request.vin_code }}</span>
-                    </span>
-                    <span v-if="request.comment">
-                      User comment:
-                      <span class="bold">{{ request.comment }}</span>
-                    </span>
-                    <span v-if="request.city">
-                      State/City:
-                      <span class="bold">{{ request.city }}</span>
-                    </span>
-                    <span v-if="request.name">
-                      Name: <span class="bold">{{ request.name }}</span>
-                    </span>
+                    <span v-if="request.fuel_type"
+                      >Fuel type: <span class="bold">{{ request.fuel_type }}</span></span
+                    >
+                    <span v-if="request.engine_volume"
+                      >Engine volume: <span class="bold">{{ request.engine_volume }}</span></span
+                    >
+                    <span v-if="request.car_body"
+                      >Car body: <span class="bold">{{ request.car_body }}</span></span
+                    >
+                    <span v-if="request.vin_code"
+                      >VIN code: <span class="bold">{{ request.vin_code }}</span></span
+                    >
+                    <span v-if="request.comment"
+                      >User comment: <span class="bold">{{ request.comment }}</span></span
+                    >
+                    <span v-if="request.city"
+                      >State/City: <span class="bold">{{ request.city }}</span></span
+                    >
+                    <span v-if="request.name"
+                      >Name: <span class="bold">{{ request.name }}</span></span
+                    >
                   </div>
                 </div>
 
@@ -155,10 +130,12 @@ async function logoutUser() {
                     class="suggest-button xl-green-btn"
                     >Register as a seller to suggest your variant</NuxtLink
                   >
-                  <NuxtLink v-if="!loggedIn" to="sign-in" class="suggest-button xl-green-btn"
+                  <NuxtLink v-if="!loggedIn" to="/sign-in" class="suggest-button xl-green-btn"
                     >Sign in and suggest your variant</NuxtLink
                   >
-                  <span class="close-content-btn blue-btn" @click="hideAllContentOfSingleRequest">Hide content</span>
+                  <span class="close-content-btn blue-btn" @click="toggleContentVisibility(request._id)"
+                    >Hide content</span
+                  >
                 </div>
               </div>
             </div>
